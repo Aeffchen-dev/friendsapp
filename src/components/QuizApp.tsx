@@ -1,7 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { QuizCard } from './QuizCard';
 import { CategorySelector } from './CategorySelector';
-import { supabase } from '@/integrations/supabase/client';
 
 interface Question {
   question: string;
@@ -24,31 +24,81 @@ export function QuizApp() {
 
   const fetchQuestions = async () => {
     try {
-      const { data, error } = await supabase
-        .from('Friends App Questions')
-        .select('*');
+      // Google Sheets CSV export URL
+      const sheetId = '1-5NpzNwUiAsl_BPruHygyUbpO3LHkWr8E08fqkypOcU';
+      const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
       
-      if (error) {
-        console.error('Error fetching questions:', error);
-        return;
+      const response = await fetch(csvUrl);
+      if (!response.ok) {
+        throw new Error('Failed to fetch data from Google Sheets');
       }
       
-      if (data) {
+      const csvText = await response.text();
+      
+      // Parse CSV data
+      const lines = csvText.split('\n');
+      const parsedQuestions: Question[] = [];
+      
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue; // Skip empty lines
+        
+        // Simple CSV parsing - handles quotes and commas
+        const columns = parseCSVLine(line);
+        
+        if (columns.length >= 2 && columns[0] && columns[1]) {
+          parsedQuestions.push({
+            question: columns[0].trim(),
+            category: columns[1].trim()
+          });
+        }
+      }
+      
+      if (parsedQuestions.length > 0) {
         // Shuffle questions randomly
-        const shuffledQuestions = [...data].sort(() => Math.random() - 0.5);
+        const shuffledQuestions = [...parsedQuestions].sort(() => Math.random() - 0.5);
         setAllQuestions(shuffledQuestions);
         setQuestions(shuffledQuestions);
         
         // Extract unique categories
-        const categories = Array.from(new Set(data.map(q => q.category)));
+        const categories = Array.from(new Set(parsedQuestions.map(q => q.category)));
         setAvailableCategories(categories);
         setSelectedCategories(categories); // Start with all categories selected
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error fetching questions from Google Sheets:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  // Helper function to parse CSV line with proper quote handling
+  const parseCSVLine = (line: string): string[] => {
+    const result: string[] = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      
+      if (char === '"') {
+        // Handle escaped quotes
+        if (inQuotes && line[i + 1] === '"') {
+          current += '"';
+          i++; // Skip next quote
+        } else {
+          inQuotes = !inQuotes;
+        }
+      } else if (char === ',' && !inQuotes) {
+        result.push(current);
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    
+    result.push(current);
+    return result;
   };
 
   const nextQuestion = () => {
