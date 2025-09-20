@@ -196,6 +196,7 @@ export function QuizApp() {
           <button 
             onClick={() => setCategorySelectorOpen(true)}
             className="text-white font-normal text-xs"
+            style={{fontSize: '12px'}}
           >
             Kategorien wählen
           </button>
@@ -230,6 +231,7 @@ export function QuizApp() {
           <a 
             href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
             className="text-white font-normal text-xs"
+            style={{fontSize: '12px'}}
           >
             Frage einreichen
           </a>

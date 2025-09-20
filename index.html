@@ -23,6 +23,19 @@
         z-index: 80;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }
+      
+      /* Animated loading dots */
+      .loading-dots::after {
+        content: '';
+        animation: loading-dots 1.5s infinite;
+      }
+      
+      @keyframes loading-dots {
+        0% { content: ''; }
+        25% { content: '.'; }
+        50% { content: '..'; }
+        75% { content: '...'; }
+      }
     </style>
     <!-- Comprehensive favicon setup for all browsers -->
     <!-- Favicon with cache busting -->
@@ -81,9 +94,9 @@
       </a>
     </div>
     
-    <!-- Static loading text -->
+    <!-- Static loading text with animated dots -->
     <div id="static-loading" class="static-loading">
-      Lade Fragen...
+      Lade Fragen<span class="loading-dots"></span>
     </div>
     
     <div id="root"></div>
