@@ -113,10 +113,14 @@ export function CategorySelector({
               const colorClasses = getCategoryColors(category);
               
               return (
-                <div 
-                  key={category}
-                  className={`flex items-center justify-between p-4 border-l-8 ${colorClasses} bg-[#161616] cursor-pointer`}
-                  style={{ borderRadius: '4px' }}
+                 <div 
+                   key={category}
+                   className={`flex items-center justify-between p-4 border-l-8 ${colorClasses} bg-[#161616] cursor-pointer`}
+                   style={{ 
+                     borderRadius: '4px', 
+                     borderTopRightRadius: '999px',
+                     borderBottomRightRadius: '999px'
+                   }}
                   onClick={() => handleCategoryToggle(category)}
                 >
                   <span className="text-white font-bold text-sm uppercase tracking-wide">
@@ -144,8 +148,8 @@ export function CategorySelector({
                       >
                          {isSelected && (
                            <svg 
-                             width="14" 
-                             height="14" 
+                             width="16" 
+                             height="16" 
                              viewBox="0 0 16 16" 
                              fill="none"
                              className="checkmark-animate"
