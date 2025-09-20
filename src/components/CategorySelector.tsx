@@ -162,12 +162,15 @@ export function CategorySelector({
                   style={{ borderRadius: '4px 999px 999px 4px' }}
                   onClick={() => handleCategoryToggle(category)}
                 >
-                  <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'right-0' : 'w-2'}`} 
+                  {/* Color strip - 8px when unselected, full width when selected */}
+                  <div 
+                    className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
                     style={{ 
                       backgroundColor: colorClasses,
-                      borderRadius: isSelected ? '4px 999px 999px 4px' : '4px 0 0 4px'
+                      borderRadius: '4px 999px 999px 4px'
                     }} 
                   />
+                  
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
                     style={{ color: isSelected ? textColor : 'white' }}>
                     {category}
