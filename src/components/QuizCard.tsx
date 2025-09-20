@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from './ui/button';
-import { useMotion } from '@/hooks/use-motion';
 
 interface Question {
   question: string;
@@ -23,14 +21,11 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
   const [isDragging, setIsDragging] = useState(false);
   const [processedText, setProcessedText] = useState<JSX.Element[]>([]);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const { y: gyroY, supported: motionSupported, permission, enable } = useMotion();
   
   const textRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
-
-  // Motion handled via useMotion() hook
 
 
   // Process text to handle long words individually
@@ -291,30 +286,9 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
         }}
       />
 
-      {/* Motion permission button */}
-      {motionSupported && permission !== 'granted' && (
-        <div className="absolute top-3 right-3 z-20">
-          <Button size="sm" variant="secondary" onClick={enable}>
-            Enable Motion
-          </Button>
-        </div>
-      )}
-
-      {/* Debug info */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="fixed top-0 left-0 bg-black text-white p-2 text-xs z-50">
-          Motion: {permission}, Y: {gyroY.toFixed(1)}
-        </div>
-      )}
-
       {/* Category Strip */}
       <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
-        <div 
-          className="transform -rotate-90 whitespace-nowrap transition-transform duration-75 ease-out"
-          style={{ 
-            transform: `rotate(-90deg) translateY(${gyroY}px)`,
-          }}
-        >
+        <div className="transform -rotate-90 whitespace-nowrap">
           {Array(20).fill(question.category).map((cat, index) => (
             <span 
               key={`${cat}-${index}`} 
