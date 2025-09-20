@@ -186,30 +186,47 @@ All colors MUST be HSL.
   
   /* Wave animation for logo */
   @keyframes wave {
-    0% { transform: skewX(0deg) scaleX(1); }
-    25% { transform: skewX(2deg) scaleX(1.02); }
-    50% { transform: skewX(0deg) scaleX(1); }
-    75% { transform: skewX(-2deg) scaleX(1.02); }
-    100% { transform: skewX(0deg) scaleX(1); }
+    0% { transform: skewX(0deg) scaleX(1) scaleY(1); }
+    15% { transform: skewX(8deg) scaleX(1.1) scaleY(0.95); }
+    30% { transform: skewX(-5deg) scaleX(0.9) scaleY(1.05); }
+    45% { transform: skewX(6deg) scaleX(1.08) scaleY(0.92); }
+    60% { transform: skewX(-4deg) scaleX(0.92) scaleY(1.08); }
+    75% { transform: skewX(3deg) scaleX(1.03) scaleY(0.97); }
+    90% { transform: skewX(-1deg) scaleX(0.98) scaleY(1.02); }
+    100% { transform: skewX(0deg) scaleX(1) scaleY(1); }
   }
   
-  @keyframes wave-subtle {
-    0% { transform: skewX(0deg) scaleY(1); }
-    20% { transform: skewX(1deg) scaleY(1.01); }
-    40% { transform: skewX(0deg) scaleY(1); }
-    60% { transform: skewX(-1deg) scaleY(1.01); }
-    80% { transform: skewX(0deg) scaleY(1); }
-    100% { transform: skewX(0deg) scaleY(1); }
+  @keyframes wave-ripple {
+    0% { transform: scale(1) rotateZ(0deg); }
+    10% { transform: scale(1.15) rotateZ(2deg) skewX(5deg); }
+    20% { transform: scale(0.9) rotateZ(-1deg) skewX(-3deg); }
+    30% { transform: scale(1.1) rotateZ(1deg) skewX(4deg); }
+    40% { transform: scale(0.95) rotateZ(-0.5deg) skewX(-2deg); }
+    50% { transform: scale(1.05) rotateZ(0.5deg) skewX(2deg); }
+    60% { transform: scale(0.98) rotateZ(-0.3deg) skewX(-1deg); }
+    70% { transform: scale(1.02) rotateZ(0.2deg) skewX(1deg); }
+    80% { transform: scale(0.99) rotateZ(-0.1deg) skewX(-0.5deg); }
+    90% { transform: scale(1.01) rotateZ(0.1deg) skewX(0.3deg); }
+    100% { transform: scale(1) rotateZ(0deg) skewX(0deg); }
   }
   
   .wave {
-    animation: wave 2s ease-in-out;
+    animation: wave 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
   }
   
-  .wave-continuous {
-    animation: wave-subtle 3s ease-in-out infinite;
+  .wave-ripple {
+    animation: wave-ripple 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform-origin: center;
+  }
+  
+  .logo-clickable {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  
+  .logo-clickable:hover {
+    opacity: 0.8;
   }
   
   /* Ensure header and footer are always visible */

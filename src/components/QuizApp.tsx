@@ -19,6 +19,7 @@ export function QuizApp() {
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [logoWobble, setLogoWobble] = useState(false);
   const [logoWave, setLogoWave] = useState(false);
+  const [wavePattern, setWavePattern] = useState<'wave' | 'ripple'>('wave');
 
   useEffect(() => {
     fetchQuestions();
@@ -72,7 +73,7 @@ export function QuizApp() {
     } finally {
       setLoading(false);
       // Trigger logo wave on load
-      triggerLogoWave();
+      triggerLogoWave('ripple');
     }
   };
 
@@ -153,9 +154,17 @@ export function QuizApp() {
     }
   }, [selectedCategories, allQuestions]);
 
-  const triggerLogoWave = () => {
+  const triggerLogoWave = (pattern: 'wave' | 'ripple' = 'wave') => {
+    setWavePattern(pattern);
     setLogoWave(true);
-    setTimeout(() => setLogoWave(false), 2000);
+    const duration = pattern === 'ripple' ? 2000 : 1500;
+    setTimeout(() => setLogoWave(false), duration);
+  };
+
+  const handleLogoClick = () => {
+    // Alternate between wave patterns
+    const nextPattern = wavePattern === 'wave' ? 'ripple' : 'wave';
+    triggerLogoWave(nextPattern);
   };
 
   const triggerLogoWobble = () => {
@@ -170,7 +179,7 @@ export function QuizApp() {
   const handleModalClose = () => {
     setCategorySelectorOpen(false);
     // Trigger logo wave when modal closes
-    setTimeout(triggerLogoWave, 100);
+    setTimeout(() => triggerLogoWave('wave'), 100);
   };
 
   return (
@@ -181,7 +190,8 @@ export function QuizApp() {
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
-            className={`h-8 w-auto ${logoWave ? 'wave' : ''} ${logoWobble ? 'wobble' : ''}`}
+            className={`h-8 w-auto logo-clickable ${logoWave ? `wave-${wavePattern}` : ''} ${logoWobble ? 'wobble' : ''}`}
+            onClick={handleLogoClick}
           />
           <button 
             onClick={() => setCategorySelectorOpen(true)}
