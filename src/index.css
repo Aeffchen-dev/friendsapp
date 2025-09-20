@@ -85,6 +85,25 @@ All colors MUST be HSL.
     --quiz-future-bg: 199 89% 48%;        /* Sky blue */
     --quiz-future-text: 0 0% 98%;         /* White text on sky blue */
     
+    /* Category dark tones for stripes and question text */
+    --quiz-fuck-dark: 0 100% 8%;          /* Extremely dark red */
+    --quiz-connection-dark: 240 100% 8%;  /* Extremely dark blue */
+    --quiz-identity-dark: 266 100% 8%;    /* Extremely dark purple */
+    --quiz-party-dark: 60 100% 12%;       /* Extremely dark yellow */
+    --quiz-friends-dark: 120 100% 8%;     /* Extremely dark green */
+    --quiz-self-reflection-dark: 195 100% 8%; /* Extremely dark light blue */
+    --quiz-family-dark: 30 100% 12%;      /* Extremely dark orange */
+    --quiz-career-dark: 35 100% 10%;      /* Extremely dark orange */
+    --quiz-travel-dark: 92 100% 20%;      /* Extremely dark light green */
+    --quiz-health-dark: 330 84% 12%;      /* Extremely dark pink */
+    --quiz-money-dark: 45 95% 8%;         /* Extremely dark gold */
+    --quiz-love-dark: 350 85% 8%;         /* Extremely dark red */
+    --quiz-hobby-dark: 25 60% 8%;         /* Extremely dark brown */
+    --quiz-dreams-dark: 270 75% 10%;      /* Extremely dark purple */
+    --quiz-fear-dark: 210 10% 5%;         /* Extremely dark gray */
+    --quiz-wisdom-dark: 239 84% 12%;      /* Extremely dark indigo */
+    --quiz-future-dark: 199 89% 8%;       /* Extremely dark sky blue */
+    
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
     --gradient-surface: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 15%));
