@@ -197,8 +197,8 @@ export function QuizApp() {
   return (
     <div className="h-[100svh] bg-background overflow-hidden flex flex-col">
       {/* App Header - Always visible */}
-      <div className="app-header bg-black flex-shrink-0 h-16" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: '#000000', height: '64px'}}>
-        <div className="flex justify-between items-center px-4 h-full">
+      <div className="app-header bg-black flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: '#000000'}}>
+        <div className="flex justify-between items-center px-4 py-4">
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
@@ -216,7 +216,7 @@ export function QuizApp() {
       </div>
 
       {/* Main Quiz Container */}
-      <div className="flex-1 flex justify-center items-center mx-4 overflow-hidden" style={{ padding: '16px 0', paddingTop: '64px' }}>
+      <div className="flex-1 flex justify-center items-center mx-4 overflow-hidden" style={{ padding: '16px 0' }}>
         <div className="w-full h-full flex justify-center items-center">
           {loading ? (
             <div className="h-full flex items-center justify-center min-h-[calc(100svh-120px)]">
