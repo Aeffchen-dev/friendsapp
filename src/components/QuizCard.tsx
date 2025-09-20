@@ -255,7 +255,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
 
   return (
     <div 
-      className={`relative h-full w-full max-w-[500px] md:max-h-[780px] mx-auto bg-[hsl(var(--card-background))] rounded-2xl shadow-card overflow-hidden select-none ${animationClass}`}
+      className={`relative h-full w-full max-w-[500px] mx-auto bg-[hsl(var(--card-background))] rounded-2xl shadow-card overflow-hidden select-none ${animationClass}`}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -264,8 +264,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
       onMouseUp={onMouseUp}
       onMouseLeave={onMouseLeave}
       style={{
-        minHeight: 'calc(100vh - 180px)',
-        height: '100%'
+        height: 'calc(100svh - 120px)'
       }}
     >
       {/* Left Click Area - Previous */}
@@ -306,7 +305,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
       {/* Main Content */}
       <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
 
-        <div ref={containerRef} className="flex-1 flex items-start justify-start text-left pt-16 w-full">
+        <div ref={containerRef} className="flex-1 flex items-center justify-start text-left w-full">
           <h1 
             ref={textRef}
             className="text-3xl md:text-4xl lg:text-4xl font-normal text-foreground leading-tight w-full max-w-full" 
