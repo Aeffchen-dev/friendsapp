@@ -158,18 +158,18 @@ export function CategorySelector({
                 <div 
                   key={category}
                   className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative overflow-hidden"
-                  style={{ borderRadius: '4px 999px 999px 4px' }}
+                  style={{ 
+                    borderRadius: '4px 999px 999px 4px',
+                    clipPath: 'inset(0 round 4px 999px 999px 4px)'
+                  }}
                   onClick={() => handleCategoryToggle(category)}
                 >
                   {/* Color strip - 8px when unselected, full width when selected */}
                   <div 
-                    className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
+                    className={`absolute inset-0 transition-all duration-500 ease-out ${isSelected ? '' : 'right-auto w-2'}`}
                     style={{ 
                       backgroundColor: colorClasses,
-                      borderTopLeftRadius: isSelected ? '4px' : '4px',
-                      borderBottomLeftRadius: isSelected ? '4px' : '4px',
-                      borderTopRightRadius: isSelected ? '999px' : '4px',
-                      borderBottomRightRadius: isSelected ? '999px' : '4px'
+                      borderRadius: '4px 999px 999px 4px'
                     }} 
                   />
                   
