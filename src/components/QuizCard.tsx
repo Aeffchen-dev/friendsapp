@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useGyroscope } from '../hooks/useGyroscope';
 
 interface Question {
   question: string;
@@ -24,6 +25,9 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
   
   const textRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Gyroscope hook for motion-based animation
+  const { translateY } = useGyroscope();
 
   const minSwipeDistance = 50;
 
@@ -288,7 +292,12 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
 
       {/* Category Strip */}
       <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
-        <div className="transform -rotate-90 whitespace-nowrap">
+        <div 
+          className="transform -rotate-90 whitespace-nowrap transition-transform duration-75 ease-out"
+          style={{ 
+            transform: `rotate(-90deg) translateY(${translateY}px)`,
+          }}
+        >
           {Array(20).fill(question.category).map((cat, index) => (
             <span 
               key={`${cat}-${index}`} 
