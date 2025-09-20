@@ -28,41 +28,41 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'border-l-quiz-fuck-bg';
+        return 'hsl(0 100% 50%)';
       case 'friends':
-        return 'border-l-quiz-friends-bg';
+        return 'hsl(120 100% 50%)';
       case 'family':
-        return 'border-l-quiz-family-bg';
+        return 'hsl(30 100% 70%)';
       case 'self reflection':
-        return 'border-l-quiz-self-reflection-bg';
+        return 'hsl(195 100% 50%)';
       case 'party':
-        return 'border-l-quiz-party-bg';
+        return 'hsl(60 100% 71%)';
       case 'connection':
-        return 'border-l-quiz-connection-bg';
+        return 'hsl(240 100% 50%)';
       case 'identity':
-        return 'border-l-quiz-identity-bg';
+        return 'hsl(266 100% 51%)';
       case 'career':
-        return 'border-l-quiz-career-bg';
+        return 'hsl(35 100% 62%)';
       case 'travel':
-        return 'border-l-quiz-travel-bg';
+        return 'hsl(92 100% 83%)';
       case 'health':
-        return 'border-l-quiz-health-bg';
+        return 'hsl(330 84% 67%)';
       case 'money':
-        return 'border-l-quiz-money-bg';
+        return 'hsl(45 95% 55%)';
       case 'love':
-        return 'border-l-quiz-love-bg';
+        return 'hsl(350 85% 60%)';
       case 'hobby':
-        return 'border-l-quiz-hobby-bg';
+        return 'hsl(25 60% 45%)';
       case 'dreams':
-        return 'border-l-quiz-dreams-bg';
+        return 'hsl(270 75% 65%)';
       case 'fear':
-        return 'border-l-quiz-fear-bg';
+        return 'hsl(210 10% 40%)';
       case 'wisdom':
-        return 'border-l-quiz-wisdom-bg';
+        return 'hsl(239 84% 67%)';
       case 'future':
-        return 'border-l-quiz-future-bg';
+        return 'hsl(199 89% 48%)';
       default:
-        return 'border-l-quiz-category-bg';
+        return 'hsl(290 100% 85%)';
     }
   };
 
@@ -115,12 +115,13 @@ export function CategorySelector({
               return (
                  <div 
                    key={category}
-                   className={`flex items-center justify-between p-3 border-l-8 ${colorClasses} bg-[#161616] cursor-pointer`}
+                   className="flex items-center justify-between p-3 bg-[#161616] cursor-pointer relative"
                    style={{ 
                      borderTopLeftRadius: '8px',
                      borderBottomLeftRadius: '8px',
                      borderTopRightRadius: '999px',
-                     borderBottomRightRadius: '999px'
+                     borderBottomRightRadius: '999px',
+                     borderLeft: `8px solid ${colorClasses}`
                    }}
                   onClick={() => handleCategoryToggle(category)}
                 >
