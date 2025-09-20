@@ -161,6 +161,7 @@ export function CategorySelector({
                   className="flex items-center justify-between py-3 pr-3 pl-6 cursor-pointer relative overflow-hidden"
                   style={{ 
                     borderRadius: '4px 999px 999px 4px',
+                    clipPath: 'inset(0 round 4px 999px 999px 4px)',
                     backgroundColor: isSelected ? colorClasses : '#161616',
                     transition: 'background-color 500ms ease-out',
                     backgroundClip: 'padding-box',
