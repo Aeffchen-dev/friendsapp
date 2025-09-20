@@ -291,6 +291,15 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
         }}
       />
 
+      {/* Motion permission button */}
+      {motionSupported && permission !== 'granted' && (
+        <div className="absolute top-3 right-3 z-20">
+          <Button size="sm" variant="secondary" onClick={enable}>
+            Enable Motion
+          </Button>
+        </div>
+      )}
+
       {/* Category Strip */}
       <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
         <div 
