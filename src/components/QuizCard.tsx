@@ -300,6 +300,13 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
         </div>
       )}
 
+      {/* Debug info */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="fixed top-0 left-0 bg-black text-white p-2 text-xs z-50">
+          Motion: {permission}, Y: {gyroY.toFixed(1)}
+        </div>
+      )}
+
       {/* Category Strip */}
       <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
         <div 
