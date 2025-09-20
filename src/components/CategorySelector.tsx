@@ -163,7 +163,7 @@ export function CategorySelector({
                 >
                   {/* Color strip - 8px when unselected, full width when selected */}
                   <div 
-                    className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
+                    className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-14'}`}
                     style={{ 
                       backgroundColor: colorClasses,
                       borderTopLeftRadius: isSelected ? '999px' : '999px',
