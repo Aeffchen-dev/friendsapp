@@ -155,7 +155,7 @@ export function QuizApp() {
 
   const triggerLogoStretch = () => {
     setLogoStretch(true);
-    setTimeout(() => setLogoStretch(false), 2000);
+    setTimeout(() => setLogoStretch(false), 2500);
   };
 
   const handleLogoClick = () => {
