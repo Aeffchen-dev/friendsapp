@@ -33,13 +33,13 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     setCategoryPulse(true);
     setTimeout(() => setCategoryPulse(false), 800);
     
-    // Start text animation slightly before slide completes (after 250ms)
+    // Start text animation earlier in the slide transition (after 100ms)
     const startDelay = setTimeout(() => {
       setTextAnimate(true);
       // Allow enough time for staggered animations to finish
-      const stopDelay = setTimeout(() => setTextAnimate(false), 3000);
+      const stopDelay = setTimeout(() => setTextAnimate(false), 2500);
       return () => clearTimeout(stopDelay);
-    }, 250);
+    }, 100);
 
     return () => clearTimeout(startDelay);
   }, [question.question]);

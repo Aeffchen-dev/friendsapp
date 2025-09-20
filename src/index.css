@@ -207,17 +207,17 @@ All colors MUST be HSL.
   /* Category text random movement - fast and sharp */
   @keyframes category-text-float {
     0% { transform: translate(0px, 0px); }
-    25% { transform: translate(0.5px, -0.3px); }
-    50% { transform: translate(-0.3px, 0.5px); }
-    75% { transform: translate(0.3px, -0.5px); }
+    25% { transform: translate(0.8px, -0.5px); }
+    50% { transform: translate(-0.5px, 0.8px); }
+    75% { transform: translate(0.5px, -0.8px); }
     100% { transform: translate(0px, 0px); }
   }
   
   @keyframes category-text-float-alt {
     0% { transform: translate(0px, 0px); }
-    25% { transform: translate(-0.5px, 0.3px); }
-    50% { transform: translate(0.5px, -0.3px); }
-    75% { transform: translate(-0.3px, 0.5px); }
+    25% { transform: translate(-0.8px, 0.5px); }
+    50% { transform: translate(0.8px, -0.5px); }
+    75% { transform: translate(-0.5px, 0.8px); }
     100% { transform: translate(0px, 0px); }
   }
   
