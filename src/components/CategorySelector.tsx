@@ -67,12 +67,53 @@ export function CategorySelector({
     }
   };
 
+  const getCategoryTextColors = (category: string) => {
+    switch (category.toLowerCase()) {
+      case 'fuck':
+        return 'hsl(0 0% 98%)'; // White text on red
+      case 'friends':
+        return 'hsl(0 0% 0%)'; // Black text on green
+      case 'family':
+        return 'hsl(0 0% 0%)'; // Black text on orange
+      case 'self reflection':
+        return 'hsl(0 0% 0%)'; // Black text on light blue
+      case 'party':
+        return 'hsl(0 0% 0%)'; // Black text on yellow
+      case 'connection':
+        return 'hsl(0 0% 100%)'; // White text on blue
+      case 'identity':
+        return 'hsl(0 0% 98%)'; // White text on purple
+      case 'career':
+        return 'hsl(0 0% 0%)'; // Black text on orange
+      case 'travel':
+        return 'hsl(0 0% 0%)'; // Black text on light green
+      case 'health':
+        return 'hsl(0 0% 98%)'; // White text on pink
+      case 'money':
+        return 'hsl(0 0% 0%)'; // Black text on gold
+      case 'love':
+        return 'hsl(0 0% 98%)'; // White text on red
+      case 'hobby':
+        return 'hsl(0 0% 98%)'; // White text on brown
+      case 'dreams':
+        return 'hsl(0 0% 98%)'; // White text on purple
+      case 'fear':
+        return 'hsl(0 0% 98%)'; // White text on gray
+      case 'wisdom':
+        return 'hsl(0 0% 98%)'; // White text on indigo
+      case 'future':
+        return 'hsl(0 0% 98%)'; // White text on sky blue
+      default:
+        return 'hsl(0 0% 15%)'; // Default dark text
+    }
+  };
+
   const handleCategoryToggle = (category: string) => {
     // Trigger stroke animation
     setStrokeAnimations(prev => ({ ...prev, [category]: true }));
     setTimeout(() => {
       setStrokeAnimations(prev => ({ ...prev, [category]: false }));
-    }, 1200);
+    }, 600);
     
     setTempSelection(prev => 
       prev.includes(category) 
@@ -118,6 +159,7 @@ export function CategorySelector({
             {categories.map((category) => {
               const isSelected = tempSelection.includes(category);
               const colorClasses = getCategoryColors(category);
+              const textColor = getCategoryTextColors(category);
               
               return (
                 <div 
@@ -132,7 +174,8 @@ export function CategorySelector({
                   } ${isSelected ? 'w-full rounded-l-[12px] rounded-r-full' : 'w-2 rounded-l-[12px]'}`} 
                     style={{ backgroundColor: colorClasses }} 
                   />
-                  <span className="text-white font-bold text-sm uppercase tracking-wide">
+                  <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
+                    style={{ color: isSelected ? textColor : 'white' }}>
                     {category}
                   </span>
                   <div onClick={(e) => e.stopPropagation()}>
@@ -143,7 +186,7 @@ export function CategorySelector({
                         setStrokeAnimations(prev => ({ ...prev, [category]: true }));
         setTimeout(() => {
           setStrokeAnimations(prev => ({ ...prev, [category]: false }));
-        }, 1200);
+        }, 600);
                         
                         const newCategories = isSelected 
                           ? tempSelection.filter(c => c !== category)
