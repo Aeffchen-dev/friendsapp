@@ -306,7 +306,6 @@ All colors MUST be HSL.
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
     transition: all 0.2s ease-out;
   }
 }
