@@ -38,10 +38,10 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     // Reset position first
     setCategoryJointMove(false);
     
-    // Start smooth downward movement earlier in slide animation (after 100ms)
+    // Start smooth downward movement a bit later in slide animation (after 200ms)
     const moveDownDelay = setTimeout(() => {
       setCategoryJointMove(true);
-    }, 100);
+    }, 200);
 
     return () => clearTimeout(moveDownDelay);
   }, [question.question, isInitialLoad]);
