@@ -169,8 +169,8 @@ export function QuizApp() {
 
   return (
     <div className="h-[100svh] bg-background overflow-hidden">
-      {/* App Header */}
-      <div className="app-header bg-black">
+      {/* App Header - Always visible */}
+      <div className="app-header bg-black" style={{position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, backgroundColor: '#000000'}}>
         <div className="flex justify-between items-center px-6 py-3">
           <img 
             src="/assets/logo.png" 
@@ -187,7 +187,7 @@ export function QuizApp() {
       </div>
 
       {/* Main Quiz Container */}
-      <div className="h-[calc(100svh-60px)] flex flex-col items-center px-4 pt-16 overflow-hidden">
+      <div className="h-[calc(100svh-120px)] flex flex-col items-center px-4 pt-16 pb-16 overflow-hidden" style={{marginTop: '60px', marginBottom: '60px'}}>
         <div className="w-full flex-1 flex items-center justify-center pb-16">
           {loading ? (
             <div className="h-full flex items-center justify-center">
@@ -206,17 +206,17 @@ export function QuizApp() {
             </div>
           )}
         </div>
+      </div>
         
-        {/* Bottom Link */}
-        <div className="app-footer bg-background/80 backdrop-blur-sm">
-          <div className="flex justify-center items-center py-4">
-            <a 
-              href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
-              className="text-white font-normal text-xs"
-            >
-              Frage einreichen
-            </a>
-          </div>
+      {/* Bottom Link - Always visible */}
+      <div className="app-footer bg-background/80 backdrop-blur-sm" style={{position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 40}}>
+        <div className="flex justify-center items-center py-4">
+          <a 
+            href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
+            className="text-white font-normal text-xs"
+          >
+            Frage einreichen
+          </a>
         </div>
       </div>
       
