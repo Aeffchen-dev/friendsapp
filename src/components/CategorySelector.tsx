@@ -72,7 +72,7 @@ export function CategorySelector({
     setStrokeAnimations(prev => ({ ...prev, [category]: true }));
     setTimeout(() => {
       setStrokeAnimations(prev => ({ ...prev, [category]: false }));
-    }, 600);
+    }, 1200);
     
     setTempSelection(prev => 
       prev.includes(category) 
@@ -125,7 +125,13 @@ export function CategorySelector({
                   className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative rounded-l-[12px] rounded-r-full overflow-hidden"
                   onClick={() => handleCategoryToggle(category)}
                 >
-                  <span className={`absolute inset-y-0 left-0 w-2 rounded-l-[12px] ${strokeAnimations[category] ? 'color-stroke-wobble' : ''}`} style={{ backgroundColor: colorClasses }} />
+                  <span className={`absolute inset-y-0 left-0 transition-all duration-300 ${
+                    strokeAnimations[category] 
+                      ? (isSelected ? 'color-stroke-expand' : 'color-stroke-contract')
+                      : ''
+                  } ${isSelected ? 'w-full rounded-l-[12px] rounded-r-full' : 'w-2 rounded-l-[12px]'}`} 
+                    style={{ backgroundColor: colorClasses }} 
+                  />
                   <span className="text-white font-bold text-sm uppercase tracking-wide">
                     {category}
                   </span>
@@ -135,9 +141,9 @@ export function CategorySelector({
                       onClick={() => {
                         // Trigger stroke animation
                         setStrokeAnimations(prev => ({ ...prev, [category]: true }));
-                        setTimeout(() => {
-                          setStrokeAnimations(prev => ({ ...prev, [category]: false }));
-                        }, 600);
+        setTimeout(() => {
+          setStrokeAnimations(prev => ({ ...prev, [category]: false }));
+        }, 1200);
                         
                         const newCategories = isSelected 
                           ? tempSelection.filter(c => c !== category)
