@@ -134,7 +134,7 @@ export function CategorySelector({
         </DialogDescription>
         <div className="flex flex-col h-full relative w-full">
           {/* Header with close button */}
-          <div className="absolute top-4 left-4 right-4 z-10 flex items-baseline justify-between">
+          <div className="absolute top-4 left-8 right-8 z-10 flex items-baseline justify-between">
             <h2 className="text-white text-xl font-normal">
               Kategorien wählen
             </h2>
@@ -148,7 +148,7 @@ export function CategorySelector({
           </div>
 
           {/* Categories List */}
-          <div className="flex-1 p-4 pt-20 space-y-3 overflow-y-auto">
+          <div className="flex-1 p-8 pt-20 space-y-3 overflow-y-auto">
             {categories.map((category) => {
               const isSelected = tempSelection.includes(category);
               const colorClasses = getCategoryColors(category);
