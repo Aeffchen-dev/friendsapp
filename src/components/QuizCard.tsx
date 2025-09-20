@@ -96,163 +96,92 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
       case 'fuck':
         return {
           bg: 'bg-quiz-fuck-bg',
-          text: 'text-quiz-fuck-bg',
-          stripeBg: 'bg-quiz-fuck-dark',
-          questionText: 'text-quiz-fuck-dark'
+          text: 'text-quiz-fuck-text'
         };
       case 'friends':
         return {
           bg: 'bg-quiz-friends-bg', 
-          text: 'text-quiz-friends-bg',
-          stripeBg: 'bg-quiz-friends-dark',
-          questionText: 'text-quiz-friends-dark'
+          text: 'text-quiz-friends-text'
         };
       case 'self reflection':
         return {
           bg: 'bg-quiz-self-reflection-bg',
-          text: 'text-quiz-self-reflection-bg',
-          stripeBg: 'bg-quiz-self-reflection-dark',
-          questionText: 'text-quiz-self-reflection-dark'
+          text: 'text-quiz-self-reflection-text'
         };
       case 'party':
         return {
           bg: 'bg-quiz-party-bg',
-          text: 'text-quiz-party-bg',
-          stripeBg: 'bg-quiz-party-dark',
-          questionText: 'text-quiz-party-dark'
+          text: 'text-quiz-party-text'
         };
       case 'family':
         return {
           bg: 'bg-quiz-family-bg',
-          text: 'text-quiz-family-bg',
-          stripeBg: 'bg-quiz-family-dark',
-          questionText: 'text-quiz-family-dark'
+          text: 'text-quiz-family-text'
         };
       case 'connection':
         return {
           bg: 'bg-quiz-connection-bg',
-          text: 'text-quiz-connection-bg',
-          stripeBg: 'bg-quiz-connection-dark',
-          questionText: 'text-quiz-connection-dark'
+          text: 'text-quiz-connection-text'
         };
       case 'identity':
         return {
           bg: 'bg-quiz-identity-bg',
-          text: 'text-quiz-identity-bg',
-          stripeBg: 'bg-quiz-identity-dark',
-          questionText: 'text-quiz-identity-dark'
+          text: 'text-quiz-identity-text'
         };
       case 'career':
         return {
           bg: 'bg-quiz-career-bg',
-          text: 'text-quiz-career-bg',
-          stripeBg: 'bg-quiz-career-dark',
-          questionText: 'text-quiz-career-dark'
+          text: 'text-quiz-career-text'
         };
       case 'travel':
         return {
           bg: 'bg-quiz-travel-bg',
-          text: 'text-quiz-travel-bg',
-          stripeBg: 'bg-quiz-travel-dark',
-          questionText: 'text-quiz-travel-dark'
+          text: 'text-quiz-travel-text'
         };
       case 'health':
         return {
           bg: 'bg-quiz-health-bg',
-          text: 'text-quiz-health-bg',
-          stripeBg: 'bg-quiz-health-dark',
-          questionText: 'text-quiz-health-dark'
+          text: 'text-quiz-health-text'
         };
       case 'money':
         return {
           bg: 'bg-quiz-money-bg',
-          text: 'text-quiz-money-bg',
-          stripeBg: 'bg-quiz-money-dark',
-          questionText: 'text-quiz-money-dark'
+          text: 'text-quiz-money-text'
         };
       case 'love':
         return {
           bg: 'bg-quiz-love-bg',
-          text: 'text-quiz-love-bg',
-          stripeBg: 'bg-quiz-love-dark',
-          questionText: 'text-quiz-love-dark'
+          text: 'text-quiz-love-text'
         };
       case 'hobby':
         return {
           bg: 'bg-quiz-hobby-bg',
-          text: 'text-quiz-hobby-bg',
-          stripeBg: 'bg-quiz-hobby-dark',
-          questionText: 'text-quiz-hobby-dark'
+          text: 'text-quiz-hobby-text'
         };
       case 'dreams':
         return {
           bg: 'bg-quiz-dreams-bg',
-          text: 'text-quiz-dreams-bg',
-          stripeBg: 'bg-quiz-dreams-dark',
-          questionText: 'text-quiz-dreams-dark'
+          text: 'text-quiz-dreams-text'
         };
       case 'fear':
         return {
           bg: 'bg-quiz-fear-bg',
-          text: 'text-quiz-fear-bg',
-          stripeBg: 'bg-quiz-fear-dark',
-          questionText: 'text-quiz-fear-dark'
+          text: 'text-quiz-fear-text'
         };
       case 'wisdom':
         return {
           bg: 'bg-quiz-wisdom-bg',
-          text: 'text-quiz-wisdom-bg',
-          stripeBg: 'bg-quiz-wisdom-dark',
-          questionText: 'text-quiz-wisdom-dark'
+          text: 'text-quiz-wisdom-text'
         };
       case 'future':
         return {
           bg: 'bg-quiz-future-bg',
-          text: 'text-quiz-future-bg',
-          stripeBg: 'bg-quiz-future-dark',
-          questionText: 'text-quiz-future-dark'
-        };
-      case 'dirty':
-        return {
-          bg: 'bg-quiz-fuck-bg',
-          text: 'text-quiz-fuck-bg',
-          stripeBg: 'bg-quiz-fuck-dark',
-          questionText: 'text-quiz-fuck-dark'
-        };
-      case 'fail':
-        return {
-          bg: 'bg-quiz-fear-bg',
-          text: 'text-quiz-fear-bg',
-          stripeBg: 'bg-quiz-fear-dark',
-          questionText: 'text-quiz-fear-dark'
-        };
-      case 'wild':
-        return {
-          bg: 'bg-quiz-party-bg',
-          text: 'text-quiz-party-bg',
-          stripeBg: 'bg-quiz-party-dark',
-          questionText: 'text-quiz-party-dark'
-        };
-      case 'crazy':
-        return {
-          bg: 'bg-quiz-dreams-bg',
-          text: 'text-quiz-dreams-bg',
-          stripeBg: 'bg-quiz-dreams-dark',
-          questionText: 'text-quiz-dreams-dark'
-        };
-      case 'toys':
-        return {
-          bg: 'bg-quiz-hobby-bg',
-          text: 'text-quiz-hobby-bg',
-          stripeBg: 'bg-quiz-hobby-dark',
-          questionText: 'text-quiz-hobby-dark'
+          text: 'text-quiz-future-text'
         };
       default:
         return {
           bg: 'bg-quiz-category-bg',
-          text: 'text-quiz-category-text',
-          stripeBg: 'bg-quiz-category-bg',
-          questionText: 'text-quiz-category-text'
+          text: 'text-quiz-category-text'
         };
     }
   };
@@ -326,7 +255,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
 
   return (
     <div 
-      className={`relative h-full w-full max-w-[500px] mx-auto ${categoryColors.bg} rounded-2xl shadow-card overflow-hidden select-none ${animationClass}`}
+      className={`relative h-full w-full max-w-[500px] mx-auto bg-[hsl(var(--card-background))] rounded-2xl shadow-card overflow-hidden select-none ${animationClass}`}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -359,7 +288,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
       />
 
       {/* Category Strip */}
-      <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.stripeBg} flex items-center justify-center`}>
+      <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
         <div className="transform -rotate-90 whitespace-nowrap">
           {Array(20).fill(question.category).map((cat, index) => (
             <span 
@@ -381,7 +310,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
         <div ref={containerRef} className="flex-1 flex items-start justify-start text-left w-full pt-16">
           <h1 
             ref={textRef}
-            className={`text-3xl md:text-4xl lg:text-4xl font-normal ${categoryColors.questionText} leading-tight w-full max-w-full`}
+            className="text-3xl md:text-4xl lg:text-4xl font-normal text-foreground leading-tight w-full max-w-full" 
           >
             {processedText.length > 0 ? processedText : question.question}
           </h1>
