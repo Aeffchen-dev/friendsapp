@@ -165,13 +165,19 @@ export function CategorySelector({
                     borderBottomLeftRadius: '4px',
                     borderTopRightRadius: '9999px',
                     borderBottomRightRadius: '9999px',
-                    backgroundImage: `linear-gradient(to right, ${colorClasses}, ${colorClasses})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: isSelected ? '100% 100%' : '8px 100%',
-                    backgroundPosition: 'left center',
-                    transition: 'background-size 500ms cubic-bezier(0.23, 1, 0.32, 1)'
+                    backgroundColor: isSelected ? colorClasses : '#161616',
+                    transition: 'background-color 300ms ease'
                   }}
                 >
+                  <div
+                    className="absolute inset-y-0 left-0 z-0 transition-all duration-500 ease-out"
+                    style={{ 
+                      width: isSelected ? '0px' : '8px',
+                      backgroundColor: colorClasses,
+                      borderTopLeftRadius: '4px',
+                      borderBottomLeftRadius: '4px'
+                    }}
+                  />
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
                     style={{ color: isSelected ? textColor : 'white', borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px' }}>
                     {category}
