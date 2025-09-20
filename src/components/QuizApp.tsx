@@ -18,7 +18,7 @@ export function QuizApp() {
   const [categorySelectorOpen, setCategorySelectorOpen] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
-  const [showGroupQuestions, setShowGroupQuestions] = useState(false);
+  const [showGroupQuestions, setShowGroupQuestions] = useState(true);
 
   useEffect(() => {
     fetchQuestions();
