@@ -180,7 +180,7 @@ export function QuizApp() {
   };
 
   return (
-    <div className="h-[100svh] bg-background overflow-hidden flex flex-col min-h-screen">
+    <div className="h-[100svh] bg-background overflow-hidden flex flex-col">
       {/* App Header - Always visible */}
       <div className="app-header bg-black flex-shrink-0 h-16" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: '#000000', height: '64px'}}>
         <div className="flex justify-between items-center px-6 h-full">
