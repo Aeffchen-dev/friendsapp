@@ -129,6 +129,7 @@ export function CategorySelector({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="w-full max-w-[500px] mx-auto bg-background border-0 rounded-2xl p-0 overflow-hidden [&>button]:hidden h-[100svh] md:h-[90vh] data-[state=closed]:animate-none data-[state=closed]:duration-0">
+        <DialogTitle className="sr-only">Kategorien wählen</DialogTitle>
         <DialogDescription className="sr-only">
           Wählen Sie die Kategorien aus, die Sie sehen möchten
         </DialogDescription>
@@ -163,10 +164,13 @@ export function CategorySelector({
                 >
                   {/* Color strip - 8px when unselected, full width when selected */}
                   <div 
-                    className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
+                    className={`absolute inset-y-0 left-0 z-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
                     style={{ 
                       backgroundColor: colorClasses,
-                      borderRadius: isSelected ? '4px 999px 999px 4px' : '4px'
+                      borderTopLeftRadius: 'inherit',
+                      borderBottomLeftRadius: 'inherit',
+                      borderTopRightRadius: isSelected ? '999px' : '4px',
+                      borderBottomRightRadius: isSelected ? '999px' : '4px'
                     }} 
                   />
                   
