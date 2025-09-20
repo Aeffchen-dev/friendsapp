@@ -21,16 +21,23 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
   const [isDragging, setIsDragging] = useState(false);
   const [processedText, setProcessedText] = useState<JSX.Element[]>([]);
   const [categoryPulse, setCategoryPulse] = useState(false);
+  const [textAnimate, setTextAnimate] = useState(false);
   
   const textRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
 
-  // Trigger category pulse when question changes
+  // Trigger category pulse and text animation when question changes
   useEffect(() => {
     setCategoryPulse(true);
     setTimeout(() => setCategoryPulse(false), 800);
+    
+    // Start text animation slightly before slide completes (after 200ms)
+    setTimeout(() => {
+      setTextAnimate(true);
+      setTimeout(() => setTextAnimate(false), 2000); // Reset after animation completes
+    }, 200);
   }, [question.question]);
 
   // Process text to handle long words individually
@@ -297,10 +304,10 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
           {Array(20).fill(question.category).map((cat, index) => (
             <span 
               key={`${cat}-${index}`} 
-              className={`${categoryColors.text} font-bold text-sm tracking-wide uppercase ${index % 2 === 0 ? 'category-text-animate' : 'category-text-animate-alt'}`} 
+              className={`${categoryColors.text} font-bold text-sm tracking-wide uppercase ${textAnimate ? (index % 2 === 0 ? 'category-text-animate' : 'category-text-animate-alt') : ''}`} 
               style={{ 
                 marginRight: index < 19 ? '8px' : '0',
-                animationDelay: `${index * 0.1}s`
+                animationDelay: textAnimate ? `${index * 0.05}s` : '0s'
               }}
             >
               {cat}
