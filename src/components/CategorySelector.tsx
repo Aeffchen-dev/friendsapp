@@ -142,7 +142,7 @@ export function CategorySelector({
           </button>
 
           {/* Header */}
-          <DialogHeader className="absolute top-6 left-6 z-10">
+          <DialogHeader className="absolute top-6 left-4 z-10">
             <DialogTitle className="text-white text-xl font-normal">
               Kategorien wählen
             </DialogTitle>
