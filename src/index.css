@@ -207,14 +207,26 @@ All colors MUST be HSL.
   /* Category text random movement */
   @keyframes category-text-float {
     0% { transform: translate(0px, 0px); }
-    25% { transform: translate(var(--random-x), var(--random-y)); }
-    50% { transform: translate(calc(var(--random-x) * -0.5), calc(var(--random-y) * 0.8)); }
-    75% { transform: translate(calc(var(--random-x) * 0.7), calc(var(--random-y) * -0.6)); }
+    25% { transform: translate(2px, -1px); }
+    50% { transform: translate(-1px, 2px); }
+    75% { transform: translate(1px, -2px); }
+    100% { transform: translate(0px, 0px); }
+  }
+  
+  @keyframes category-text-float-alt {
+    0% { transform: translate(0px, 0px); }
+    25% { transform: translate(-2px, 1px); }
+    50% { transform: translate(2px, -1px); }
+    75% { transform: translate(-1px, 2px); }
     100% { transform: translate(0px, 0px); }
   }
   
   .category-text-animate {
-    animation: category-text-float 3s ease-in-out infinite;
+    animation: category-text-float 2.5s ease-in-out infinite;
+  }
+  
+  .category-text-animate-alt {
+    animation: category-text-float-alt 2.8s ease-in-out infinite;
   }
   
   /* Category strip pulse */

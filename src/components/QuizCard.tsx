@@ -294,25 +294,18 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
       {/* Category Strip */}
       <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center transition-all duration-200 ease-in-out ${categoryPulse ? 'category-pulse' : ''}`}>
         <div className="transform -rotate-90 whitespace-nowrap">
-          {Array(20).fill(question.category).map((cat, index) => {
-            // Generate random values for each text element
-            const randomX = (Math.random() - 0.5) * 4; // -2px to +2px
-            const randomY = (Math.random() - 0.5) * 4; // -2px to +2px
-            
-            return (
-              <span 
-                key={`${cat}-${index}`} 
-                className={`${categoryColors.text} font-bold text-sm tracking-wide uppercase category-text-animate`} 
-                style={{ 
-                  marginRight: index < 19 ? '8px' : '0',
-                  '--random-x': `${randomX}px`,
-                  '--random-y': `${randomY}px`
-                } as React.CSSProperties}
-              >
-                {cat}
-              </span>
-            );
-          })}
+          {Array(20).fill(question.category).map((cat, index) => (
+            <span 
+              key={`${cat}-${index}`} 
+              className={`${categoryColors.text} font-bold text-sm tracking-wide uppercase ${index % 2 === 0 ? 'category-text-animate' : 'category-text-animate-alt'}`} 
+              style={{ 
+                marginRight: index < 19 ? '8px' : '0',
+                animationDelay: `${index * 0.1}s`
+              }}
+            >
+              {cat}
+            </span>
+          ))}
         </div>
       </div>
 
