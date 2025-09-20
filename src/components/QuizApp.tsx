@@ -191,7 +191,7 @@ export function QuizApp() {
         <div className="w-full flex-1 flex items-center justify-center pb-16">
           {loading ? (
             <div className="h-full flex items-center justify-center">
-              <div className="text-white text-xl">Lade Fragen...</div>
+              {/* Loading text removed - handled by static HTML */}
             </div>
           ) : questions.length > 0 ? (
             <QuizCard
