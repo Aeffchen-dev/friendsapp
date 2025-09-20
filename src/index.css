@@ -204,40 +204,9 @@ All colors MUST be HSL.
     transition: opacity 0.2s ease;
   }
   
-  /* Category text random movement - fast and sharp */
-  @keyframes category-text-float {
-    0% { transform: translate(0px, 0px); }
-    25% { transform: translate(0.8px, -0.5px); }
-    50% { transform: translate(-0.5px, 0.8px); }
-    75% { transform: translate(0.5px, -0.8px); }
-    100% { transform: translate(0px, 0px); }
-  }
-  
-  @keyframes category-text-float-alt {
-    0% { transform: translate(0px, 0px); }
-    25% { transform: translate(-0.8px, 0.5px); }
-    50% { transform: translate(0.8px, -0.5px); }
-    75% { transform: translate(-0.5px, 0.8px); }
-    100% { transform: translate(0px, 0px); }
-  }
-  
-  .category-text-animate {
-    display: inline-block;
-    will-change: transform;
-    animation: category-text-float 0.8s ease both;
-  }
-  
-  .category-text-animate-alt {
-    display: inline-block;
-    will-change: transform;
-    animation: category-text-float-alt 0.9s ease both;
-  }
-  
-  /* Category strip pulse */
-  @keyframes category-pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.7; }
-    100% { opacity: 1; }
+  /* Category joint movement animation */
+  .category-joint-move {
+    transform: translateY(-8px) rotate(-90deg);
   }
   
   /* Checkbox bounce */
@@ -249,9 +218,6 @@ All colors MUST be HSL.
     100% { transform: scale(1); }
   }
   
-  .category-pulse {
-    animation: category-pulse 0.8s ease-in-out;
-  }
   
   .checkbox-bounce {
     animation: checkbox-bounce 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);

@@ -20,28 +20,24 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
   const [mouseEnd, setMouseEnd] = useState<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [processedText, setProcessedText] = useState<JSX.Element[]>([]);
-  const [categoryPulse, setCategoryPulse] = useState(false);
-  const [textAnimate, setTextAnimate] = useState(false);
+  const [categoryJointMove, setCategoryJointMove] = useState(false);
   
   const textRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
 
-  // Trigger category pulse and text animation when question changes
+  // Trigger joint category movement when question changes
   useEffect(() => {
-    setCategoryPulse(true);
-    setTimeout(() => setCategoryPulse(false), 800);
-    
-    // Start text animation earlier in the slide transition (after 100ms)
-    const startDelay = setTimeout(() => {
-      setTextAnimate(true);
-      // Allow enough time for staggered animations to finish
-      const stopDelay = setTimeout(() => setTextAnimate(false), 2500);
-      return () => clearTimeout(stopDelay);
-    }, 100);
+    // Start joint movement shortly before slide completes (after 200ms)
+    const moveUpDelay = setTimeout(() => {
+      setCategoryJointMove(true);
+      // Move back down when slide animation is done (after 400ms total)
+      const moveDownDelay = setTimeout(() => setCategoryJointMove(false), 200);
+      return () => clearTimeout(moveDownDelay);
+    }, 200);
 
-    return () => clearTimeout(startDelay);
+    return () => clearTimeout(moveUpDelay);
   }, [question.question]);
 
   // Process text to handle long words individually
@@ -303,15 +299,14 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
       />
 
       {/* Category Strip */}
-      <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center transition-all duration-200 ease-in-out ${categoryPulse ? 'category-pulse' : ''}`}>
-        <div className="transform -rotate-90 whitespace-nowrap">
+      <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
+        <div className={`transform -rotate-90 whitespace-nowrap transition-transform duration-200 ease-out ${categoryJointMove ? 'category-joint-move' : ''}`}>
           {Array(20).fill(question.category).map((cat, index) => (
             <span 
               key={`${cat}-${index}`} 
-              className={`${categoryColors.text} font-bold text-sm tracking-wide uppercase ${textAnimate ? (index % 2 === 0 ? 'category-text-animate' : 'category-text-animate-alt') : ''}`} 
+              className={`${categoryColors.text} font-bold text-sm tracking-wide uppercase`} 
               style={{ 
-                marginRight: index < 19 ? '8px' : '0',
-                animationDelay: textAnimate ? `${index * 0.05}s` : '0s'
+                marginRight: index < 19 ? '8px' : '0'
               }}
             >
               {cat}
