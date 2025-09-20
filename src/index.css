@@ -254,6 +254,16 @@ All colors MUST be HSL.
     animation: color-stroke-wobble 0.6s ease-in-out;
   }
   
+  /* Slow walking text animation for inactivity */
+  @keyframes text-walk {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-20px); }
+  }
+  
+  .text-walk {
+    animation: text-walk 8s linear infinite;
+  }
+  
   /* Ensure header and footer are always visible */
   .app-header {
     position: fixed !important;

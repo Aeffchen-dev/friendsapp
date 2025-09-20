@@ -21,12 +21,35 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
   const [isDragging, setIsDragging] = useState(false);
   const [processedText, setProcessedText] = useState<JSX.Element[]>([]);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [isInactive, setIsInactive] = useState(false);
   
   const textRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const inactivityTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const minSwipeDistance = 50;
 
+
+  // Reset inactivity timer
+  const resetInactivityTimer = () => {
+    setIsInactive(false);
+    if (inactivityTimerRef.current) {
+      clearTimeout(inactivityTimerRef.current);
+    }
+    inactivityTimerRef.current = setTimeout(() => {
+      setIsInactive(true);
+    }, 10000); // 10 seconds
+  };
+
+  // Set up inactivity timer
+  useEffect(() => {
+    resetInactivityTimer();
+    return () => {
+      if (inactivityTimerRef.current) {
+        clearTimeout(inactivityTimerRef.current);
+      }
+    };
+  }, []);
 
   // Process text to handle long words individually
   useEffect(() => {
@@ -198,10 +221,12 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
+    resetInactivityTimer();
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX);
+    resetInactivityTimer();
   };
 
   const onTouchEnd = () => {
@@ -216,6 +241,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     } else if (isRightSwipe) {
       onSwipeRight();
     }
+    resetInactivityTimer();
   };
 
   // Mouse drag handlers for desktop
@@ -223,11 +249,13 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     setMouseEnd(null);
     setMouseStart(e.clientX);
     setIsDragging(true);
+    resetInactivityTimer();
   };
 
   const onMouseMove = (e: React.MouseEvent) => {
     if (!isDragging) return;
     setMouseEnd(e.clientX);
+    resetInactivityTimer();
   };
 
   const onMouseUp = () => {
@@ -247,6 +275,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     }
     
     setIsDragging(false);
+    resetInactivityTimer();
   };
 
   const onMouseLeave = () => {
@@ -274,6 +303,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
         onClick={() => {
           triggerHaptic();
           onSwipeRight();
+          resetInactivityTimer();
         }}
       />
 
@@ -283,12 +313,13 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
         onClick={() => {
           triggerHaptic();
           onSwipeLeft();
+          resetInactivityTimer();
         }}
       />
 
       {/* Category Strip */}
-      <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
-        <div className="transform -rotate-90 whitespace-nowrap">
+      <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center overflow-hidden`}>
+        <div className={`transform -rotate-90 whitespace-nowrap ${isInactive ? 'text-walk' : ''}`}>
           {Array(20).fill(question.category).map((cat, index) => (
             <span 
               key={`${cat}-${index}`} 
