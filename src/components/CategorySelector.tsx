@@ -158,7 +158,7 @@ export function CategorySelector({
                 <div 
                   key={category}
                   className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative overflow-hidden"
-                  style={{ borderRadius: '4px 999px 999px 4px' }}
+                  style={{ borderRadius: '999px' }}
                   onClick={() => handleCategoryToggle(category)}
                 >
                   {/* Color strip - 8px when unselected, full width when selected */}
@@ -166,11 +166,11 @@ export function CategorySelector({
                     className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
                     style={{ 
                       backgroundColor: colorClasses,
-                      borderTopLeftRadius: isSelected ? '999px' : '4px',
-                      borderBottomLeftRadius: isSelected ? '999px' : '4px',
-                      borderTopRightRadius: isSelected ? '999px' : '4px',
-                      borderBottomRightRadius: isSelected ? '999px' : '4px'
-                    }} 
+                      borderTopLeftRadius: isSelected ? '999px' : '999px',
+                      borderBottomLeftRadius: isSelected ? '999px' : '999px',
+                      borderTopRightRadius: isSelected ? '999px' : '999px',
+                      borderBottomRightRadius: isSelected ? '999px' : '999px'
+                    }}
                   />
                   
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
