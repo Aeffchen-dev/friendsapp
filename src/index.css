@@ -6,19 +6,19 @@
 All colors MUST be HSL.
 */
 
-/* Kokoro font - fallback to bold italic fonts until proper font is loaded */
+/* Kokoro font - regular weight and style */
 @font-face {
   font-family: 'Kokoro';
   src: url('/fonts/kokoro-bolditalic-webfont.woff') format('woff');
-  font-weight: bold;
-  font-style: italic;
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 
 .kokoro-font {
-  font-family: 'Kokoro', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
-  font-weight: bold;
-  font-style: italic;
+  font-family: 'Kokoro', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
 }
 
 @layer base {
