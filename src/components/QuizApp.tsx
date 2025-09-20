@@ -6,6 +6,7 @@ import { CategorySelector } from './CategorySelector';
 interface Question {
   question: string;
   category: string;
+  groupSpecific: boolean;
 }
 
 export function QuizApp() {
@@ -17,6 +18,7 @@ export function QuizApp() {
   const [categorySelectorOpen, setCategorySelectorOpen] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
+  const [showGroupQuestions, setShowGroupQuestions] = useState(false);
 
   useEffect(() => {
     fetchQuestions();
@@ -49,7 +51,8 @@ export function QuizApp() {
         if (columns.length >= 2 && columns[0] && columns[1]) {
           parsedQuestions.push({
             question: columns[0].trim(),
-            category: columns[1].trim()
+            category: columns[1].trim(),
+            groupSpecific: columns[2] && columns[2].trim() === 'x'
           });
         }
       }
@@ -136,18 +139,20 @@ export function QuizApp() {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [currentIndex]);
 
-  // Filter questions based on selected categories
+  // Filter questions based on selected categories and group filter
   useEffect(() => {
     if (selectedCategories.length === 0) {
       setQuestions([]);
     } else {
-      const filteredQuestions = allQuestions.filter(q => 
-        selectedCategories.includes(q.category)
-      );
+      const filteredQuestions = allQuestions.filter(q => {
+        const matchesCategory = selectedCategories.includes(q.category);
+        const matchesGroupFilter = !q.groupSpecific || showGroupQuestions;
+        return matchesCategory && matchesGroupFilter;
+      });
       setQuestions(filteredQuestions);
       setCurrentIndex(0); // Reset to first question when filtering
     }
-  }, [selectedCategories, allQuestions]);
+  }, [selectedCategories, allQuestions, showGroupQuestions]);
 
   const handleCategoriesChange = (categories: string[]) => {
     setSelectedCategories(categories);
@@ -206,6 +211,8 @@ export function QuizApp() {
         categories={availableCategories}
         selectedCategories={selectedCategories}
         onCategoriesChange={handleCategoriesChange}
+        showGroupQuestions={showGroupQuestions}
+        onShowGroupQuestionsChange={setShowGroupQuestions}
       />
     </div>
   );

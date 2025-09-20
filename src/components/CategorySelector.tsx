@@ -9,6 +9,8 @@ interface CategorySelectorProps {
   categories: string[];
   selectedCategories: string[];
   onCategoriesChange: (categories: string[]) => void;
+  showGroupQuestions: boolean;
+  onShowGroupQuestionsChange: (show: boolean) => void;
 }
 
 export function CategorySelector({ 
@@ -16,7 +18,9 @@ export function CategorySelector({
   onOpenChange, 
   categories, 
   selectedCategories, 
-  onCategoriesChange 
+  onCategoriesChange,
+  showGroupQuestions,
+  onShowGroupQuestionsChange
 }: CategorySelectorProps) {
   const [tempSelection, setTempSelection] = useState<string[]>(selectedCategories);
 
@@ -108,6 +112,44 @@ export function CategorySelector({
 
           {/* Categories List */}
           <div className="flex-1 px-6 pt-20 space-y-3 overflow-y-auto">
+            {/* Group Questions Filter */}
+            <div className="mb-6">
+              <div 
+                className="flex items-center justify-between p-4 border-l-8 border-l-quiz-connection-bg bg-[#161616] cursor-pointer"
+                style={{ borderRadius: '4px' }}
+                onClick={() => onShowGroupQuestionsChange(!showGroupQuestions)}
+              >
+                <span className="text-white font-bold text-sm uppercase tracking-wide">
+                  Wer aus der Runde
+                </span>
+                <div onClick={(e) => e.stopPropagation()}>
+                  <div
+                    className="relative cursor-pointer"
+                    onClick={() => onShowGroupQuestionsChange(!showGroupQuestions)}
+                  >
+                    <div
+                      className={`w-5 h-5 border border-white flex items-center justify-center ${showGroupQuestions ? 'bg-white' : 'bg-transparent'}`}
+                      style={{ 
+                        width: '20px', 
+                        height: '20px', 
+                        borderRadius: '24px',
+                        outline: '1px solid white',
+                        outlineOffset: '0px'
+                      }}
+                    >
+                      {showGroupQuestions && (
+                        <Check 
+                          className="text-black" 
+                          style={{ width: '14px', height: '14px' }}
+                          strokeWidth={2}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {categories.map((category) => {
               const isSelected = tempSelection.includes(category);
               const colorClasses = getCategoryColors(category);
