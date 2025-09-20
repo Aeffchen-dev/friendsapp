@@ -86,23 +86,23 @@ All colors MUST be HSL.
     --quiz-future-text: 0 0% 98%;         /* White text on sky blue */
     
     /* Category dark tones for stripes and question text */
-    --quiz-fuck-dark: 0 100% 35%;         /* Dark red */
-    --quiz-connection-dark: 240 100% 35%; /* Dark blue */
-    --quiz-identity-dark: 266 100% 36%;   /* Dark purple */
-    --quiz-party-dark: 60 100% 50%;       /* Dark yellow */
-    --quiz-friends-dark: 120 100% 35%;    /* Dark green */
-    --quiz-self-reflection-dark: 195 100% 35%; /* Dark light blue */
-    --quiz-family-dark: 30 100% 50%;      /* Dark orange */
-    --quiz-career-dark: 35 100% 42%;      /* Dark orange */
-    --quiz-travel-dark: 92 100% 63%;      /* Dark light green */
-    --quiz-health-dark: 330 84% 47%;      /* Dark pink */
-    --quiz-money-dark: 45 95% 35%;        /* Dark gold */
-    --quiz-love-dark: 350 85% 40%;        /* Dark red */
-    --quiz-hobby-dark: 25 60% 25%;        /* Dark brown */
-    --quiz-dreams-dark: 270 75% 45%;      /* Dark purple */
-    --quiz-fear-dark: 210 10% 20%;        /* Dark gray */
-    --quiz-wisdom-dark: 239 84% 47%;      /* Dark indigo */
-    --quiz-future-dark: 199 89% 28%;      /* Dark sky blue */
+    --quiz-fuck-dark: 0 100% 15%;         /* Much darker red */
+    --quiz-connection-dark: 240 100% 15%; /* Much darker blue */
+    --quiz-identity-dark: 266 100% 16%;   /* Much darker purple */
+    --quiz-party-dark: 60 100% 30%;       /* Much darker yellow */
+    --quiz-friends-dark: 120 100% 15%;    /* Much darker green */
+    --quiz-self-reflection-dark: 195 100% 15%; /* Much darker light blue */
+    --quiz-family-dark: 30 100% 30%;      /* Much darker orange */
+    --quiz-career-dark: 35 100% 22%;      /* Much darker orange */
+    --quiz-travel-dark: 92 100% 43%;      /* Much darker light green */
+    --quiz-health-dark: 330 84% 27%;      /* Much darker pink */
+    --quiz-money-dark: 45 95% 15%;        /* Much darker gold */
+    --quiz-love-dark: 350 85% 20%;        /* Much darker red */
+    --quiz-hobby-dark: 25 60% 15%;        /* Much darker brown */
+    --quiz-dreams-dark: 270 75% 25%;      /* Much darker purple */
+    --quiz-fear-dark: 210 10% 10%;        /* Much darker gray */
+    --quiz-wisdom-dark: 239 84% 27%;      /* Much darker indigo */
+    --quiz-future-dark: 199 89% 15%;      /* Much darker sky blue */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
