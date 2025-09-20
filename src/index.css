@@ -85,6 +85,25 @@ All colors MUST be HSL.
     --quiz-future-bg: 199 89% 48%;        /* Sky blue */
     --quiz-future-text: 0 0% 98%;         /* White text on sky blue */
     
+    /* Category dark tones for stripes and question text */
+    --quiz-fuck-dark: 0 100% 35%;         /* Dark red */
+    --quiz-connection-dark: 240 100% 35%; /* Dark blue */
+    --quiz-identity-dark: 266 100% 36%;   /* Dark purple */
+    --quiz-party-dark: 60 100% 50%;       /* Dark yellow */
+    --quiz-friends-dark: 120 100% 35%;    /* Dark green */
+    --quiz-self-reflection-dark: 195 100% 35%; /* Dark light blue */
+    --quiz-family-dark: 30 100% 50%;      /* Dark orange */
+    --quiz-career-dark: 35 100% 42%;      /* Dark orange */
+    --quiz-travel-dark: 92 100% 63%;      /* Dark light green */
+    --quiz-health-dark: 330 84% 47%;      /* Dark pink */
+    --quiz-money-dark: 45 95% 35%;        /* Dark gold */
+    --quiz-love-dark: 350 85% 40%;        /* Dark red */
+    --quiz-hobby-dark: 25 60% 25%;        /* Dark brown */
+    --quiz-dreams-dark: 270 75% 45%;      /* Dark purple */
+    --quiz-fear-dark: 210 10% 20%;        /* Dark gray */
+    --quiz-wisdom-dark: 239 84% 47%;      /* Dark indigo */
+    --quiz-future-dark: 199 89% 28%;      /* Dark sky blue */
+    
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
     --gradient-surface: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 15%));
