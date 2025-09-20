@@ -202,7 +202,7 @@ export function QuizApp() {
 
       {/* Main Quiz Container */}
       <div className="flex-1 flex items-center justify-center px-4 py-4 overflow-hidden">
-        <div className="w-full flex items-center justify-center">
+        <div className="w-full h-full flex items-center justify-center">
           {loading ? (
             <div className="h-full flex items-center justify-center">
               {/* Loading text removed - handled by static HTML */}
