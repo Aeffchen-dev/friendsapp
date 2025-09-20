@@ -214,7 +214,7 @@ export function QuizApp() {
             />
           ) : (
             <div className="h-full flex items-center justify-center">
-              <div className="text-white text-xl">Keine Fragen verfügbar</div>
+              <div className="text-white text-sm">Keine Fragen verfügbar</div>
             </div>
           )}
         </div>
