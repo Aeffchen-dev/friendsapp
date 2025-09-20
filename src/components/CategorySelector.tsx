@@ -160,16 +160,10 @@ export function CategorySelector({
                   key={category}
                   className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative rounded-l-[4px] rounded-r-full overflow-hidden"
                   onClick={() => handleCategoryToggle(category)}
-                  style={{ borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px' }}
+                  style={{ borderRadius: '4px 9999px 9999px 4px' }}
                 >
                   <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'} z-0`} 
-                    style={{ 
-                      backgroundColor: colorClasses,
-                      borderTopLeftRadius: '4px',
-                      borderBottomLeftRadius: '4px',
-                      borderTopRightRadius: isSelected ? '9999px' : '0px',
-                      borderBottomRightRadius: isSelected ? '9999px' : '0px'
-                    }} 
+                    style={{ backgroundColor: colorClasses, borderRadius: 'inherit' }} 
                   />
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
                     style={{ color: isSelected ? textColor : 'white', borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px' }}>
