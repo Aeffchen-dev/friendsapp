@@ -17,8 +17,8 @@ All colors MUST be HSL.
 
 .kokoro-font {
   font-family: 'Kokoro', 'Impact', 'Arial Black', sans-serif;
-  font-weight: normal;
-  font-style: normal;
+  font-weight: bold;
+  font-style: italic;
 }
 
 @layer base {
