@@ -113,17 +113,12 @@ export function CategorySelector({
               const colorClasses = getCategoryColors(category);
               
               return (
-                 <div 
-                   key={category}
-                   className="flex items-center justify-between p-3 bg-[#161616] cursor-pointer relative"
-                   style={{ 
-                     borderTopLeftRadius: '8px',
-                     borderBottomLeftRadius: '8px',
-                     borderTopRightRadius: '999px',
-                     borderBottomRightRadius: '999px',
-                     borderLeft: `8px solid ${colorClasses}`,
-                     overflow: 'hidden'
-                   }}
+                <div 
+                  key={category}
+                  className="flex items-center justify-between p-3 bg-[#161616] cursor-pointer relative rounded-l-[8px] rounded-r-full overflow-hidden"
+                  style={{ 
+                    borderLeft: `8px solid ${colorClasses}`
+                  }}
                   onClick={() => handleCategoryToggle(category)}
                 >
                   <span className="text-white font-bold text-sm uppercase tracking-wide">
