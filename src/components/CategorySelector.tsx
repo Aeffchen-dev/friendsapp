@@ -158,7 +158,7 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className="flex items-center justify-between py-3 bg-[#161616] cursor-pointer relative rounded-l-[4px] rounded-r-full overflow-hidden"
+                  className="flex items-center justify-between py-3 px-4 bg-[#161616] cursor-pointer relative rounded-l-[4px] rounded-r-full overflow-hidden"
                   onClick={() => handleCategoryToggle(category)}
                 >
                   <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`} 
