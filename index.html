@@ -43,18 +43,18 @@
         75% { content: '...'; }
       }
       
-      /* Static logo animation for loading duration */
+      /* Static logo animation for loading duration - slower and more subtle */
       @keyframes static-logo-stretch {
         0% { transform: scaleX(1); }
-        20% { transform: scaleX(1.15); }
-        40% { transform: scaleX(0.9); }
-        60% { transform: scaleX(1.08); }
-        80% { transform: scaleX(0.95); }
+        20% { transform: scaleX(1.08); }
+        40% { transform: scaleX(0.95); }
+        60% { transform: scaleX(1.05); }
+        80% { transform: scaleX(0.98); }
         100% { transform: scaleX(1); }
       }
       
       .static-logo-loading {
-        animation: static-logo-stretch 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+        animation: static-logo-stretch 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
       }
     </style>
     <!-- Comprehensive favicon setup for all browsers -->
