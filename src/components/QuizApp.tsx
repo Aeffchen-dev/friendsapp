@@ -190,7 +190,7 @@ export function QuizApp() {
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
-            className={`h-8 w-auto logo-clickable ${logoWave ? `wave-${wavePattern}` : ''} ${logoWobble ? 'wobble' : ''}`}
+            className={`h-8 w-auto logo-clickable ${logoWave ? (wavePattern === 'ripple' ? 'wave-ripple' : 'wave') : ''} ${logoWobble ? 'wobble' : ''}`}
             onClick={handleLogoClick}
           />
           <button 
