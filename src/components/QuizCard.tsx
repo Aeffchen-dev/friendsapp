@@ -295,7 +295,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
               className={`${categoryColors.text} font-bold text-sm tracking-wide uppercase transition-all duration-700`}
               style={{ 
                 marginRight: index < 19 ? '8px' : '0',
-                transform: animationClass.includes('slide') ? 'skewX(-15deg)' : 'skewX(0deg)'
+                transform: animationClass.includes('slide') ? 'skewX(-25deg)' : 'skewX(0deg)'
               }}
             >
               {cat}
