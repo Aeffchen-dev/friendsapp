@@ -240,17 +240,37 @@ All colors MUST be HSL.
     animation: checkmark-draw 0.3s ease-out 0.05s forwards;
   }
   
-  /* Color stroke liquid bounce animation - 2 soft bounces */
+  /* Color stroke liquid wave animation - soft and organic */
   @keyframes color-stroke-wobble {
-    0% { width: 8px; }
-    25% { width:11px; }
-    50% { width: 8px; }
-    75% { width:10px; }
-    100% { width: 8px; }
+    0% { 
+      width: 8px; 
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+    25% { 
+      width: 16px; 
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 2px;
+    }
+    50% { 
+      width: 8px; 
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+    75% { 
+      width: 12px; 
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 6px;
+    }
+    100% { 
+      width: 8px; 
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
   }
   
   .color-stroke-wobble {
-    animation: color-stroke-wobble 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: color-stroke-wobble 1.2s cubic-bezier(0.23, 1, 0.32, 1);
   }
   
   /* Ensure header and footer are always visible */
