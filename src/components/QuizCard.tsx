@@ -20,7 +20,6 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
   const [mouseEnd, setMouseEnd] = useState<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [processedText, setProcessedText] = useState<JSX.Element[]>([]);
-  const [categoryJointMove, setCategoryJointMove] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -28,23 +27,6 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
 
   const minSwipeDistance = 50;
 
-  // Trigger joint category movement when question changes (but not on initial load)
-  useEffect(() => {
-    if (isInitialLoad) {
-      setIsInitialLoad(false);
-      return;
-    }
-
-    // Reset position first
-    setCategoryJointMove(false);
-    
-    // Start smooth downward movement a bit later in slide animation (after 200ms)
-    const moveDownDelay = setTimeout(() => {
-      setCategoryJointMove(true);
-    }, 200);
-
-    return () => clearTimeout(moveDownDelay);
-  }, [question.question, isInitialLoad]);
 
   // Process text to handle long words individually
   useEffect(() => {
@@ -306,7 +288,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
 
       {/* Category Strip */}
       <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
-        <div className={`transform -rotate-90 whitespace-nowrap transition-transform duration-[1500ms] ease-out ${categoryJointMove ? 'category-joint-move' : ''}`}>
+        <div className="transform -rotate-90 whitespace-nowrap">
           {Array(20).fill(question.category).map((cat, index) => (
             <span 
               key={`${cat}-${index}`} 
