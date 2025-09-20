@@ -17,6 +17,7 @@ export function QuizApp() {
   const [categorySelectorOpen, setCategorySelectorOpen] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
+  const [logoWobble, setLogoWobble] = useState(false);
 
   useEffect(() => {
     fetchQuestions();
@@ -69,6 +70,8 @@ export function QuizApp() {
       console.error('Error fetching questions from Google Sheets:', error);
     } finally {
       setLoading(false);
+      // Trigger logo wobble on load
+      triggerLogoWobble();
     }
   };
 
@@ -149,16 +152,31 @@ export function QuizApp() {
     }
   }, [selectedCategories, allQuestions]);
 
+  const triggerLogoWobble = () => {
+    setLogoWobble(true);
+    setTimeout(() => setLogoWobble(false), 800);
+  };
+
   const handleCategoriesChange = (categories: string[]) => {
     setSelectedCategories(categories);
+  };
+
+  const handleModalClose = () => {
+    setCategorySelectorOpen(false);
+    // Trigger logo wobble when modal closes
+    setTimeout(triggerLogoWobble, 100);
   };
 
   return (
     <div className="h-[100svh] bg-background overflow-hidden">
       {/* App Header */}
-      <div className="bg-black">
+      <div className="app-header bg-black">
         <div className="flex justify-between items-center px-6 py-3">
-          <img src="/assets/logo.png" alt="Logo" className="h-8 w-auto" />
+          <img 
+            src="/assets/logo.png" 
+            alt="Logo" 
+            className={`h-8 w-auto ${logoWobble ? 'wobble' : ''}`}
+          />
           <button 
             onClick={() => setCategorySelectorOpen(true)}
             className="text-white font-normal text-xs"
@@ -169,7 +187,7 @@ export function QuizApp() {
       </div>
 
       {/* Main Quiz Container */}
-      <div className="h-[calc(100svh-60px)] flex flex-col items-center px-4 pt-4 overflow-hidden">
+      <div className="h-[calc(100svh-60px)] flex flex-col items-center px-4 pt-16 overflow-hidden">
         <div className="w-full flex-1 flex items-center justify-center pb-16">
           {loading ? (
             <div className="h-full flex items-center justify-center">
@@ -190,19 +208,21 @@ export function QuizApp() {
         </div>
         
         {/* Bottom Link */}
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center w-full">
-          <a 
-            href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
-            className="text-white font-normal text-xs"
-          >
-            Frage einreichen
-          </a>
+        <div className="app-footer bg-background/80 backdrop-blur-sm">
+          <div className="flex justify-center items-center py-4">
+            <a 
+              href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
+              className="text-white font-normal text-xs"
+            >
+              Frage einreichen
+            </a>
+          </div>
         </div>
       </div>
       
       <CategorySelector
         open={categorySelectorOpen}
-        onOpenChange={setCategorySelectorOpen}
+        onOpenChange={handleModalClose}
         categories={availableCategories}
         selectedCategories={selectedCategories}
         onCategoriesChange={handleCategoriesChange}
