@@ -133,7 +133,7 @@ export function CategorySelector({
                       }}
                     >
                       <div
-                        className={`w-5 h-5 border border-white flex items-center justify-center transition-all duration-200 ${isSelected ? 'bg-white checkbox-bounce' : 'bg-transparent hover:bg-white/10'}`}
+                        className={`w-5 h-5 border border-white flex items-center justify-center transition-all duration-200 ${isSelected ? 'bg-white checkbox-wobble' : 'bg-transparent hover:bg-white/10'}`}
                         style={{ 
                           width: '20px', 
                           height: '20px', 
@@ -142,13 +142,24 @@ export function CategorySelector({
                           outlineOffset: '0px'
                         }}
                       >
-                        {isSelected && (
-                          <Check 
-                            className="text-black" 
-                            style={{ width: '14px', height: '14px' }}
-                            strokeWidth={2}
-                          />
-                        )}
+                         {isSelected && (
+                           <svg 
+                             width="14" 
+                             height="14" 
+                             viewBox="0 0 16 16" 
+                             fill="none"
+                             className="checkmark-animate"
+                           >
+                             <path 
+                               d="M3 8l3 3 7-7" 
+                               stroke="black" 
+                               strokeWidth="2" 
+                               strokeLinecap="round" 
+                               strokeLinejoin="round"
+                               fill="none"
+                             />
+                           </svg>
+                         )}
                       </div>
                     </div>
                   </div>
