@@ -43,18 +43,9 @@
         75% { content: '...'; }
       }
       
-      /* Static logo animation for loading duration - slower and more subtle */
-      @keyframes static-logo-stretch {
-        0% { transform: scaleX(1); }
-        20% { transform: scaleX(1.04); }
-        40% { transform: scaleX(0.97); }
-        60% { transform: scaleX(1.03); }
-        80% { transform: scaleX(0.99); }
-        100% { transform: scaleX(1); }
-      }
-      
+      /* Static logo - no animation to avoid double animations */
       .static-logo-loading {
-        animation: static-logo-stretch 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+        /* Animation removed - React app handles logo animation */
       }
     </style>
     <!-- Comprehensive favicon setup for all browsers -->
