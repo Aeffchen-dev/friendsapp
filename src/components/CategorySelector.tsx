@@ -164,13 +164,7 @@ export function CategorySelector({
                   <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`} 
                     style={{ 
                       backgroundColor: colorClasses,
-                      borderTopLeftRadius: '4px',
-                      borderBottomLeftRadius: '4px',
-                      borderTopRightRadius: isSelected ? '9999px' : '0px',
-                      borderBottomRightRadius: isSelected ? '9999px' : '0px',
-                      clipPath: isSelected 
-                        ? 'inset(0 round 4px 9999px 9999px 4px)'
-                        : 'inset(0 round 4px 0 0 4px)'
+                      borderRadius: isSelected ? '4px 9999px 9999px 4px' : '4px 0 0 4px'
                     }} 
                   />
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
