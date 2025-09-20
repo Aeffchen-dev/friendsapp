@@ -202,7 +202,7 @@ export function QuizApp() {
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
-            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeLeft ? 'logo-squeeze-left' : ''} ${logoSqueezeRight ? 'logo-squeeze-right' : ''}`}
+            className={`h-8 w-auto logo-clickable align-baseline ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeLeft ? 'logo-squeeze-left' : ''} ${logoSqueezeRight ? 'logo-squeeze-right' : ''}`}
             onClick={handleLogoClick}
           />
           <button 
