@@ -19,6 +19,7 @@ export function CategorySelector({
   onCategoriesChange 
 }: CategorySelectorProps) {
   const [tempSelection, setTempSelection] = useState<string[]>(selectedCategories);
+  const [strokeAnimations, setStrokeAnimations] = useState<{[key: string]: boolean}>({});
 
   // Update temp selection when selectedCategories prop changes
   useEffect(() => {
@@ -67,6 +68,12 @@ export function CategorySelector({
   };
 
   const handleCategoryToggle = (category: string) => {
+    // Trigger stroke animation
+    setStrokeAnimations(prev => ({ ...prev, [category]: true }));
+    setTimeout(() => {
+      setStrokeAnimations(prev => ({ ...prev, [category]: false }));
+    }, 600);
+    
     setTempSelection(prev => 
       prev.includes(category) 
         ? prev.filter(c => c !== category)
@@ -118,7 +125,7 @@ export function CategorySelector({
                   className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative rounded-l-[12px] rounded-r-full overflow-hidden"
                   onClick={() => handleCategoryToggle(category)}
                 >
-                  <span className="absolute inset-y-0 left-0 w-2 rounded-l-[12px]" style={{ backgroundColor: colorClasses }} />
+                  <span className={`absolute inset-y-0 left-0 w-2 rounded-l-[12px] ${strokeAnimations[category] ? 'color-stroke-wobble' : ''}`} style={{ backgroundColor: colorClasses }} />
                   <span className="text-white font-bold text-sm uppercase tracking-wide">
                     {category}
                   </span>
@@ -126,6 +133,12 @@ export function CategorySelector({
                     <div
                       className="relative cursor-pointer"
                       onClick={() => {
+                        // Trigger stroke animation
+                        setStrokeAnimations(prev => ({ ...prev, [category]: true }));
+                        setTimeout(() => {
+                          setStrokeAnimations(prev => ({ ...prev, [category]: false }));
+                        }, 600);
+                        
                         const newCategories = isSelected 
                           ? tempSelection.filter(c => c !== category)
                           : [...tempSelection, category];
