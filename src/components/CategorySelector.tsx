@@ -134,7 +134,7 @@ export function CategorySelector({
         </DialogDescription>
         <div className="flex flex-col h-full relative w-full">
           {/* Header with close button */}
-          <div className="absolute top-6 left-4 right-6 z-10 flex items-baseline justify-between">
+          <div className="absolute top-4 left-4 right-6 z-10 flex items-baseline justify-between">
             <DialogHeader>
               <DialogTitle className="text-white text-xl font-normal">
                 Kategorien wählen
