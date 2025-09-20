@@ -202,7 +202,7 @@ All colors MUST be HSL.
   
   .logo-stretch {
     animation: logo-stretch-slide 0.8s ease-out;
-    transform-origin: center;
+    transform-origin: right;
   }
   
   .logo-clickable {
