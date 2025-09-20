@@ -38,10 +38,10 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     // Reset position first
     setCategoryJointMove(false);
     
-    // Start smooth downward movement when slide animation completes (after 300ms)
+    // Start smooth downward movement earlier in slide animation (after 100ms)
     const moveDownDelay = setTimeout(() => {
       setCategoryJointMove(true);
-    }, 300);
+    }, 100);
 
     return () => clearTimeout(moveDownDelay);
   }, [question.question, isInitialLoad]);
@@ -306,7 +306,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
 
       {/* Category Strip */}
       <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
-        <div className={`transform -rotate-90 whitespace-nowrap transition-transform duration-1000 ease-out ${categoryJointMove ? 'category-joint-move' : ''}`}>
+        <div className={`transform -rotate-90 whitespace-nowrap transition-transform duration-[1500ms] ease-out ${categoryJointMove ? 'category-joint-move' : ''}`}>
           {Array(20).fill(question.category).map((cat, index) => (
             <span 
               key={`${cat}-${index}`} 
