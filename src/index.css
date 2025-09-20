@@ -196,7 +196,7 @@ All colors MUST be HSL.
   /* Quick stretch for slide transitions */
   @keyframes logo-stretch-slide {
     0% { transform: scaleX(1); }
-    50% { transform: scaleX(1.1); }
+    50% { transform: scaleX(1.04); }
     100% { transform: scaleX(1); }
   }
   
