@@ -109,12 +109,6 @@ export function CategorySelector({
   };
 
   const handleCategoryToggle = (category: string) => {
-    // Trigger stroke animation
-    setStrokeAnimations(prev => ({ ...prev, [category]: true }));
-    setTimeout(() => {
-      setStrokeAnimations(prev => ({ ...prev, [category]: false }));
-    }, 600);
-    
     setTempSelection(prev => 
       prev.includes(category) 
         ? prev.filter(c => c !== category)
@@ -167,11 +161,7 @@ export function CategorySelector({
                   className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative rounded-l-[12px] rounded-r-full overflow-hidden"
                   onClick={() => handleCategoryToggle(category)}
                 >
-                  <span className={`absolute inset-y-0 left-0 transition-all duration-300 ${
-                    strokeAnimations[category] 
-                      ? (isSelected ? 'color-stroke-expand' : 'color-stroke-contract')
-                      : ''
-                  } ${isSelected ? 'w-full rounded-l-[12px] rounded-r-full' : 'w-2 rounded-l-[12px]'}`} 
+                  <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full rounded-l-[12px] rounded-r-full' : 'w-2 rounded-l-[12px]'}`} 
                     style={{ backgroundColor: colorClasses }} 
                   />
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
@@ -182,17 +172,11 @@ export function CategorySelector({
                     <div
                       className="relative cursor-pointer"
                       onClick={() => {
-                        // Trigger stroke animation
-                        setStrokeAnimations(prev => ({ ...prev, [category]: true }));
-        setTimeout(() => {
-          setStrokeAnimations(prev => ({ ...prev, [category]: false }));
-        }, 600);
-                        
-                        const newCategories = isSelected 
-                          ? tempSelection.filter(c => c !== category)
-                          : [...tempSelection, category];
-                        setTempSelection(newCategories);
-                      }}
+                         const newCategories = isSelected 
+                           ? tempSelection.filter(c => c !== category)
+                           : [...tempSelection, category];
+                         setTempSelection(newCategories);
+                       }}
                     >
                       <div
                         className={`w-8 h-8 border border-white flex items-center justify-center transition-all duration-200 ${isSelected ? 'bg-white checkbox-wobble' : 'bg-transparent hover:bg-white/10'}`}
