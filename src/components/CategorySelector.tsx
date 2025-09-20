@@ -117,7 +117,8 @@ export function CategorySelector({
                    key={category}
                    className={`flex items-center justify-between p-3 border-l-8 ${colorClasses} bg-[#161616] cursor-pointer`}
                    style={{ 
-                     borderRadius: '999px', 
+                     borderTopLeftRadius: '4px',
+                     borderBottomLeftRadius: '4px',
                      borderTopRightRadius: '999px',
                      borderBottomRightRadius: '999px'
                    }}
