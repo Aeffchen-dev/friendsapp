@@ -21,21 +21,33 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
   const [isDragging, setIsDragging] = useState(false);
   const [processedText, setProcessedText] = useState<JSX.Element[]>([]);
   const [categoryJointMove, setCategoryJointMove] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   
   const textRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
 
-  // Trigger joint category movement when question changes
+  // Trigger joint category movement when question changes (but not on initial load)
   useEffect(() => {
+    if (isInitialLoad) {
+      setIsInitialLoad(false);
+      return;
+    }
+
+    // Reset position first
+    setCategoryJointMove(false);
+    
     // Start smooth downward movement when slide animation completes (after 300ms)
     const moveDownDelay = setTimeout(() => {
       setCategoryJointMove(true);
+      // Reset back to original position after animation (after 600ms)
+      const resetDelay = setTimeout(() => setCategoryJointMove(false), 600);
+      return () => clearTimeout(resetDelay);
     }, 300);
 
     return () => clearTimeout(moveDownDelay);
-  }, [question.question]);
+  }, [question.question, isInitialLoad]);
 
   // Process text to handle long words individually
   useEffect(() => {

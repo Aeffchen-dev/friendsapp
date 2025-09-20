@@ -204,9 +204,9 @@ All colors MUST be HSL.
     transition: opacity 0.2s ease;
   }
   
-  /* Category joint movement animation - smooth downward movement */
+  /* Category joint movement animation - more visible downward movement */
   .category-joint-move {
-    transform: translateY(8px) rotate(-90deg);
+    transform: translateY(12px) rotate(-90deg);
   }
   
   /* Checkbox bounce */
