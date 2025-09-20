@@ -14,6 +14,7 @@ export function QuizApp() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadStartTime] = useState(Date.now());
   const [categorySelectorOpen, setCategorySelectorOpen] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
@@ -21,7 +22,8 @@ export function QuizApp() {
 
   useEffect(() => {
     fetchQuestions();
-    // Logo animation now handled by static HTML during load
+    // Start logo animation on load
+    setLogoStretch(true);
   }, []);
 
   const fetchQuestions = async () => {
@@ -70,8 +72,11 @@ export function QuizApp() {
     } catch (error) {
       console.error('Error fetching questions from Google Sheets:', error);
     } finally {
-      setLoading(false);
-      // Animation now triggers on mount, not on load complete
+      // Ensure animation plays for minimum 2.5s
+      setTimeout(() => {
+        setLoading(false);
+        setLogoStretch(false);
+      }, Math.max(2500, Date.now() - loadStartTime));
     }
   };
 
