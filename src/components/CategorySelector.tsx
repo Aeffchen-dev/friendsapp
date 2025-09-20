@@ -165,20 +165,13 @@ export function CategorySelector({
                     borderBottomLeftRadius: '4px',
                     borderTopRightRadius: '9999px',
                     borderBottomRightRadius: '9999px',
-                    clipPath: 'inset(0 round 4px 9999px 9999px 4px)'
+                    backgroundImage: `linear-gradient(to right, ${colorClasses}, ${colorClasses})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: isSelected ? '100% 100%' : '8px 100%',
+                    backgroundPosition: 'left top',
+                    transition: 'background-size 500ms cubic-bezier(0.23, 1, 0.32, 1)'
                   }}
                 >
-                  <div 
-                    className="absolute inset-0 z-0"
-                    style={{ 
-                      backgroundColor: colorClasses,
-                      borderRadius: 'inherit',
-                      transformOrigin: 'left',
-                      transform: isSelected ? 'scaleX(1)' : 'scaleX(0.03)',
-                      transition: 'transform 500ms cubic-bezier(0.23, 1, 0.32, 1)',
-                      pointerEvents: 'none'
-                    }} 
-                  />
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
                     style={{ color: isSelected ? textColor : 'white', borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px' }}>
                     {category}
