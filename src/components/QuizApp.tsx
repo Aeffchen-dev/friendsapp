@@ -216,8 +216,7 @@ export function QuizApp() {
       </div>
 
       {/* Main Quiz Container */}
-      <div className="flex-1 flex items-center justify-center mx-4 py-4 overflow-hidden"
-           style={{ paddingTop: '16px', paddingBottom: '16px' }}>
+      <div className="flex-1 flex items-center justify-center mx-4 overflow-hidden" style={{ padding: '16px 0' }}>
         <div className="w-full h-full flex items-center justify-center">
           {loading ? (
             <div className="h-full flex items-center justify-center min-h-[calc(100svh-120px)]">
