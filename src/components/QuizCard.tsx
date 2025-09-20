@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from './ui/button';
+import { useMotion } from '@/hooks/use-motion';
 
 interface Question {
   question: string;
@@ -21,51 +23,14 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
   const [isDragging, setIsDragging] = useState(false);
   const [processedText, setProcessedText] = useState<JSX.Element[]>([]);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [gyroY, setGyroY] = useState(0);
+  const { y: gyroY, supported: motionSupported, permission, enable } = useMotion();
   
   const textRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
 
-  // Simple gyroscope setup
-  useEffect(() => {
-    const handleDeviceMotion = (event: DeviceMotionEvent) => {
-      if (event.accelerationIncludingGravity?.y) {
-        const movement = Math.max(-40, Math.min(40, event.accelerationIncludingGravity.y * -4));
-        setGyroY(movement);
-        console.log('Gyro Y:', movement); // Debug log
-      }
-    };
-
-    // Request permission for iOS 13+
-    const requestPermission = async () => {
-      if (typeof (DeviceMotionEvent as any).requestPermission === 'function') {
-        try {
-          const permission = await (DeviceMotionEvent as any).requestPermission();
-          if (permission === 'granted') {
-            window.addEventListener('devicemotion', handleDeviceMotion);
-            console.log('Motion permission granted');
-          } else {
-            console.log('Motion permission denied');
-          }
-        } catch (error) {
-          console.log('Motion permission error:', error);
-        }
-      } else if (window.DeviceMotionEvent) {
-        window.addEventListener('devicemotion', handleDeviceMotion);
-        console.log('Device motion available');
-      } else {
-        console.log('Device motion not supported');
-      }
-    };
-
-    requestPermission();
-
-    return () => {
-      window.removeEventListener('devicemotion', handleDeviceMotion);
-    };
-  }, []);
+  // Motion handled via useMotion() hook
 
 
   // Process text to handle long words individually
