@@ -18,8 +18,7 @@ export function QuizApp() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [logoWobble, setLogoWobble] = useState(false);
-  const [logoWave, setLogoWave] = useState(false);
-  const [wavePattern, setWavePattern] = useState<'wave' | 'ripple'>('wave');
+  const [logoStretch, setLogoStretch] = useState(false);
 
   useEffect(() => {
     fetchQuestions();
@@ -72,8 +71,8 @@ export function QuizApp() {
       console.error('Error fetching questions from Google Sheets:', error);
     } finally {
       setLoading(false);
-      // Trigger logo wave on load
-      triggerLogoWave('ripple');
+      // Trigger logo stretch on load
+      triggerLogoStretch();
     }
   };
 
@@ -154,17 +153,13 @@ export function QuizApp() {
     }
   }, [selectedCategories, allQuestions]);
 
-  const triggerLogoWave = (pattern: 'wave' | 'ripple' = 'wave') => {
-    setWavePattern(pattern);
-    setLogoWave(true);
-    const duration = pattern === 'ripple' ? 2000 : 1500;
-    setTimeout(() => setLogoWave(false), duration);
+  const triggerLogoStretch = () => {
+    setLogoStretch(true);
+    setTimeout(() => setLogoStretch(false), 1200);
   };
 
   const handleLogoClick = () => {
-    // Alternate between wave patterns
-    const nextPattern = wavePattern === 'wave' ? 'ripple' : 'wave';
-    triggerLogoWave(nextPattern);
+    triggerLogoStretch();
   };
 
   const triggerLogoWobble = () => {
@@ -178,8 +173,8 @@ export function QuizApp() {
 
   const handleModalClose = () => {
     setCategorySelectorOpen(false);
-    // Trigger logo wave when modal closes
-    setTimeout(() => triggerLogoWave('wave'), 100);
+    // Trigger logo stretch when modal closes
+    setTimeout(triggerLogoStretch, 100);
   };
 
   return (
@@ -190,7 +185,7 @@ export function QuizApp() {
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
-            className={`h-8 w-auto logo-clickable ${logoWave ? (wavePattern === 'ripple' ? 'wave-ripple' : 'wave') : ''} ${logoWobble ? 'wobble' : ''}`}
+            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoWobble ? 'wobble' : ''}`}
             onClick={handleLogoClick}
           />
           <button 
