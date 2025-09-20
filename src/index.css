@@ -241,13 +241,13 @@ All colors MUST be HSL.
     animation: checkmark-draw 0.3s ease-out 0.05s forwards;
   }
   
-  /* Color stroke wobble wave animation */
+  /* Color stroke wobble wave animation - more subtle */
   @keyframes color-stroke-wobble {
     0% { width: 8px; }
-    20% { width: 16px; }
+    20% { width: 12px; }
     40% { width: 6px; }
-    60% { width: 14px; }
-    80% { width: 4px; }
+    60% { width: 10px; }
+    80% { width: 7px; }
     100% { width: 8px; }
   }
   
