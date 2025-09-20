@@ -162,7 +162,9 @@ export function CategorySelector({
                   style={{ 
                     borderRadius: '4px 999px 999px 4px',
                     backgroundColor: isSelected ? colorClasses : '#161616',
-                    transition: 'background-color 500ms ease-out'
+                    transition: 'background-color 500ms ease-out',
+                    backgroundClip: 'padding-box',
+                    border: '1px solid transparent'
                   }}
                   onClick={() => handleCategoryToggle(category)}
                 >
