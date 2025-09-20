@@ -29,15 +29,15 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
 
   // Trigger joint category movement when question changes
   useEffect(() => {
-    // Start joint movement shortly before slide completes (after 200ms)
-    const moveUpDelay = setTimeout(() => {
+    // Start smooth downward movement when slide animation completes (after 300ms)
+    const moveDownDelay = setTimeout(() => {
       setCategoryJointMove(true);
-      // Move back down when slide animation is done (after 400ms total)
-      const moveDownDelay = setTimeout(() => setCategoryJointMove(false), 200);
-      return () => clearTimeout(moveDownDelay);
-    }, 200);
+      // Reset after smooth animation completes (after 600ms)
+      const resetDelay = setTimeout(() => setCategoryJointMove(false), 600);
+      return () => clearTimeout(resetDelay);
+    }, 300);
 
-    return () => clearTimeout(moveUpDelay);
+    return () => clearTimeout(moveDownDelay);
   }, [question.question]);
 
   // Process text to handle long words individually
@@ -300,7 +300,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
 
       {/* Category Strip */}
       <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
-        <div className={`transform -rotate-90 whitespace-nowrap transition-transform duration-200 ease-out ${categoryJointMove ? 'category-joint-move' : ''}`}>
+        <div className={`transform -rotate-90 whitespace-nowrap transition-transform duration-500 ease-out ${categoryJointMove ? 'category-joint-move' : ''}`}>
           {Array(20).fill(question.category).map((cat, index) => (
             <span 
               key={`${cat}-${index}`} 
