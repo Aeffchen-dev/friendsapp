@@ -180,7 +180,7 @@ export function QuizApp() {
   };
 
   return (
-    <div className="h-[100svh] bg-background overflow-hidden flex flex-col">
+    <div className="h-[100svh] bg-background overflow-hidden flex flex-col min-h-screen">
       {/* App Header - Always visible */}
       <div className="app-header bg-black flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: '#000000'}}>
         <div className="flex justify-between items-center px-6 py-4">
@@ -204,7 +204,7 @@ export function QuizApp() {
       <div className="flex-1 flex items-center justify-center px-4 pt-4 pb-1 overflow-hidden">
         <div className="w-full h-full flex items-center justify-center">
           {loading ? (
-            <div className="h-full flex items-center justify-center">
+            <div className="h-full flex items-center justify-center min-h-[calc(100svh-132px)]">
               {/* Loading text removed - handled by static HTML */}
             </div>
           ) : questions.length > 0 ? (
@@ -215,7 +215,7 @@ export function QuizApp() {
               animationClass={animationClass}
             />
           ) : (
-            <div className="h-full flex items-center justify-center">
+            <div className="h-full flex items-center justify-center min-h-[calc(100svh-132px)]">
               <div className="text-white text-sm">Keine Fragen verfügbar</div>
             </div>
           )}
