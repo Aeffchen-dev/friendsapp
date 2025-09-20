@@ -6,21 +6,6 @@
 All colors MUST be HSL.
 */
 
-/* Kokoro font from uploaded font file */
-@font-face {
-  font-family: 'Kokoro';
-  src: url('/fonts/kokoro-bolditalic-webfont.woff') format('woff');
-  font-weight: bold;
-  font-style: italic;
-  font-display: swap;
-}
-
-.kokoro-font {
-  font-family: 'Kokoro', 'Impact', 'Arial Black', sans-serif;
-  font-weight: bold;
-  font-style: italic;
-}
-
 @layer base {
   :root {
     --background: 0 0% 0%;

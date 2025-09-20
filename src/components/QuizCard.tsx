@@ -292,7 +292,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
           {Array(20).fill(question.category).map((cat, index) => (
             <span 
               key={`${cat}-${index}`} 
-              className={`${categoryColors.text} text-sm tracking-wide kokoro-font uppercase`} 
+              className={`${categoryColors.text} font-bold text-sm tracking-wide uppercase`} 
               style={{ 
                 marginRight: index < 19 ? '8px' : '0'
               }}

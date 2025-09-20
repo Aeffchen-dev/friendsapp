@@ -126,7 +126,7 @@ export function CategorySelector({
                   onClick={() => handleCategoryToggle(category)}
                 >
                   <span className={`absolute inset-y-0 left-0 w-2 rounded-l-[12px] ${strokeAnimations[category] ? 'color-stroke-wobble' : ''}`} style={{ backgroundColor: colorClasses }} />
-                  <span className="text-white text-sm tracking-wide kokoro-font uppercase">
+                  <span className="text-white font-bold text-sm uppercase tracking-wide">
                     {category}
                   </span>
                   <div onClick={(e) => e.stopPropagation()}>
