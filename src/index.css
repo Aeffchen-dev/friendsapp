@@ -244,28 +244,28 @@ All colors MUST be HSL.
   @keyframes color-stroke-wobble {
     0% { 
       width: 8px; 
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
     25% { 
       width: 16px; 
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 2px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
     50% { 
       width: 8px; 
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
     75% { 
       width: 12px; 
-      border-top-right-radius: 2px;
-      border-bottom-right-radius: 6px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
     100% { 
       width: 8px; 
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
   }
   
