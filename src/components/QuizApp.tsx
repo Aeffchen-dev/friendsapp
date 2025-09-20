@@ -183,7 +183,7 @@ export function QuizApp() {
     <div className="h-[100svh] bg-background overflow-hidden flex flex-col">
       {/* App Header - Always visible */}
       <div className="app-header bg-black flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: '#000000'}}>
-        <div className="flex justify-between items-center px-6 py-3">
+        <div className="flex justify-between items-center px-6 py-4">
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
@@ -201,7 +201,7 @@ export function QuizApp() {
       </div>
 
       {/* Main Quiz Container */}
-      <div className="flex-1 flex items-center justify-center px-4 pt-4 pb-2 overflow-hidden">
+      <div className="flex-1 flex items-center justify-center px-4 pt-4 pb-1 overflow-hidden">
         <div className="w-full h-full flex items-center justify-center">
           {loading ? (
             <div className="h-full flex items-center justify-center">
@@ -224,7 +224,7 @@ export function QuizApp() {
         
       {/* Bottom Link - Always visible */}
       <div className="app-footer bg-background/80 backdrop-blur-sm flex-shrink-0">
-        <div className="flex justify-center items-center py-2.5">
+        <div className="flex justify-center items-center py-4">
           <a 
             href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
             className="text-white font-normal text-xs"
