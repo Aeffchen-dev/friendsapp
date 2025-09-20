@@ -133,7 +133,7 @@ export function CategorySelector({
                       }}
                     >
                       <div
-                        className={`w-5 h-5 border border-white flex items-center justify-center ${isSelected ? 'bg-white' : 'bg-transparent'}`}
+                        className={`w-5 h-5 border border-white flex items-center justify-center transition-all duration-200 ${isSelected ? 'bg-white checkbox-bounce' : 'bg-transparent hover:bg-white/10'}`}
                         style={{ 
                           width: '20px', 
                           height: '20px', 
