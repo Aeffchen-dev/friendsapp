@@ -121,7 +121,8 @@ export function CategorySelector({
                      borderBottomLeftRadius: '8px',
                      borderTopRightRadius: '999px',
                      borderBottomRightRadius: '999px',
-                     borderLeft: `8px solid ${colorClasses}`
+                     borderLeft: `8px solid ${colorClasses}`,
+                     overflow: 'hidden'
                    }}
                   onClick={() => handleCategoryToggle(category)}
                 >
