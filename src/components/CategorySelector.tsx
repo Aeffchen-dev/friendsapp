@@ -158,46 +158,23 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative overflow-hidden rounded-l-[4px] rounded-r-full"
+                  className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative rounded-l-[4px] rounded-r-full overflow-hidden"
                   onClick={() => handleCategoryToggle(category)}
-                  style={{ 
-                    borderTopLeftRadius: '4px',
-                    borderBottomLeftRadius: '4px',
-                    borderTopRightRadius: '9999px',
-                    borderBottomRightRadius: '9999px',
-                    backgroundColor: isSelected ? colorClasses : '#161616',
-                    transition: 'background-color 300ms cubic-bezier(0.23, 1, 0.32, 1)'
-                  }}
                 >
-                  {!isSelected && (
-                    <div
-                      className="absolute inset-y-0 left-0 z-0"
-                      style={{ width: '8px', backgroundColor: colorClasses, borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px' }}
-                    />
-                  )}
-                  <div
-                    className="absolute inset-0 z-0 overflow-hidden"
+                  <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`} 
                     style={{ 
+                      backgroundColor: colorClasses,
                       borderTopLeftRadius: '4px',
                       borderBottomLeftRadius: '4px',
-                      borderTopRightRadius: '9999px',
-                      borderBottomRightRadius: '9999px',
-                      pointerEvents: 'none',
-                      display: 'none' 
-                    }}
-                  >
-                    <div
-                      className="h-full"
-                      style={{ 
-                        width: isSelected ? '100%' : '8px',
-                        backgroundColor: colorClasses,
-                        borderRadius: isSelected ? '4px 9999px 9999px 4px' : '4px',
-                        transition: 'width 500ms cubic-bezier(0.23, 1, 0.32, 1), border-radius 500ms cubic-bezier(0.23, 1, 0.32, 1)'
-                      }}
-                    />
-                  </div>
+                      borderTopRightRadius: isSelected ? '9999px' : '0px',
+                      borderBottomRightRadius: isSelected ? '9999px' : '0px',
+                      clipPath: isSelected 
+                        ? 'inset(0 round 4px 9999px 9999px 4px)'
+                        : 'inset(0 round 4px 0 0 4px)'
+                    }} 
+                  />
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
-                    style={{ color: isSelected ? textColor : 'white', borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px' }}>
+                    style={{ color: isSelected ? textColor : 'white' }}>
                     {category}
                   </span>
                   <div onClick={(e) => e.stopPropagation()}>
