@@ -201,8 +201,8 @@ export function QuizApp() {
       </div>
 
       {/* Main Quiz Container */}
-      <div className="h-[calc(100svh-120px)] flex flex-col items-center px-4 py-2 overflow-hidden" style={{marginTop: '60px', marginBottom: '60px'}}>
-        <div className="w-full h-full flex items-center justify-center">
+      <div className="h-[calc(100svh-120px)] flex items-center justify-center px-4 overflow-hidden" style={{marginTop: '60px', marginBottom: '60px'}}>
+        <div className="w-full flex items-center justify-center">
           {loading ? (
             <div className="h-full flex items-center justify-center">
               {/* Loading text removed - handled by static HTML */}
@@ -224,7 +224,7 @@ export function QuizApp() {
         
       {/* Bottom Link - Always visible */}
       <div className="app-footer bg-background/80 backdrop-blur-sm" style={{position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 40}}>
-        <div className="flex justify-center items-center py-4">
+        <div className="flex justify-center items-center py-3">
           <a 
             href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
             className="text-white font-normal text-xs"
