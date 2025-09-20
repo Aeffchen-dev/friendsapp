@@ -223,7 +223,7 @@ export function QuizApp() {
       </div>
         
       {/* Bottom Link - Always visible */}
-      <div className="app-footer bg-background/80 backdrop-blur-sm flex-shrink-0">
+      <div className="app-footer bg-background/80 backdrop-blur-sm flex-shrink-0 mb-4">
         <div className="flex justify-center items-center py-2.5">
           <a 
             href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
