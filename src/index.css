@@ -187,9 +187,9 @@ All colors MUST be HSL.
   /* Horizontal stretch animation for logo - slower and more subtle */
   @keyframes logo-stretch {
     0% { transform: scaleX(1); }
-    25% { transform: scaleX(1.2); }
+    25% { transform: scaleX(1.08); }
     50% { transform: scaleX(1); }
-    75% { transform: scaleX(1.2); }
+    75% { transform: scaleX(1.08); }
     100% { transform: scaleX(1); }
   }
   
