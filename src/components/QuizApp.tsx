@@ -182,7 +182,7 @@ export function QuizApp() {
   return (
     <div className="h-[100svh] bg-background overflow-hidden flex flex-col min-h-screen">
       {/* App Header - Always visible */}
-      <div className="app-header bg-black flex-shrink-0 h-16" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: '#000000'}}>
+      <div className="app-header bg-black flex-shrink-0 h-16" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: '#000000', height: '64px'}}>
         <div className="flex justify-between items-center px-6 h-full">
           <img 
             src="/assets/logo.png" 
@@ -228,7 +228,7 @@ export function QuizApp() {
           <a 
             href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
             className="text-white font-normal text-xs"
-            style={{fontSize: '14px'}}
+            style={{fontSize: '14px', lineHeight: '20px'}}
           >
             Frage einreichen
           </a>
