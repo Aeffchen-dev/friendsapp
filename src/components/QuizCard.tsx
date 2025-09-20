@@ -264,8 +264,9 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
       onMouseUp={onMouseUp}
       onMouseLeave={onMouseLeave}
       style={{
-        height: 'calc(100svh - 64px - 32px - 3rem)',
-        maxHeight: '100%'
+        height: 'calc(100svh - 64px - 44px - 32px)',
+        maxHeight: '100%',
+        transition: 'height 0.2s ease-out'
       }}
     >
       {/* Left Click Area - Previous */}
