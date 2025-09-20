@@ -41,9 +41,6 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     // Start smooth downward movement when slide animation completes (after 300ms)
     const moveDownDelay = setTimeout(() => {
       setCategoryJointMove(true);
-      // Reset back to original position after animation (after 600ms)
-      const resetDelay = setTimeout(() => setCategoryJointMove(false), 600);
-      return () => clearTimeout(resetDelay);
     }, 300);
 
     return () => clearTimeout(moveDownDelay);
