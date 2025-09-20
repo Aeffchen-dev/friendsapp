@@ -162,7 +162,7 @@ export function CategorySelector({
                   style={{ borderRadius: '4px 999px 999px 4px' }}
                   onClick={() => handleCategoryToggle(category)}
                 >
-                  <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`} 
+                  <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'right-0' : 'w-2'}`} 
                     style={{ 
                       backgroundColor: colorClasses,
                       borderRadius: '4px 999px 999px 4px'
