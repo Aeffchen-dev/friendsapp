@@ -18,6 +18,7 @@ export function QuizApp() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [logoWobble, setLogoWobble] = useState(false);
+  const [logoWave, setLogoWave] = useState(false);
 
   useEffect(() => {
     fetchQuestions();
@@ -70,8 +71,8 @@ export function QuizApp() {
       console.error('Error fetching questions from Google Sheets:', error);
     } finally {
       setLoading(false);
-      // Trigger logo wobble on load
-      triggerLogoWobble();
+      // Trigger logo wave on load
+      triggerLogoWave();
     }
   };
 
@@ -152,6 +153,11 @@ export function QuizApp() {
     }
   }, [selectedCategories, allQuestions]);
 
+  const triggerLogoWave = () => {
+    setLogoWave(true);
+    setTimeout(() => setLogoWave(false), 2000);
+  };
+
   const triggerLogoWobble = () => {
     setLogoWobble(true);
     setTimeout(() => setLogoWobble(false), 800);
@@ -163,8 +169,8 @@ export function QuizApp() {
 
   const handleModalClose = () => {
     setCategorySelectorOpen(false);
-    // Trigger logo wobble when modal closes
-    setTimeout(triggerLogoWobble, 100);
+    // Trigger logo wave when modal closes
+    setTimeout(triggerLogoWave, 100);
   };
 
   return (
@@ -175,7 +181,7 @@ export function QuizApp() {
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
-            className={`h-8 w-auto ${logoWobble ? 'wobble' : ''}`}
+            className={`h-8 w-auto ${logoWave ? 'wave' : ''} ${logoWobble ? 'wobble' : ''}`}
           />
           <button 
             onClick={() => setCategorySelectorOpen(true)}
