@@ -121,22 +121,30 @@ export function QuizApp() {
 
   const nextQuestion = () => {
     if (currentIndex < questions.length - 1) {
+      setLogoStretch(true);
       setAnimationClass('animate-slide-out-left');
       setTimeout(() => {
         setCurrentIndex(prev => prev + 1);
         setAnimationClass('animate-slide-in-right');
-        setTimeout(() => setAnimationClass(''), 500);
+        setTimeout(() => {
+          setAnimationClass('');
+          setLogoStretch(false);
+        }, 500);
       }, 300);
     }
   };
 
   const prevQuestion = () => {
     if (currentIndex > 0) {
+      setLogoStretch(true);
       setAnimationClass('animate-slide-out-right');
       setTimeout(() => {
         setCurrentIndex(prev => prev - 1);
         setAnimationClass('animate-slide-in-left');
-        setTimeout(() => setAnimationClass(''), 500);
+        setTimeout(() => {
+          setAnimationClass('');
+          setLogoStretch(false);
+        }, 500);
       }, 300);
     }
   };
