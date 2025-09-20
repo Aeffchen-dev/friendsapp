@@ -188,7 +188,7 @@ export function QuizApp() {
 
       {/* Main Quiz Container */}
       <div className="h-[calc(100svh-120px)] flex flex-col items-center px-4 pt-16 pb-16 overflow-hidden" style={{marginTop: '60px', marginBottom: '60px'}}>
-        <div className="w-full flex-1 flex items-center justify-center pb-16">
+        <div className="w-full h-full flex items-center justify-center">
           {loading ? (
             <div className="h-full flex items-center justify-center">
               {/* Loading text removed - handled by static HTML */}
