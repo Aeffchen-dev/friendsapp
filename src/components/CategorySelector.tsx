@@ -164,24 +164,14 @@ export function CategorySelector({
                     borderTopLeftRadius: '4px',
                     borderBottomLeftRadius: '4px',
                     borderTopRightRadius: '9999px',
-                    borderBottomRightRadius: '9999px'
+                    borderBottomRightRadius: '9999px',
+                    backgroundImage: `linear-gradient(to right, ${colorClasses}, ${colorClasses})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: isSelected ? '100% 100%' : '8px 100%',
+                    backgroundPosition: 'left center',
+                    transition: 'background-size 500ms cubic-bezier(0.23, 1, 0.32, 1)'
                   }}
                 >
-                  {/* Color fill wrapper to force rounded left corners */}
-                  <div
-                    className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
-                    style={{
-                      borderTopLeftRadius: '4px',
-                      borderBottomLeftRadius: '4px',
-                      borderTopRightRadius: '9999px',
-                      borderBottomRightRadius: '9999px'
-                    }}
-                  >
-                    <div
-                      className={`h-full transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
-                      style={{ backgroundColor: colorClasses }}
-                    />
-                  </div>
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
                     style={{ color: isSelected ? textColor : 'white', borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px' }}>
                     {category}
