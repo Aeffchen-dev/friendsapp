@@ -164,7 +164,8 @@ export function CategorySelector({
                     borderTopLeftRadius: '4px',
                     borderBottomLeftRadius: '4px',
                     borderTopRightRadius: '9999px',
-                    borderBottomRightRadius: '9999px'
+                    borderBottomRightRadius: '9999px',
+                    clipPath: 'inset(0 round 4px 9999px 9999px 4px)'
                   }}
                 >
                   <div className={`absolute inset-y-0 transition-all duration-500 ease-out ${isSelected ? 'w-full left-0' : 'w-2 left-0'} z-0`} 
