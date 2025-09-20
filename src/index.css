@@ -6,10 +6,18 @@
 All colors MUST be HSL.
 */
 
-/* Kokoro font replacement with Google Fonts Coda */
+/* Kokoro font from uploaded font file */
+@font-face {
+  font-family: 'Kokoro';
+  src: url('/fonts/kokoro-bolditalic-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
 .kokoro-font {
-  font-family: 'Coda', 'Impact', 'Arial Black', sans-serif;
-  font-weight: 400;
+  font-family: 'Kokoro', 'Impact', 'Arial Black', sans-serif;
+  font-weight: normal;
   font-style: normal;
 }
 
