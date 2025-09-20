@@ -192,8 +192,6 @@ export function QuizApp() {
 
   const handleModalClose = () => {
     setCategorySelectorOpen(false);
-    // Trigger logo stretch when modal closes
-    setTimeout(triggerLogoStretch, 100);
   };
 
   return (
