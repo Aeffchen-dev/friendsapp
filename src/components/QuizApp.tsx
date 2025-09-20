@@ -198,7 +198,7 @@ export function QuizApp() {
     <div className="h-[100svh] bg-background overflow-hidden flex flex-col">
       {/* App Header - Always visible */}
       <div className="app-header bg-black flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: '#000000'}}>
-        <div className="flex justify-between items-center px-4 py-4">
+        <div className="flex justify-between items-baseline px-4 py-4">
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
