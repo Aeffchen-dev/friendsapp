@@ -179,7 +179,7 @@ export function CategorySelector({
                        }}
                     >
                       <div
-                        className={`w-8 h-8 border border-white flex items-center justify-center transition-all duration-500 ease-out ${isSelected ? 'bg-white' : 'bg-transparent hover:bg-white/10'}`}
+                        className={`w-8 h-8 border border-white flex items-center justify-center transition-all duration-300 delay-200 ease-out ${isSelected ? 'bg-white' : 'bg-transparent hover:bg-white/10'}`}
                          style={{ 
                            width: '32px', 
                            height: '32px', 
