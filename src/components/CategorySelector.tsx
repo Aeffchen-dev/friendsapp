@@ -165,9 +165,16 @@ export function CategorySelector({
                     borderBottomLeftRadius: '4px',
                     borderTopRightRadius: '9999px',
                     borderBottomRightRadius: '9999px',
-                    backgroundColor: '#161616'
+                    backgroundColor: isSelected ? colorClasses : '#161616',
+                    transition: 'background-color 300ms cubic-bezier(0.23, 1, 0.32, 1)'
                   }}
                 >
+                  {!isSelected && (
+                    <div
+                      className="absolute inset-y-0 left-0 z-0"
+                      style={{ width: '8px', backgroundColor: colorClasses, borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px' }}
+                    />
+                  )}
                   <div
                     className="absolute inset-0 z-0 overflow-hidden"
                     style={{ 
@@ -175,7 +182,8 @@ export function CategorySelector({
                       borderBottomLeftRadius: '4px',
                       borderTopRightRadius: '9999px',
                       borderBottomRightRadius: '9999px',
-                      pointerEvents: 'none' 
+                      pointerEvents: 'none',
+                      display: 'none' 
                     }}
                   >
                     <div
