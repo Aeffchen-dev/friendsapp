@@ -20,21 +20,16 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
   const [mouseEnd, setMouseEnd] = useState<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [processedText, setProcessedText] = useState<JSX.Element[]>([]);
-  const [cardEntering, setCardEntering] = useState(false);
-  const [cardTapped, setCardTapped] = useState(false);
   const [categoryPulse, setCategoryPulse] = useState(false);
-  const [dragTilt, setDragTilt] = useState(0);
   
   const textRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
 
-  // Trigger entrance animation when question changes
+  // Trigger category pulse when question changes
   useEffect(() => {
-    setCardEntering(true);
     setCategoryPulse(true);
-    setTimeout(() => setCardEntering(false), 400);
     setTimeout(() => setCategoryPulse(false), 800);
   }, [question.question]);
 
@@ -196,31 +191,26 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     }
   };
 
+  // Haptic feedback function
+  const triggerHaptic = () => {
+    if (navigator.vibrate) {
+      navigator.vibrate(50); // 50ms vibration
+    }
+  };
+
   const categoryColors = getCategoryColors(question.category);
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
-    // Tap feedback
-    setCardTapped(true);
-    setTimeout(() => setCardTapped(false), 150);
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX);
-    // Calculate tilt based on drag distance
-    if (touchStart) {
-      const distance = e.targetTouches[0].clientX - touchStart;
-      const tilt = Math.max(-8, Math.min(8, distance / 20));
-      setDragTilt(tilt);
-    }
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) {
-      setDragTilt(0);
-      return;
-    }
+    if (!touchStart || !touchEnd) return;
     
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
@@ -231,8 +221,6 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     } else if (isRightSwipe) {
       onSwipeRight();
     }
-    
-    setDragTilt(0);
   };
 
   // Mouse drag handlers for desktop
@@ -240,26 +228,16 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     setMouseEnd(null);
     setMouseStart(e.clientX);
     setIsDragging(true);
-    // Tap feedback for mouse
-    setCardTapped(true);
-    setTimeout(() => setCardTapped(false), 150);
   };
 
   const onMouseMove = (e: React.MouseEvent) => {
     if (!isDragging) return;
     setMouseEnd(e.clientX);
-    // Calculate tilt for mouse drag
-    if (mouseStart) {
-      const distance = e.clientX - mouseStart;
-      const tilt = Math.max(-8, Math.min(8, distance / 20));
-      setDragTilt(tilt);
-    }
   };
 
   const onMouseUp = () => {
     if (!isDragging || !mouseStart || !mouseEnd) {
       setIsDragging(false);
-      setDragTilt(0);
       return;
     }
     
@@ -274,17 +252,15 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
     }
     
     setIsDragging(false);
-    setDragTilt(0);
   };
 
   const onMouseLeave = () => {
     setIsDragging(false);
-    setDragTilt(0);
   };
 
   return (
     <div 
-      className={`relative h-full w-full max-w-[500px] md:max-h-[780px] mx-auto bg-[hsl(var(--card-background))] rounded-2xl shadow-card overflow-hidden select-none ${animationClass} ${cardEntering ? 'card-enter' : ''} ${cardTapped ? 'card-tap' : ''} ${isDragging ? 'card-dragging' : ''}`}
+      className={`relative h-full w-full max-w-[500px] md:max-h-[780px] mx-auto bg-[hsl(var(--card-background))] rounded-2xl shadow-card overflow-hidden select-none ${animationClass}`}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -294,21 +270,25 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
       onMouseLeave={onMouseLeave}
       style={{
         minHeight: 'calc(100vh - 180px)',
-        height: '100%',
-        transform: `rotate(${dragTilt}deg)`,
-        transition: isDragging ? 'none' : 'transform 0.3s ease-out'
+        height: '100%'
       }}
     >
       {/* Left Click Area - Previous */}
       <div 
         className="absolute left-0 top-0 w-20 h-full z-10 cursor-pointer"
-        onClick={onSwipeRight}
+        onClick={() => {
+          triggerHaptic();
+          onSwipeRight();
+        }}
       />
 
       {/* Right Click Area - Next */}
       <div 
         className="absolute right-0 top-0 w-20 h-full z-10 cursor-pointer"
-        onClick={onSwipeLeft}
+        onClick={() => {
+          triggerHaptic();
+          onSwipeLeft();
+        }}
       />
 
       {/* Category Strip */}

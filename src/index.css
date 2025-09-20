@@ -204,25 +204,6 @@ All colors MUST be HSL.
     transition: opacity 0.2s ease;
   }
   
-  /* Card entrance animations */
-  @keyframes card-enter {
-    0% { 
-      opacity: 0;
-      transform: scale(0.95) translateY(20px);
-    }
-    100% { 
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-  
-  /* Card tap feedback */
-  @keyframes card-tap {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.98); }
-    100% { transform: scale(1); }
-  }
-  
   /* Category strip pulse */
   @keyframes category-pulse {
     0% { opacity: 1; }
@@ -239,25 +220,12 @@ All colors MUST be HSL.
     100% { transform: scale(1); }
   }
   
-  .card-enter {
-    animation: card-enter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  
-  .card-tap {
-    animation: card-tap 0.15s ease-out;
-  }
-  
   .category-pulse {
     animation: category-pulse 0.8s ease-in-out;
   }
   
   .checkbox-bounce {
     animation: checkbox-bounce 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-  
-  /* Card tilt during drag */
-  .card-dragging {
-    transition: transform 0.1s ease-out;
   }
   
   /* Ensure header and footer are always visible */
