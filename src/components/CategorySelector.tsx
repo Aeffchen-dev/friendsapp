@@ -148,7 +148,7 @@ export function CategorySelector({
           </div>
 
           {/* Categories List */}
-          <div className="flex-1 p-4 pt-16 space-y-3 overflow-y-auto">
+          <div className="flex-1 p-4 pt-20 space-y-3 overflow-y-auto">
             {categories.map((category) => {
               const isSelected = tempSelection.includes(category);
               const colorClasses = getCategoryColors(category);
