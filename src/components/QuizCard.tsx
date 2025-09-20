@@ -264,7 +264,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
       onMouseUp={onMouseUp}
       onMouseLeave={onMouseLeave}
       style={{
-        height: 'calc(100svh - 64px - 20px - 16px)',
+        height: 'calc(100svh - 64px - 20px - 16px - 32px)',
         maxHeight: '100%',
         transition: 'height 0.2s ease-out'
       }}
@@ -307,7 +307,7 @@ export function QuizCard({ question, onSwipeLeft, onSwipeRight, animationClass =
       {/* Main Content */}
       <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
 
-        <div ref={containerRef} className="flex-1 flex items-start justify-start text-left w-full pt-20">
+        <div ref={containerRef} className="flex-1 flex items-start justify-start text-left w-full pt-16">
           <h1 
             ref={textRef}
             className="text-3xl md:text-4xl lg:text-4xl font-normal text-foreground leading-tight w-full max-w-full" 
