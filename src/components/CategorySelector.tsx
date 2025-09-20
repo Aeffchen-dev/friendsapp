@@ -116,11 +116,9 @@ export function CategorySelector({
                 <div 
                   key={category}
                   className="flex items-center justify-between p-3 bg-[#161616] cursor-pointer relative rounded-l-[12px] rounded-r-full overflow-hidden"
-                  style={{ 
-                    borderLeft: `8px solid ${colorClasses}`
-                  }}
                   onClick={() => handleCategoryToggle(category)}
                 >
+                  <span className="absolute inset-y-0 left-0 w-2" style={{ backgroundColor: colorClasses }} />
                   <span className="text-white font-bold text-sm uppercase tracking-wide">
                     {category}
                   </span>
