@@ -24,6 +24,13 @@ export function QuizApp() {
     // Start logo animation and data loading together
     setLogoStretch(true);
     fetchQuestions();
+
+    // Reset logo animation after it completes
+    const logoTimer = setTimeout(() => {
+      setLogoStretch(false);
+    }, 2500);
+
+    return () => clearTimeout(logoTimer);
   }, []);
 
   const fetchQuestions = async () => {
