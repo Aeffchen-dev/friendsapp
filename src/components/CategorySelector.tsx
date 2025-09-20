@@ -115,7 +115,7 @@ export function CategorySelector({
               return (
                  <div 
                    key={category}
-                   className={`flex items-center justify-between p-4 border-l-8 ${colorClasses} bg-[#161616] cursor-pointer`}
+                   className={`flex items-center justify-between p-2 border-l-8 ${colorClasses} bg-[#161616] cursor-pointer`}
                    style={{ 
                      borderRadius: '4px', 
                      borderTopRightRadius: '999px',
