@@ -21,9 +21,9 @@ export function QuizApp() {
   const [logoStretch, setLogoStretch] = useState(false);
 
   useEffect(() => {
-    fetchQuestions();
-    // Start logo animation on load
+    // Start logo animation and data loading together
     setLogoStretch(true);
+    fetchQuestions();
   }, []);
 
   const fetchQuestions = async () => {
@@ -72,11 +72,14 @@ export function QuizApp() {
     } catch (error) {
       console.error('Error fetching questions from Google Sheets:', error);
     } finally {
-      // Ensure animation plays for minimum 2.5s
+      // Ensure animation plays for minimum 2.5s from start
+      const elapsed = Date.now() - loadStartTime;
+      const remainingTime = Math.max(0, 2500 - elapsed);
+      
       setTimeout(() => {
         setLoading(false);
         setLogoStretch(false);
-      }, Math.max(2500, Date.now() - loadStartTime));
+      }, remainingTime);
     }
   };
 
