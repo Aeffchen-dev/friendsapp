@@ -17,7 +17,6 @@ export function QuizApp() {
   const [categorySelectorOpen, setCategorySelectorOpen] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
-  const [logoWobble, setLogoWobble] = useState(false);
   const [logoStretch, setLogoStretch] = useState(false);
 
   useEffect(() => {
@@ -162,11 +161,6 @@ export function QuizApp() {
     triggerLogoStretch();
   };
 
-  const triggerLogoWobble = () => {
-    setLogoWobble(true);
-    setTimeout(() => setLogoWobble(false), 800);
-  };
-
   const handleCategoriesChange = (categories: string[]) => {
     setSelectedCategories(categories);
   };
@@ -185,7 +179,7 @@ export function QuizApp() {
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
-            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoWobble ? 'wobble' : ''}`}
+            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''}`}
             onClick={handleLogoClick}
           />
           <button 
