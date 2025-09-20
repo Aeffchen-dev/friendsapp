@@ -154,7 +154,7 @@ export function QuizApp() {
   };
 
   return (
-    <div className="h-screen h-[100svh] bg-background overflow-hidden">
+    <div className="h-[100svh] bg-background overflow-hidden">
       {/* App Header */}
       <div className="bg-black">
         <div className="flex justify-between items-center px-6 py-3">
@@ -169,8 +169,8 @@ export function QuizApp() {
       </div>
 
       {/* Main Quiz Container */}
-      <div className="h-[calc(100vh-60px)] h-[calc(100svh-60px)] flex flex-col items-center px-4 pt-4 overflow-hidden">
-        <div className="w-full h-[calc(100vh-200px)] h-[calc(100svh-200px)] md:h-[calc(100vh-130px)] md:h-[calc(100svh-130px)] flex items-center justify-center">
+      <div className="h-[calc(100svh-60px)] flex flex-col items-center px-4 pt-4 overflow-hidden">
+        <div className="w-full flex-1 flex items-center justify-center pb-16">
           {loading ? (
             <div className="h-full flex items-center justify-center">
               <div className="text-white text-xl">Lade Fragen...</div>
@@ -190,7 +190,7 @@ export function QuizApp() {
         </div>
         
         {/* Bottom Link */}
-        <div className="flex justify-center items-center pt-4 w-full">
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center w-full">
           <a 
             href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
             className="text-white font-normal text-xs"
