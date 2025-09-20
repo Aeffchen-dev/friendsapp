@@ -133,20 +133,21 @@ export function CategorySelector({
           Wählen Sie die Kategorien aus, die Sie sehen möchten
         </DialogDescription>
         <div className="flex flex-col h-full relative w-full">
-          {/* Close Button */}
-          <button
-            onClick={handleClose}
-            className="absolute right-6 top-6 z-10 text-white hover:bg-white/10 p-2 rounded-full transition-colors"
-          >
-            <X className="h-6 w-6" />
-          </button>
-
-          {/* Header */}
-          <DialogHeader className="absolute top-6 left-4 z-10 items-baseline">
-            <DialogTitle className="text-white text-xl font-normal">
-              Kategorien wählen
-            </DialogTitle>
-          </DialogHeader>
+          {/* Header with close button */}
+          <div className="absolute top-6 left-4 right-6 z-10 flex items-baseline justify-between">
+            <DialogHeader>
+              <DialogTitle className="text-white text-xl font-normal">
+                Kategorien wählen
+              </DialogTitle>
+            </DialogHeader>
+            
+            <button
+              onClick={handleClose}
+              className="text-white hover:bg-white/10 p-2 rounded-full transition-colors"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
 
           {/* Categories List */}
           <div className="flex-1 p-4 pt-20 space-y-3 overflow-y-auto">
