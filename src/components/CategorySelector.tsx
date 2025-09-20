@@ -158,10 +158,10 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative rounded-l-[12px] rounded-r-full overflow-hidden"
+                  className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative rounded-l-[4px] rounded-r-full overflow-hidden"
                   onClick={() => handleCategoryToggle(category)}
                 >
-                  <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full rounded-l-[12px] rounded-r-full' : 'w-2 rounded-l-[12px]'}`} 
+                  <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full rounded-l-[4px] rounded-r-full' : 'w-2 rounded-l-[4px]'}`} 
                     style={{ backgroundColor: colorClasses }} 
                   />
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
