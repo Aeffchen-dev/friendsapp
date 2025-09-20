@@ -149,7 +149,7 @@ export function CategorySelector({
           </DialogHeader>
 
           {/* Categories List */}
-          <div className="flex-1 px-6 pt-20 space-y-3 overflow-y-auto">
+          <div className="flex-1 pr-6 pt-20 space-y-3 overflow-y-auto">
             {categories.map((category) => {
               const isSelected = tempSelection.includes(category);
               const colorClasses = getCategoryColors(category);
@@ -158,7 +158,7 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative rounded-l-[4px] rounded-r-full overflow-hidden"
+                  className="flex items-center justify-between py-3 pr-3 bg-[#161616] cursor-pointer relative rounded-l-[4px] rounded-r-full overflow-hidden"
                   onClick={() => handleCategoryToggle(category)}
                 >
                   <span className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`} 
