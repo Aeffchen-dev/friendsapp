@@ -168,15 +168,15 @@ export function CategorySelector({
                     clipPath: 'inset(0 round 4px 9999px 9999px 4px)'
                   }}
                 >
-                  <div className={`absolute inset-y-0 transition-all duration-500 ease-out ${isSelected ? 'w-full left-0' : 'w-2 left-0'} z-0`} 
+                  <div 
+                    className="absolute inset-0 z-0"
                     style={{ 
                       backgroundColor: colorClasses,
-                      borderTopLeftRadius: '4px',
-                      borderBottomLeftRadius: '4px',
-                      borderTopRightRadius: isSelected ? '9999px' : '0px',
-                      borderBottomRightRadius: isSelected ? '9999px' : '0px',
-                      left: '0px',
-                      marginLeft: '0px'
+                      borderRadius: 'inherit',
+                      transformOrigin: 'left',
+                      transform: isSelected ? 'scaleX(1)' : 'scaleX(0.03)',
+                      transition: 'transform 500ms cubic-bezier(0.23, 1, 0.32, 1)',
+                      pointerEvents: 'none'
                     }} 
                   />
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
