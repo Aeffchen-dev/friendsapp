@@ -207,7 +207,7 @@ export function QuizApp() {
           />
           <button 
             onClick={() => setCategorySelectorOpen(true)}
-            className="text-white font-normal text-xs"
+            className="text-white font-normal text-xs align-baseline"
             style={{fontSize: '14px'}}
           >
             Kategorien wählen
