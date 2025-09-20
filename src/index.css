@@ -256,8 +256,8 @@ All colors MUST be HSL.
   
   /* Slow walking text animation for inactivity */
   @keyframes text-walk {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-20px); }
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
   }
   
   .text-walk {
