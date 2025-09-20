@@ -22,6 +22,8 @@ export function QuizApp() {
 
   useEffect(() => {
     fetchQuestions();
+    // Trigger logo stretch immediately on component mount (page load)
+    triggerLogoStretch();
   }, []);
 
   const fetchQuestions = async () => {
@@ -71,8 +73,7 @@ export function QuizApp() {
       console.error('Error fetching questions from Google Sheets:', error);
     } finally {
       setLoading(false);
-      // Trigger logo stretch on load
-      triggerLogoStretch();
+      // Animation now triggers on mount, not on load complete
     }
   };
 
