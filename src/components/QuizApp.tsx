@@ -19,7 +19,8 @@ export function QuizApp() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [logoStretch, setLogoStretch] = useState(false);
-  const [logoSlideStretch, setLogoSlideStretch] = useState(false);
+  const [logoSqueezeLeft, setLogoSqueezeLeft] = useState(false);
+  const [logoSqueezeRight, setLogoSqueezeRight] = useState(false);
 
   useEffect(() => {
     // Start logo animation and data loading together
@@ -122,14 +123,14 @@ export function QuizApp() {
 
   const nextQuestion = () => {
     if (currentIndex < questions.length - 1) {
-      setLogoSlideStretch(true);
+      setLogoSqueezeLeft(true);
       setAnimationClass('animate-slide-out-left');
       setTimeout(() => {
         setCurrentIndex(prev => prev + 1);
         setAnimationClass('animate-slide-in-right');
         setTimeout(() => {
           setAnimationClass('');
-          setLogoSlideStretch(false);
+          setLogoSqueezeLeft(false);
         }, 500);
       }, 300);
     }
@@ -137,14 +138,14 @@ export function QuizApp() {
 
   const prevQuestion = () => {
     if (currentIndex > 0) {
-      setLogoSlideStretch(true);
+      setLogoSqueezeRight(true);
       setAnimationClass('animate-slide-out-right');
       setTimeout(() => {
         setCurrentIndex(prev => prev - 1);
         setAnimationClass('animate-slide-in-left');
         setTimeout(() => {
           setAnimationClass('');
-          setLogoSlideStretch(false);
+          setLogoSqueezeRight(false);
         }, 500);
       }, 300);
     }
@@ -203,7 +204,7 @@ export function QuizApp() {
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
-            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSlideStretch ? 'logo-stretch-slide' : ''}`}
+            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeLeft ? 'logo-squeeze-left' : ''} ${logoSqueezeRight ? 'logo-squeeze-right' : ''}`}
             onClick={handleLogoClick}
           />
           <button 

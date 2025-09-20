@@ -193,10 +193,16 @@ All colors MUST be HSL.
     100% { transform: scaleX(1); }
   }
   
-  /* Quick stretch for slide transitions */
-  @keyframes logo-stretch-slide {
+  /* Logo squeeze animations for slide transitions */
+  @keyframes logo-squeeze-left {
     0% { transform: scaleX(1); }
-    50% { transform: scaleX(1.04); }
+    50% { transform: scaleX(1.08); }
+    100% { transform: scaleX(1); }
+  }
+  
+  @keyframes logo-squeeze-right {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(1.08); }
     100% { transform: scaleX(1); }
   }
   
@@ -205,9 +211,14 @@ All colors MUST be HSL.
     transform-origin: center;
   }
   
-  .logo-stretch-slide {
-    animation: logo-stretch-slide 0.8s ease-out;
+  .logo-squeeze-left {
+    animation: logo-squeeze-left 0.8s ease-out;
     transform-origin: right;
+  }
+  
+  .logo-squeeze-right {
+    animation: logo-squeeze-right 0.8s ease-out;
+    transform-origin: left;
   }
   
   .logo-clickable {
