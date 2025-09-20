@@ -158,17 +158,21 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative overflow-hidden"
-                  style={{ borderRadius: '4px 999px 999px 4px' }}
+                  className="flex items-center justify-between py-3 pr-3 pl-6 cursor-pointer relative overflow-hidden"
+                  style={{ 
+                    borderRadius: '4px 999px 999px 4px',
+                    backgroundColor: isSelected ? colorClasses : '#161616',
+                    transition: 'background-color 500ms ease-out'
+                  }}
                   onClick={() => handleCategoryToggle(category)}
                 >
-                  {/* Color strip - 8px when unselected, full width when selected */}
-                  <div 
-                    className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'right-0' : 'w-2'}`}
-                    style={{ 
-                      backgroundColor: colorClasses
-                    }} 
-                  />
+                  {/* Color strip - 8px when unselected */}
+                  {!isSelected && (
+                    <div 
+                      className="absolute inset-y-0 left-0 w-2 transition-all duration-500 ease-out"
+                      style={{ backgroundColor: colorClasses }} 
+                    />
+                  )}
                   
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
                     style={{ color: isSelected ? textColor : 'white' }}>
