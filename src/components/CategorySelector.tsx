@@ -168,6 +168,9 @@ export function CategorySelector({
                       borderBottomLeftRadius: '4px',
                       borderTopRightRadius: isSelected ? '9999px' : '0px',
                       borderBottomRightRadius: isSelected ? '9999px' : '0px',
+                      clipPath: isSelected 
+                        ? 'inset(0 round 4px 9999px 9999px 4px)'
+                        : 'inset(0 round 4px 0 0 4px)'
                     }} 
                   />
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
