@@ -157,8 +157,8 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className="flex items-center justify-between py-3 pr-3 pl-18 bg-[#161616] cursor-pointer relative overflow-hidden"
-                  style={{ borderRadius: '999px' }}
+                  className="flex items-center justify-between py-3 pr-3 bg-[#161616] cursor-pointer relative overflow-hidden"
+                  style={{ borderRadius: '999px', paddingLeft: '72px' }}
                   onClick={() => handleCategoryToggle(category)}
                 >
                   {/* Color strip - 8px when unselected, full width when selected */}
