@@ -170,7 +170,13 @@ export function CategorySelector({
                 >
                   <div
                     className="absolute inset-0 z-0 overflow-hidden"
-                    style={{ borderRadius: 'inherit', pointerEvents: 'none' }}
+                    style={{ 
+                      borderTopLeftRadius: '4px',
+                      borderBottomLeftRadius: '4px',
+                      borderTopRightRadius: '9999px',
+                      borderBottomRightRadius: '9999px',
+                      pointerEvents: 'none' 
+                    }}
                   >
                     <div
                       className="h-full"
