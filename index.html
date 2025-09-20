@@ -55,7 +55,32 @@
   </head>
 
   <body style="background-color: #000000; margin: 0; padding: 0;">
+    <!-- Static header visible during page load -->
+    <div id="static-header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; background-color: #000000; display: flex; justify-content: space-between; align-items: center; padding: 12px 24px;">
+      <img src="/assets/logo.png" alt="Logo" style="height: 32px; width: auto;" />
+      <span style="color: white; font-size: 12px; font-weight: normal;">Kategorien wählen</span>
+    </div>
+    
+    <!-- Static footer visible during page load -->
+    <div id="static-footer" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(4px); display: flex; justify-content: center; align-items: center; padding: 16px;">
+      <a href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" style="color: white; font-size: 12px; font-weight: normal; text-decoration: none;">
+        Frage einreichen
+      </a>
+    </div>
+    
     <div id="root"></div>
     <script type="module" src="./src/main.tsx"></script>
+    
+    <!-- Hide static elements once React loads -->
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          const staticHeader = document.getElementById('static-header');
+          const staticFooter = document.getElementById('static-footer');
+          if (staticHeader) staticHeader.style.display = 'none';
+          if (staticFooter) staticFooter.style.display = 'none';
+        }, 500);
+      });
+    </script>
   </body>
 </html>
