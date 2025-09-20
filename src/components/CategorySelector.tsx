@@ -165,17 +165,16 @@ export function CategorySelector({
                     borderBottomLeftRadius: '4px',
                     borderTopRightRadius: '9999px',
                     borderBottomRightRadius: '9999px',
-                    backgroundColor: isSelected ? colorClasses : '#161616',
-                    transition: 'background-color 300ms ease'
+                    backgroundColor: '#161616'
                   }}
                 >
                   <div
-                    className="absolute inset-y-0 left-0 z-0 transition-all duration-500 ease-out"
+                    className="absolute inset-y-0 left-0 z-0"
                     style={{ 
-                      width: isSelected ? '0px' : '8px',
+                      width: isSelected ? '100%' : '8px',
                       backgroundColor: colorClasses,
-                      borderTopLeftRadius: '4px',
-                      borderBottomLeftRadius: '4px'
+                      borderRadius: isSelected ? '4px 9999px 9999px 4px' : '4px',
+                      transition: 'width 500ms cubic-bezier(0.23, 1, 0.32, 1), border-radius 500ms cubic-bezier(0.23, 1, 0.32, 1)'
                     }}
                   />
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
