@@ -22,8 +22,7 @@ export function QuizApp() {
 
   useEffect(() => {
     fetchQuestions();
-    // Trigger logo stretch immediately on component mount (page load)
-    triggerLogoStretch();
+    // Logo animation now handled by static HTML during load
   }, []);
 
   const fetchQuestions = async () => {

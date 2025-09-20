@@ -42,6 +42,16 @@
         50% { content: '..'; }
         75% { content: '...'; }
       }
+      
+      /* Static logo animation for immediate load */
+      @keyframes static-logo-stretch {
+        0% { transform: scaleX(1); }
+        20% { transform: scaleX(1.15); }
+        40% { transform: scaleX(0.9); }
+        60% { transform: scaleX(1.08); }
+        80% { transform: scaleX(0.95); }
+        100% { transform: scaleX(1); }
+      }
     </style>
     <!-- Comprehensive favicon setup for all browsers -->
     <!-- Favicon with cache busting -->
@@ -89,7 +99,7 @@
   <body style="background-color: #000000; margin: 0; padding: 0;">
     <!-- Static header visible during page load -->
     <div id="static-header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; background-color: #000000; display: flex; justify-content: space-between; align-items: center; padding: 12px 24px;">
-      <img src="/assets/logo.png" alt="Logo" style="height: 32px; width: auto;" />
+      <img src="/assets/logo.png" alt="Logo" style="height: 32px; width: auto; animation: static-logo-stretch 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);" />
       <span style="color: white; font-size: 14px; font-weight: normal; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Kategorien wählen</span>
     </div>
     
