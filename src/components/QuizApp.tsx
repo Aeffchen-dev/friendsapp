@@ -239,7 +239,7 @@ export function QuizApp() {
       </div>
         
       {/* Bottom Link - Always visible */}
-      <div className="app-footer bg-background/80 backdrop-blur-sm flex-shrink-0 h-11">
+      <div className="app-footer bg-background/80 backdrop-blur-sm flex-shrink-0 h-5">
         <div className="flex justify-center items-center px-4 h-full" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
           <a 
             href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
