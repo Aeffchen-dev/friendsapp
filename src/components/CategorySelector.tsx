@@ -201,7 +201,7 @@ export function CategorySelector({
                             justifyContent: 'center'
                           }}
                         >
-                          {/* Smiley face */}
+                          {/* Simple smiley face */}
                           <div style={{ 
                             position: 'absolute',
                             width: '100%',
@@ -211,29 +211,28 @@ export function CategorySelector({
                             alignItems: 'center',
                             justifyContent: 'center'
                           }}>
-                            {/* Eyes */}
-                            <div style={{ display: 'flex', gap: '6px', marginTop: '-2px' }}>
+                            {/* Eyes - simple dots */}
+                            <div style={{ display: 'flex', gap: '5px', marginTop: '-1px' }}>
                               <div style={{ 
-                                width: '2.5px', 
-                                height: '2.5px', 
+                                width: '2px', 
+                                height: '2px', 
                                 borderRadius: '50%', 
                                 backgroundColor: 'black'
                               }} />
                               <div style={{ 
-                                width: '2.5px', 
-                                height: '2.5px', 
+                                width: '2px', 
+                                height: '2px', 
                                 borderRadius: '50%', 
                                 backgroundColor: 'black'
                               }} />
                             </div>
-                            {/* Mouth - smiling arc */}
+                            {/* Mouth - simple curve */}
                             <div style={{
-                              width: '12px',
-                              height: '5.5px',
-                              border: '1px solid black',
-                              borderTop: 'none',
-                              borderRadius: '0 0 12px 12px',
-                              marginTop: '4px'
+                              width: '8px',
+                              height: '3px',
+                              borderBottom: '1px solid black',
+                              borderRadius: '0 0 8px 8px',
+                              marginTop: '3px'
                             }} />
                           </div>
                         </div>
