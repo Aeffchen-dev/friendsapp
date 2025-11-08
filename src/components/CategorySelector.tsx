@@ -190,7 +190,7 @@ export function CategorySelector({
                             width: '26px',
                             height: '26px',
                             borderRadius: '50%',
-                            backgroundColor: colorClasses,
+                            backgroundColor: 'white',
                             position: 'absolute',
                             top: '3px',
                             left: isSelected ? '23px' : '3px',
@@ -217,20 +217,20 @@ export function CategorySelector({
                                 width: '2.5px', 
                                 height: '2.5px', 
                                 borderRadius: '50%', 
-                                backgroundColor: 'white'
+                                backgroundColor: 'black'
                               }} />
                               <div style={{ 
                                 width: '2.5px', 
                                 height: '2.5px', 
                                 borderRadius: '50%', 
-                                backgroundColor: 'white'
+                                backgroundColor: 'black'
                               }} />
                             </div>
                             {/* Mouth - laughing half circle */}
                             <div style={{
                               width: '10px',
                               height: '5px',
-                              border: '1px solid white',
+                              border: '1px solid black',
                               borderTop: 'none',
                               borderRadius: '0 0 10px 10px',
                               marginTop: '4px'
