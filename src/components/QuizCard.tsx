@@ -168,6 +168,21 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const incomingScale = 0.8 + (progress * 0.2);
   const incomingRotation = -5 * direction * (1 - progress);
 
+  // Determine which category color to show based on drag
+  const getActiveCategory = () => {
+    if (totalOffset < 0 && nextQuestion && progress > 0) {
+      // Swiping left - transition to next question
+      return nextQuestion.category;
+    } else if (totalOffset > 0 && prevQuestion && progress > 0) {
+      // Swiping right - transition to prev question
+      return prevQuestion.category;
+    }
+    return currentQuestion.category;
+  };
+
+  const activeCategoryForColor = getActiveCategory();
+  const activeCategoryColors = getCategoryColors(activeCategoryForColor);
+
   const renderCard = (question: Question, style: React.CSSProperties) => {
     const categoryColors = getCategoryColors(question.category);
     
@@ -219,9 +234,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const shouldShowPrev = prevQuestion !== null;
   const shouldShowNext = nextQuestion !== null;
 
-  // Get body background color for current card
-  const currentCategoryColors = getCategoryColors(currentQuestion.category);
-
   return (
     <>
       {/* Large background category text */}
@@ -233,16 +245,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         }}
       >
         <div 
-          className="font-bold uppercase whitespace-nowrap transition-opacity duration-500"
+          className="font-bold uppercase whitespace-nowrap"
           style={{
             fontSize: '100vw',
             lineHeight: '1',
             fontFamily: "'Factor A', sans-serif",
-            color: currentCategoryColors.stripBg,
+            color: activeCategoryColors.stripBg,
             opacity: 0.15,
+            transition: isDragging ? 'none' : 'color 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
-          {currentQuestion.category}
+          {activeCategoryForColor}
         </div>
       </div>
 
