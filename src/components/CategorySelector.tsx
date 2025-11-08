@@ -31,9 +31,9 @@ export function CategorySelector({
       case 'fuck':
         return 'hsl(300 100% 50%)'; // #FF00FF
       case 'connection':
-        return 'hsl(300 100% 50%)'; // #FF00FF
-      case 'identity':
         return 'hsl(0 100% 50%)'; // #FF0000
+      case 'identity':
+        return 'hsl(328 100% 56%)'; // #FF20A2
       case 'party':
         return 'hsl(15 100% 50%)'; // #FF4100
       case 'friends':
@@ -47,21 +47,21 @@ export function CategorySelector({
       case 'travel':
         return 'hsl(15 100% 50%)'; // #FF4100
       case 'health':
-        return 'hsl(328 100% 56%)'; // #FF20A2
+        return 'hsl(300 100% 50%)'; // #FF00FF
       case 'money':
-        return 'hsl(300 100% 50%)'; // #FF00FF
-      case 'love':
-        return 'hsl(0 100% 50%)'; // #FF0000
-      case 'hobby':
         return 'hsl(290 100% 50%)'; // #D400FF
-      case 'dreams':
+      case 'love':
         return 'hsl(15 100% 50%)'; // #FF4100
-      case 'fear':
+      case 'hobby':
         return 'hsl(328 100% 56%)'; // #FF20A2
-      case 'wisdom':
+      case 'dreams':
         return 'hsl(300 100% 50%)'; // #FF00FF
-      case 'future':
+      case 'fear':
         return 'hsl(0 100% 50%)'; // #FF0000
+      case 'wisdom':
+        return 'hsl(290 100% 50%)'; // #D400FF
+      case 'future':
+        return 'hsl(15 100% 50%)'; // #FF4100
       default:
         return 'hsl(290 100% 50%)'; // #D400FF
     }
@@ -98,7 +98,7 @@ export function CategorySelector({
         </DialogDescription>
         <div className="flex flex-col h-full relative w-full">
           {/* Header with close button */}
-          <div className="absolute top-4 left-4 right-4 z-10 flex items-baseline justify-between">
+          <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
             <h2 className="text-white text-xl font-normal">
               Kategorien wählen
             </h2>
