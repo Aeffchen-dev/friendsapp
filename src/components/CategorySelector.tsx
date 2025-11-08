@@ -20,6 +20,7 @@ export function CategorySelector({
 }: CategorySelectorProps) {
   const [tempSelection, setTempSelection] = useState<string[]>(selectedCategories);
   const [strokeAnimations, setStrokeAnimations] = useState<{[key: string]: boolean}>({});
+  const [bounceAnimations, setBounceAnimations] = useState<{[key: string]: boolean}>({});
 
   // Update temp selection when selectedCategories prop changes
   useEffect(() => {
@@ -73,11 +74,23 @@ export function CategorySelector({
   };
 
   const handleCategoryToggle = (category: string) => {
+    const isCurrentlySelected = tempSelection.includes(category);
+    
     setTempSelection(prev => 
       prev.includes(category) 
         ? prev.filter(c => c !== category)
         : [...prev, category]
     );
+    
+    // Trigger bounce animation after color transition (350ms)
+    if (!isCurrentlySelected) {
+      setTimeout(() => {
+        setBounceAnimations(prev => ({ ...prev, [category]: true }));
+        setTimeout(() => {
+          setBounceAnimations(prev => ({ ...prev, [category]: false }));
+        }, 400);
+      }, 350);
+    }
   };
 
   const handleApply = () => {
@@ -118,16 +131,21 @@ export function CategorySelector({
               const colorClasses = getCategoryColors(category);
               const textColor = getCategoryTextColors(category);
               
+              const isBouncing = bounceAnimations[category];
+              
               return (
                 <div 
                   key={category}
-                  className="flex items-center justify-between py-3 pr-4 pl-4 bg-[#161616] cursor-pointer relative overflow-hidden"
-                  style={{ borderRadius: '0 999px 999px 0', width: '80vw' }}
+                  className={`flex items-center justify-between py-3 pr-4 pl-4 bg-[#161616] cursor-pointer relative overflow-visible transition-all ${isBouncing ? 'duration-200' : 'duration-100'}`}
+                  style={{ 
+                    borderRadius: '0 999px 999px 0', 
+                    width: isBouncing ? '82vw' : '80vw'
+                  }}
                   onClick={() => handleCategoryToggle(category)}
                 >
                   {/* Color strip - 8px when unselected, full width when selected */}
                   <div 
-                    className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
+                    className={`absolute inset-y-0 left-0 transition-all duration-350 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
                     style={{ 
                       backgroundColor: colorClasses,
                       opacity: 0.8,
