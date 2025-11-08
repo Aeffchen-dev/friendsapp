@@ -25,41 +25,41 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { stripBg: 'bg-quiz-fuck-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(300, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-fuck-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'friends':
-        return { stripBg: 'bg-quiz-friends-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(180, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-friends-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'self reflection':
-        return { stripBg: 'bg-quiz-self-reflection-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(270, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-self-reflection-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'party':
-        return { stripBg: 'bg-quiz-party-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(50, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-party-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'family':
-        return { stripBg: 'bg-quiz-family-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(30, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-family-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'connection':
-        return { stripBg: 'bg-quiz-connection-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(330, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-connection-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'identity':
-        return { stripBg: 'bg-quiz-identity-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(210, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-identity-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'career':
-        return { stripBg: 'bg-quiz-career-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(120, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-career-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'travel':
-        return { stripBg: 'bg-quiz-travel-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(200, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-travel-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'health':
-        return { stripBg: 'bg-quiz-health-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(140, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-health-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'money':
-        return { stripBg: 'bg-quiz-money-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(160, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-money-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'love':
-        return { stripBg: 'bg-quiz-love-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(350, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-love-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'hobby':
-        return { stripBg: 'bg-quiz-hobby-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(280, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-hobby-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'dreams':
-        return { stripBg: 'bg-quiz-dreams-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(260, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-dreams-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'fear':
-        return { stripBg: 'bg-quiz-fear-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(0, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-fear-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'wisdom':
-        return { stripBg: 'bg-quiz-wisdom-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(240, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-wisdom-strip', cardBg: 'hsl(0, 0%, 9%)' };
       case 'future':
-        return { stripBg: 'bg-quiz-future-strip', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(190, 100%, 50%)' };
+        return { stripBg: 'bg-quiz-future-strip', cardBg: 'hsl(0, 0%, 9%)' };
       default:
-        return { stripBg: 'bg-primary', cardBg: 'hsl(0, 0%, 9%)', stripColor: 'hsl(0, 0%, 50%)' };
+        return { stripBg: 'bg-primary', cardBg: 'hsl(0, 0%, 9%)' };
     }
   };
 
@@ -148,7 +148,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         className={`flex-shrink-0 w-full max-w-[500px] rounded-2xl shadow-card overflow-hidden`}
         style={{
           backgroundColor: categoryColors.cardBg,
-          border: `1px solid ${categoryColors.stripColor}`,
           ...style,
           height: 'calc(100svh - 64px - 20px - 16px - 32px)',
           maxHeight: '100%',
