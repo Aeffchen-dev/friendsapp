@@ -23,45 +23,45 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const containerRef = useRef<HTMLDivElement>(null);
   const minSwipeDistance = 50;
 
-  // Get category-specific neon color
+  // Get category-specific neon color - using the 5 color palette
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' };
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'friends':
-        return { stripBg: 'hsl(0, 100%, 65%)', bodyBg: 'hsl(0, 100%, 65%)' }; // 200% more vibrant
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
       case 'self reflection':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' };
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'party':
-        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' };
+        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' }; // #FF4100
       case 'family':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' };
+        return { stripBg: 'hsl(328, 100%, 55%)', bodyBg: 'hsl(328, 100%, 55%)' }; // #FF20A2
       case 'connection':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' };
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'identity':
-        return { stripBg: 'hsl(328, 100%, 55%)', bodyBg: 'hsl(328, 100%, 55%)' }; // More vibrant
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
       case 'career':
-        return { stripBg: 'hsl(328, 100%, 70%)', bodyBg: 'hsl(328, 100%, 70%)' };
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'travel':
-        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' };
+        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' }; // #FF4100
       case 'health':
-        return { stripBg: 'hsl(0, 100%, 65%)', bodyBg: 'hsl(0, 100%, 65%)' };
+        return { stripBg: 'hsl(328, 100%, 55%)', bodyBg: 'hsl(328, 100%, 55%)' }; // #FF20A2
       case 'money':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' };
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'love':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' };
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
       case 'hobby':
-        return { stripBg: 'hsl(328, 100%, 70%)', bodyBg: 'hsl(328, 100%, 70%)' };
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'dreams':
-        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' };
+        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' }; // #FF4100
       case 'fear':
-        return { stripBg: 'hsl(0, 100%, 65%)', bodyBg: 'hsl(0, 100%, 65%)' };
+        return { stripBg: 'hsl(328, 100%, 55%)', bodyBg: 'hsl(328, 100%, 55%)' }; // #FF20A2
       case 'wisdom':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' };
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'future':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' };
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
       default:
-        return { stripBg: 'hsl(290, 100%, 85%)', bodyBg: 'hsl(290, 100%, 85%)' };
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
     }
   };
 
