@@ -227,6 +227,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           backdropFilter: 'blur(32px)',
           WebkitBackdropFilter: 'blur(32px)',
           boxShadow: '0 0 24px 4px rgba(0, 0, 0, 0.32)',
+          width: 'calc(100% - 32px)',
         }}
       >
         {/* Category Strip */}
