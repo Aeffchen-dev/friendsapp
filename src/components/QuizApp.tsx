@@ -387,7 +387,9 @@ export function QuizApp() {
             }}
           >
             <span style={{ fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1" }}>F</span>
-            <span style={{ fontFeatureSettings: "normal" }}>FF</span>
+            <span style={{ fontFeatureSettings: "normal" }}>riends </span>
+            <span style={{ fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1" }}>A</span>
+            <span style={{ fontFeatureSettings: "normal" }}>pp</span>
           </div>
           {!loading && (
             <button 
