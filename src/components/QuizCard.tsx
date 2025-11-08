@@ -226,7 +226,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           backgroundColor: 'rgba(0, 0, 0, 0.25)',
           backdropFilter: 'blur(28px)',
           WebkitBackdropFilter: 'blur(28px)',
-          boxShadow: '0 0 24px 4px rgba(0, 0, 0, 0.16)',
+          boxShadow: '-2px 0 24px 4px rgba(0, 0, 0, 0.16)',
           width: 'calc(100% - 32px)',
         }}
       >
