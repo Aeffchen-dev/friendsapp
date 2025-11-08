@@ -51,7 +51,6 @@ const getCategoryBodyColor = (category: string) => {
 
 export function QuizApp() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [animationClass, setAnimationClass] = useState('');
   const [questions, setQuestions] = useState<Question[]>([]);
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
@@ -62,7 +61,6 @@ export function QuizApp() {
   const [logoStretch, setLogoStretch] = useState(false);
   const [dragProgress, setDragProgress] = useState(0);
   const [targetCategory, setTargetCategory] = useState<string>('');
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
 
   useEffect(() => {
@@ -177,38 +175,26 @@ export function QuizApp() {
 
   const nextQuestion = () => {
     if (currentIndex < questions.length - 1) {
-      setIsTransitioning(true);
-      setAnimationClass('animate-slide-out-left');
       setLogoSqueezeDirection(-1);
+      // Let QuizCard's animation complete, then update index
       setTimeout(() => {
         setCurrentIndex(prev => prev + 1);
         setDragProgress(0);
         setTargetCategory('');
         setLogoSqueezeDirection(0);
-        setAnimationClass('animate-slide-in-right');
-        setTimeout(() => {
-          setAnimationClass('');
-          setIsTransitioning(false);
-        }, 500);
       }, 300);
     }
   };
 
   const prevQuestion = () => {
     if (currentIndex > 0) {
-      setIsTransitioning(true);
-      setAnimationClass('animate-slide-out-right');
       setLogoSqueezeDirection(1);
+      // Let QuizCard's animation complete, then update index
       setTimeout(() => {
         setCurrentIndex(prev => prev - 1);
         setDragProgress(0);
         setTargetCategory('');
         setLogoSqueezeDirection(0);
-        setAnimationClass('animate-slide-in-left');
-        setTimeout(() => {
-          setAnimationClass('');
-          setIsTransitioning(false);
-        }, 500);
       }, 300);
     }
   };
@@ -318,7 +304,7 @@ export function QuizApp() {
       className="h-[100svh] overflow-hidden flex flex-col relative"
       style={{ 
         backgroundColor: currentBodyColor,
-        transition: 'background-color 0.3s ease-out'
+        transition: 'background-color 0.8s ease-out'
       }}
     >
       {/* Large "Friends" text at bottom */}

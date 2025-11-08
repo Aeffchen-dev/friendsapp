@@ -99,7 +99,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       
       if (dragOffset < 0 && nextQuestion) {
         // Swipe left - animate to full left
-        setAnimationOffset(-containerWidth / 3);
+        setAnimationOffset(-containerWidth);
         setDragOffset(0);
         setIsDragging(false);
         
@@ -116,7 +116,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         return;
       } else if (dragOffset > 0 && prevQuestion) {
         // Swipe right - animate to full right
-        setAnimationOffset(containerWidth / 3);
+        setAnimationOffset(containerWidth);
         setDragOffset(0);
         setIsDragging(false);
         
