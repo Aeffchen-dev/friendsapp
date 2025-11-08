@@ -11,41 +11,41 @@ interface Question {
 const getCategoryBodyColor = (category: string) => {
   switch (category.toLowerCase()) {
     case 'fuck':
-      return 'hsl(300, 100%, 50%)';
+      return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'friends':
-      return 'hsl(0, 100%, 65%)'; // 200% more vibrant
+      return 'hsl(0, 100%, 50%)'; // #FF0000
     case 'self reflection':
-      return 'hsl(300, 100%, 50%)';
+      return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'party':
-      return 'hsl(25, 100%, 50%)';
+      return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'family':
-      return 'hsl(0, 100%, 50%)';
+      return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'connection':
-      return 'hsl(0, 100%, 50%)';
+      return 'hsl(0, 100%, 50%)'; // #FF0000
     case 'identity':
-      return 'hsl(328, 100%, 55%)'; // More vibrant
+      return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'career':
-      return 'hsl(328, 100%, 70%)';
+      return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'travel':
-      return 'hsl(25, 100%, 50%)';
+      return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'health':
-      return 'hsl(0, 100%, 65%)';
+      return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'money':
-      return 'hsl(300, 100%, 50%)';
+      return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'love':
-      return 'hsl(0, 100%, 50%)';
+      return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'hobby':
-      return 'hsl(328, 100%, 70%)';
+      return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'dreams':
-      return 'hsl(25, 100%, 50%)';
+      return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'fear':
-      return 'hsl(0, 100%, 65%)';
+      return 'hsl(0, 100%, 50%)'; // #FF0000
     case 'wisdom':
-      return 'hsl(300, 100%, 50%)';
+      return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'future':
-      return 'hsl(0, 100%, 50%)';
+      return 'hsl(15, 100%, 50%)'; // #FF4100
     default:
-      return 'hsl(290, 100%, 85%)';
+      return 'hsl(290, 100%, 50%)'; // #D400FF
   }
 };
 
@@ -60,8 +60,8 @@ export function QuizApp() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [logoStretch, setLogoStretch] = useState(false);
-  const [logoSqueezeLeft, setLogoSqueezeLeft] = useState(false);
-  const [logoSqueezeRight, setLogoSqueezeRight] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('');
 
   useEffect(() => {
     // Start logo animation and data loading together
@@ -175,31 +175,13 @@ export function QuizApp() {
 
   const nextQuestion = () => {
     if (currentIndex < questions.length - 1) {
-      setLogoSqueezeLeft(true);
-      setAnimationClass('animate-slide-out-left');
-      setTimeout(() => {
-        setCurrentIndex(prev => prev + 1);
-        setAnimationClass('animate-slide-in-right');
-        setTimeout(() => {
-          setAnimationClass('');
-          setLogoSqueezeLeft(false);
-        }, 500);
-      }, 300);
+      setCurrentIndex(prev => prev + 1);
     }
   };
 
   const prevQuestion = () => {
     if (currentIndex > 0) {
-      setLogoSqueezeRight(true);
-      setAnimationClass('animate-slide-out-right');
-      setTimeout(() => {
-        setCurrentIndex(prev => prev - 1);
-        setAnimationClass('animate-slide-in-left');
-        setTimeout(() => {
-          setAnimationClass('');
-          setLogoSqueezeRight(false);
-        }, 500);
-      }, 300);
+      setCurrentIndex(prev => prev - 1);
     }
   };
 
@@ -246,12 +228,21 @@ export function QuizApp() {
     setCategorySelectorOpen(false);
   };
 
-  const currentBodyColor = loading ? 'hsl(0, 100%, 65%)' : (questions.length > 0 ? getCategoryBodyColor(questions[currentIndex].category) : 'hsl(0, 100%, 65%)');
+  const currentBodyColor = loading 
+    ? 'hsl(0, 100%, 50%)' 
+    : (questions.length > 0 && activeCategory 
+      ? getCategoryBodyColor(activeCategory) 
+      : questions.length > 0 
+        ? getCategoryBodyColor(questions[currentIndex].category) 
+        : 'hsl(0, 100%, 50%)');
 
   return (
     <div 
-      className="h-[100svh] overflow-hidden flex flex-col transition-colors duration-500 relative"
-      style={{ backgroundColor: currentBodyColor }}
+      className="h-[100svh] overflow-hidden flex flex-col relative"
+      style={{ 
+        backgroundColor: currentBodyColor,
+        transition: isDragging ? 'none' : 'background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+      }}
     >
       {/* Large "Friends" text at bottom */}
       <div 
@@ -296,7 +287,7 @@ export function QuizApp() {
             <img 
               src="/assets/logo.png" 
               alt="Logo" 
-              className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeLeft ? 'logo-squeeze-left' : ''} ${logoSqueezeRight ? 'logo-squeeze-right' : ''}`}
+              className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''}`}
               onClick={handleLogoClick}
               style={{ filter: 'brightness(0)' }}
             />
@@ -325,6 +316,8 @@ export function QuizApp() {
               prevQuestion={currentIndex > 0 ? questions[currentIndex - 1] : null}
               onSwipeLeft={nextQuestion}
               onSwipeRight={prevQuestion}
+              onDragStateChange={setIsDragging}
+              onActiveCategoryChange={setActiveCategory}
             />
           ) : (
             <div className="h-full flex items-center justify-center min-h-[calc(100svh-120px)]">

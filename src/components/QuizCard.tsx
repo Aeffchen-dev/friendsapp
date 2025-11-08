@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface Question {
   question: string;
@@ -11,9 +11,11 @@ interface QuizCardProps {
   prevQuestion: Question | null;
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
+  onDragStateChange: (isDragging: boolean) => void;
+  onActiveCategoryChange: (category: string) => void;
 }
 
-export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight }: QuizCardProps) {
+export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight, onDragStateChange, onActiveCategoryChange }: QuizCardProps) {
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -67,6 +69,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
 
   const handleStart = (clientX: number) => {
     setIsDragging(true);
+    onDragStateChange(true);
     setStartX(clientX);
     setDragOffset(0);
   };
@@ -90,6 +93,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         setAnimationOffset(-containerWidth / 3);
         setDragOffset(0);
         setIsDragging(false);
+        onDragStateChange(false);
         
         setTimeout(() => {
           onSwipeLeft();
@@ -102,6 +106,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         setAnimationOffset(containerWidth / 3);
         setDragOffset(0);
         setIsDragging(false);
+        onDragStateChange(false);
         
         setTimeout(() => {
           onSwipeRight();
@@ -113,6 +118,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     }
     
     setIsDragging(false);
+    onDragStateChange(false);
     setDragOffset(0);
   };
 
@@ -182,6 +188,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
 
   const activeCategoryForColor = getActiveCategory();
   const activeCategoryColors = getCategoryColors(activeCategoryForColor);
+
+  // Update parent with active category for background color sync
+  useEffect(() => {
+    onActiveCategoryChange(activeCategoryForColor);
+  }, [activeCategoryForColor, onActiveCategoryChange]);
 
   const renderCard = (question: Question, style: React.CSSProperties) => {
     const categoryColors = getCategoryColors(question.category);
