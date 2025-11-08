@@ -21,48 +21,45 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const containerRef = useRef<HTMLDivElement>(null);
   const minSwipeDistance = 50;
 
-  // Get category-specific color pairs
+  // Get category-specific neon color
   const getCategoryColors = (category: string) => {
-    const normalizedCategory = category.toLowerCase().replace(/\s+/g, '-');
-    switch (normalizedCategory) {
+    switch (category.toLowerCase()) {
       case 'fuck':
-        return { cardBg: 'bg-quiz-fuck-card', textColor: 'text-quiz-fuck-text', stripBg: 'bg-quiz-fuck-strip', stripText: 'text-white' };
+        return { stripBg: 'bg-quiz-fuck-strip' };
       case 'friends':
-        return { cardBg: 'bg-quiz-friends-card', textColor: 'text-quiz-friends-text', stripBg: 'bg-quiz-friends-strip', stripText: 'text-white' };
-      case 'self-reflection':
-        return { cardBg: 'bg-quiz-self-reflection-card', textColor: 'text-quiz-self-reflection-text', stripBg: 'bg-quiz-self-reflection-strip', stripText: 'text-black' };
+        return { stripBg: 'bg-quiz-friends-strip' };
+      case 'self reflection':
+        return { stripBg: 'bg-quiz-self-reflection-strip' };
       case 'party':
-        return { cardBg: 'bg-quiz-party-card', textColor: 'text-quiz-party-text', stripBg: 'bg-quiz-party-strip', stripText: 'text-black' };
+        return { stripBg: 'bg-quiz-party-strip' };
       case 'family':
-        return { cardBg: 'bg-quiz-family-card', textColor: 'text-quiz-family-text', stripBg: 'bg-quiz-family-strip', stripText: 'text-white' };
+        return { stripBg: 'bg-quiz-family-strip' };
       case 'connection':
-        return { cardBg: 'bg-quiz-connection-card', textColor: 'text-quiz-connection-text', stripBg: 'bg-quiz-connection-strip', stripText: 'text-white' };
+        return { stripBg: 'bg-quiz-connection-strip' };
       case 'identity':
-        return { cardBg: 'bg-quiz-identity-card', textColor: 'text-quiz-identity-text', stripBg: 'bg-quiz-identity-strip', stripText: 'text-white' };
+        return { stripBg: 'bg-quiz-identity-strip' };
       case 'career':
-        return { cardBg: 'bg-quiz-career-card', textColor: 'text-quiz-career-text', stripBg: 'bg-quiz-career-strip', stripText: 'text-white' };
+        return { stripBg: 'bg-quiz-career-strip' };
       case 'travel':
-        return { cardBg: 'bg-quiz-travel-card', textColor: 'text-quiz-travel-text', stripBg: 'bg-quiz-travel-strip', stripText: 'text-white' };
+        return { stripBg: 'bg-quiz-travel-strip' };
       case 'health':
-        return { cardBg: 'bg-quiz-health-card', textColor: 'text-quiz-health-text', stripBg: 'bg-quiz-health-strip', stripText: 'text-black' };
+        return { stripBg: 'bg-quiz-health-strip' };
       case 'money':
-        return { cardBg: 'bg-quiz-money-card', textColor: 'text-quiz-money-text', stripBg: 'bg-quiz-money-strip', stripText: 'text-white' };
+        return { stripBg: 'bg-quiz-money-strip' };
       case 'love':
-        return { cardBg: 'bg-quiz-love-card', textColor: 'text-quiz-love-text', stripBg: 'bg-quiz-love-strip', stripText: 'text-black' };
+        return { stripBg: 'bg-quiz-love-strip' };
       case 'hobby':
-        return { cardBg: 'bg-quiz-hobby-card', textColor: 'text-quiz-hobby-text', stripBg: 'bg-quiz-hobby-strip', stripText: 'text-white' };
+        return { stripBg: 'bg-quiz-hobby-strip' };
       case 'dreams':
-        return { cardBg: 'bg-quiz-dreams-card', textColor: 'text-quiz-dreams-text', stripBg: 'bg-quiz-dreams-strip', stripText: 'text-white' };
+        return { stripBg: 'bg-quiz-dreams-strip' };
       case 'fear':
-        return { cardBg: 'bg-quiz-fear-card', textColor: 'text-quiz-fear-text', stripBg: 'bg-quiz-fear-strip', stripText: 'text-white' };
+        return { stripBg: 'bg-quiz-fear-strip' };
       case 'wisdom':
-        return { cardBg: 'bg-quiz-wisdom-card', textColor: 'text-quiz-wisdom-text', stripBg: 'bg-quiz-wisdom-strip', stripText: 'text-black' };
+        return { stripBg: 'bg-quiz-wisdom-strip' };
       case 'future':
-        return { cardBg: 'bg-quiz-future-card', textColor: 'text-quiz-future-text', stripBg: 'bg-quiz-future-strip', stripText: 'text-white' };
-      case 'wer-aus-der-runde':
-        return { cardBg: 'bg-quiz-wer-aus-der-runde-card', textColor: 'text-quiz-wer-aus-der-runde-text', stripBg: 'bg-quiz-wer-aus-der-runde-strip', stripText: 'text-black' };
+        return { stripBg: 'bg-quiz-future-strip' };
       default:
-        return { cardBg: 'bg-primary', textColor: 'text-primary-foreground', stripBg: 'bg-primary', stripText: 'text-white' };
+        return { stripBg: 'bg-primary' };
     }
   };
 
@@ -148,7 +145,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     return (
       <div 
-        className={`flex-shrink-0 w-full max-w-[500px] ${categoryColors.cardBg} rounded-2xl shadow-card overflow-hidden`}
+        className={`flex-shrink-0 w-full max-w-[500px] ${categoryColors.stripBg} rounded-2xl shadow-card overflow-hidden`}
         style={{
           ...style,
           height: 'calc(100svh - 64px - 20px - 16px - 32px)',
@@ -161,7 +158,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             {Array(20).fill(question.category).map((cat, index) => (
               <span 
                 key={`${cat}-${index}`} 
-                className={`${categoryColors.stripText} font-bold text-sm tracking-wide uppercase`}
+                className="text-white font-bold text-sm tracking-wide uppercase" 
                 style={{ 
                   marginRight: index < 19 ? '8px' : '0',
                   fontFamily: "'Factor A', sans-serif"
@@ -176,7 +173,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         {/* Main Content */}
         <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-8">
-            <h1 className={`question-text text-4xl md:text-5xl lg:text-6xl font-bold ${categoryColors.textColor} w-full max-w-full`} style={{ lineHeight: '1.15' }}>
+            <h1 className="question-text text-4xl md:text-5xl lg:text-6xl font-bold text-white w-full max-w-full" style={{ lineHeight: '1.15' }}>
               {question.question}
             </h1>
           </div>

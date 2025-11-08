@@ -68,85 +68,27 @@ All colors MUST be HSL.
     /* Card background - almost black for all cards */
     --quiz-card-bg: 0 0% 5%;
     
-    /* Category color pairs - card bg and text colors - 600% more vibrant */
-    /* Pair 1: Bright green card / Deep teal text */
-    --quiz-fuck-card: 150 100% 50%;
-    --quiz-fuck-text: 190 100% 15%;
-    --quiz-fuck-strip: 190 100% 15%;
+    /* Category strip colors - 400% more vibrant */
+    --quiz-fuck-strip: 300 100% 50%;         /* Magenta/Purple */
+    --quiz-connection-strip: 0 100% 50%;     /* Red-Pink */
+    --quiz-identity-strip: 328 100% 70%;     /* Light Pink */
+    --quiz-party-strip: 25 100% 50%;         /* Orange */
+    --quiz-friends-strip: 0 100% 65%;        /* Coral */
     
-    /* Pair 2: Vibrant lavender card / Electric blue text */
-    --quiz-connection-card: 270 100% 65%;
-    --quiz-connection-text: 220 100% 35%;
-    --quiz-connection-strip: 220 100% 35%;
+    --quiz-self-reflection-strip: 300 100% 50%; /* Magenta/Purple */
+    --quiz-family-strip: 0 100% 50%;         /* Red-Pink */
+    --quiz-career-strip: 328 100% 70%;       /* Light Pink */
+    --quiz-travel-strip: 25 100% 50%;        /* Orange */
     
-    /* Pair 3: Electric orange card / Deep maroon text */
-    --quiz-identity-card: 20 100% 55%;
-    --quiz-identity-text: 0 100% 20%;
-    --quiz-identity-strip: 0 100% 20%;
+    --quiz-health-strip: 0 100% 65%;         /* Coral */
+    --quiz-money-strip: 300 100% 50%;        /* Magenta/Purple */
+    --quiz-love-strip: 0 100% 50%;           /* Red-Pink */
+    --quiz-hobby-strip: 328 100% 70%;        /* Light Pink */
     
-    /* Pair 4: Deep teal card / Neon green text */
-    --quiz-party-card: 190 100% 20%;
-    --quiz-party-text: 150 100% 60%;
-    --quiz-party-strip: 150 100% 60%;
-    
-    /* Pair 5: Hot pink card / Deep maroon text */
-    --quiz-friends-card: 320 100% 60%;
-    --quiz-friends-text: 340 100% 20%;
-    --quiz-friends-strip: 340 100% 20%;
-    
-    /* Pair 6: Deep burgundy card / Bright yellow text */
-    --quiz-self-reflection-card: 340 100% 25%;
-    --quiz-self-reflection-text: 50 100% 55%;
-    --quiz-self-reflection-strip: 50 100% 55%;
-    
-    /* Cycling through pairs for remaining categories */
-    --quiz-family-card: 150 100% 50%;
-    --quiz-family-text: 190 100% 15%;
-    --quiz-family-strip: 190 100% 15%;
-    
-    --quiz-career-card: 270 100% 65%;
-    --quiz-career-text: 220 100% 35%;
-    --quiz-career-strip: 220 100% 35%;
-    
-    --quiz-travel-card: 20 100% 55%;
-    --quiz-travel-text: 0 100% 20%;
-    --quiz-travel-strip: 0 100% 20%;
-    
-    --quiz-health-card: 190 100% 20%;
-    --quiz-health-text: 150 100% 60%;
-    --quiz-health-strip: 150 100% 60%;
-    
-    --quiz-money-card: 320 100% 60%;
-    --quiz-money-text: 340 100% 20%;
-    --quiz-money-strip: 340 100% 20%;
-    
-    --quiz-love-card: 340 100% 25%;
-    --quiz-love-text: 50 100% 55%;
-    --quiz-love-strip: 50 100% 55%;
-    
-    --quiz-hobby-card: 150 100% 50%;
-    --quiz-hobby-text: 190 100% 15%;
-    --quiz-hobby-strip: 190 100% 15%;
-    
-    --quiz-dreams-card: 270 100% 65%;
-    --quiz-dreams-text: 220 100% 35%;
-    --quiz-dreams-strip: 220 100% 35%;
-    
-    --quiz-fear-card: 20 100% 55%;
-    --quiz-fear-text: 0 100% 20%;
-    --quiz-fear-strip: 0 100% 20%;
-    
-    --quiz-wisdom-card: 190 100% 20%;
-    --quiz-wisdom-text: 150 100% 60%;
-    --quiz-wisdom-strip: 150 100% 60%;
-    
-    --quiz-future-card: 320 100% 60%;
-    --quiz-future-text: 340 100% 20%;
-    --quiz-future-strip: 340 100% 20%;
-    
-    --quiz-wer-aus-der-runde-card: 340 100% 25%;
-    --quiz-wer-aus-der-runde-text: 50 100% 55%;
-    --quiz-wer-aus-der-runde-strip: 50 100% 55%;
+    --quiz-dreams-strip: 25 100% 50%;        /* Orange */
+    --quiz-fear-strip: 0 100% 65%;           /* Coral */
+    --quiz-wisdom-strip: 300 100% 50%;       /* Magenta/Purple */
+    --quiz-future-strip: 0 100% 50%;         /* Red-Pink */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
