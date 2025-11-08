@@ -158,7 +158,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             {Array(20).fill(question.category).map((cat, index) => (
               <span 
                 key={`${cat}-${index}`} 
-                className="text-white font-bold text-2xl tracking-wide uppercase" 
+                className="text-white font-bold text-sm tracking-wide uppercase" 
                 style={{ 
                   marginRight: index < 19 ? '8px' : '0',
                   fontFamily: "'Factor A', sans-serif"
