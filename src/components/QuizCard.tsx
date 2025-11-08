@@ -201,7 +201,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       <div 
         className="flex items-center h-full"
         style={{
-          transform: `translateX(calc(-100% + ${dragOffset}px))`,
+          transform: `translateX(calc(-33.333% + ${dragOffset}px))`,
           transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           width: '300%',
           position: 'relative',
