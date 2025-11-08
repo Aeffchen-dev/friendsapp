@@ -283,6 +283,7 @@ export function QuizApp() {
             alt="Logo" 
             className={`h-8 w-auto logo-clickable align-baseline ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeLeft ? 'logo-squeeze-left' : ''} ${logoSqueezeRight ? 'logo-squeeze-right' : ''}`}
             onClick={handleLogoClick}
+            style={{ filter: 'brightness(0)' }}
           />
           <button 
             onClick={() => setCategorySelectorOpen(true)}
