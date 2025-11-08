@@ -119,9 +119,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       setIsAnimating(true);
       
       if (dragOffset < 0 && nextQuestion) {
-        // Swipe left - animate to full left
-        setAnimationOffset(-containerWidth);
-        setDragOffset(0);
+        // Swipe left - animate from current position to full left
+        const remainingDistance = -containerWidth - dragOffset;
+        setAnimationOffset(remainingDistance);
         setIsDragging(false);
         
         // Continue color transition and logo squeeze during animation
@@ -134,9 +134,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         }, 300);
         return;
       } else if (dragOffset > 0 && prevQuestion) {
-        // Swipe right - animate to full right
-        setAnimationOffset(containerWidth);
-        setDragOffset(0);
+        // Swipe right - animate from current position to full right
+        const remainingDistance = containerWidth - dragOffset;
+        setAnimationOffset(remainingDistance);
         setIsDragging(false);
         
         // Continue color transition and logo squeeze during animation
