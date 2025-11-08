@@ -92,7 +92,10 @@ export function CategorySelector({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-screen h-screen max-w-none bg-background border-0 rounded-none p-0 overflow-hidden [&>button]:hidden data-[state=closed]:animate-none data-[state=closed]:duration-0 [&]:rounded-none" style={{ width: '100vw', height: '100vh', borderRadius: '0' }}>
+      <DialogContent 
+        className="w-screen h-screen max-w-none bg-background border-0 rounded-none p-0 overflow-hidden [&>button]:hidden [&]:rounded-none data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:duration-300 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:duration-300" 
+        style={{ width: '100vw', height: '100vh', borderRadius: '0' }}
+      >
         <DialogDescription className="sr-only">
           Wählen Sie die Kategorien aus, die Sie sehen möchten
         </DialogDescription>

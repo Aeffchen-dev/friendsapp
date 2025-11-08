@@ -206,13 +206,13 @@ All colors MUST be HSL.
   /* Logo squeeze animations for slide transitions */
   @keyframes logo-squeeze-left {
     0% { transform: scaleX(1); }
-    37.5% { transform: scaleX(1.08); } /* Peak at 300ms out of 800ms total */
+    50% { transform: scaleX(1.15); }
     100% { transform: scaleX(1); }
   }
   
   @keyframes logo-squeeze-right {
     0% { transform: scaleX(1); }
-    37.5% { transform: scaleX(1.08); } /* Peak at 300ms out of 800ms total */
+    50% { transform: scaleX(1.15); }
     100% { transform: scaleX(1); }
   }
   
@@ -222,12 +222,12 @@ All colors MUST be HSL.
   }
   
   .logo-squeeze-left {
-    animation: logo-squeeze-left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: logo-squeeze-left 0.3s ease-out;
     transform-origin: right;
   }
   
   .logo-squeeze-right {
-    animation: logo-squeeze-right 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: logo-squeeze-right 0.3s ease-out;
     transform-origin: left;
   }
   

@@ -261,8 +261,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     );
   };
 
-  const shouldShowPrev = prevQuestion !== null;
-  const shouldShowNext = nextQuestion !== null;
+  const shouldShowPrev = true; // Always render all 3 cards
+  const shouldShowNext = true; // Always render all 3 cards
 
   return (
     <>
