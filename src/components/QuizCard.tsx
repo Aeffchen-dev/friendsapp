@@ -132,12 +132,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const progress = getDragProgress();
   const direction = dragOffset < 0 ? -1 : 1;
 
-  // Current card: 100% -> 90% scale, 0deg -> 5deg rotation (away from direction)
-  const currentScale = 1 - (progress * 0.1);
+  // Current card: 100% -> 80% scale, 0deg -> 5deg rotation (away from direction)
+  const currentScale = 1 - (progress * 0.2);
   const currentRotation = progress * 5 * direction;
 
-  // Incoming card: 90% -> 100% scale, 5deg -> 0deg rotation (towards center)
-  const incomingScale = 0.9 + (progress * 0.1);
+  // Incoming card: 80% -> 100% scale, 5deg -> 0deg rotation (towards center)
+  const incomingScale = 0.8 + (progress * 0.2);
   const incomingRotation = -5 * direction * (1 - progress);
 
   const renderCard = (question: Question, style: React.CSSProperties) => {
@@ -252,7 +252,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           }}
         >
           {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
-            transform: `scale(${dragOffset > 0 ? incomingScale : 0.9}) rotate(${dragOffset > 0 ? incomingRotation : 5}deg)`,
+            transform: `scale(${dragOffset > 0 ? incomingScale : 0.8}) rotate(${dragOffset > 0 ? incomingRotation : 5}deg)`,
             transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             opacity: 1,
             position: 'relative',
@@ -285,7 +285,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           }}
         >
           {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
-            transform: `scale(${dragOffset < 0 ? incomingScale : 0.9}) rotate(${dragOffset < 0 ? incomingRotation : -5}deg)`,
+            transform: `scale(${dragOffset < 0 ? incomingScale : 0.8}) rotate(${dragOffset < 0 ? incomingRotation : -5}deg)`,
             transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             opacity: 1,
             position: 'relative',
