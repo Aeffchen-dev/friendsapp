@@ -72,7 +72,7 @@ All colors MUST be HSL.
     --quiz-fuck-strip: 300 100% 50%;         /* Magenta/Purple */
     --quiz-connection-strip: 0 100% 50%;     /* Red-Pink */
     --quiz-identity-strip: 328 100% 70%;     /* Light Pink */
-    --quiz-party-strip: 25 100% 50%;         /* Orange */
+    --quiz-party-strip: 20 85% 55%;         /* Orange */
     --quiz-friends-strip: 0 100% 65%;        /* Coral */
     
     --quiz-self-reflection-strip: 300 100% 50%; /* Magenta/Purple */
@@ -90,27 +90,27 @@ All colors MUST be HSL.
     --quiz-wisdom-strip: 300 100% 50%;       /* Magenta/Purple */
     --quiz-future-strip: 0 100% 50%;         /* Red-Pink */
     
-    /* Category card pastel backgrounds */
-    --quiz-fuck-card: 300 60% 85%;
-    --quiz-connection-card: 0 60% 85%;
-    --quiz-identity-card: 328 60% 92%;
-    --quiz-party-card: 25 60% 88%;
-    --quiz-friends-card: 0 60% 88%;
+    /* Category card backgrounds - less pastel */
+    --quiz-fuck-card: 300 75% 75%;
+    --quiz-connection-card: 0 75% 75%;
+    --quiz-identity-card: 328 75% 82%;
+    --quiz-party-card: 20 75% 70%;
+    --quiz-friends-card: 0 75% 78%;
     
-    --quiz-self-reflection-card: 300 60% 85%;
-    --quiz-family-card: 0 60% 85%;
-    --quiz-career-card: 328 60% 90%;
-    --quiz-travel-card: 25 60% 85%;
+    --quiz-self-reflection-card: 300 75% 75%;
+    --quiz-family-card: 0 75% 75%;
+    --quiz-career-card: 328 75% 80%;
+    --quiz-travel-card: 25 75% 75%;
     
-    --quiz-health-card: 0 60% 88%;
-    --quiz-money-card: 300 60% 85%;
-    --quiz-love-card: 0 60% 85%;
-    --quiz-hobby-card: 328 60% 90%;
+    --quiz-health-card: 0 75% 78%;
+    --quiz-money-card: 300 75% 75%;
+    --quiz-love-card: 0 75% 75%;
+    --quiz-hobby-card: 328 75% 80%;
     
-    --quiz-dreams-card: 25 60% 85%;
-    --quiz-fear-card: 0 60% 88%;
-    --quiz-wisdom-card: 300 60% 85%;
-    --quiz-future-card: 0 60% 85%;
+    --quiz-dreams-card: 25 75% 75%;
+    --quiz-fear-card: 0 75% 78%;
+    --quiz-wisdom-card: 300 75% 75%;
+    --quiz-future-card: 0 75% 75%;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
