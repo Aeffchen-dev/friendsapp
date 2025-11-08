@@ -25,41 +25,41 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { stripBg: 'bg-quiz-fuck-strip', cardBg: 'bg-quiz-fuck-card' };
+        return { stripBg: 'bg-quiz-fuck-strip' };
       case 'friends':
-        return { stripBg: 'bg-quiz-friends-strip', cardBg: 'bg-quiz-friends-card' };
+        return { stripBg: 'bg-quiz-friends-strip' };
       case 'self reflection':
-        return { stripBg: 'bg-quiz-self-reflection-strip', cardBg: 'bg-quiz-self-reflection-card' };
+        return { stripBg: 'bg-quiz-self-reflection-strip' };
       case 'party':
-        return { stripBg: 'bg-quiz-party-strip', cardBg: 'bg-quiz-party-card' };
+        return { stripBg: 'bg-quiz-party-strip' };
       case 'family':
-        return { stripBg: 'bg-quiz-family-strip', cardBg: 'bg-quiz-family-card' };
+        return { stripBg: 'bg-quiz-family-strip' };
       case 'connection':
-        return { stripBg: 'bg-quiz-connection-strip', cardBg: 'bg-quiz-connection-card' };
+        return { stripBg: 'bg-quiz-connection-strip' };
       case 'identity':
-        return { stripBg: 'bg-quiz-identity-strip', cardBg: 'bg-quiz-identity-card' };
+        return { stripBg: 'bg-quiz-identity-strip' };
       case 'career':
-        return { stripBg: 'bg-quiz-career-strip', cardBg: 'bg-quiz-career-card' };
+        return { stripBg: 'bg-quiz-career-strip' };
       case 'travel':
-        return { stripBg: 'bg-quiz-travel-strip', cardBg: 'bg-quiz-travel-card' };
+        return { stripBg: 'bg-quiz-travel-strip' };
       case 'health':
-        return { stripBg: 'bg-quiz-health-strip', cardBg: 'bg-quiz-health-card' };
+        return { stripBg: 'bg-quiz-health-strip' };
       case 'money':
-        return { stripBg: 'bg-quiz-money-strip', cardBg: 'bg-quiz-money-card' };
+        return { stripBg: 'bg-quiz-money-strip' };
       case 'love':
-        return { stripBg: 'bg-quiz-love-strip', cardBg: 'bg-quiz-love-card' };
+        return { stripBg: 'bg-quiz-love-strip' };
       case 'hobby':
-        return { stripBg: 'bg-quiz-hobby-strip', cardBg: 'bg-quiz-hobby-card' };
+        return { stripBg: 'bg-quiz-hobby-strip' };
       case 'dreams':
-        return { stripBg: 'bg-quiz-dreams-strip', cardBg: 'bg-quiz-dreams-card' };
+        return { stripBg: 'bg-quiz-dreams-strip' };
       case 'fear':
-        return { stripBg: 'bg-quiz-fear-strip', cardBg: 'bg-quiz-fear-card' };
+        return { stripBg: 'bg-quiz-fear-strip' };
       case 'wisdom':
-        return { stripBg: 'bg-quiz-wisdom-strip', cardBg: 'bg-quiz-wisdom-card' };
+        return { stripBg: 'bg-quiz-wisdom-strip' };
       case 'future':
-        return { stripBg: 'bg-quiz-future-strip', cardBg: 'bg-quiz-future-card' };
+        return { stripBg: 'bg-quiz-future-strip' };
       default:
-        return { stripBg: 'bg-primary', cardBg: 'bg-primary' };
+        return { stripBg: 'bg-primary' };
     }
   };
 
@@ -145,7 +145,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     return (
       <div 
-        className={`flex-shrink-0 w-full max-w-[500px] ${categoryColors.cardBg} rounded-2xl shadow-card overflow-hidden`}
+        className={`flex-shrink-0 w-full max-w-[500px] ${categoryColors.stripBg} rounded-2xl shadow-card overflow-hidden`}
         style={{
           ...style,
           height: 'calc(100svh - 64px - 20px - 16px - 32px)',

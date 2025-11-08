@@ -137,24 +137,7 @@ export default {
 					'dreams-strip': 'hsl(var(--quiz-dreams-strip))',
 					'fear-strip': 'hsl(var(--quiz-fear-strip))',
 					'wisdom-strip': 'hsl(var(--quiz-wisdom-strip))',
-					'future-strip': 'hsl(var(--quiz-future-strip))',
-					'fuck-card': 'hsl(var(--quiz-fuck-card))',
-					'connection-card': 'hsl(var(--quiz-connection-card))',
-					'identity-card': 'hsl(var(--quiz-identity-card))',
-					'party-card': 'hsl(var(--quiz-party-card))',
-					'friends-card': 'hsl(var(--quiz-friends-card))',
-					'self-reflection-card': 'hsl(var(--quiz-self-reflection-card))',
-					'family-card': 'hsl(var(--quiz-family-card))',
-					'career-card': 'hsl(var(--quiz-career-card))',
-					'travel-card': 'hsl(var(--quiz-travel-card))',
-					'health-card': 'hsl(var(--quiz-health-card))',
-					'money-card': 'hsl(var(--quiz-money-card))',
-					'love-card': 'hsl(var(--quiz-love-card))',
-					'hobby-card': 'hsl(var(--quiz-hobby-card))',
-					'dreams-card': 'hsl(var(--quiz-dreams-card))',
-					'fear-card': 'hsl(var(--quiz-fear-card))',
-					'wisdom-card': 'hsl(var(--quiz-wisdom-card))',
-					'future-card': 'hsl(var(--quiz-future-card))'
+					'future-strip': 'hsl(var(--quiz-future-strip))'
 				}
 			},
 			backgroundImage: {
