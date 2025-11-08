@@ -325,8 +325,11 @@ export function QuizApp() {
     setLogoSqueezeDirection(progress > 0 ? direction : 0);
   };
 
-  // Update theme-color meta tag for iOS status bar
+  // Update body background color and theme-color meta tag for iOS
   useEffect(() => {
+    document.body.style.backgroundColor = currentBodyColor;
+    document.body.style.transition = 'background-color 0.8s ease-out';
+    
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', currentBodyColor);
@@ -336,10 +339,6 @@ export function QuizApp() {
   return (
     <div 
       className="h-[100svh] overflow-hidden flex flex-col relative"
-      style={{ 
-        backgroundColor: currentBodyColor,
-        transition: 'background-color 0.8s ease-out'
-      }}
     >
       {/* Large "Friends" text at bottom */}
       <div 
