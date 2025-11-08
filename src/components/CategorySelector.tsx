@@ -149,7 +149,7 @@ export function CategorySelector({
                     style={{ 
                       backgroundColor: colorClasses,
                       opacity: 0.8,
-                      borderRadius: '0'
+                      borderRadius: '0 999px 999px 0'
                     }} 
                   />
                   
