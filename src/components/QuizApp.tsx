@@ -370,8 +370,9 @@ export function QuizApp() {
               onClick={handleLogoClick}
               style={{ 
                 filter: 'brightness(0)',
-                transform: `scaleX(${1 - logoSqueezeProgress * 0.3})`,
-                transition: isTransitioning ? 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
+                transform: `scaleX(${1 + logoSqueezeProgress * 0.5}) translateX(${logoSqueezeDirection * logoSqueezeProgress * -8}px)`,
+                transition: isTransitioning ? 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+                transformOrigin: logoSqueezeDirection < 0 ? 'right' : logoSqueezeDirection > 0 ? 'left' : 'center'
               }}
             />
             <button 
