@@ -41,11 +41,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       case 'party':
         return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'family':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
+        return { stripBg: 'hsl(325, 100%, 60%)', bodyBg: 'hsl(325, 100%, 60%)' }; // #FF35AB
       case 'connection':
         return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
       case 'identity':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
+        return { stripBg: 'hsl(325, 100%, 60%)', bodyBg: 'hsl(325, 100%, 60%)' }; // #FF35AB
       case 'career':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'travel':
@@ -57,7 +57,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       case 'love':
         return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'hobby':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
+        return { stripBg: 'hsl(325, 100%, 60%)', bodyBg: 'hsl(325, 100%, 60%)' }; // #FF35AB
       case 'dreams':
         return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'fear':

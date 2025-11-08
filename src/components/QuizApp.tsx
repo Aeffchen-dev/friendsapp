@@ -19,11 +19,11 @@ const getCategoryBodyColor = (category: string) => {
     case 'party':
       return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'family':
-      return 'hsl(328, 100%, 56%)'; // #FF20A2
+      return 'hsl(325, 100%, 60%)'; // #FF35AB
     case 'connection':
       return 'hsl(0, 100%, 50%)'; // #FF0000
     case 'identity':
-      return 'hsl(328, 100%, 56%)'; // #FF20A2
+      return 'hsl(325, 100%, 60%)'; // #FF35AB
     case 'career':
       return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'travel':
@@ -35,7 +35,7 @@ const getCategoryBodyColor = (category: string) => {
     case 'love':
       return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'hobby':
-      return 'hsl(328, 100%, 56%)'; // #FF20A2
+      return 'hsl(325, 100%, 60%)'; // #FF35AB
     case 'dreams':
       return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'fear':

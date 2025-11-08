@@ -71,19 +71,19 @@ All colors MUST be HSL.
     /* Category strip colors - 5 color palette */
     --quiz-fuck-strip: 300 100% 50%;         /* #FF00FF */
     --quiz-connection-strip: 0 100% 50%;     /* #FF0000 */
-    --quiz-identity-strip: 328 100% 56%;     /* #FF20A2 */
+    --quiz-identity-strip: 325 100% 60%;     /* #FF35AB */
     --quiz-party-strip: 15 100% 50%;         /* #FF4100 */
     --quiz-friends-strip: 0 100% 50%;        /* #FF0000 */
     
     --quiz-self-reflection-strip: 290 100% 50%; /* #D400FF */
-    --quiz-family-strip: 328 100% 56%;       /* #FF20A2 */
+    --quiz-family-strip: 325 100% 60%;       /* #FF35AB */
     --quiz-career-strip: 290 100% 50%;       /* #D400FF */
     --quiz-travel-strip: 15 100% 50%;        /* #FF4100 */
     
     --quiz-health-strip: 300 100% 50%;       /* #FF00FF */
     --quiz-money-strip: 290 100% 50%;        /* #D400FF */
     --quiz-love-strip: 15 100% 50%;          /* #FF4100 */
-    --quiz-hobby-strip: 328 100% 56%;        /* #FF20A2 */
+    --quiz-hobby-strip: 325 100% 60%;        /* #FF35AB */
     
     --quiz-dreams-strip: 300 100% 50%;       /* #FF00FF */
     --quiz-fear-strip: 0 100% 50%;           /* #FF0000 */
