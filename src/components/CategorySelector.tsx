@@ -180,7 +180,8 @@ export function CategorySelector({
                            width: '52px', 
                            height: '32px', 
                            borderRadius: '32px',
-                           backgroundColor: isSelected ? 'white' : 'transparent',
+                           backgroundColor: isSelected ? colorClasses : 'white',
+                           opacity: isSelected ? 0.8 : 1,
                            outline: '1px solid white',
                            outlineOffset: '0px',
                            position: 'relative'
@@ -190,13 +191,13 @@ export function CategorySelector({
                         <div
                           className="transition-all ease-out duration-75"
                           style={{
-                            width: '24px',
-                            height: '24px',
+                            width: '30px',
+                            height: '30px',
                             borderRadius: '50%',
-                            backgroundColor: isSelected ? 'black' : 'white',
+                            backgroundColor: 'white',
                             position: 'absolute',
-                            top: '3px',
-                            left: isSelected ? '24px' : '3px',
+                            top: '1px',
+                            left: isSelected ? '21px' : '1px',
                           }}
                         />
                       </div>
