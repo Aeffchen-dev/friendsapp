@@ -171,7 +171,7 @@ export function CategorySelector({
                        }}
                     >
                       <div
-                        className={`flex items-center justify-center transition-all ease-out ${isSelected ? 'bg-white duration-300 delay-200' : 'bg-transparent duration-100 hover:bg-white/10'}`}
+                        className={`flex items-center justify-center transition-all ease-out ${isSelected ? 'bg-white duration-100' : 'bg-transparent duration-100 hover:bg-white/10'}`}
                          style={{ 
                            width: '48px', 
                            height: '48px', 
