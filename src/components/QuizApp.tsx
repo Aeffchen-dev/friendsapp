@@ -327,18 +327,21 @@ export function QuizApp() {
 
   // Update body background color and theme-color meta tag for iOS
   useEffect(() => {
+    // If category selector is open, set background to black
+    const backgroundColor = categorySelectorOpen ? '#000000' : currentBodyColor;
+    
     // Update CSS variable to drive page background everywhere
-    document.documentElement.style.setProperty('--page-bg', currentBodyColor);
+    document.documentElement.style.setProperty('--page-bg', backgroundColor);
 
     // Keep body transition smooth
-    document.body.style.backgroundColor = currentBodyColor;
+    document.body.style.backgroundColor = backgroundColor;
     document.body.style.transition = 'background-color 0.8s ease-out';
     
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', currentBodyColor);
+      metaThemeColor.setAttribute('content', backgroundColor);
     }
-  }, [currentBodyColor]);
+  }, [currentBodyColor, categorySelectorOpen]);
 
   return (
     <div 
