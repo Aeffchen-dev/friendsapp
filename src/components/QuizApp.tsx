@@ -58,22 +58,14 @@ export function QuizApp() {
   const [categorySelectorOpen, setCategorySelectorOpen] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
-  const [logoStretch, setLogoStretch] = useState(false);
+  const [logoStretch, setLogoStretch] = useState(true); // Start with stretch active
   const [dragProgress, setDragProgress] = useState(0);
   const [targetCategory, setTargetCategory] = useState<string>('');
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
 
   useEffect(() => {
-    // Start logo animation and data loading together
-    setLogoStretch(true);
+    // Logo stretch already initialized to true, just fetch questions
     fetchQuestions();
-
-    // Reset logo animation after it completes
-    const logoTimer = setTimeout(() => {
-      setLogoStretch(false);
-    }, 2500);
-
-    return () => clearTimeout(logoTimer);
   }, []);
 
   const fetchQuestions = async () => {
