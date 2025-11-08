@@ -171,19 +171,19 @@ export function CategorySelector({
                        }}
                     >
                       <div
-                        className={`w-8 h-8 border border-white flex items-center justify-center transition-all ease-out ${isSelected ? 'bg-white duration-300 delay-200' : 'bg-transparent duration-100 hover:bg-white/10'}`}
+                        className={`flex items-center justify-center transition-all ease-out ${isSelected ? 'bg-white duration-300 delay-200' : 'bg-transparent duration-100 hover:bg-white/10'}`}
                          style={{ 
-                           width: '32px', 
-                           height: '32px', 
-                           borderRadius: '32px',
+                           width: '48px', 
+                           height: '48px', 
+                           borderRadius: '48px',
                            outline: '1px solid white',
                            outlineOffset: '0px'
                          }}
                       >
                          {isSelected && (
                            <svg 
-                             width="20" 
-                             height="20" 
+                             width="28" 
+                             height="28" 
                              viewBox="0 0 16 16" 
                              fill="none"
                              className="checkmark-animate"
