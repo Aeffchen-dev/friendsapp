@@ -384,10 +384,12 @@ export function QuizApp() {
               display: 'flex',
               alignItems: 'center',
               lineHeight: 1,
+              letterSpacing: '-0.08em',
+              gap: '0.3em',
             }}
           >
             <span style={{ fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1" }}>F</span>
-            <span style={{ fontFeatureSettings: "normal" }}>riends </span>
+            <span style={{ fontFeatureSettings: "normal" }}>riends</span>
             <span style={{ fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1" }}>A</span>
             <span style={{ fontFeatureSettings: "normal" }}>pp</span>
           </div>
