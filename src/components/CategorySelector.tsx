@@ -130,6 +130,7 @@ export function CategorySelector({
                     className={`absolute inset-y-0 left-0 transition-all duration-500 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
                     style={{ 
                       backgroundColor: colorClasses,
+                      opacity: 0.8,
                       borderTopLeftRadius: isSelected ? '4px' : '4px',
                       borderBottomLeftRadius: isSelected ? '4px' : '4px',
                       borderTopRightRadius: isSelected ? '999px' : '4px',
