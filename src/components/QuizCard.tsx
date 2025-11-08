@@ -223,10 +223,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           ...style,
           height: '80vh',
           maxHeight: '80vh',
-          backgroundColor: 'rgba(0, 0, 0, 0.25)',
-          backdropFilter: window.innerWidth < 768 ? 'blur(20px)' : 'blur(28px)',
-          WebkitBackdropFilter: window.innerWidth < 768 ? 'blur(20px)' : 'blur(28px)',
-          boxShadow: '-2px 0 24px 4px rgba(0, 0, 0, 0.24)',
+          backgroundColor: 'rgba(0, 0, 0, 0.30)',
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+          boxShadow: '0 0 24px 4px rgba(0, 0, 0, 0.32)',
           width: 'calc(100% - 32px)',
         }}
       >
@@ -237,7 +237,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             {Array(20).fill(question.category).map((cat, index) => (
               <span 
                 key={`${cat}-${index}`} 
-                className="text-white font-bold text-sm tracking-wide uppercase md:scale-y-[1.2]" 
+                className="text-white font-bold text-sm tracking-wide uppercase" 
                 style={{ 
                   marginRight: index < 19 ? '8px' : '0',
                   fontFamily: "'Factor A', sans-serif"
