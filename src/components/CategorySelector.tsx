@@ -29,83 +29,47 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(327 100% 79%)'; // #FF92D3 - light pink
+        return 'hsl(281 98% 25%)'; // #55017D - dark purple strip
       case 'friends':
-        return 'hsl(290 100% 72%)'; // #E772FF - light purple
+        return 'hsl(278 100% 57%)'; // #AF25FF - bright purple strip
       case 'family':
-        return 'hsl(24 100% 50%)'; // #FF6600 - orange
+        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange strip
       case 'self reflection':
-        return 'hsl(315 100% 64%)'; // #FF47D1 - bright pink
+        return 'hsl(338 97% 61%)'; // #FC3D82 - hot pink strip
       case 'party':
-        return 'hsl(338 97% 61%)'; // #FC3D82 - hot pink
+        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange strip
       case 'connection':
-        return 'hsl(278 100% 57%)'; // #AF25FF - bright purple
+        return 'hsl(278 100% 57%)'; // #AF25FF - bright purple strip
       case 'identity':
-        return 'hsl(327 100% 79%)'; // #FF92D3 - light pink
+        return 'hsl(281 98% 25%)'; // #55017D - dark purple strip
       case 'career':
-        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange
+        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange strip
       case 'travel':
-        return 'hsl(290 100% 72%)'; // #E772FF - light purple
+        return 'hsl(278 100% 57%)'; // #AF25FF - bright purple strip
       case 'health':
-        return 'hsl(315 100% 64%)'; // #FF47D1 - bright pink
+        return 'hsl(338 97% 61%)'; // #FC3D82 - hot pink strip
       case 'money':
-        return 'hsl(338 97% 61%)'; // #FC3D82 - hot pink
+        return 'hsl(338 97% 61%)'; // #FC3D82 - hot pink strip
       case 'love':
-        return 'hsl(327 100% 79%)'; // #FF92D3 - light pink
+        return 'hsl(281 98% 25%)'; // #55017D - dark purple strip
       case 'hobby':
-        return 'hsl(24 100% 50%)'; // #FF6600 - orange
+        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange strip
       case 'dreams':
-        return 'hsl(290 100% 72%)'; // #E772FF - light purple
+        return 'hsl(278 100% 57%)'; // #AF25FF - bright purple strip
       case 'fear':
-        return 'hsl(278 100% 57%)'; // #AF25FF - bright purple
+        return 'hsl(338 97% 61%)'; // #FC3D82 - hot pink strip
       case 'wisdom':
-        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange
+        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange strip
       case 'future':
-        return 'hsl(315 100% 64%)'; // #FF47D1 - bright pink
+        return 'hsl(281 98% 25%)'; // #55017D - dark purple strip
       default:
-        return 'hsl(327 100% 79%)'; // Default light pink
+        return 'hsl(281 98% 25%)'; // Default dark purple
     }
   };
 
   const getCategoryTextColors = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'fuck':
-        return 'hsl(0 0% 0%)'; // Black text on light pink
-      case 'friends':
-        return 'hsl(0 0% 0%)'; // Black text on light purple
-      case 'family':
-        return 'hsl(0 0% 0%)'; // Black text on orange
-      case 'self reflection':
-        return 'hsl(0 0% 0%)'; // Black text on bright pink
-      case 'party':
-        return 'hsl(0 0% 0%)'; // Black text on hot pink
-      case 'connection':
-        return 'hsl(0 0% 0%)'; // Black text on bright purple
-      case 'identity':
-        return 'hsl(0 0% 0%)'; // Black text on light pink
-      case 'career':
-        return 'hsl(0 0% 98%)'; // White text on red-orange
-      case 'travel':
-        return 'hsl(0 0% 0%)'; // Black text on light purple
-      case 'health':
-        return 'hsl(0 0% 0%)'; // Black text on bright pink
-      case 'money':
-        return 'hsl(0 0% 0%)'; // Black text on hot pink
-      case 'love':
-        return 'hsl(0 0% 0%)'; // Black text on light pink
-      case 'hobby':
-        return 'hsl(0 0% 0%)'; // Black text on orange
-      case 'dreams':
-        return 'hsl(0 0% 0%)'; // Black text on light purple
-      case 'fear':
-        return 'hsl(0 0% 0%)'; // Black text on bright purple
-      case 'wisdom':
-        return 'hsl(0 0% 98%)'; // White text on red-orange
-      case 'future':
-        return 'hsl(0 0% 0%)'; // Black text on bright pink
-      default:
-        return 'hsl(0 0% 0%)'; // Default black text
-    }
+    // All strip colors are dark, so use white text
+    return 'hsl(0 0% 98%)'; // White text on all dark strips
   };
 
   const handleCategoryToggle = (category: string) => {

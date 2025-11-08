@@ -25,41 +25,41 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { bg: 'bg-quiz-fuck-bg', text: 'text-quiz-fuck-text' };
+        return { bg: 'bg-quiz-fuck-bg', text: 'text-quiz-fuck-text', strip: 'bg-quiz-fuck-strip' };
       case 'friends':
-        return { bg: 'bg-quiz-friends-bg', text: 'text-quiz-friends-text' };
+        return { bg: 'bg-quiz-friends-bg', text: 'text-quiz-friends-text', strip: 'bg-quiz-friends-strip' };
       case 'self reflection':
-        return { bg: 'bg-quiz-self-reflection-bg', text: 'text-quiz-self-reflection-text' };
+        return { bg: 'bg-quiz-self-reflection-bg', text: 'text-quiz-self-reflection-text', strip: 'bg-quiz-self-reflection-strip' };
       case 'party':
-        return { bg: 'bg-quiz-party-bg', text: 'text-quiz-party-text' };
+        return { bg: 'bg-quiz-party-bg', text: 'text-quiz-party-text', strip: 'bg-quiz-party-strip' };
       case 'family':
-        return { bg: 'bg-quiz-family-bg', text: 'text-quiz-family-text' };
+        return { bg: 'bg-quiz-family-bg', text: 'text-quiz-family-text', strip: 'bg-quiz-family-strip' };
       case 'connection':
-        return { bg: 'bg-quiz-connection-bg', text: 'text-quiz-connection-text' };
+        return { bg: 'bg-quiz-connection-bg', text: 'text-quiz-connection-text', strip: 'bg-quiz-connection-strip' };
       case 'identity':
-        return { bg: 'bg-quiz-identity-bg', text: 'text-quiz-identity-text' };
+        return { bg: 'bg-quiz-identity-bg', text: 'text-quiz-identity-text', strip: 'bg-quiz-identity-strip' };
       case 'career':
-        return { bg: 'bg-quiz-career-bg', text: 'text-quiz-career-text' };
+        return { bg: 'bg-quiz-career-bg', text: 'text-quiz-career-text', strip: 'bg-quiz-career-strip' };
       case 'travel':
-        return { bg: 'bg-quiz-travel-bg', text: 'text-quiz-travel-text' };
+        return { bg: 'bg-quiz-travel-bg', text: 'text-quiz-travel-text', strip: 'bg-quiz-travel-strip' };
       case 'health':
-        return { bg: 'bg-quiz-health-bg', text: 'text-quiz-health-text' };
+        return { bg: 'bg-quiz-health-bg', text: 'text-quiz-health-text', strip: 'bg-quiz-health-strip' };
       case 'money':
-        return { bg: 'bg-quiz-money-bg', text: 'text-quiz-money-text' };
+        return { bg: 'bg-quiz-money-bg', text: 'text-quiz-money-text', strip: 'bg-quiz-money-strip' };
       case 'love':
-        return { bg: 'bg-quiz-love-bg', text: 'text-quiz-love-text' };
+        return { bg: 'bg-quiz-love-bg', text: 'text-quiz-love-text', strip: 'bg-quiz-love-strip' };
       case 'hobby':
-        return { bg: 'bg-quiz-hobby-bg', text: 'text-quiz-hobby-text' };
+        return { bg: 'bg-quiz-hobby-bg', text: 'text-quiz-hobby-text', strip: 'bg-quiz-hobby-strip' };
       case 'dreams':
-        return { bg: 'bg-quiz-dreams-bg', text: 'text-quiz-dreams-text' };
+        return { bg: 'bg-quiz-dreams-bg', text: 'text-quiz-dreams-text', strip: 'bg-quiz-dreams-strip' };
       case 'fear':
-        return { bg: 'bg-quiz-fear-bg', text: 'text-quiz-fear-text' };
+        return { bg: 'bg-quiz-fear-bg', text: 'text-quiz-fear-text', strip: 'bg-quiz-fear-strip' };
       case 'wisdom':
-        return { bg: 'bg-quiz-wisdom-bg', text: 'text-quiz-wisdom-text' };
+        return { bg: 'bg-quiz-wisdom-bg', text: 'text-quiz-wisdom-text', strip: 'bg-quiz-wisdom-strip' };
       case 'future':
-        return { bg: 'bg-quiz-future-bg', text: 'text-quiz-future-text' };
+        return { bg: 'bg-quiz-future-bg', text: 'text-quiz-future-text', strip: 'bg-quiz-future-strip' };
       default:
-        return { bg: 'bg-quiz-category-bg', text: 'text-quiz-category-text' };
+        return { bg: 'bg-quiz-category-bg', text: 'text-quiz-category-text', strip: 'bg-quiz-category-bg' };
     }
   };
 
@@ -154,12 +154,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         }}
       >
         {/* Category Strip */}
-        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.bg} flex items-center justify-center`}>
+        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.strip} flex items-center justify-center`}>
           <div className="transform -rotate-90 whitespace-nowrap">
             {Array(20).fill(question.category).map((cat, index) => (
               <span 
                 key={`${cat}-${index}`} 
-                className={`${categoryColors.text} font-bold text-sm tracking-wide uppercase`} 
+                className="text-white font-bold text-sm tracking-wide uppercase" 
                 style={{ marginRight: index < 19 ? '8px' : '0' }}
               >
                 {cat}

@@ -65,41 +65,78 @@ All colors MUST be HSL.
     --quiz-background: 281 98% 25%;          /* #55017D - dark purple background */
     --quiz-surface: 281 98% 30%;
     
-    /* Category-specific colors - Lighter shades for cards */
+    /* Category-specific colors - Pairs (lighter for card, darker for strip) */
+    /* Pair 1: #FF92D3 / #55017D */
     --quiz-fuck-bg: 327 100% 79%;            /* #FF92D3 - light pink */
     --quiz-fuck-text: 0 0% 0%;
-    --quiz-friends-bg: 290 100% 72%;         /* #E772FF - light purple */
-    --quiz-friends-text: 0 0% 0%;
-    --quiz-self-reflection-bg: 315 100% 64%; /* #FF47D1 - bright pink */
-    --quiz-self-reflection-text: 0 0% 0%;
-    --quiz-party-bg: 338 97% 61%;            /* #FC3D82 - hot pink */
-    --quiz-party-text: 0 0% 0%;
-    --quiz-family-bg: 24 100% 50%;           /* #FF6600 - orange */
-    --quiz-family-text: 0 0% 0%;
-    --quiz-connection-bg: 278 100% 57%;      /* #AF25FF - bright purple */
-    --quiz-connection-text: 0 0% 0%;
+    --quiz-fuck-strip: 281 98% 25%;          /* #55017D - dark purple */
+    
     --quiz-identity-bg: 327 100% 79%;        /* #FF92D3 - light pink */
     --quiz-identity-text: 0 0% 0%;
-    --quiz-career-bg: 10 100% 50%;           /* #FF2B00 - red-orange */
-    --quiz-career-text: 0 0% 98%;
-    --quiz-travel-bg: 290 100% 72%;          /* #E772FF - light purple */
-    --quiz-travel-text: 0 0% 0%;
-    --quiz-health-bg: 315 100% 64%;          /* #FF47D1 - bright pink */
-    --quiz-health-text: 0 0% 0%;
-    --quiz-money-bg: 338 97% 61%;            /* #FC3D82 - hot pink */
-    --quiz-money-text: 0 0% 0%;
+    --quiz-identity-strip: 281 98% 25%;      /* #55017D - dark purple */
+    
     --quiz-love-bg: 327 100% 79%;            /* #FF92D3 - light pink */
     --quiz-love-text: 0 0% 0%;
-    --quiz-hobby-bg: 24 100% 50%;            /* #FF6600 - orange */
-    --quiz-hobby-text: 0 0% 0%;
+    --quiz-love-strip: 281 98% 25%;          /* #55017D - dark purple */
+    
+    --quiz-future-bg: 327 100% 79%;          /* #FF92D3 - light pink */
+    --quiz-future-text: 0 0% 0%;
+    --quiz-future-strip: 281 98% 25%;        /* #55017D - dark purple */
+    
+    /* Pair 2: #E772FF / #AF25FF */
+    --quiz-friends-bg: 290 100% 72%;         /* #E772FF - light purple */
+    --quiz-friends-text: 0 0% 0%;
+    --quiz-friends-strip: 278 100% 57%;      /* #AF25FF - bright purple */
+    
+    --quiz-travel-bg: 290 100% 72%;          /* #E772FF - light purple */
+    --quiz-travel-text: 0 0% 0%;
+    --quiz-travel-strip: 278 100% 57%;       /* #AF25FF - bright purple */
+    
     --quiz-dreams-bg: 290 100% 72%;          /* #E772FF - light purple */
     --quiz-dreams-text: 0 0% 0%;
-    --quiz-fear-bg: 278 100% 57%;            /* #AF25FF - bright purple */
+    --quiz-dreams-strip: 278 100% 57%;       /* #AF25FF - bright purple */
+    
+    --quiz-connection-bg: 290 100% 72%;      /* #E772FF - light purple */
+    --quiz-connection-text: 0 0% 0%;
+    --quiz-connection-strip: 278 100% 57%;   /* #AF25FF - bright purple */
+    
+    /* Pair 3: #FF47D1 / #FC3D82 */
+    --quiz-self-reflection-bg: 315 100% 64%; /* #FF47D1 - bright pink */
+    --quiz-self-reflection-text: 0 0% 0%;
+    --quiz-self-reflection-strip: 338 97% 61%; /* #FC3D82 - hot pink */
+    
+    --quiz-health-bg: 315 100% 64%;          /* #FF47D1 - bright pink */
+    --quiz-health-text: 0 0% 0%;
+    --quiz-health-strip: 338 97% 61%;        /* #FC3D82 - hot pink */
+    
+    --quiz-money-bg: 315 100% 64%;           /* #FF47D1 - bright pink */
+    --quiz-money-text: 0 0% 0%;
+    --quiz-money-strip: 338 97% 61%;         /* #FC3D82 - hot pink */
+    
+    --quiz-fear-bg: 315 100% 64%;            /* #FF47D1 - bright pink */
     --quiz-fear-text: 0 0% 0%;
-    --quiz-wisdom-bg: 10 100% 50%;           /* #FF2B00 - red-orange */
-    --quiz-wisdom-text: 0 0% 98%;
-    --quiz-future-bg: 315 100% 64%;          /* #FF47D1 - bright pink */
-    --quiz-future-text: 0 0% 0%;
+    --quiz-fear-strip: 338 97% 61%;          /* #FC3D82 - hot pink */
+    
+    /* Pair 4: #FF6600 / #FF2B00 */
+    --quiz-party-bg: 24 100% 50%;            /* #FF6600 - orange */
+    --quiz-party-text: 0 0% 0%;
+    --quiz-party-strip: 10 100% 50%;         /* #FF2B00 - red-orange */
+    
+    --quiz-family-bg: 24 100% 50%;           /* #FF6600 - orange */
+    --quiz-family-text: 0 0% 0%;
+    --quiz-family-strip: 10 100% 50%;        /* #FF2B00 - red-orange */
+    
+    --quiz-career-bg: 24 100% 50%;           /* #FF6600 - orange */
+    --quiz-career-text: 0 0% 0%;
+    --quiz-career-strip: 10 100% 50%;        /* #FF2B00 - red-orange */
+    
+    --quiz-hobby-bg: 24 100% 50%;            /* #FF6600 - orange */
+    --quiz-hobby-text: 0 0% 0%;
+    --quiz-hobby-strip: 10 100% 50%;         /* #FF2B00 - red-orange */
+    
+    --quiz-wisdom-bg: 24 100% 50%;           /* #FF6600 - orange */
+    --quiz-wisdom-text: 0 0% 0%;
+    --quiz-wisdom-strip: 10 100% 50%;        /* #FF2B00 - red-orange */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
