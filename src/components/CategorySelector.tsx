@@ -112,7 +112,7 @@ export function CategorySelector({
           </div>
 
           {/* Categories List */}
-          <div className="flex-1 p-4 pt-20 space-y-3 overflow-y-auto">
+          <div className="flex-1 p-4 pt-20 pb-20 space-y-3 overflow-y-auto">
             {categories.map((category) => {
               const isSelected = tempSelection.includes(category);
               const colorClasses = getCategoryColors(category);
@@ -188,6 +188,17 @@ export function CategorySelector({
                 </div>
               );
             })}
+          </div>
+
+          {/* Bottom Link */}
+          <div className="flex-shrink-0 h-20 flex items-center justify-center">
+            <a 
+              href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
+              className="text-white font-normal text-xs"
+              style={{fontSize: '14px', lineHeight: '20px'}}
+            >
+              Frage einreichen
+            </a>
           </div>
         </div>
       </DialogContent>
