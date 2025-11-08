@@ -11,9 +11,10 @@ interface QuizCardProps {
   prevQuestion: Question | null;
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
+  onDragStateChange?: (isDragging: boolean, progress: number, targetCategory: string) => void;
 }
 
-export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight }: QuizCardProps) {
+export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight, onDragStateChange }: QuizCardProps) {
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -75,6 +76,16 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     if (!isDragging) return;
     const offset = clientX - startX;
     setDragOffset(offset);
+    
+    // Notify parent of drag state for color interpolation
+    if (onDragStateChange && containerRef.current) {
+      const containerWidth = containerRef.current.offsetWidth;
+      const progress = Math.min(Math.abs(offset) / containerWidth, 1);
+      const targetCategory = offset < 0 && nextQuestion ? nextQuestion.category : 
+                            offset > 0 && prevQuestion ? prevQuestion.category : 
+                            currentQuestion.category;
+      onDragStateChange(true, progress, targetCategory);
+    }
   };
 
   const handleEnd = () => {
@@ -91,6 +102,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         setDragOffset(0);
         setIsDragging(false);
         
+        // Continue color transition during animation
+        if (onDragStateChange) {
+          onDragStateChange(false, 1, nextQuestion.category);
+        }
+        
         setTimeout(() => {
           onSwipeLeft();
           setAnimationOffset(0);
@@ -103,6 +119,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         setDragOffset(0);
         setIsDragging(false);
         
+        // Continue color transition during animation
+        if (onDragStateChange) {
+          onDragStateChange(false, 1, prevQuestion.category);
+        }
+        
         setTimeout(() => {
           onSwipeRight();
           setAnimationOffset(0);
@@ -110,6 +131,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         }, 300);
         return;
       }
+    }
+    
+    // Reset color if drag cancelled
+    if (onDragStateChange) {
+      onDragStateChange(false, 0, currentQuestion.category);
     }
     
     setIsDragging(false);
@@ -236,30 +262,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
 
   return (
     <>
-      {/* Large background category text */}
-      <div 
-        className="fixed left-0 right-0 pointer-events-none z-0 overflow-hidden"
-        style={{
-          bottom: '20px',
-          height: '100vw',
-        }}
-      >
-        <div 
-          className="font-bold uppercase whitespace-nowrap"
-          style={{
-            fontSize: '100vw',
-            lineHeight: '1',
-            fontFamily: "'Factor A', sans-serif",
-            color: activeCategoryColors.stripBg,
-            opacity: 0.15,
-            transition: isDragging ? 'none' : 'color 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          }}
-        >
-          {activeCategoryForColor}
-        </div>
-      </div>
-
-      <div 
+      <div
         ref={containerRef}
         className="relative h-full w-full overflow-hidden select-none z-10 pt-8 md:pt-0"
         onTouchStart={onTouchStart}

@@ -62,6 +62,9 @@ export function QuizApp() {
   const [logoStretch, setLogoStretch] = useState(false);
   const [logoSqueezeLeft, setLogoSqueezeLeft] = useState(false);
   const [logoSqueezeRight, setLogoSqueezeRight] = useState(false);
+  const [dragProgress, setDragProgress] = useState(0);
+  const [targetCategory, setTargetCategory] = useState<string>('');
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     // Start logo animation and data loading together
@@ -176,13 +179,17 @@ export function QuizApp() {
   const nextQuestion = () => {
     if (currentIndex < questions.length - 1) {
       setLogoSqueezeLeft(true);
+      setIsTransitioning(true);
       setAnimationClass('animate-slide-out-left');
       setTimeout(() => {
         setCurrentIndex(prev => prev + 1);
+        setDragProgress(0);
+        setTargetCategory('');
         setAnimationClass('animate-slide-in-right');
         setTimeout(() => {
           setAnimationClass('');
           setLogoSqueezeLeft(false);
+          setIsTransitioning(false);
         }, 500);
       }, 300);
     }
@@ -191,13 +198,17 @@ export function QuizApp() {
   const prevQuestion = () => {
     if (currentIndex > 0) {
       setLogoSqueezeRight(true);
+      setIsTransitioning(true);
       setAnimationClass('animate-slide-out-right');
       setTimeout(() => {
         setCurrentIndex(prev => prev - 1);
+        setDragProgress(0);
+        setTargetCategory('');
         setAnimationClass('animate-slide-in-left');
         setTimeout(() => {
           setAnimationClass('');
           setLogoSqueezeRight(false);
+          setIsTransitioning(false);
         }, 500);
       }, 300);
     }
@@ -246,12 +257,58 @@ export function QuizApp() {
     setCategorySelectorOpen(false);
   };
 
-  const currentBodyColor = loading ? 'hsl(0, 100%, 65%)' : (questions.length > 0 ? getCategoryBodyColor(questions[currentIndex].category) : 'hsl(0, 100%, 65%)');
+  // Interpolate between colors during drag
+  const interpolateColor = (color1: string, color2: string, progress: number) => {
+    const hslRegex = /hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/;
+    const match1 = color1.match(hslRegex);
+    const match2 = color2.match(hslRegex);
+    
+    if (!match1 || !match2) return color1;
+    
+    const h1 = parseInt(match1[1]);
+    const s1 = parseInt(match1[2]);
+    const l1 = parseInt(match1[3]);
+    
+    const h2 = parseInt(match2[1]);
+    const s2 = parseInt(match2[2]);
+    const l2 = parseInt(match2[3]);
+    
+    // Interpolate each channel
+    const h = Math.round(h1 + (h2 - h1) * progress);
+    const s = Math.round(s1 + (s2 - s1) * progress);
+    const l = Math.round(l1 + (l2 - l1) * progress);
+    
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  };
+
+  const getCurrentBackgroundColor = () => {
+    if (loading) return 'hsl(0, 100%, 65%)';
+    if (questions.length === 0) return 'hsl(0, 100%, 65%)';
+    
+    const currentColor = getCategoryBodyColor(questions[currentIndex].category);
+    
+    if (dragProgress > 0 && targetCategory) {
+      const targetColor = getCategoryBodyColor(targetCategory);
+      return interpolateColor(currentColor, targetColor, dragProgress);
+    }
+    
+    return currentColor;
+  };
+
+  const currentBodyColor = getCurrentBackgroundColor();
+
+  const handleDragStateChange = (isDragging: boolean, progress: number, category: string) => {
+    setDragProgress(progress);
+    setTargetCategory(category);
+  };
 
   return (
     <div 
-      className="h-[100svh] overflow-hidden flex flex-col transition-colors duration-500 relative"
-      style={{ backgroundColor: currentBodyColor }}
+      className="h-[100svh] overflow-hidden flex flex-col relative"
+      style={{ 
+        backgroundColor: currentBodyColor,
+        transition: 'background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+      }}
     >
       {/* Large "Friends" text at bottom */}
       <div 
@@ -325,6 +382,7 @@ export function QuizApp() {
               prevQuestion={currentIndex > 0 ? questions[currentIndex - 1] : null}
               onSwipeLeft={nextQuestion}
               onSwipeRight={prevQuestion}
+              onDragStateChange={handleDragStateChange}
             />
           ) : (
             <div className="h-full flex items-center justify-center min-h-[calc(100svh-120px)]">
