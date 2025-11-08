@@ -228,12 +228,12 @@ export function CategorySelector({
                             </div>
                             {/* Mouth - smiling arc */}
                             <div style={{
-                              width: '9px',
-                              height: '4px',
+                              width: '10px',
+                              height: '4.5px',
                               border: '1px solid black',
                               borderTop: 'none',
-                              borderRadius: '0 0 9px 9px',
-                              marginTop: '3px'
+                              borderRadius: '0 0 10px 10px',
+                              marginTop: '4px'
                             }} />
                           </div>
                         </div>
