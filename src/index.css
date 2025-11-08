@@ -90,6 +90,28 @@ All colors MUST be HSL.
     --quiz-wisdom-strip: 300 100% 50%;       /* Magenta/Purple */
     --quiz-future-strip: 0 100% 50%;         /* Red-Pink */
     
+    /* Category card colors - darker but vibrant */
+    --quiz-fuck-card: 300 100% 35%;          /* Darker Magenta/Purple */
+    --quiz-connection-card: 0 100% 35%;      /* Darker Red-Pink */
+    --quiz-identity-card: 328 100% 50%;      /* Darker Pink */
+    --quiz-party-card: 25 100% 35%;          /* Darker Orange */
+    --quiz-friends-card: 0 100% 45%;         /* Darker Coral */
+    
+    --quiz-self-reflection-card: 300 100% 35%; /* Darker Magenta/Purple */
+    --quiz-family-card: 0 100% 35%;          /* Darker Red-Pink */
+    --quiz-career-card: 328 100% 50%;        /* Darker Pink */
+    --quiz-travel-card: 25 100% 35%;         /* Darker Orange */
+    
+    --quiz-health-card: 0 100% 45%;          /* Darker Coral */
+    --quiz-money-card: 300 100% 35%;         /* Darker Magenta/Purple */
+    --quiz-love-card: 0 100% 35%;            /* Darker Red-Pink */
+    --quiz-hobby-card: 328 100% 50%;         /* Darker Pink */
+    
+    --quiz-dreams-card: 25 100% 35%;         /* Darker Orange */
+    --quiz-fear-card: 0 100% 45%;            /* Darker Coral */
+    --quiz-wisdom-card: 300 100% 35%;        /* Darker Magenta/Purple */
+    --quiz-future-card: 0 100% 35%;          /* Darker Red-Pink */
+    
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
     --gradient-surface: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 15%));
