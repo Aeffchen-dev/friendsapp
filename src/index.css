@@ -222,12 +222,12 @@ All colors MUST be HSL.
   }
   
   .logo-squeeze-left {
-    animation: logo-squeeze-left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: logo-squeeze-left 1s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: right;
   }
   
   .logo-squeeze-right {
-    animation: logo-squeeze-right 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: logo-squeeze-right 1s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: left;
   }
   
