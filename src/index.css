@@ -90,6 +90,28 @@ All colors MUST be HSL.
     --quiz-wisdom-strip: 300 100% 50%;       /* Magenta/Purple */
     --quiz-future-strip: 0 100% 50%;         /* Red-Pink */
     
+    /* Category card pastel backgrounds */
+    --quiz-fuck-card: 300 60% 85%;
+    --quiz-connection-card: 0 60% 85%;
+    --quiz-identity-card: 328 60% 92%;
+    --quiz-party-card: 25 60% 88%;
+    --quiz-friends-card: 0 60% 88%;
+    
+    --quiz-self-reflection-card: 300 60% 85%;
+    --quiz-family-card: 0 60% 85%;
+    --quiz-career-card: 328 60% 90%;
+    --quiz-travel-card: 25 60% 85%;
+    
+    --quiz-health-card: 0 60% 88%;
+    --quiz-money-card: 300 60% 85%;
+    --quiz-love-card: 0 60% 85%;
+    --quiz-hobby-card: 328 60% 90%;
+    
+    --quiz-dreams-card: 25 60% 85%;
+    --quiz-fear-card: 0 60% 88%;
+    --quiz-wisdom-card: 300 60% 85%;
+    --quiz-future-card: 0 60% 85%;
+    
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
     --gradient-surface: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 15%));
