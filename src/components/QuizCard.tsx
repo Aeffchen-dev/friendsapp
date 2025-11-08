@@ -25,41 +25,41 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { neon: 'text-quiz-fuck-neon', neonBg: 'bg-quiz-fuck-neon' };
+        return { neon: 'text-quiz-fuck-neon', neonBg: 'bg-quiz-fuck-neon', stripBg: 'bg-quiz-fuck-strip' };
       case 'friends':
-        return { neon: 'text-quiz-friends-neon', neonBg: 'bg-quiz-friends-neon' };
+        return { neon: 'text-quiz-friends-neon', neonBg: 'bg-quiz-friends-neon', stripBg: 'bg-quiz-friends-strip' };
       case 'self reflection':
-        return { neon: 'text-quiz-self-reflection-neon', neonBg: 'bg-quiz-self-reflection-neon' };
+        return { neon: 'text-quiz-self-reflection-neon', neonBg: 'bg-quiz-self-reflection-neon', stripBg: 'bg-quiz-self-reflection-strip' };
       case 'party':
-        return { neon: 'text-quiz-party-neon', neonBg: 'bg-quiz-party-neon' };
+        return { neon: 'text-quiz-party-neon', neonBg: 'bg-quiz-party-neon', stripBg: 'bg-quiz-party-strip' };
       case 'family':
-        return { neon: 'text-quiz-family-neon', neonBg: 'bg-quiz-family-neon' };
+        return { neon: 'text-quiz-family-neon', neonBg: 'bg-quiz-family-neon', stripBg: 'bg-quiz-family-strip' };
       case 'connection':
-        return { neon: 'text-quiz-connection-neon', neonBg: 'bg-quiz-connection-neon' };
+        return { neon: 'text-quiz-connection-neon', neonBg: 'bg-quiz-connection-neon', stripBg: 'bg-quiz-connection-strip' };
       case 'identity':
-        return { neon: 'text-quiz-identity-neon', neonBg: 'bg-quiz-identity-neon' };
+        return { neon: 'text-quiz-identity-neon', neonBg: 'bg-quiz-identity-neon', stripBg: 'bg-quiz-identity-strip' };
       case 'career':
-        return { neon: 'text-quiz-career-neon', neonBg: 'bg-quiz-career-neon' };
+        return { neon: 'text-quiz-career-neon', neonBg: 'bg-quiz-career-neon', stripBg: 'bg-quiz-career-strip' };
       case 'travel':
-        return { neon: 'text-quiz-travel-neon', neonBg: 'bg-quiz-travel-neon' };
+        return { neon: 'text-quiz-travel-neon', neonBg: 'bg-quiz-travel-neon', stripBg: 'bg-quiz-travel-strip' };
       case 'health':
-        return { neon: 'text-quiz-health-neon', neonBg: 'bg-quiz-health-neon' };
+        return { neon: 'text-quiz-health-neon', neonBg: 'bg-quiz-health-neon', stripBg: 'bg-quiz-health-strip' };
       case 'money':
-        return { neon: 'text-quiz-money-neon', neonBg: 'bg-quiz-money-neon' };
+        return { neon: 'text-quiz-money-neon', neonBg: 'bg-quiz-money-neon', stripBg: 'bg-quiz-money-strip' };
       case 'love':
-        return { neon: 'text-quiz-love-neon', neonBg: 'bg-quiz-love-neon' };
+        return { neon: 'text-quiz-love-neon', neonBg: 'bg-quiz-love-neon', stripBg: 'bg-quiz-love-strip' };
       case 'hobby':
-        return { neon: 'text-quiz-hobby-neon', neonBg: 'bg-quiz-hobby-neon' };
+        return { neon: 'text-quiz-hobby-neon', neonBg: 'bg-quiz-hobby-neon', stripBg: 'bg-quiz-hobby-strip' };
       case 'dreams':
-        return { neon: 'text-quiz-dreams-neon', neonBg: 'bg-quiz-dreams-neon' };
+        return { neon: 'text-quiz-dreams-neon', neonBg: 'bg-quiz-dreams-neon', stripBg: 'bg-quiz-dreams-strip' };
       case 'fear':
-        return { neon: 'text-quiz-fear-neon', neonBg: 'bg-quiz-fear-neon' };
+        return { neon: 'text-quiz-fear-neon', neonBg: 'bg-quiz-fear-neon', stripBg: 'bg-quiz-fear-strip' };
       case 'wisdom':
-        return { neon: 'text-quiz-wisdom-neon', neonBg: 'bg-quiz-wisdom-neon' };
+        return { neon: 'text-quiz-wisdom-neon', neonBg: 'bg-quiz-wisdom-neon', stripBg: 'bg-quiz-wisdom-strip' };
       case 'future':
-        return { neon: 'text-quiz-future-neon', neonBg: 'bg-quiz-future-neon' };
+        return { neon: 'text-quiz-future-neon', neonBg: 'bg-quiz-future-neon', stripBg: 'bg-quiz-future-strip' };
       default:
-        return { neon: 'text-primary', neonBg: 'bg-primary' };
+        return { neon: 'text-primary', neonBg: 'bg-primary', stripBg: 'bg-primary' };
     }
   };
 
@@ -153,7 +153,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         }}
       >
         {/* Category Strip */}
-        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.neonBg} flex items-center justify-center`}>
+        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.stripBg} flex items-center justify-center`}>
           <div className="transform -rotate-90 whitespace-nowrap">
             {Array(20).fill(question.category).map((cat, index) => (
               <span 

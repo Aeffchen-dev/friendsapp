@@ -119,7 +119,24 @@ export default {
 					'wisdom-neon': 'hsl(var(--quiz-wisdom-neon))',
 					'future-bg': 'hsl(var(--quiz-future-bg))',
 					'future-text': 'hsl(var(--quiz-future-text))',
-					'future-neon': 'hsl(var(--quiz-future-neon))'
+					'future-neon': 'hsl(var(--quiz-future-neon))',
+					'fuck-strip': 'hsl(var(--quiz-fuck-strip))',
+					'connection-strip': 'hsl(var(--quiz-connection-strip))',
+					'identity-strip': 'hsl(var(--quiz-identity-strip))',
+					'party-strip': 'hsl(var(--quiz-party-strip))',
+					'friends-strip': 'hsl(var(--quiz-friends-strip))',
+					'self-reflection-strip': 'hsl(var(--quiz-self-reflection-strip))',
+					'family-strip': 'hsl(var(--quiz-family-strip))',
+					'career-strip': 'hsl(var(--quiz-career-strip))',
+					'travel-strip': 'hsl(var(--quiz-travel-strip))',
+					'health-strip': 'hsl(var(--quiz-health-strip))',
+					'money-strip': 'hsl(var(--quiz-money-strip))',
+					'love-strip': 'hsl(var(--quiz-love-strip))',
+					'hobby-strip': 'hsl(var(--quiz-hobby-strip))',
+					'dreams-strip': 'hsl(var(--quiz-dreams-strip))',
+					'fear-strip': 'hsl(var(--quiz-fear-strip))',
+					'wisdom-strip': 'hsl(var(--quiz-wisdom-strip))',
+					'future-strip': 'hsl(var(--quiz-future-strip))'
 				}
 			},
 			backgroundImage: {

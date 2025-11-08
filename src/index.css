@@ -87,6 +87,25 @@ All colors MUST be HSL.
     --quiz-wisdom-neon: 335 100% 81%;       /* #FF9DC6 - Pink */
     --quiz-future-neon: 289 100% 79%;       /* #EC94FF - Purple */
     
+    /* More vibrant strip colors */
+    --quiz-fuck-strip: 335 100% 70%;
+    --quiz-connection-strip: 289 100% 68%;
+    --quiz-identity-strip: 76 100% 60%;
+    --quiz-party-strip: 183 100% 58%;
+    --quiz-friends-strip: 67 100% 40%;
+    --quiz-self-reflection-strip: 335 100% 70%;
+    --quiz-family-strip: 289 100% 68%;
+    --quiz-career-strip: 76 100% 60%;
+    --quiz-travel-strip: 183 100% 58%;
+    --quiz-health-strip: 67 100% 40%;
+    --quiz-money-strip: 335 100% 70%;
+    --quiz-love-strip: 289 100% 68%;
+    --quiz-hobby-strip: 76 100% 60%;
+    --quiz-dreams-strip: 183 100% 58%;
+    --quiz-fear-strip: 67 100% 40%;
+    --quiz-wisdom-strip: 335 100% 70%;
+    --quiz-future-strip: 289 100% 68%;
+    
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
     --gradient-surface: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 15%));
