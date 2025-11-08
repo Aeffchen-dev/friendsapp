@@ -145,8 +145,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     return (
       <div 
-        className={`flex-shrink-0 w-full max-w-[500px] bg-gray-950 rounded-2xl shadow-card overflow-hidden`}
+        className={`flex-shrink-0 w-full max-w-[500px] rounded-2xl shadow-card overflow-hidden`}
         style={{
+          backgroundColor: 'hsl(0, 0%, 18%)',
           ...style,
           height: 'calc(100svh - 64px - 20px - 16px - 32px)',
           maxHeight: '100%',
