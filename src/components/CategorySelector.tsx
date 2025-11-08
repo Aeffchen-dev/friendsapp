@@ -111,7 +111,7 @@ export function CategorySelector({
         </DialogDescription>
         <div className="flex flex-col h-full relative w-full">
           {/* Header with close button */}
-          <div className="absolute left-0 right-4 z-10 flex items-center justify-between pl-4" style={{ top: '32px' }}>
+          <div className="absolute left-0 right-4 z-10 flex items-center justify-between pl-4" style={{ top: '16px' }}>
             <h2 className="text-white text-xl font-normal">
               Kategorien wählen
             </h2>
@@ -136,10 +136,10 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className={`flex items-center justify-between py-3 pr-4 pl-4 bg-[#161616] cursor-pointer relative overflow-visible transition-all ${isBouncing ? 'duration-200' : 'duration-100'}`}
+                  className={`flex items-center justify-between py-3 pr-4 pl-4 bg-[#161616] cursor-pointer relative overflow-visible transition-all ${isBouncing ? 'duration-100' : 'duration-100'}`}
                   style={{ 
                     borderRadius: '0 999px 999px 0', 
-                    width: isBouncing ? '82vw' : '80vw'
+                    width: isBouncing ? '90.2vw' : '88vw'
                   }}
                   onClick={() => handleCategoryToggle(category)}
                 >
@@ -153,7 +153,7 @@ export function CategorySelector({
                     }} 
                   />
                   
-                  <span className="font-bold text-sm tracking-wide relative z-10 transition-colors duration-300" 
+                  <span className="font-bold text-sm tracking-wide relative z-10 transition-colors duration-300 uppercase" 
                     style={{ 
                       color: isSelected ? textColor : 'white',
                       fontFamily: "'Factor A', sans-serif"
