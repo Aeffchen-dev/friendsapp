@@ -398,6 +398,7 @@ export function QuizApp() {
             className="text-black font-normal text-xs"
             style={{
               fontSize: '14px',
+              visibility: loading ? 'hidden' : 'visible',
               opacity: loading ? 0 : 1,
               pointerEvents: loading ? 'none' : 'auto',
               transition: 'opacity 0.3s ease'
