@@ -214,23 +214,23 @@ export function CategorySelector({
                             {/* Eyes - simple dots */}
                             <div style={{ display: 'flex', gap: '5px', marginTop: '-1px' }}>
                               <div style={{ 
-                                width: '2px', 
-                                height: '2px', 
+                                width: '2.5px', 
+                                height: '2.5px', 
                                 borderRadius: '50%', 
                                 backgroundColor: 'black'
                               }} />
                               <div style={{ 
-                                width: '2px', 
-                                height: '2px', 
+                                width: '2.5px', 
+                                height: '2.5px', 
                                 borderRadius: '50%', 
                                 backgroundColor: 'black'
                               }} />
                             </div>
-                            {/* Mouth - simple curve */}
+                            {/* Mouth - simple curve with thicker stroke */}
                             <div style={{
                               width: '8px',
                               height: '3px',
-                              borderBottom: '1px solid black',
+                              borderBottom: '1.5px solid black',
                               borderRadius: '0 0 8px 8px',
                               marginTop: '3px'
                             }} />
