@@ -226,13 +226,12 @@ export function CategorySelector({
                                 backgroundColor: 'black'
                               }} />
                             </div>
-                            {/* Mouth - laughing half circle */}
+                            {/* Mouth - solid line, less smiling */}
                             <div style={{
-                              width: '10px',
-                              height: '5px',
-                              border: '1px solid black',
-                              borderTop: 'none',
-                              borderRadius: '0 0 10px 10px',
+                              width: '8px',
+                              height: '1px',
+                              backgroundColor: 'black',
+                              borderRadius: '1px',
                               marginTop: '4px'
                             }} />
                           </div>
