@@ -342,7 +342,7 @@ export function QuizApp() {
           width: '150vw',
         }}
       >
-        {/* Desktop: Friends */}
+        {/* Desktop: App */}
         <div 
           className="hidden md:block font-bold whitespace-nowrap text-center"
           style={{
@@ -353,7 +353,7 @@ export function QuizApp() {
             fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
           }}
         >
-          Friends
+          App
         </div>
         {/* Mobile: Ask */}
         <div 
