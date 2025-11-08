@@ -20,17 +20,28 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const [startX, setStartX] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationOffset, setAnimationOffset] = useState(0);
+  const [isResetting, setIsResetting] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const minSwipeDistance = 50;
 
-  // After parent index changes (currentQuestion updates), reset track instantly without anim
-  // but only when not actively animating
+  // After parent index changes (currentQuestion updates), reset track smoothly
   useEffect(() => {
-    // Only reset if we're not in the middle of an animation
-    if (!isAnimating) {
-      setDragOffset(0);
-      setAnimationOffset(0);
+    if (isAnimating) {
+      // Wait for the animation to fully complete and currentQuestion to update
+      const timer = setTimeout(() => {
+        setIsResetting(true);
+        setAnimationOffset(0);
+        setDragOffset(0);
+        
+        // After reset transition completes
+        setTimeout(() => {
+          setIsAnimating(false);
+          setIsResetting(false);
+        }, 300);
+      }, 0);
+      
+      return () => clearTimeout(timer);
     }
   }, [currentQuestion, isAnimating]);
 
@@ -120,11 +131,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         
         setTimeout(() => {
           onSwipeLeft();
-          // Reset after callback completes
-          setTimeout(() => {
-            setAnimationOffset(0);
-            setIsAnimating(false);
-          }, 50);
         }, 300);
         return;
       } else if (dragOffset > 0 && prevQuestion) {
@@ -140,11 +146,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         
         setTimeout(() => {
           onSwipeRight();
-          // Reset after callback completes
-          setTimeout(() => {
-            setAnimationOffset(0);
-            setIsAnimating(false);
-          }, 50);
         }, 300);
         return;
       }
@@ -300,7 +301,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         className="flex items-center h-full"
         style={{
           transform: `translateX(${(-33.333 + normalizedOffset * 33.333).toFixed(3)}%)`,
-          transition: (isDragging || !isAnimating) ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: (isDragging || (!isAnimating && !isResetting)) ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           width: '300%',
           position: 'relative',
         }}
@@ -316,7 +317,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         >
           {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
             transform: `scale(${totalOffset > 0 ? incomingScale : 0.95}) rotate(${totalOffset > 0 ? incomingRotation : 3}deg)`,
-            transition: (isDragging || !isAnimating) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: (isDragging || (!isAnimating && !isResetting)) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             opacity: 1,
             position: 'relative',
           })}
@@ -333,7 +334,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         >
           {renderCard(currentQuestion, {
             transform: `scale(${currentScale}) rotate(${currentRotation}deg)`,
-            transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: (isDragging || (!isAnimating && !isResetting)) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             position: 'relative',
           })}
         </div>
@@ -349,7 +350,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         >
           {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
             transform: `scale(${totalOffset < 0 ? incomingScale : 0.95}) rotate(${totalOffset < 0 ? incomingRotation : -3}deg)`,
-            transition: (isDragging || !isAnimating) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: (isDragging || (!isAnimating && !isResetting)) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             opacity: 1,
             position: 'relative',
           })}
