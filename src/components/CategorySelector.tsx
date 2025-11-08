@@ -29,83 +29,47 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(0 100% 50%)';
+        return 'hsl(327 100% 79%)'; // Neon pink
       case 'friends':
-        return 'hsl(120 100% 50%)';
+        return 'hsl(315 100% 70%)'; // Neon pink
       case 'family':
-        return 'hsl(30 100% 70%)';
+        return 'hsl(10 100% 60%)'; // Neon red
       case 'self reflection':
-        return 'hsl(195 100% 50%)';
+        return 'hsl(338 97% 65%)'; // Neon pink
       case 'party':
-        return 'hsl(60 100% 71%)';
+        return 'hsl(290 100% 75%)'; // Neon purple
       case 'connection':
-        return 'hsl(240 100% 50%)';
+        return 'hsl(281 98% 50%)'; // Neon purple
       case 'identity':
-        return 'hsl(266 100% 51%)';
+        return 'hsl(278 100% 65%)'; // Neon purple
       case 'career':
-        return 'hsl(35 100% 62%)';
+        return 'hsl(24 100% 60%)'; // Neon orange
       case 'travel':
-        return 'hsl(92 100% 83%)';
+        return 'hsl(327 100% 79%)'; // Neon pink
       case 'health':
-        return 'hsl(330 84% 67%)';
+        return 'hsl(281 98% 50%)'; // Neon purple
       case 'money':
-        return 'hsl(45 95% 55%)';
+        return 'hsl(278 100% 65%)'; // Neon purple
       case 'love':
-        return 'hsl(350 85% 60%)';
+        return 'hsl(290 100% 75%)'; // Neon purple
       case 'hobby':
-        return 'hsl(25 60% 45%)';
+        return 'hsl(315 100% 70%)'; // Neon pink
       case 'dreams':
-        return 'hsl(270 75% 65%)';
+        return 'hsl(338 97% 65%)'; // Neon pink
       case 'fear':
-        return 'hsl(210 10% 40%)';
+        return 'hsl(10 100% 60%)'; // Neon red
       case 'wisdom':
-        return 'hsl(239 84% 67%)';
+        return 'hsl(24 100% 60%)'; // Neon orange
       case 'future':
-        return 'hsl(199 89% 48%)';
+        return 'hsl(327 100% 79%)'; // Neon pink
       default:
         return 'hsl(290 100% 85%)';
     }
   };
 
   const getCategoryTextColors = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'fuck':
-        return 'hsl(0 0% 98%)'; // White text on red
-      case 'friends':
-        return 'hsl(0 0% 0%)'; // Black text on green
-      case 'family':
-        return 'hsl(0 0% 0%)'; // Black text on orange
-      case 'self reflection':
-        return 'hsl(0 0% 0%)'; // Black text on light blue
-      case 'party':
-        return 'hsl(0 0% 0%)'; // Black text on yellow
-      case 'connection':
-        return 'hsl(0 0% 100%)'; // White text on blue
-      case 'identity':
-        return 'hsl(0 0% 98%)'; // White text on purple
-      case 'career':
-        return 'hsl(0 0% 0%)'; // Black text on orange
-      case 'travel':
-        return 'hsl(0 0% 0%)'; // Black text on light green
-      case 'health':
-        return 'hsl(0 0% 98%)'; // White text on pink
-      case 'money':
-        return 'hsl(0 0% 0%)'; // Black text on gold
-      case 'love':
-        return 'hsl(0 0% 98%)'; // White text on red
-      case 'hobby':
-        return 'hsl(0 0% 98%)'; // White text on brown
-      case 'dreams':
-        return 'hsl(0 0% 98%)'; // White text on purple
-      case 'fear':
-        return 'hsl(0 0% 98%)'; // White text on gray
-      case 'wisdom':
-        return 'hsl(0 0% 98%)'; // White text on indigo
-      case 'future':
-        return 'hsl(0 0% 98%)'; // White text on sky blue
-      default:
-        return 'hsl(0 0% 15%)'; // Default dark text
-    }
+    // All neon colors are bright, so use black text for maximum contrast
+    return 'hsl(0 0% 0%)';
   };
 
   const handleCategoryToggle = (category: string) => {

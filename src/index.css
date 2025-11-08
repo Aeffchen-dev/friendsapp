@@ -65,43 +65,75 @@ All colors MUST be HSL.
     --quiz-background: 0 0% 7%;
     --quiz-surface: 0 0% 12%;
     
-    /* Category-specific colors - Warm palette */
-    --quiz-fuck-bg: 327 100% 79%;           /* #FF92D3 */
-    --quiz-fuck-text: 0 0% 0%;
-    --quiz-connection-bg: 281 98% 25%;      /* #55017D */
+    /* Category-specific colors - Warm palette (Card backgrounds) */
+    --quiz-fuck-bg: 327 60% 40%;            /* Darker pink for card */
+    --quiz-fuck-text: 0 0% 98%;
+    --quiz-fuck-neon: 327 100% 79%;         /* #FF92D3 - Vibrant for strip */
+    
+    --quiz-connection-bg: 281 70% 20%;      /* Darker purple for card */
     --quiz-connection-text: 0 0% 98%;
-    --quiz-identity-bg: 278 100% 57%;       /* #AF25FF */
+    --quiz-connection-neon: 281 98% 50%;    /* #55017D brightened - Vibrant */
+    
+    --quiz-identity-bg: 278 80% 35%;        /* Darker purple for card */
     --quiz-identity-text: 0 0% 98%;
-    --quiz-party-bg: 290 100% 72%;          /* #E772FF */
-    --quiz-party-text: 0 0% 0%;
+    --quiz-identity-neon: 278 100% 65%;     /* #AF25FF brightened - Vibrant */
+    
+    --quiz-party-bg: 290 70% 45%;           /* Darker pink for card */
+    --quiz-party-text: 0 0% 98%;
+    --quiz-party-neon: 290 100% 75%;        /* #E772FF brightened - Vibrant */
     
     /* Additional categories with warm colors */
-    --quiz-friends-bg: 315 100% 64%;        /* #FF47D1 */
-    --quiz-friends-text: 0 0% 0%;
-    --quiz-self-reflection-bg: 338 97% 61%; /* #FC3D82 */
+    --quiz-friends-bg: 315 70% 40%;         /* Darker pink for card */
+    --quiz-friends-text: 0 0% 98%;
+    --quiz-friends-neon: 315 100% 70%;      /* #FF47D1 brightened - Vibrant */
+    
+    --quiz-self-reflection-bg: 338 70% 38%;  /* Darker pink for card */
     --quiz-self-reflection-text: 0 0% 98%;
-    --quiz-family-bg: 10 100% 50%;          /* #FF2B00 */
+    --quiz-self-reflection-neon: 338 97% 65%; /* #FC3D82 brightened - Vibrant */
+    
+    --quiz-family-bg: 10 80% 35%;           /* Darker red for card */
     --quiz-family-text: 0 0% 98%;
-    --quiz-career-bg: 24 100% 50%;          /* #FF6600 */
-    --quiz-career-text: 0 0% 0%;
-    --quiz-travel-bg: 327 100% 79%;         /* #FF92D3 */
-    --quiz-travel-text: 0 0% 0%;
-    --quiz-health-bg: 281 98% 25%;          /* #55017D */
+    --quiz-family-neon: 10 100% 60%;        /* #FF2B00 brightened - Vibrant */
+    
+    --quiz-career-bg: 24 80% 35%;           /* Darker orange for card */
+    --quiz-career-text: 0 0% 98%;
+    --quiz-career-neon: 24 100% 60%;        /* #FF6600 brightened - Vibrant */
+    
+    --quiz-travel-bg: 327 60% 40%;          /* Darker pink for card */
+    --quiz-travel-text: 0 0% 98%;
+    --quiz-travel-neon: 327 100% 79%;       /* #FF92D3 - Vibrant */
+    
+    --quiz-health-bg: 281 70% 20%;          /* Darker purple for card */
     --quiz-health-text: 0 0% 98%;
-    --quiz-money-bg: 278 100% 57%;          /* #AF25FF */
+    --quiz-health-neon: 281 98% 50%;        /* #55017D brightened - Vibrant */
+    
+    --quiz-money-bg: 278 80% 35%;           /* Darker purple for card */
     --quiz-money-text: 0 0% 98%;
-    --quiz-love-bg: 290 100% 72%;           /* #E772FF */
-    --quiz-love-text: 0 0% 0%;
-    --quiz-hobby-bg: 315 100% 64%;          /* #FF47D1 */
-    --quiz-hobby-text: 0 0% 0%;
-    --quiz-dreams-bg: 338 97% 61%;          /* #FC3D82 */
+    --quiz-money-neon: 278 100% 65%;        /* #AF25FF brightened - Vibrant */
+    
+    --quiz-love-bg: 290 70% 45%;            /* Darker pink for card */
+    --quiz-love-text: 0 0% 98%;
+    --quiz-love-neon: 290 100% 75%;         /* #E772FF brightened - Vibrant */
+    
+    --quiz-hobby-bg: 315 70% 40%;           /* Darker pink for card */
+    --quiz-hobby-text: 0 0% 98%;
+    --quiz-hobby-neon: 315 100% 70%;        /* #FF47D1 brightened - Vibrant */
+    
+    --quiz-dreams-bg: 338 70% 38%;          /* Darker pink for card */
     --quiz-dreams-text: 0 0% 98%;
-    --quiz-fear-bg: 10 100% 50%;            /* #FF2B00 */
+    --quiz-dreams-neon: 338 97% 65%;        /* #FC3D82 brightened - Vibrant */
+    
+    --quiz-fear-bg: 10 80% 35%;             /* Darker red for card */
     --quiz-fear-text: 0 0% 98%;
-    --quiz-wisdom-bg: 24 100% 50%;          /* #FF6600 */
-    --quiz-wisdom-text: 0 0% 0%;
-    --quiz-future-bg: 327 100% 79%;         /* #FF92D3 */
-    --quiz-future-text: 0 0% 0%;
+    --quiz-fear-neon: 10 100% 60%;          /* #FF2B00 brightened - Vibrant */
+    
+    --quiz-wisdom-bg: 24 80% 35%;           /* Darker orange for card */
+    --quiz-wisdom-text: 0 0% 98%;
+    --quiz-wisdom-neon: 24 100% 60%;        /* #FF6600 brightened - Vibrant */
+    
+    --quiz-future-bg: 327 60% 40%;          /* Darker pink for card */
+    --quiz-future-text: 0 0% 98%;
+    --quiz-future-neon: 327 100% 79%;       /* #FF92D3 - Vibrant */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
