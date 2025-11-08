@@ -25,11 +25,14 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const minSwipeDistance = 50;
 
   // After parent index changes (currentQuestion updates), reset track instantly without anim
+  // but only when not actively animating
   useEffect(() => {
-    setIsAnimating(false);
-    setDragOffset(0);
-    setAnimationOffset(0);
-  }, [currentQuestion]);
+    // Only reset if we're not in the middle of an animation
+    if (!isAnimating) {
+      setDragOffset(0);
+      setAnimationOffset(0);
+    }
+  }, [currentQuestion, isAnimating]);
 
   // Get category-specific neon color - using the 5 color palette
   const getCategoryColors = (category: string) => {
@@ -117,7 +120,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         
         setTimeout(() => {
           onSwipeLeft();
-          // Do not reset here; wait for parent to update currentQuestion
+          // Reset after callback completes
+          setTimeout(() => {
+            setAnimationOffset(0);
+            setIsAnimating(false);
+          }, 50);
         }, 300);
         return;
       } else if (dragOffset > 0 && prevQuestion) {
@@ -133,7 +140,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         
         setTimeout(() => {
           onSwipeRight();
-          // Do not reset here; wait for parent to update currentQuestion
+          // Reset after callback completes
+          setTimeout(() => {
+            setAnimationOffset(0);
+            setIsAnimating(false);
+          }, 50);
         }, 300);
         return;
       }
@@ -193,6 +204,14 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const direction = totalOffset < 0 ? -1 : 1;
   const containerWidthPx = containerRef.current?.offsetWidth || 1;
   const normalizedOffset = totalOffset / containerWidthPx; // -1 .. 1
+
+  // Current card: 100% -> 95% scale, 0deg -> 3deg rotation (away from direction)
+  const currentScale = 1 - (progress * 0.05);
+  const currentRotation = progress * 3 * direction;
+
+  // Incoming card: 95% -> 100% scale, 3deg -> 0deg rotation (towards center)
+  const incomingScale = 0.95 + (progress * 0.05);
+  const incomingRotation = -3 * direction * (1 - progress);
 
   // Determine which category color to show based on drag
   const getActiveCategory = () => {
@@ -296,6 +315,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           }}
         >
           {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
+            transform: `scale(${totalOffset > 0 ? incomingScale : 0.95}) rotate(${totalOffset > 0 ? incomingRotation : 3}deg)`,
+            transition: (isDragging || !isAnimating) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             opacity: 1,
             position: 'relative',
           })}
@@ -311,6 +332,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           }}
         >
           {renderCard(currentQuestion, {
+            transform: `scale(${currentScale}) rotate(${currentRotation}deg)`,
+            transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             position: 'relative',
           })}
         </div>
@@ -325,6 +348,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           }}
         >
           {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
+            transform: `scale(${totalOffset < 0 ? incomingScale : 0.95}) rotate(${totalOffset < 0 ? incomingRotation : -3}deg)`,
+            transition: (isDragging || !isAnimating) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             opacity: 1,
             position: 'relative',
           })}

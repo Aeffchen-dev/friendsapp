@@ -120,8 +120,8 @@ export function QuizApp() {
       }
       
       if (parsedQuestions.length > 0) {
-        // Shuffle questions randomly
-        const shuffledQuestions = [...parsedQuestions].sort(() => Math.random() - 0.5);
+        // Smart shuffle: avoid consecutive same categories
+        const shuffledQuestions = smartShuffleByCategory([...parsedQuestions]);
         setAllQuestions(shuffledQuestions);
         setQuestions(shuffledQuestions);
         
@@ -171,6 +171,38 @@ export function QuizApp() {
     
     result.push(current);
     return result;
+  };
+
+  // Smart shuffle to avoid consecutive same categories
+  const smartShuffleByCategory = (questions: Question[]): Question[] => {
+    if (questions.length <= 1) return questions;
+    
+    // First, do a basic shuffle
+    const shuffled = [...questions].sort(() => Math.random() - 0.5);
+    
+    // Then, try to swap questions to avoid consecutive same categories
+    for (let i = 0; i < shuffled.length - 1; i++) {
+      if (shuffled[i].category === shuffled[i + 1].category) {
+        // Find a different category question to swap with
+        let swapIndex = -1;
+        for (let j = i + 2; j < shuffled.length; j++) {
+          if (shuffled[j].category !== shuffled[i].category && 
+              shuffled[j].category !== shuffled[i - 1]?.category) {
+            swapIndex = j;
+            break;
+          }
+        }
+        
+        // If found, swap
+        if (swapIndex !== -1) {
+          const temp = shuffled[i + 1];
+          shuffled[i + 1] = shuffled[swapIndex];
+          shuffled[swapIndex] = temp;
+        }
+      }
+    }
+    
+    return shuffled;
   };
 
   const nextQuestion = () => {
