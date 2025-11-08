@@ -68,31 +68,8 @@ export function CategorySelector({
   };
 
   const getCategoryTextColors = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'fuck':
-      case 'friends':
-      case 'travel':
-      case 'hobby':
-      case 'future':
-        return 'hsl(0 0% 98%)'; // White text on dark purple
-      case 'connection':
-      case 'self reflection':
-      case 'health':
-      case 'dreams':
-        return 'hsl(0 0% 0%)'; // Black text on bright purple
-      case 'identity':
-      case 'family':
-      case 'money':
-      case 'fear':
-        return 'hsl(0 0% 0%)'; // Black text on pink
-      case 'party':
-      case 'career':
-      case 'love':
-      case 'wisdom':
-        return 'hsl(0 0% 0%)'; // Black text on orange/red
-      default:
-        return 'hsl(0 0% 0%)';
-    }
+    // All strip colors are darker, so use white text
+    return 'hsl(0 0% 98%)';
   };
 
   const handleCategoryToggle = (category: string) => {
@@ -161,7 +138,10 @@ export function CategorySelector({
                   />
                   
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
-                    style={{ color: isSelected ? textColor : 'white' }}>
+                    style={{ 
+                      color: isSelected ? textColor : 'white',
+                      fontFamily: "'Factor A', sans-serif"
+                    }}>
                     {category}
                   </span>
                   <div onClick={(e) => e.stopPropagation()}>
