@@ -257,7 +257,7 @@ export function QuizApp() {
     setCategorySelectorOpen(false);
   };
 
-  // Interpolate between colors during drag
+  // Interpolate between colors during drag - using shortest hue path
   const interpolateColor = (color1: string, color2: string, progress: number) => {
     const hslRegex = /hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/;
     const match1 = color1.match(hslRegex);
@@ -265,20 +265,31 @@ export function QuizApp() {
     
     if (!match1 || !match2) return color1;
     
-    const h1 = parseInt(match1[1]);
+    let h1 = parseInt(match1[1]);
     const s1 = parseInt(match1[2]);
     const l1 = parseInt(match1[3]);
     
-    const h2 = parseInt(match2[1]);
+    let h2 = parseInt(match2[1]);
     const s2 = parseInt(match2[2]);
     const l2 = parseInt(match2[3]);
     
-    // Interpolate each channel
-    const h = Math.round(h1 + (h2 - h1) * progress);
+    // Calculate shortest hue distance
+    let hueDiff = h2 - h1;
+    if (hueDiff > 180) {
+      hueDiff -= 360;
+    } else if (hueDiff < -180) {
+      hueDiff += 360;
+    }
+    
+    // Interpolate using shortest path
+    let h = h1 + hueDiff * progress;
+    if (h < 0) h += 360;
+    if (h >= 360) h -= 360;
+    
     const s = Math.round(s1 + (s2 - s1) * progress);
     const l = Math.round(l1 + (l2 - l1) * progress);
     
-    return `hsl(${h}, ${s}%, ${l}%)`;
+    return `hsl(${Math.round(h)}, ${s}%, ${l}%)`;
   };
 
   const getCurrentBackgroundColor = () => {
