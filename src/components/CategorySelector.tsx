@@ -139,7 +139,7 @@ export function CategorySelector({
                   className={`flex items-center justify-between pl-4 bg-[#161616] cursor-pointer relative overflow-visible transition-all ${isBouncing ? 'duration-100' : 'duration-100'}`}
                   style={{ 
                     borderRadius: '0 999px 999px 0', 
-                    width: isBouncing ? '90.2vw' : isSelected ? '88vw' : 'calc(88vw - 52px)',
+                    width: isBouncing ? '90.2vw' : '88vw',
                     paddingTop: '8px',
                     paddingRight: '8px',
                     paddingBottom: '8px'
@@ -173,31 +173,34 @@ export function CategorySelector({
                          setTempSelection(newCategories);
                        }}
                     >
-                      {/* Toggle switch */}
                       <div
-                        className={`transition-all ease-out duration-75`}
+                        className={`flex items-center justify-center transition-all ease-out ${isSelected ? 'bg-white duration-75' : 'bg-transparent duration-75 hover:bg-white/10'}`}
                          style={{ 
-                           width: '52px', 
+                           width: '32px', 
                            height: '32px', 
                            borderRadius: '32px',
-                           backgroundColor: isSelected ? 'rgba(0, 0, 0, 0.35)' : 'rgba(255, 255, 255, 0.2)',
-                           position: 'relative'
+                           outline: '1px solid white',
+                           outlineOffset: '0px'
                          }}
                       >
-                        {/* Toggle circle */}
-                        <div
-                          style={{
-                            width: '26px',
-                            height: '26px',
-                            borderRadius: '50%',
-                            backgroundColor: 'white',
-                            position: 'absolute',
-                            top: '3px',
-                            left: isSelected ? '23px' : '3px',
-                            transition: 'left 0.15s ease-out, transform 0.15s ease-out',
-                            transform: isSelected ? 'rotate(360deg)' : 'rotate(0deg)',
-                          }}
-                        />
+                         {isSelected && (
+                           <svg 
+                             width="20" 
+                             height="20" 
+                             viewBox="0 0 16 16" 
+                             fill="none"
+                             className="checkmark-animate"
+                           >
+                             <path 
+                               d="M3 8l3 3 7-7" 
+                               stroke="black" 
+                               strokeWidth="2" 
+                               strokeLinecap="round" 
+                               strokeLinejoin="round"
+                               fill="none"
+                             />
+                           </svg>
+                         )}
                       </div>
                     </div>
                   </div>
