@@ -288,6 +288,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           transition: isSnapping ? 'transform 0.25s ease-out' : 'none',
           width: '300%',
           position: 'relative',
+          paddingTop: '48px',
         }}
       >
         {/* Previous card (left) */}
