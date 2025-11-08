@@ -194,8 +194,8 @@ export function CategorySelector({
                             position: 'absolute',
                             top: '3px',
                             left: isSelected ? '23px' : '3px',
+                            transition: 'left 0.15s ease-out, transform 0.15s ease-out',
                             transform: isSelected ? 'rotate(360deg)' : 'rotate(0deg)',
-                            transition: 'all 0.075s ease-out',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center'
@@ -212,27 +212,28 @@ export function CategorySelector({
                             justifyContent: 'center'
                           }}>
                             {/* Eyes */}
-                            <div style={{ display: 'flex', gap: '6px', marginTop: '-3px' }}>
+                            <div style={{ display: 'flex', gap: '6px', marginTop: '-2px' }}>
                               <div style={{ 
-                                width: '3px', 
-                                height: '3px', 
+                                width: '2.5px', 
+                                height: '2.5px', 
                                 borderRadius: '50%', 
-                                backgroundColor: 'black'
+                                backgroundColor: 'white'
                               }} />
                               <div style={{ 
-                                width: '3px', 
-                                height: '3px', 
+                                width: '2.5px', 
+                                height: '2.5px', 
                                 borderRadius: '50%', 
-                                backgroundColor: 'black'
+                                backgroundColor: 'white'
                               }} />
                             </div>
-                            {/* Mouth - solid line */}
+                            {/* Mouth - laughing half circle */}
                             <div style={{
                               width: '10px',
-                              height: '1.5px',
-                              backgroundColor: 'black',
-                              borderRadius: '2px',
-                              marginTop: '5px'
+                              height: '5px',
+                              border: '1px solid white',
+                              borderTop: 'none',
+                              borderRadius: '0 0 10px 10px',
+                              marginTop: '4px'
                             }} />
                           </div>
                         </div>
