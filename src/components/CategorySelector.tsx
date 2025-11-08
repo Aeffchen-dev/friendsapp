@@ -82,14 +82,14 @@ export function CategorySelector({
         : [...prev, category]
     );
     
-    // Trigger bounce animation after color transition (350ms)
+    // Trigger bounce animation quickly
     if (!isCurrentlySelected) {
       setTimeout(() => {
         setBounceAnimations(prev => ({ ...prev, [category]: true }));
         setTimeout(() => {
           setBounceAnimations(prev => ({ ...prev, [category]: false }));
-        }, 400);
-      }, 350);
+        }, 150);
+      }, 100);
     }
   };
 
