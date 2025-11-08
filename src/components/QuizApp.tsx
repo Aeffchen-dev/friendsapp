@@ -386,7 +386,8 @@ export function QuizApp() {
               lineHeight: 1,
             }}
           >
-            FFF
+            <span style={{ fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1" }}>F</span>
+            <span style={{ fontFeatureSettings: "normal" }}>FF</span>
           </div>
           {!loading && (
             <button 
