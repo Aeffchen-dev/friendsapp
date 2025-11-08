@@ -29,39 +29,39 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
+        return 'hsl(300 89% 62%)'; // Magenta/Purple
       case 'connection':
-        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
+        return 'hsl(0 85% 60%)'; // Red-Pink
       case 'identity':
-        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
+        return 'hsl(328 85% 82%)'; // Light Pink
       case 'party':
-        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
+        return 'hsl(25 96% 61%)'; // Orange
       case 'friends':
-        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
+        return 'hsl(0 93% 81%)'; // Coral
       case 'self reflection':
-        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
+        return 'hsl(300 89% 62%)'; // Magenta/Purple
       case 'family':
-        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
+        return 'hsl(0 85% 60%)'; // Red-Pink
       case 'career':
-        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
+        return 'hsl(328 85% 82%)'; // Light Pink
       case 'travel':
-        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
+        return 'hsl(25 96% 61%)'; // Orange
       case 'health':
-        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
+        return 'hsl(0 93% 81%)'; // Coral
       case 'money':
-        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
+        return 'hsl(300 89% 62%)'; // Magenta/Purple
       case 'love':
-        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
+        return 'hsl(0 85% 60%)'; // Red-Pink
       case 'hobby':
-        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
+        return 'hsl(328 85% 82%)'; // Light Pink
       case 'dreams':
-        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
+        return 'hsl(25 96% 61%)'; // Orange
       case 'fear':
-        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
+        return 'hsl(0 93% 81%)'; // Coral
       case 'wisdom':
-        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
+        return 'hsl(300 89% 62%)'; // Magenta/Purple
       case 'future':
-        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
+        return 'hsl(0 85% 60%)'; // Red-Pink
       default:
         return 'hsl(290 100% 85%)';
     }
@@ -137,7 +137,7 @@ export function CategorySelector({
                     }} 
                   />
                   
-                  <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
+                  <span className="font-bold text-sm tracking-wide relative z-10 transition-colors duration-300" 
                     style={{ 
                       color: isSelected ? textColor : 'white',
                       fontFamily: "'Factor A', sans-serif"

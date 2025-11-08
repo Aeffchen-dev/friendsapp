@@ -69,6 +69,7 @@ export default {
 					'category-text': 'hsl(var(--quiz-category-text))',
 					background: 'hsl(var(--quiz-background))',
 					surface: 'hsl(var(--quiz-surface))',
+					'card-bg': 'hsl(var(--quiz-card-bg))',
 					'fuck-bg': 'hsl(var(--quiz-fuck-bg))',
 					'fuck-text': 'hsl(var(--quiz-fuck-text))',
 					'fuck-neon': 'hsl(var(--quiz-fuck-neon))',
