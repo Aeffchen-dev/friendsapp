@@ -88,7 +88,7 @@ export function CategorySelector({
         setBounceAnimations(prev => ({ ...prev, [category]: true }));
         setTimeout(() => {
           setBounceAnimations(prev => ({ ...prev, [category]: false }));
-        }, 500);
+        }, 400);
       }, 350);
     }
   };
@@ -160,7 +160,7 @@ export function CategorySelector({
                     }}>
                     {category}
                   </span>
-                  <div onClick={(e) => e.stopPropagation()}>
+                  <div onClick={(e) => e.stopPropagation()} className={isBouncing ? 'checkbox-bounce' : ''}>
                     <div
                       className="relative cursor-pointer"
                       onClick={() => {
