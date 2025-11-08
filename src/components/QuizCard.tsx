@@ -25,41 +25,41 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { stripBg: 'bg-quiz-fuck-strip' };
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' };
       case 'friends':
-        return { stripBg: 'bg-quiz-friends-strip' };
+        return { stripBg: 'hsl(0, 100%, 65%)', bodyBg: 'hsl(0, 100%, 65%)' }; // 200% more vibrant
       case 'self reflection':
-        return { stripBg: 'bg-quiz-self-reflection-strip' };
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' };
       case 'party':
-        return { stripBg: 'bg-quiz-party-strip' };
+        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' };
       case 'family':
-        return { stripBg: 'bg-quiz-family-strip' };
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' };
       case 'connection':
-        return { stripBg: 'bg-quiz-connection-strip' };
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' };
       case 'identity':
-        return { stripBg: 'bg-quiz-identity-strip' };
+        return { stripBg: 'hsl(328, 100%, 55%)', bodyBg: 'hsl(328, 100%, 55%)' }; // More vibrant
       case 'career':
-        return { stripBg: 'bg-quiz-career-strip' };
+        return { stripBg: 'hsl(328, 100%, 70%)', bodyBg: 'hsl(328, 100%, 70%)' };
       case 'travel':
-        return { stripBg: 'bg-quiz-travel-strip' };
+        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' };
       case 'health':
-        return { stripBg: 'bg-quiz-health-strip' };
+        return { stripBg: 'hsl(0, 100%, 65%)', bodyBg: 'hsl(0, 100%, 65%)' };
       case 'money':
-        return { stripBg: 'bg-quiz-money-strip' };
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' };
       case 'love':
-        return { stripBg: 'bg-quiz-love-strip' };
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' };
       case 'hobby':
-        return { stripBg: 'bg-quiz-hobby-strip' };
+        return { stripBg: 'hsl(328, 100%, 70%)', bodyBg: 'hsl(328, 100%, 70%)' };
       case 'dreams':
-        return { stripBg: 'bg-quiz-dreams-strip' };
+        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' };
       case 'fear':
-        return { stripBg: 'bg-quiz-fear-strip' };
+        return { stripBg: 'hsl(0, 100%, 65%)', bodyBg: 'hsl(0, 100%, 65%)' };
       case 'wisdom':
-        return { stripBg: 'bg-quiz-wisdom-strip' };
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' };
       case 'future':
-        return { stripBg: 'bg-quiz-future-strip' };
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' };
       default:
-        return { stripBg: 'bg-primary' };
+        return { stripBg: 'hsl(290, 100%, 85%)', bodyBg: 'hsl(290, 100%, 85%)' };
     }
   };
 
@@ -145,15 +145,19 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     return (
       <div 
-        className={`flex-shrink-0 w-full max-w-[500px] ${categoryColors.stripBg} rounded-2xl shadow-card overflow-hidden`}
+        className="flex-shrink-0 w-full max-w-[500px] rounded-2xl overflow-hidden"
         style={{
           ...style,
           height: 'calc(100svh - 64px - 20px - 16px - 32px)',
           maxHeight: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.16)',
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
         }}
       >
         {/* Category Strip */}
-        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.stripBg} flex items-center justify-center overflow-hidden`}>
+        <div className="absolute left-0 top-0 h-full w-8 flex items-center justify-center overflow-hidden"
+          style={{ backgroundColor: categoryColors.stripBg }}>
           <div className="transform -rotate-90 whitespace-nowrap">
             {Array(20).fill(question.category).map((cat, index) => (
               <span 
@@ -185,22 +189,48 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const shouldShowPrev = prevQuestion !== null;
   const shouldShowNext = nextQuestion !== null;
 
+  // Get body background color for current card
+  const currentCategoryColors = getCategoryColors(currentQuestion.category);
+
   return (
-    <div 
-      ref={containerRef}
-      className="relative h-full w-full overflow-hidden select-none"
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
-      onMouseDown={onMouseDown}
-      onMouseMove={onMouseMove}
-      onMouseUp={onMouseUp}
-      onMouseLeave={onMouseLeave}
-      style={{
-        height: 'calc(100svh - 64px - 20px - 16px - 32px)',
-        maxHeight: '100%',
-      }}
-    >
+    <>
+      {/* Large background category text */}
+      <div 
+        className="fixed left-0 right-0 pointer-events-none z-0 overflow-hidden"
+        style={{
+          bottom: '20px',
+          height: '100vw',
+        }}
+      >
+        <div 
+          className="font-bold uppercase whitespace-nowrap transition-opacity duration-500"
+          style={{
+            fontSize: '100vw',
+            lineHeight: '1',
+            fontFamily: "'Factor A', sans-serif",
+            color: currentCategoryColors.stripBg,
+            opacity: 0.15,
+          }}
+        >
+          {currentQuestion.category}
+        </div>
+      </div>
+
+      <div 
+        ref={containerRef}
+        className="relative h-full w-full overflow-hidden select-none z-10"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseLeave={onMouseLeave}
+        style={{
+          height: 'calc(100svh - 64px - 20px - 16px - 32px)',
+          maxHeight: '100%',
+        }}
+      >
       <div 
         className="flex items-center h-full"
         style={{
@@ -260,6 +290,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           })}
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

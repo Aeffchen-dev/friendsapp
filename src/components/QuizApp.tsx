@@ -8,6 +8,47 @@ interface Question {
   category: string;
 }
 
+const getCategoryBodyColor = (category: string) => {
+  switch (category.toLowerCase()) {
+    case 'fuck':
+      return 'hsl(300, 100%, 50%)';
+    case 'friends':
+      return 'hsl(0, 100%, 65%)'; // 200% more vibrant
+    case 'self reflection':
+      return 'hsl(300, 100%, 50%)';
+    case 'party':
+      return 'hsl(25, 100%, 50%)';
+    case 'family':
+      return 'hsl(0, 100%, 50%)';
+    case 'connection':
+      return 'hsl(0, 100%, 50%)';
+    case 'identity':
+      return 'hsl(328, 100%, 55%)'; // More vibrant
+    case 'career':
+      return 'hsl(328, 100%, 70%)';
+    case 'travel':
+      return 'hsl(25, 100%, 50%)';
+    case 'health':
+      return 'hsl(0, 100%, 65%)';
+    case 'money':
+      return 'hsl(300, 100%, 50%)';
+    case 'love':
+      return 'hsl(0, 100%, 50%)';
+    case 'hobby':
+      return 'hsl(328, 100%, 70%)';
+    case 'dreams':
+      return 'hsl(25, 100%, 50%)';
+    case 'fear':
+      return 'hsl(0, 100%, 65%)';
+    case 'wisdom':
+      return 'hsl(300, 100%, 50%)';
+    case 'future':
+      return 'hsl(0, 100%, 50%)';
+    default:
+      return 'hsl(290, 100%, 85%)';
+  }
+};
+
 export function QuizApp() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animationClass, setAnimationClass] = useState('');
@@ -205,8 +246,13 @@ export function QuizApp() {
     setCategorySelectorOpen(false);
   };
 
+  const currentBodyColor = questions.length > 0 ? getCategoryBodyColor(questions[currentIndex].category) : '#000000';
+
   return (
-    <div className="h-[100svh] bg-background overflow-hidden flex flex-col">
+    <div 
+      className="h-[100svh] overflow-hidden flex flex-col transition-colors duration-500"
+      style={{ backgroundColor: currentBodyColor }}
+    >
       {/* App Header - Always visible */}
       <div className="app-header bg-black flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: '#000000'}}>
         <div className="flex justify-between items-baseline px-4 py-4">

@@ -33,11 +33,11 @@ export function CategorySelector({
       case 'connection':
         return 'hsl(0 100% 50%)'; // Red-Pink
       case 'identity':
-        return 'hsl(328 100% 70%)'; // Light Pink
+        return 'hsl(328 100% 55%)'; // More vibrant
       case 'party':
         return 'hsl(25 100% 50%)'; // Orange
       case 'friends':
-        return 'hsl(0 100% 65%)'; // Coral
+        return 'hsl(0 100% 65%)'; // 200% more vibrant (Wer aus der Runde)
       case 'self reflection':
         return 'hsl(300 100% 50%)'; // Magenta/Purple
       case 'family':
