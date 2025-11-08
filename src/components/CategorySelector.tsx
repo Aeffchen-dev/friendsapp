@@ -35,19 +35,19 @@ export function CategorySelector({
       case 'identity':
         return 'hsl(0 100% 50%)'; // #FF0000
       case 'party':
-        return 'hsl(25 100% 50%)'; // #FF4100
+        return 'hsl(15 100% 50%)'; // #FF4100
       case 'friends':
         return 'hsl(0 100% 50%)'; // #FF0000 (Wer aus der Runde)
       case 'self reflection':
         return 'hsl(290 100% 50%)'; // #D400FF
       case 'family':
-        return 'hsl(328 100% 55%)'; // #FF20A2
+        return 'hsl(328 100% 56%)'; // #FF20A2
       case 'career':
         return 'hsl(290 100% 50%)'; // #D400FF
       case 'travel':
-        return 'hsl(25 100% 50%)'; // #FF4100
+        return 'hsl(15 100% 50%)'; // #FF4100
       case 'health':
-        return 'hsl(328 100% 55%)'; // #FF20A2
+        return 'hsl(328 100% 56%)'; // #FF20A2
       case 'money':
         return 'hsl(300 100% 50%)'; // #FF00FF
       case 'love':
@@ -55,9 +55,9 @@ export function CategorySelector({
       case 'hobby':
         return 'hsl(290 100% 50%)'; // #D400FF
       case 'dreams':
-        return 'hsl(25 100% 50%)'; // #FF4100
+        return 'hsl(15 100% 50%)'; // #FF4100
       case 'fear':
-        return 'hsl(328 100% 55%)'; // #FF20A2
+        return 'hsl(328 100% 56%)'; // #FF20A2
       case 'wisdom':
         return 'hsl(300 100% 50%)'; // #FF00FF
       case 'future':

@@ -33,9 +33,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       case 'self reflection':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'party':
-        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' }; // #FF4100
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'family':
-        return { stripBg: 'hsl(328, 100%, 55%)', bodyBg: 'hsl(328, 100%, 55%)' }; // #FF20A2
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'connection':
         return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'identity':
@@ -43,9 +43,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       case 'career':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'travel':
-        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' }; // #FF4100
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'health':
-        return { stripBg: 'hsl(328, 100%, 55%)', bodyBg: 'hsl(328, 100%, 55%)' }; // #FF20A2
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'money':
         return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'love':
@@ -53,9 +53,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       case 'hobby':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'dreams':
-        return { stripBg: 'hsl(25, 100%, 50%)', bodyBg: 'hsl(25, 100%, 50%)' }; // #FF4100
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'fear':
-        return { stripBg: 'hsl(328, 100%, 55%)', bodyBg: 'hsl(328, 100%, 55%)' }; // #FF20A2
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'wisdom':
         return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'future':

@@ -72,21 +72,21 @@ All colors MUST be HSL.
     --quiz-fuck-strip: 300 100% 50%;         /* #FF00FF */
     --quiz-connection-strip: 300 100% 50%;   /* #FF00FF */
     --quiz-identity-strip: 0 100% 50%;       /* #FF0000 */
-    --quiz-party-strip: 25 100% 50%;         /* #FF4100 */
+    --quiz-party-strip: 15 100% 50%;         /* #FF4100 */
     --quiz-friends-strip: 0 100% 50%;        /* #FF0000 */
     
     --quiz-self-reflection-strip: 290 100% 50%; /* #D400FF */
-    --quiz-family-strip: 328 100% 55%;       /* #FF20A2 */
+    --quiz-family-strip: 328 100% 56%;       /* #FF20A2 */
     --quiz-career-strip: 290 100% 50%;       /* #D400FF */
-    --quiz-travel-strip: 25 100% 50%;        /* #FF4100 */
+    --quiz-travel-strip: 15 100% 50%;        /* #FF4100 */
     
-    --quiz-health-strip: 328 100% 55%;       /* #FF20A2 */
+    --quiz-health-strip: 328 100% 56%;       /* #FF20A2 */
     --quiz-money-strip: 300 100% 50%;        /* #FF00FF */
     --quiz-love-strip: 0 100% 50%;           /* #FF0000 */
     --quiz-hobby-strip: 290 100% 50%;        /* #D400FF */
     
-    --quiz-dreams-strip: 25 100% 50%;        /* #FF4100 */
-    --quiz-fear-strip: 328 100% 55%;         /* #FF20A2 */
+    --quiz-dreams-strip: 15 100% 50%;        /* #FF4100 */
+    --quiz-fear-strip: 328 100% 56%;         /* #FF20A2 */
     --quiz-wisdom-strip: 300 100% 50%;       /* #FF00FF */
     --quiz-future-strip: 0 100% 50%;         /* #FF0000 */
     
