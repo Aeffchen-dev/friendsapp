@@ -263,12 +263,13 @@ export function QuizApp() {
         }}
       >
         <div 
-          className="font-bold uppercase whitespace-nowrap text-center"
+          className="font-bold whitespace-nowrap text-center"
           style={{
-            fontSize: '20vw',
+            fontSize: '28vw',
             lineHeight: '1',
             fontFamily: "'Factor A', sans-serif",
             color: '#000000',
+            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
           }}
         >
           Friends
