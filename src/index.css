@@ -66,45 +66,45 @@ All colors MUST be HSL.
     --quiz-surface: 0 0% 12%;
     
     /* Category-specific neon colors - 5 vibrant colors cycling */
-    --quiz-fuck-neon: 335 100% 81%;         /* #FF9DC6 - Pink */
-    --quiz-connection-neon: 289 100% 79%;   /* #EC94FF - Purple */
-    --quiz-identity-neon: 76 100% 75%;      /* #DCFF80 - Lime */
-    --quiz-party-neon: 183 89% 69%;         /* #67EFF4 - Cyan */
+    --quiz-fuck-neon: 335 100% 75%;         /* #FF9DC6 - Pink (more vibrant) */
+    --quiz-connection-neon: 289 100% 72%;   /* #EC94FF - Purple (more vibrant) */
+    --quiz-identity-neon: 76 100% 68%;      /* #DCFF80 - Lime (more vibrant) */
+    --quiz-party-neon: 183 100% 62%;         /* #67EFF4 - Cyan (more vibrant) */
     
-    --quiz-friends-neon: 67 100% 49%;       /* #D0FC00 - Yellow */
-    --quiz-self-reflection-neon: 335 100% 81%; /* #FF9DC6 - Pink */
-    --quiz-family-neon: 289 100% 79%;       /* #EC94FF - Purple */
-    --quiz-career-neon: 76 100% 75%;        /* #DCFF80 - Lime */
+    --quiz-friends-neon: 67 100% 45%;       /* #D0FC00 - Yellow (more vibrant) */
+    --quiz-self-reflection-neon: 335 100% 75%; /* #FF9DC6 - Pink */
+    --quiz-family-neon: 289 100% 72%;       /* #EC94FF - Purple */
+    --quiz-career-neon: 76 100% 68%;        /* #DCFF80 - Lime */
     
-    --quiz-travel-neon: 183 89% 69%;        /* #67EFF4 - Cyan */
-    --quiz-health-neon: 67 100% 49%;        /* #D0FC00 - Yellow */
-    --quiz-money-neon: 335 100% 81%;        /* #FF9DC6 - Pink */
-    --quiz-love-neon: 289 100% 79%;         /* #EC94FF - Purple */
+    --quiz-travel-neon: 183 100% 62%;        /* #67EFF4 - Cyan */
+    --quiz-health-neon: 67 100% 45%;        /* #D0FC00 - Yellow */
+    --quiz-money-neon: 335 100% 75%;        /* #FF9DC6 - Pink */
+    --quiz-love-neon: 289 100% 72%;         /* #EC94FF - Purple */
     
-    --quiz-hobby-neon: 76 100% 75%;         /* #DCFF80 - Lime */
-    --quiz-dreams-neon: 183 89% 69%;        /* #67EFF4 - Cyan */
-    --quiz-fear-neon: 67 100% 49%;          /* #D0FC00 - Yellow */
-    --quiz-wisdom-neon: 335 100% 81%;       /* #FF9DC6 - Pink */
-    --quiz-future-neon: 289 100% 79%;       /* #EC94FF - Purple */
+    --quiz-hobby-neon: 76 100% 68%;         /* #DCFF80 - Lime */
+    --quiz-dreams-neon: 183 100% 62%;        /* #67EFF4 - Cyan */
+    --quiz-fear-neon: 67 100% 45%;          /* #D0FC00 - Yellow */
+    --quiz-wisdom-neon: 335 100% 75%;       /* #FF9DC6 - Pink */
+    --quiz-future-neon: 289 100% 72%;       /* #EC94FF - Purple */
     
-    /* More vibrant strip colors */
-    --quiz-fuck-strip: 335 100% 70%;
-    --quiz-connection-strip: 289 100% 68%;
-    --quiz-identity-strip: 76 100% 60%;
-    --quiz-party-strip: 183 100% 58%;
-    --quiz-friends-strip: 67 100% 40%;
-    --quiz-self-reflection-strip: 335 100% 70%;
-    --quiz-family-strip: 289 100% 68%;
-    --quiz-career-strip: 76 100% 60%;
-    --quiz-travel-strip: 183 100% 58%;
-    --quiz-health-strip: 67 100% 40%;
-    --quiz-money-strip: 335 100% 70%;
-    --quiz-love-strip: 289 100% 68%;
-    --quiz-hobby-strip: 76 100% 60%;
-    --quiz-dreams-strip: 183 100% 58%;
-    --quiz-fear-strip: 67 100% 40%;
-    --quiz-wisdom-strip: 335 100% 70%;
-    --quiz-future-strip: 289 100% 68%;
+    /* High contrast vibrant strip colors */
+    --quiz-fuck-strip: 335 100% 50%;        /* Much darker pink for contrast */
+    --quiz-connection-strip: 289 100% 48%;  /* Much darker purple */
+    --quiz-identity-strip: 76 100% 40%;     /* Much darker lime */
+    --quiz-party-strip: 183 100% 35%;       /* Much darker cyan */
+    --quiz-friends-strip: 67 100% 25%;      /* Much darker yellow */
+    --quiz-self-reflection-strip: 335 100% 50%;
+    --quiz-family-strip: 289 100% 48%;
+    --quiz-career-strip: 76 100% 40%;
+    --quiz-travel-strip: 183 100% 35%;
+    --quiz-health-strip: 67 100% 25%;
+    --quiz-money-strip: 335 100% 50%;
+    --quiz-love-strip: 289 100% 48%;
+    --quiz-hobby-strip: 76 100% 40%;
+    --quiz-dreams-strip: 183 100% 35%;
+    --quiz-fear-strip: 67 100% 25%;
+    --quiz-wisdom-strip: 335 100% 50%;
+    --quiz-future-strip: 289 100% 48%;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
