@@ -57,50 +57,48 @@ All colors MUST be HSL.
 
     --radius: 1rem;
     
-    /* Quiz App Custom Colors */
-    --quiz-primary: 280 100% 70%;
-    --quiz-accent: 290 100% 80%;
-    --quiz-category-bg: 290 100% 85%;
-    --quiz-category-text: 0 0% 15%;
-    --quiz-background: 0 0% 7%;
-    --quiz-surface: 0 0% 12%;
+    /* Quiz App Custom Colors - Warm Palette */
+    --quiz-primary: 315 100% 64%;
+    --quiz-accent: 327 100% 79%;
+    --quiz-category-bg: 290 100% 72%;
+    --quiz-category-text: 0 0% 0%;
+    --quiz-background: 281 98% 25%;          /* #55017D - dark purple background */
+    --quiz-surface: 281 98% 30%;
     
-    /* Category-specific colors - Warm palette */
-    --quiz-fuck-bg: 327 100% 79%;           /* #FF92D3 */
+    /* Category-specific colors - Lighter shades for cards */
+    --quiz-fuck-bg: 327 100% 79%;            /* #FF92D3 - light pink */
     --quiz-fuck-text: 0 0% 0%;
-    --quiz-connection-bg: 281 98% 25%;      /* #55017D */
-    --quiz-connection-text: 0 0% 98%;
-    --quiz-identity-bg: 278 100% 57%;       /* #AF25FF */
-    --quiz-identity-text: 0 0% 98%;
-    --quiz-party-bg: 290 100% 72%;          /* #E772FF */
-    --quiz-party-text: 0 0% 0%;
-    
-    /* Additional categories with warm colors */
-    --quiz-friends-bg: 315 100% 64%;        /* #FF47D1 */
+    --quiz-friends-bg: 290 100% 72%;         /* #E772FF - light purple */
     --quiz-friends-text: 0 0% 0%;
-    --quiz-self-reflection-bg: 338 97% 61%; /* #FC3D82 */
-    --quiz-self-reflection-text: 0 0% 98%;
-    --quiz-family-bg: 10 100% 50%;          /* #FF2B00 */
-    --quiz-family-text: 0 0% 98%;
-    --quiz-career-bg: 24 100% 50%;          /* #FF6600 */
-    --quiz-career-text: 0 0% 0%;
-    --quiz-travel-bg: 327 100% 79%;         /* #FF92D3 */
+    --quiz-self-reflection-bg: 315 100% 64%; /* #FF47D1 - bright pink */
+    --quiz-self-reflection-text: 0 0% 0%;
+    --quiz-party-bg: 338 97% 61%;            /* #FC3D82 - hot pink */
+    --quiz-party-text: 0 0% 0%;
+    --quiz-family-bg: 24 100% 50%;           /* #FF6600 - orange */
+    --quiz-family-text: 0 0% 0%;
+    --quiz-connection-bg: 278 100% 57%;      /* #AF25FF - bright purple */
+    --quiz-connection-text: 0 0% 0%;
+    --quiz-identity-bg: 327 100% 79%;        /* #FF92D3 - light pink */
+    --quiz-identity-text: 0 0% 0%;
+    --quiz-career-bg: 10 100% 50%;           /* #FF2B00 - red-orange */
+    --quiz-career-text: 0 0% 98%;
+    --quiz-travel-bg: 290 100% 72%;          /* #E772FF - light purple */
     --quiz-travel-text: 0 0% 0%;
-    --quiz-health-bg: 281 98% 25%;          /* #55017D */
-    --quiz-health-text: 0 0% 98%;
-    --quiz-money-bg: 278 100% 57%;          /* #AF25FF */
-    --quiz-money-text: 0 0% 98%;
-    --quiz-love-bg: 290 100% 72%;           /* #E772FF */
+    --quiz-health-bg: 315 100% 64%;          /* #FF47D1 - bright pink */
+    --quiz-health-text: 0 0% 0%;
+    --quiz-money-bg: 338 97% 61%;            /* #FC3D82 - hot pink */
+    --quiz-money-text: 0 0% 0%;
+    --quiz-love-bg: 327 100% 79%;            /* #FF92D3 - light pink */
     --quiz-love-text: 0 0% 0%;
-    --quiz-hobby-bg: 315 100% 64%;          /* #FF47D1 */
+    --quiz-hobby-bg: 24 100% 50%;            /* #FF6600 - orange */
     --quiz-hobby-text: 0 0% 0%;
-    --quiz-dreams-bg: 338 97% 61%;          /* #FC3D82 */
-    --quiz-dreams-text: 0 0% 98%;
-    --quiz-fear-bg: 10 100% 50%;            /* #FF2B00 */
-    --quiz-fear-text: 0 0% 98%;
-    --quiz-wisdom-bg: 24 100% 50%;          /* #FF6600 */
-    --quiz-wisdom-text: 0 0% 0%;
-    --quiz-future-bg: 327 100% 79%;         /* #FF92D3 */
+    --quiz-dreams-bg: 290 100% 72%;          /* #E772FF - light purple */
+    --quiz-dreams-text: 0 0% 0%;
+    --quiz-fear-bg: 278 100% 57%;            /* #AF25FF - bright purple */
+    --quiz-fear-text: 0 0% 0%;
+    --quiz-wisdom-bg: 10 100% 50%;           /* #FF2B00 - red-orange */
+    --quiz-wisdom-text: 0 0% 98%;
+    --quiz-future-bg: 315 100% 64%;          /* #FF47D1 - bright pink */
     --quiz-future-text: 0 0% 0%;
     
     /* Gradients */
@@ -185,7 +183,7 @@ All colors MUST be HSL.
     overflow: hidden;
     height: 100vh;
     height: 100svh;
-    background-color: #000000;
+    background-color: hsl(281 98% 25%); /* Dark purple from warm palette */
     font-family: 'Factor A', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   
@@ -314,7 +312,7 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     z-index: 50;
-    background-color: #000000;
+    background-color: hsl(281 98% 25%);
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;

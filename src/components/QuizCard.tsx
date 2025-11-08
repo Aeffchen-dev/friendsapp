@@ -145,7 +145,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     return (
       <div 
-        className="absolute inset-0 max-w-[500px] mx-auto bg-[#121212] rounded-2xl shadow-card overflow-hidden"
+        className={`absolute inset-0 max-w-[500px] mx-auto ${categoryColors.bg} rounded-2xl shadow-card overflow-hidden`}
         style={{
           ...style,
           height: 'calc(100svh - 64px - 20px - 16px - 32px)',
@@ -171,7 +171,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         {/* Main Content */}
         <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-16">
-            <h1 className="question-text text-3xl md:text-4xl lg:text-4xl font-bold text-foreground leading-tight w-full max-w-full">
+            <h1 className={`question-text text-3xl md:text-4xl lg:text-4xl font-bold ${categoryColors.text} leading-tight w-full max-w-full`}>
               {question.question}
             </h1>
           </div>
