@@ -29,47 +29,70 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(61 100% 73%)'; // #EFFF75
+        return 'hsl(281 98% 25%)'; // #55017D
       case 'friends':
-        return 'hsl(145 76% 69%)'; // #79E7A9
+        return 'hsl(281 98% 25%)'; // #55017D
       case 'family':
-        return 'hsl(261 80% 60%)'; // #8948E9
+        return 'hsl(338 97% 61%)'; // #FC3D82
       case 'self reflection':
-        return 'hsl(189 100% 77%)'; // #88EDFF
+        return 'hsl(290 100% 72%)'; // #E772FF
       case 'party':
-        return 'hsl(184 85% 67%)'; // #5EEBF0
+        return 'hsl(24 100% 50%)'; // #FF6600
       case 'connection':
-        return 'hsl(263 83% 80%)'; // #D8B1F6
+        return 'hsl(290 100% 72%)'; // #E772FF
       case 'identity':
-        return 'hsl(314 98% 77%)'; // #FD8CEC
+        return 'hsl(338 97% 61%)'; // #FC3D82
       case 'career':
-        return 'hsl(163 100% 77%)'; // #99FFDB
+        return 'hsl(24 100% 50%)'; // #FF6600
       case 'travel':
-        return 'hsl(61 100% 73%)'; // #EFFF75
+        return 'hsl(281 98% 25%)'; // #55017D
       case 'health':
-        return 'hsl(263 83% 80%)'; // #D8B1F6
+        return 'hsl(290 100% 72%)'; // #E772FF
       case 'money':
-        return 'hsl(314 98% 77%)'; // #FD8CEC
+        return 'hsl(338 97% 61%)'; // #FC3D82
       case 'love':
-        return 'hsl(184 85% 67%)'; // #5EEBF0
+        return 'hsl(24 100% 50%)'; // #FF6600
       case 'hobby':
-        return 'hsl(145 76% 69%)'; // #79E7A9
+        return 'hsl(281 98% 25%)'; // #55017D
       case 'dreams':
-        return 'hsl(189 100% 77%)'; // #88EDFF
+        return 'hsl(290 100% 72%)'; // #E772FF
       case 'fear':
-        return 'hsl(261 80% 60%)'; // #8948E9
+        return 'hsl(338 97% 61%)'; // #FC3D82
       case 'wisdom':
-        return 'hsl(163 100% 77%)'; // #99FFDB
+        return 'hsl(24 100% 50%)'; // #FF6600
       case 'future':
-        return 'hsl(61 100% 73%)'; // #EFFF75
+        return 'hsl(281 98% 25%)'; // #55017D
       default:
         return 'hsl(290 100% 85%)';
     }
   };
 
   const getCategoryTextColors = (category: string) => {
-    // All neon colors are bright, so use black text for maximum contrast
-    return 'hsl(0 0% 0%)';
+    switch (category.toLowerCase()) {
+      case 'fuck':
+      case 'friends':
+      case 'travel':
+      case 'hobby':
+      case 'future':
+        return 'hsl(0 0% 98%)'; // White text on dark purple
+      case 'connection':
+      case 'self reflection':
+      case 'health':
+      case 'dreams':
+        return 'hsl(0 0% 0%)'; // Black text on bright purple
+      case 'identity':
+      case 'family':
+      case 'money':
+      case 'fear':
+        return 'hsl(0 0% 0%)'; // Black text on pink
+      case 'party':
+      case 'career':
+      case 'love':
+      case 'wisdom':
+        return 'hsl(0 0% 0%)'; // Black text on orange/red
+      default:
+        return 'hsl(0 0% 0%)';
+    }
   };
 
   const handleCategoryToggle = (category: string) => {
