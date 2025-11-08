@@ -262,8 +262,9 @@ export function QuizApp() {
           width: '150vw',
         }}
       >
+        {/* Desktop: Friends */}
         <div 
-          className="font-bold whitespace-nowrap text-center"
+          className="hidden md:block font-bold whitespace-nowrap text-center"
           style={{
             fontSize: '30vw',
             lineHeight: '1',
@@ -273,6 +274,19 @@ export function QuizApp() {
           }}
         >
           Friends
+        </div>
+        {/* Mobile: Ask */}
+        <div 
+          className="block md:hidden font-bold whitespace-nowrap text-center"
+          style={{
+            fontSize: '60vw',
+            lineHeight: '1',
+            fontFamily: "'Factor A', sans-serif",
+            color: '#000000',
+            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+          }}
+        >
+          Ask
         </div>
       </div>
       {/* App Header - Always visible */}
