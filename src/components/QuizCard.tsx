@@ -223,7 +223,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           ...style,
           height: '80vh',
           maxHeight: '80vh',
-          backgroundColor: 'rgba(0, 0, 0, 0.20)',
+          backgroundColor: 'rgba(0, 0, 0, 0.25)',
           backdropFilter: 'blur(28px)',
           WebkitBackdropFilter: 'blur(28px)',
           boxShadow: '0 0 24px 4px rgba(0, 0, 0, 0.32)',
