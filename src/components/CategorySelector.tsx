@@ -29,39 +29,39 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(281 98% 25%)'; // #55017D
-      case 'friends':
-        return 'hsl(281 98% 25%)'; // #55017D
-      case 'family':
-        return 'hsl(338 97% 61%)'; // #FC3D82
-      case 'self reflection':
-        return 'hsl(290 100% 72%)'; // #E772FF
-      case 'party':
-        return 'hsl(24 100% 50%)'; // #FF6600
+        return 'hsl(344 95% 16%)'; // #4F0216
       case 'connection':
-        return 'hsl(290 100% 72%)'; // #E772FF
+        return 'hsl(270 95% 17%)'; // #2C0255
       case 'identity':
-        return 'hsl(338 97% 61%)'; // #FC3D82
+        return 'hsl(0 65% 13%)'; // #380C0C
+      case 'party':
+        return 'hsl(14 100% 43%)'; // #D93300
+      case 'friends':
+        return 'hsl(281 100% 13%)'; // #2C0041
+      case 'self reflection':
+        return 'hsl(159 100% 13%)'; // #00422B
+      case 'family':
+        return 'hsl(23 98% 24%)'; // #7B2F01
       case 'career':
-        return 'hsl(24 100% 50%)'; // #FF6600
+        return 'hsl(178 93% 17%)'; // #035653
       case 'travel':
-        return 'hsl(281 98% 25%)'; // #55017D
+        return 'hsl(170 100% 14%)'; // #00463A
       case 'health':
-        return 'hsl(290 100% 72%)'; // #E772FF
+        return 'hsl(205 100% 19%)'; // #003A63
       case 'money':
-        return 'hsl(338 97% 61%)'; // #FC3D82
+        return 'hsl(187 94% 13%)'; // #023B42
       case 'love':
-        return 'hsl(24 100% 50%)'; // #FF6600
+        return 'hsl(344 95% 16%)'; // #4F0216
       case 'hobby':
-        return 'hsl(281 98% 25%)'; // #55017D
+        return 'hsl(270 95% 17%)'; // #2C0255
       case 'dreams':
-        return 'hsl(290 100% 72%)'; // #E772FF
+        return 'hsl(0 65% 13%)'; // #380C0C
       case 'fear':
-        return 'hsl(338 97% 61%)'; // #FC3D82
+        return 'hsl(14 100% 43%)'; // #D93300
       case 'wisdom':
-        return 'hsl(24 100% 50%)'; // #FF6600
+        return 'hsl(281 100% 13%)'; // #2C0041
       case 'future':
-        return 'hsl(281 98% 25%)'; // #55017D
+        return 'hsl(159 100% 13%)'; // #00422B
       default:
         return 'hsl(290 100% 85%)';
     }
