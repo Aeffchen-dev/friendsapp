@@ -139,7 +139,7 @@ export function CategorySelector({
                   className={`flex items-center justify-between pl-4 bg-[#161616] cursor-pointer relative overflow-visible transition-all ${isBouncing ? 'duration-100' : 'duration-100'}`}
                   style={{ 
                     borderRadius: '0 999px 999px 0', 
-                    width: isBouncing ? '90.2vw' : '88vw',
+                    width: isBouncing ? '90.2vw' : isSelected ? '88vw' : 'calc(88vw - 52px)',
                     paddingTop: '8px',
                     paddingRight: '8px',
                     paddingBottom: '8px'
