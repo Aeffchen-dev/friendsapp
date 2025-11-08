@@ -331,40 +331,46 @@ export function QuizApp() {
     >
       {/* Large "Friends" text at bottom */}
       <div 
-        className="fixed left-1/2 pointer-events-none z-0"
+        className="fixed inset-0 pointer-events-none z-0"
         style={{
-          bottom: '0',
-          transform: 'translateX(-50%) translateY(20%)',
-          width: '150vw',
           backgroundColor: currentBodyColor,
           transition: 'background-color 0.8s ease-out'
         }}
       >
-        {/* Desktop: Friends */}
         <div 
-          className="hidden md:block font-bold whitespace-nowrap text-center"
+          className="fixed left-1/2 z-0"
           style={{
-            fontSize: '30vw',
-            lineHeight: '1',
-            fontFamily: "'Factor A', sans-serif",
-            color: '#000000',
-            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+            bottom: '0',
+            transform: 'translateX(-50%) translateY(20%)',
+            width: '150vw',
           }}
         >
-          Friends
-        </div>
-        {/* Mobile: Ask */}
-        <div 
-          className="block md:hidden font-bold whitespace-nowrap text-center"
-          style={{
-            fontSize: '60vw',
-            lineHeight: '1',
-            fontFamily: "'Factor A', sans-serif",
-            color: '#000000',
-            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-          }}
-        >
-          Ask
+          {/* Desktop: Friends */}
+          <div 
+            className="hidden md:block font-bold whitespace-nowrap text-center"
+            style={{
+              fontSize: '30vw',
+              lineHeight: '1',
+              fontFamily: "'Factor A', sans-serif",
+              color: '#000000',
+              fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+            }}
+          >
+            Friends
+          </div>
+          {/* Mobile: Ask */}
+          <div 
+            className="block md:hidden font-bold whitespace-nowrap text-center"
+            style={{
+              fontSize: '60vw',
+              lineHeight: '1',
+              fontFamily: "'Factor A', sans-serif",
+              color: '#000000',
+              fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+            }}
+          >
+            Ask
+          </div>
         </div>
       </div>
       {/* App Header - Always visible */}
