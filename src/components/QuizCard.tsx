@@ -11,7 +11,7 @@ interface QuizCardProps {
   prevQuestion: Question | null;
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
-  onDragStateChange?: (isDragging: boolean, progress: number, targetCategory: string) => void;
+  onDragStateChange?: (isDragging: boolean, progress: number, targetCategory: string, direction: number) => void;
 }
 
 export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight, onDragStateChange }: QuizCardProps) {
@@ -77,14 +77,15 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     const offset = clientX - startX;
     setDragOffset(offset);
     
-    // Notify parent of drag state for color interpolation
+    // Notify parent of drag state for color interpolation and logo squeeze
     if (onDragStateChange && containerRef.current) {
       const containerWidth = containerRef.current.offsetWidth;
       const progress = Math.min(Math.abs(offset) / containerWidth, 1);
       const targetCategory = offset < 0 && nextQuestion ? nextQuestion.category : 
                             offset > 0 && prevQuestion ? prevQuestion.category : 
                             currentQuestion.category;
-      onDragStateChange(true, progress, targetCategory);
+      const direction = offset < 0 ? -1 : offset > 0 ? 1 : 0;
+      onDragStateChange(true, progress, targetCategory, direction);
     }
   };
 
@@ -102,9 +103,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         setDragOffset(0);
         setIsDragging(false);
         
-        // Continue color transition during animation
+        // Continue color transition and logo squeeze during animation
         if (onDragStateChange) {
-          onDragStateChange(false, 1, nextQuestion.category);
+          onDragStateChange(false, 1, nextQuestion.category, -1);
         }
         
         setTimeout(() => {
@@ -119,9 +120,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         setDragOffset(0);
         setIsDragging(false);
         
-        // Continue color transition during animation
+        // Continue color transition and logo squeeze during animation
         if (onDragStateChange) {
-          onDragStateChange(false, 1, prevQuestion.category);
+          onDragStateChange(false, 1, prevQuestion.category, 1);
         }
         
         setTimeout(() => {
@@ -133,9 +134,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       }
     }
     
-    // Reset color if drag cancelled
+    // Reset color and logo if drag cancelled
     if (onDragStateChange) {
-      onDragStateChange(false, 0, currentQuestion.category);
+      onDragStateChange(false, 0, currentQuestion.category, 0);
     }
     
     setIsDragging(false);

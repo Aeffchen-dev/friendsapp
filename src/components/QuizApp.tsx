@@ -60,8 +60,8 @@ export function QuizApp() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [logoStretch, setLogoStretch] = useState(false);
-  const [logoSqueezeLeft, setLogoSqueezeLeft] = useState(false);
-  const [logoSqueezeRight, setLogoSqueezeRight] = useState(false);
+  const [logoSqueezeProgress, setLogoSqueezeProgress] = useState(0);
+  const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0); // -1 for left, 1 for right
   const [dragProgress, setDragProgress] = useState(0);
   const [targetCategory, setTargetCategory] = useState<string>('');
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -178,17 +178,17 @@ export function QuizApp() {
 
   const nextQuestion = () => {
     if (currentIndex < questions.length - 1) {
-      setLogoSqueezeLeft(true);
       setIsTransitioning(true);
       setAnimationClass('animate-slide-out-left');
       setTimeout(() => {
         setCurrentIndex(prev => prev + 1);
         setDragProgress(0);
         setTargetCategory('');
+        setLogoSqueezeProgress(0);
+        setLogoSqueezeDirection(0);
         setAnimationClass('animate-slide-in-right');
         setTimeout(() => {
           setAnimationClass('');
-          setLogoSqueezeLeft(false);
           setIsTransitioning(false);
         }, 500);
       }, 300);
@@ -197,17 +197,17 @@ export function QuizApp() {
 
   const prevQuestion = () => {
     if (currentIndex > 0) {
-      setLogoSqueezeRight(true);
       setIsTransitioning(true);
       setAnimationClass('animate-slide-out-right');
       setTimeout(() => {
         setCurrentIndex(prev => prev - 1);
         setDragProgress(0);
         setTargetCategory('');
+        setLogoSqueezeProgress(0);
+        setLogoSqueezeDirection(0);
         setAnimationClass('animate-slide-in-left');
         setTimeout(() => {
           setAnimationClass('');
-          setLogoSqueezeRight(false);
           setIsTransitioning(false);
         }, 500);
       }, 300);
@@ -308,9 +308,11 @@ export function QuizApp() {
 
   const currentBodyColor = getCurrentBackgroundColor();
 
-  const handleDragStateChange = (isDragging: boolean, progress: number, category: string) => {
+  const handleDragStateChange = (isDragging: boolean, progress: number, category: string, direction: number) => {
     setDragProgress(progress);
     setTargetCategory(category);
+    setLogoSqueezeProgress(progress);
+    setLogoSqueezeDirection(direction);
   };
 
   return (
@@ -364,9 +366,13 @@ export function QuizApp() {
             <img 
               src="/assets/logo.png" 
               alt="Logo" 
-              className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeLeft ? 'logo-squeeze-left' : ''} ${logoSqueezeRight ? 'logo-squeeze-right' : ''}`}
+              className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''}`}
               onClick={handleLogoClick}
-              style={{ filter: 'brightness(0)' }}
+              style={{ 
+                filter: 'brightness(0)',
+                transform: `scaleX(${1 - logoSqueezeProgress * 0.3})`,
+                transition: isTransitioning ? 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
+              }}
             />
             <button 
               onClick={() => setCategorySelectorOpen(true)}
