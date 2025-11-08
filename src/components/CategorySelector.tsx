@@ -189,7 +189,6 @@ export function CategorySelector({
                              height="20" 
                              viewBox="0 0 16 16" 
                              fill="none"
-                             className="checkmark-animate"
                            >
                              <path 
                                d="M3 8l3 3 7-7" 
