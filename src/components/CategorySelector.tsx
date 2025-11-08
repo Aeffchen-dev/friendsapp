@@ -88,7 +88,7 @@ export function CategorySelector({
         setBounceAnimations(prev => ({ ...prev, [category]: true }));
         setTimeout(() => {
           setBounceAnimations(prev => ({ ...prev, [category]: false }));
-        }, 400);
+        }, 500);
       }, 350);
     }
   };
@@ -136,10 +136,10 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className={`flex items-center justify-between py-3 pr-4 pl-4 bg-[#161616] cursor-pointer relative overflow-visible transition-all ${isBouncing ? 'duration-200' : 'duration-100'}`}
+                  className={`flex items-center justify-between py-3 pr-4 pl-4 bg-[#161616] cursor-pointer relative overflow-visible ${isBouncing ? 'filter-bounce' : ''}`}
                   style={{ 
                     borderRadius: '0 999px 999px 0', 
-                    width: isBouncing ? '82vw' : '80vw'
+                    width: '80vw'
                   }}
                   onClick={() => handleCategoryToggle(category)}
                 >
