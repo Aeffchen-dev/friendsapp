@@ -276,7 +276,7 @@ export function QuizApp() {
         </div>
       </div>
       {/* App Header - Always visible */}
-      <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50}}>
+      <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'transparent'}}>
         <div className="flex justify-between items-baseline px-4 py-4">
           <img 
             src="/assets/logo.png" 
