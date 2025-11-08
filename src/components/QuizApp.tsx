@@ -386,7 +386,7 @@ export function QuizApp() {
               lineHeight: 1,
             }}
           >
-            3 F
+            FFF
           </div>
           {!loading && (
             <button 
