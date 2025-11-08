@@ -17,6 +17,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [animationOffset, setAnimationOffset] = useState(0);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const minSwipeDistance = 50;
@@ -76,13 +78,37 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   };
 
   const handleEnd = () => {
-    if (!isDragging) return;
+    if (!isDragging || !containerRef.current) return;
+    
+    const containerWidth = containerRef.current.offsetWidth;
     
     if (Math.abs(dragOffset) > minSwipeDistance) {
+      setIsAnimating(true);
+      
       if (dragOffset < 0 && nextQuestion) {
-        onSwipeLeft();
+        // Swipe left - animate to full left
+        setAnimationOffset(-containerWidth / 3);
+        setDragOffset(0);
+        setIsDragging(false);
+        
+        setTimeout(() => {
+          onSwipeLeft();
+          setAnimationOffset(0);
+          setIsAnimating(false);
+        }, 300);
+        return;
       } else if (dragOffset > 0 && prevQuestion) {
-        onSwipeRight();
+        // Swipe right - animate to full right
+        setAnimationOffset(containerWidth / 3);
+        setDragOffset(0);
+        setIsDragging(false);
+        
+        setTimeout(() => {
+          onSwipeRight();
+          setAnimationOffset(0);
+          setIsAnimating(false);
+        }, 300);
+        return;
       }
     }
     
@@ -126,11 +152,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const getDragProgress = () => {
     if (!containerRef.current) return 0;
     const containerWidth = containerRef.current.offsetWidth;
-    return Math.min(Math.abs(dragOffset) / containerWidth, 1);
+    const totalOffset = dragOffset + animationOffset;
+    return Math.min(Math.abs(totalOffset) / containerWidth, 1);
   };
 
   const progress = getDragProgress();
-  const direction = dragOffset < 0 ? -1 : 1;
+  const totalOffset = dragOffset + animationOffset;
+  const direction = totalOffset < 0 ? -1 : 1;
 
   // Current card: 100% -> 80% scale, 0deg -> 5deg rotation (away from direction)
   const currentScale = 1 - (progress * 0.2);
@@ -236,8 +264,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       <div 
         className="flex items-center h-full"
         style={{
-          transform: `translateX(calc(-33.333% + ${dragOffset}px))`,
-          transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          transform: `translateX(calc(-33.333% + ${dragOffset + animationOffset}px))`,
+          transition: (isDragging || !isAnimating) ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           width: '300%',
           position: 'relative',
         }}
@@ -252,8 +280,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           }}
         >
           {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
-            transform: `scale(${dragOffset > 0 ? incomingScale : 0.8}) rotate(${dragOffset > 0 ? incomingRotation : 5}deg)`,
-            transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            transform: `scale(${totalOffset > 0 ? incomingScale : 0.8}) rotate(${totalOffset > 0 ? incomingRotation : 5}deg)`,
+            transition: (isDragging || !isAnimating) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             opacity: 1,
             position: 'relative',
           })}
@@ -285,8 +313,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           }}
         >
           {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
-            transform: `scale(${dragOffset < 0 ? incomingScale : 0.8}) rotate(${dragOffset < 0 ? incomingRotation : -5}deg)`,
-            transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            transform: `scale(${totalOffset < 0 ? incomingScale : 0.8}) rotate(${totalOffset < 0 ? incomingRotation : -5}deg)`,
+            transition: (isDragging || !isAnimating) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             opacity: 1,
             position: 'relative',
           })}
