@@ -226,13 +226,14 @@ export function CategorySelector({
                                 backgroundColor: 'black'
                               }} />
                             </div>
-                            {/* Mouth - solid line, less smiling */}
+                            {/* Mouth - smiling arc */}
                             <div style={{
-                              width: '8px',
-                              height: '1px',
-                              backgroundColor: 'black',
-                              borderRadius: '1px',
-                              marginTop: '4px'
+                              width: '9px',
+                              height: '4px',
+                              border: '1px solid black',
+                              borderTop: 'none',
+                              borderRadius: '0 0 9px 9px',
+                              marginTop: '3px'
                             }} />
                           </div>
                         </div>
