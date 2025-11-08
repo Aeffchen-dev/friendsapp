@@ -171,8 +171,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         </div>
 
         {/* Main Content */}
-        <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
-          <div className="flex-1 flex items-start justify-start text-left w-full pt-16">
+        <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-4 lg:pr-5">
+          <div className="flex-1 flex items-start justify-start text-left w-full pt-4">
             <h1 className="question-text text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-none uppercase w-full max-w-full">
               {question.question}
             </h1>
