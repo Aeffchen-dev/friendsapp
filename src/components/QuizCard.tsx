@@ -224,8 +224,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           height: '80vh',
           maxHeight: '80vh',
           backgroundColor: 'rgba(0, 0, 0, 0.30)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
+          backdropFilter: 'blur(28px)',
+          WebkitBackdropFilter: 'blur(28px)',
           boxShadow: '0 0 24px 4px rgba(0, 0, 0, 0.32)',
           width: 'calc(100% - 32px)',
         }}
