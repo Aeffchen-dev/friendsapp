@@ -253,7 +253,7 @@ export function QuizApp() {
       className="h-[100svh] overflow-hidden flex flex-col transition-colors duration-500 relative"
       style={{ backgroundColor: currentBodyColor }}
     >
-      {/* Large "Friends" text at bottom */}
+      {/* Large text at bottom */}
       <div 
         className="fixed left-1/2 pointer-events-none z-0"
         style={{
@@ -262,18 +262,32 @@ export function QuizApp() {
           width: '150vw',
         }}
       >
-        {/* Desktop: Friends */}
-        <div 
-          className="hidden md:block font-bold whitespace-nowrap text-center"
-          style={{
-            fontSize: '30vw',
-            lineHeight: '1',
-            fontFamily: "'Factor A', sans-serif",
-            color: '#000000',
-            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-          }}
-        >
-          Friends
+        {/* Desktop: Ask + Friends stacked */}
+        <div className="hidden md:block">
+          <div 
+            className="font-bold whitespace-nowrap text-center"
+            style={{
+              fontSize: '30vw',
+              lineHeight: '1',
+              fontFamily: "'Factor A', sans-serif",
+              color: '#000000',
+              fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+            }}
+          >
+            Ask
+          </div>
+          <div 
+            className="font-bold whitespace-nowrap text-center"
+            style={{
+              fontSize: '30vw',
+              lineHeight: '1',
+              fontFamily: "'Factor A', sans-serif",
+              color: '#000000',
+              fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+            }}
+          >
+            Friends
+          </div>
         </div>
         {/* Mobile: Ask */}
         <div 
