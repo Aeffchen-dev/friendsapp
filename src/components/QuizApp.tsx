@@ -62,6 +62,7 @@ export function QuizApp() {
   const [logoStretch, setLogoStretch] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [activeCategory, setActiveCategory] = useState('');
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     // Start logo animation and data loading together
@@ -175,13 +176,25 @@ export function QuizApp() {
 
   const nextQuestion = () => {
     if (currentIndex < questions.length - 1) {
-      setCurrentIndex(prev => prev + 1);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentIndex(prev => prev + 1);
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 300);
+      }, 300);
     }
   };
 
   const prevQuestion = () => {
     if (currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentIndex(prev => prev - 1);
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 300);
+      }, 300);
     }
   };
 
@@ -230,7 +243,7 @@ export function QuizApp() {
 
   const currentBodyColor = loading 
     ? 'hsl(0, 100%, 50%)' 
-    : (questions.length > 0 && activeCategory 
+    : (questions.length > 0 && activeCategory && !isTransitioning
       ? getCategoryBodyColor(activeCategory) 
       : questions.length > 0 
         ? getCategoryBodyColor(questions[currentIndex].category) 
@@ -241,7 +254,7 @@ export function QuizApp() {
       className="h-[100svh] overflow-hidden flex flex-col relative"
       style={{ 
         backgroundColor: currentBodyColor,
-        transition: isDragging ? 'none' : 'background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+        transition: (isDragging || isTransitioning) ? 'none' : 'background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
       }}
     >
       {/* Large "Friends" text at bottom */}
