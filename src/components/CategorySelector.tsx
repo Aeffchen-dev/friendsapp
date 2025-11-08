@@ -131,7 +131,7 @@ export function CategorySelector({
                   
                   <span className="font-bold text-sm tracking-wide relative z-10 transition-colors duration-300" 
                     style={{ 
-                      color: isSelected ? textColor : 'white',
+                      color: 'black',
                       fontFamily: "'Factor A', sans-serif"
                     }}>
                     {category}
