@@ -277,17 +277,17 @@ export function QuizApp() {
       </div>
       {/* App Header - Always visible */}
       <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'transparent'}}>
-        <div className="flex justify-between items-baseline px-4 py-4">
+        <div className="flex justify-between items-center px-4 py-4">
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
-            className={`h-8 w-auto logo-clickable align-baseline ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeLeft ? 'logo-squeeze-left' : ''} ${logoSqueezeRight ? 'logo-squeeze-right' : ''}`}
+            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeLeft ? 'logo-squeeze-left' : ''} ${logoSqueezeRight ? 'logo-squeeze-right' : ''}`}
             onClick={handleLogoClick}
             style={{ filter: 'brightness(0)' }}
           />
           <button 
             onClick={() => setCategorySelectorOpen(true)}
-            className="text-black font-normal text-xs align-baseline"
+            className="text-black font-normal text-xs"
             style={{fontSize: '14px'}}
           >
             Kategorien wählen
