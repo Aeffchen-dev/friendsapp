@@ -339,7 +339,6 @@ export function QuizApp() {
   return (
     <div 
       className="h-[100svh] overflow-hidden flex flex-col relative"
-      style={{ backgroundColor: currentBodyColor, transition: 'background-color 0.8s ease-out' }}
     >
       {/* Large "Friends" text at bottom */}
       <div 
