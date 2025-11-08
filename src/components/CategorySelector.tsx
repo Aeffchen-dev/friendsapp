@@ -191,7 +191,7 @@ export function CategorySelector({
                             width: '26px',
                             height: '26px',
                             borderRadius: '50%',
-                            backgroundColor: isSelected ? colorClasses : 'white',
+                            backgroundColor: colorClasses,
                             position: 'absolute',
                             top: '3px',
                             left: isSelected ? '23px' : '3px',
@@ -209,27 +209,27 @@ export function CategorySelector({
                             alignItems: 'center',
                             justifyContent: 'center'
                           }}>
-                            <div style={{ display: 'flex', gap: '6px', marginTop: '-2px' }}>
+                            <div style={{ display: 'flex', gap: '6px', marginTop: '-3px' }}>
                               <div style={{ 
                                 width: '3px', 
                                 height: '3px', 
                                 borderRadius: '50%', 
-                                backgroundColor: isSelected ? 'white' : colorClasses 
+                                backgroundColor: 'black'
                               }} />
                               <div style={{ 
                                 width: '3px', 
                                 height: '3px', 
                                 borderRadius: '50%', 
-                                backgroundColor: isSelected ? 'white' : colorClasses 
+                                backgroundColor: 'black'
                               }} />
                             </div>
                             {/* Mouth */}
                             <div style={{
                               width: '8px',
                               height: '4px',
-                              borderBottom: `1.5px solid ${isSelected ? 'white' : colorClasses}`,
+                              borderBottom: '1.5px solid black',
                               borderRadius: '0 0 8px 8px',
-                              marginTop: '1px'
+                              marginTop: '3px'
                             }} />
                           </div>
                         </div>
