@@ -60,11 +60,10 @@ export function QuizApp() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [logoStretch, setLogoStretch] = useState(false);
-  const [logoSqueezeProgress, setLogoSqueezeProgress] = useState(0);
-  const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0); // -1 for left, 1 for right
   const [dragProgress, setDragProgress] = useState(0);
   const [targetCategory, setTargetCategory] = useState<string>('');
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
 
   useEffect(() => {
     // Start logo animation and data loading together
@@ -180,11 +179,11 @@ export function QuizApp() {
     if (currentIndex < questions.length - 1) {
       setIsTransitioning(true);
       setAnimationClass('animate-slide-out-left');
+      setLogoSqueezeDirection(-1);
       setTimeout(() => {
         setCurrentIndex(prev => prev + 1);
         setDragProgress(0);
         setTargetCategory('');
-        setLogoSqueezeProgress(0);
         setLogoSqueezeDirection(0);
         setAnimationClass('animate-slide-in-right');
         setTimeout(() => {
@@ -199,11 +198,11 @@ export function QuizApp() {
     if (currentIndex > 0) {
       setIsTransitioning(true);
       setAnimationClass('animate-slide-out-right');
+      setLogoSqueezeDirection(1);
       setTimeout(() => {
         setCurrentIndex(prev => prev - 1);
         setDragProgress(0);
         setTargetCategory('');
-        setLogoSqueezeProgress(0);
         setLogoSqueezeDirection(0);
         setAnimationClass('animate-slide-in-left');
         setTimeout(() => {
@@ -311,8 +310,7 @@ export function QuizApp() {
   const handleDragStateChange = (isDragging: boolean, progress: number, category: string, direction: number) => {
     setDragProgress(progress);
     setTargetCategory(category);
-    setLogoSqueezeProgress(progress);
-    setLogoSqueezeDirection(direction);
+    setLogoSqueezeDirection(progress > 0 ? direction : 0);
   };
 
   return (
@@ -366,14 +364,9 @@ export function QuizApp() {
             <img 
               src="/assets/logo.png" 
               alt="Logo" 
-              className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''}`}
+              className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeDirection < 0 ? 'logo-squeeze-left' : logoSqueezeDirection > 0 ? 'logo-squeeze-right' : ''}`}
               onClick={handleLogoClick}
-              style={{ 
-                filter: 'brightness(0)',
-                transform: `scaleX(${1 + logoSqueezeProgress * 0.5}) translateX(${logoSqueezeDirection * logoSqueezeProgress * -8}px)`,
-                transition: isTransitioning ? 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
-                transformOrigin: logoSqueezeDirection < 0 ? 'right' : logoSqueezeDirection > 0 ? 'left' : 'center'
-              }}
+              style={{ filter: 'brightness(0)' }}
             />
             <button 
               onClick={() => setCategorySelectorOpen(true)}
