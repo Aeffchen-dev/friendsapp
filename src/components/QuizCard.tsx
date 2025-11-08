@@ -18,6 +18,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
+  const [isSnapping, setIsSnapping] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const minSwipeDistance = 50;
@@ -25,6 +26,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   // Reset drag when question changes
   useEffect(() => {
     setDragOffset(0);
+    setIsSnapping(false);
   }, [currentQuestion]);
 
   // Get category-specific neon color - using the 5 color palette
@@ -99,37 +101,48 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     if (Math.abs(dragOffset) > minSwipeDistance) {
       if (dragOffset < 0 && nextQuestion) {
-        // Swipe left completed - trigger change immediately
-        setDragOffset(0);
+        // Swipe left - animate to completion
+        setIsSnapping(true);
         setIsDragging(false);
+        setDragOffset(-containerWidth);
         
         if (onDragStateChange) {
           onDragStateChange(false, 1, nextQuestion.category, -1);
         }
         
-        onSwipeLeft();
+        setTimeout(() => {
+          onSwipeLeft();
+        }, 250);
         return;
       } else if (dragOffset > 0 && prevQuestion) {
-        // Swipe right completed - trigger change immediately
-        setDragOffset(0);
+        // Swipe right - animate to completion
+        setIsSnapping(true);
         setIsDragging(false);
+        setDragOffset(containerWidth);
         
         if (onDragStateChange) {
           onDragStateChange(false, 1, prevQuestion.category, 1);
         }
         
-        onSwipeRight();
+        setTimeout(() => {
+          onSwipeRight();
+        }, 250);
         return;
       }
     }
     
-    // Reset if drag cancelled
+    // Snap back to center if cancelled
+    setIsSnapping(true);
     if (onDragStateChange) {
       onDragStateChange(false, 0, currentQuestion.category, 0);
     }
     
     setIsDragging(false);
-    setDragOffset(0);
+    
+    setTimeout(() => {
+      setDragOffset(0);
+      setTimeout(() => setIsSnapping(false), 250);
+    }, 0);
   };
 
   // Touch handlers
@@ -272,7 +285,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         className="flex items-center h-full"
         style={{
           transform: `translateX(${(-33.333 + normalizedOffset * 33.333).toFixed(3)}%)`,
-          transition: 'none',
+          transition: isSnapping ? 'transform 0.25s ease-out' : 'none',
           width: '300%',
           position: 'relative',
         }}
@@ -288,7 +301,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         >
           {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
             transform: `scale(${totalOffset > 0 ? incomingScale : 0.95}) rotate(${totalOffset > 0 ? incomingRotation : 3}deg)`,
-            transition: 'none',
+            transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             opacity: 1,
             position: 'relative',
           })}
@@ -305,7 +318,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         >
           {renderCard(currentQuestion, {
             transform: `scale(${currentScale}) rotate(${currentRotation}deg)`,
-            transition: 'none',
+            transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             position: 'relative',
           })}
         </div>
@@ -321,7 +334,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         >
           {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
             transform: `scale(${totalOffset < 0 ? incomingScale : 0.95}) rotate(${totalOffset < 0 ? incomingRotation : -3}deg)`,
-            transition: 'none',
+            transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             opacity: 1,
             position: 'relative',
           })}
