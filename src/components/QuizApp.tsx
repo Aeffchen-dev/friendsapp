@@ -386,19 +386,6 @@ export function QuizApp() {
             onClick={handleLogoClick}
             style={{ filter: 'brightness(0)' }}
           />
-          <button 
-            onClick={() => setCategorySelectorOpen(true)}
-            className="text-black font-normal text-xs"
-            style={{
-              fontSize: '14px',
-              visibility: loading ? 'hidden' : 'visible',
-              opacity: loading ? 0 : 1,
-              pointerEvents: loading ? 'none' : 'auto',
-              transition: 'opacity 0.3s ease'
-            }}
-          >
-            Kategorien wählen
-          </button>
         </div>
       </div>
 
