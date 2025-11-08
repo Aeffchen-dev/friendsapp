@@ -246,7 +246,7 @@ export function QuizApp() {
     setCategorySelectorOpen(false);
   };
 
-  const currentBodyColor = questions.length > 0 ? getCategoryBodyColor(questions[currentIndex].category) : '#000000';
+  const currentBodyColor = loading ? 'hsl(0, 100%, 65%)' : (questions.length > 0 ? getCategoryBodyColor(questions[currentIndex].category) : 'hsl(0, 100%, 65%)');
 
   return (
     <div 
@@ -289,25 +289,27 @@ export function QuizApp() {
           Ask
         </div>
       </div>
-      {/* App Header - Always visible */}
-      <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'transparent'}}>
-        <div className="flex justify-between items-center px-4 py-4">
-          <img 
-            src="/assets/logo.png" 
-            alt="Logo" 
-            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeLeft ? 'logo-squeeze-left' : ''} ${logoSqueezeRight ? 'logo-squeeze-right' : ''}`}
-            onClick={handleLogoClick}
-            style={{ filter: 'brightness(0)' }}
-          />
-          <button 
-            onClick={() => setCategorySelectorOpen(true)}
-            className="text-black font-normal text-xs"
-            style={{fontSize: '14px'}}
-          >
-            Kategorien wählen
-          </button>
+      {/* App Header - Hidden during loading */}
+      {!loading && (
+        <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'transparent'}}>
+          <div className="flex justify-between items-center px-4 py-4">
+            <img 
+              src="/assets/logo.png" 
+              alt="Logo" 
+              className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeLeft ? 'logo-squeeze-left' : ''} ${logoSqueezeRight ? 'logo-squeeze-right' : ''}`}
+              onClick={handleLogoClick}
+              style={{ filter: 'brightness(0)' }}
+            />
+            <button 
+              onClick={() => setCategorySelectorOpen(true)}
+              className="text-black font-normal text-xs"
+              style={{fontSize: '14px'}}
+            >
+              Kategorien wählen
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Main Quiz Container */}
       <div className="flex-1 flex justify-center items-center overflow-hidden absolute inset-0 z-10" style={{ height: '100vh', width: '100vw' }}>
