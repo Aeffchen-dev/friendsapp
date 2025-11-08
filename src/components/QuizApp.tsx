@@ -19,11 +19,11 @@ const getCategoryBodyColor = (category: string) => {
     case 'party':
       return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'family':
-      return 'hsl(325, 100%, 60%)'; // #FF35AB
+      return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'connection':
       return 'hsl(0, 100%, 50%)'; // #FF0000
     case 'identity':
-      return 'hsl(325, 100%, 60%)'; // #FF35AB
+      return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'career':
       return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'travel':
@@ -35,7 +35,7 @@ const getCategoryBodyColor = (category: string) => {
     case 'love':
       return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'hobby':
-      return 'hsl(325, 100%, 60%)'; // #FF35AB
+      return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'dreams':
       return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'fear':
@@ -372,27 +372,13 @@ export function QuizApp() {
       {/* App Header - Always visible */}
       <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'transparent'}}>
         <div className="flex justify-between items-center px-4 py-4">
-          <div 
-            className={`h-8 logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeDirection < 0 ? 'logo-squeeze-left' : logoSqueezeDirection > 0 ? 'logo-squeeze-right' : ''}`}
+          <img 
+            src="/assets/logo.png" 
+            alt="Logo" 
+            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeDirection < 0 ? 'logo-squeeze-left' : logoSqueezeDirection > 0 ? 'logo-squeeze-right' : ''}`}
             onClick={handleLogoClick}
-            style={{
-              fontFamily: "'Factor A', sans-serif",
-              fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-              fontSize: '32px',
-              fontWeight: 700,
-              color: '#000000',
-              display: 'flex',
-              alignItems: 'center',
-              lineHeight: 1,
-              letterSpacing: '-0.08em',
-              gap: '0.3em',
-            }}
-          >
-            <span style={{ fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1" }}>F</span>
-            <span style={{ fontFeatureSettings: "normal" }}>riends</span>
-            <span style={{ fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1" }}>A</span>
-            <span style={{ fontFeatureSettings: "normal" }}>pp</span>
-          </div>
+            style={{ filter: 'brightness(0)' }}
+          />
           {!loading && (
             <button 
               onClick={() => setCategorySelectorOpen(true)}

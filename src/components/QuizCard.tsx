@@ -41,11 +41,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       case 'party':
         return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'family':
-        return { stripBg: 'hsl(325, 100%, 60%)', bodyBg: 'hsl(325, 100%, 60%)' }; // #FF35AB
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'connection':
         return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
       case 'identity':
-        return { stripBg: 'hsl(325, 100%, 60%)', bodyBg: 'hsl(325, 100%, 60%)' }; // #FF35AB
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'career':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'travel':
@@ -57,7 +57,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       case 'love':
         return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'hobby':
-        return { stripBg: 'hsl(325, 100%, 60%)', bodyBg: 'hsl(325, 100%, 60%)' }; // #FF35AB
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'dreams':
         return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'fear':
@@ -223,10 +223,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           ...style,
           height: '80vh',
           maxHeight: '80vh',
-          backgroundColor: 'rgba(0, 0, 0, 0.30)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-          boxShadow: '0 0 24px 4px rgba(0, 0, 0, 0.32)',
+          backgroundColor: 'rgba(0, 0, 0, 0.25)',
+          backdropFilter: 'blur(28px)',
+          WebkitBackdropFilter: 'blur(28px)',
+          boxShadow: '-2px 0 24px 4px rgba(0, 0, 0, 0.24)',
           width: 'calc(100% - 32px)',
         }}
       >
@@ -237,7 +237,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             {Array(20).fill(question.category).map((cat, index) => (
               <span 
                 key={`${cat}-${index}`} 
-                className="text-white font-bold text-sm tracking-wide uppercase md:scale-x-[1.3]" 
+                className="text-white font-bold text-sm tracking-wide uppercase" 
                 style={{ 
                   marginRight: index < 19 ? '8px' : '0',
                   fontFamily: "'Factor A', sans-serif"
