@@ -18,32 +18,14 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [animationOffset, setAnimationOffset] = useState(0);
-  const [isResetting, setIsResetting] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const minSwipeDistance = 50;
 
-  // After parent index changes (currentQuestion updates), reset track smoothly
+  // Reset drag when question changes
   useEffect(() => {
-    if (isAnimating) {
-      // Wait for the animation to fully complete and currentQuestion to update
-      const timer = setTimeout(() => {
-        setIsResetting(true);
-        setAnimationOffset(0);
-        setDragOffset(0);
-        
-        // After reset transition completes
-        setTimeout(() => {
-          setIsAnimating(false);
-          setIsResetting(false);
-        }, 300);
-      }, 0);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [currentQuestion, isAnimating]);
+    setDragOffset(0);
+  }, [currentQuestion]);
 
   // Get category-specific neon color - using the 5 color palette
   const getCategoryColors = (category: string) => {
@@ -116,42 +98,32 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     const containerWidth = containerRef.current.offsetWidth;
     
     if (Math.abs(dragOffset) > minSwipeDistance) {
-      setIsAnimating(true);
-      
       if (dragOffset < 0 && nextQuestion) {
-        // Swipe left - animate from current position to full left
-        const remainingDistance = -containerWidth - dragOffset;
-        setAnimationOffset(remainingDistance);
+        // Swipe left completed - trigger change immediately
+        setDragOffset(0);
         setIsDragging(false);
         
-        // Continue color transition and logo squeeze during animation
         if (onDragStateChange) {
           onDragStateChange(false, 1, nextQuestion.category, -1);
         }
         
-        setTimeout(() => {
-          onSwipeLeft();
-        }, 300);
+        onSwipeLeft();
         return;
       } else if (dragOffset > 0 && prevQuestion) {
-        // Swipe right - animate from current position to full right
-        const remainingDistance = containerWidth - dragOffset;
-        setAnimationOffset(remainingDistance);
+        // Swipe right completed - trigger change immediately
+        setDragOffset(0);
         setIsDragging(false);
         
-        // Continue color transition and logo squeeze during animation
         if (onDragStateChange) {
           onDragStateChange(false, 1, prevQuestion.category, 1);
         }
         
-        setTimeout(() => {
-          onSwipeRight();
-        }, 300);
+        onSwipeRight();
         return;
       }
     }
     
-    // Reset color and logo if drag cancelled
+    // Reset if drag cancelled
     if (onDragStateChange) {
       onDragStateChange(false, 0, currentQuestion.category, 0);
     }
@@ -196,12 +168,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const getDragProgress = () => {
     if (!containerRef.current) return 0;
     const containerWidth = containerRef.current.offsetWidth;
-    const totalOffset = dragOffset + animationOffset;
-    return Math.min(Math.abs(totalOffset) / containerWidth, 1);
+    return Math.min(Math.abs(dragOffset) / containerWidth, 1);
   };
 
   const progress = getDragProgress();
-  const totalOffset = dragOffset + animationOffset;
+  const totalOffset = dragOffset;
   const direction = totalOffset < 0 ? -1 : 1;
   const containerWidthPx = containerRef.current?.offsetWidth || 1;
   const normalizedOffset = totalOffset / containerWidthPx; // -1 .. 1
@@ -301,7 +272,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         className="flex items-center h-full"
         style={{
           transform: `translateX(${(-33.333 + normalizedOffset * 33.333).toFixed(3)}%)`,
-          transition: (isDragging || (!isAnimating && !isResetting)) ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: 'none',
           width: '300%',
           position: 'relative',
         }}
@@ -317,7 +288,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         >
           {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
             transform: `scale(${totalOffset > 0 ? incomingScale : 0.95}) rotate(${totalOffset > 0 ? incomingRotation : 3}deg)`,
-            transition: (isDragging || (!isAnimating && !isResetting)) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: 'none',
             opacity: 1,
             position: 'relative',
           })}
@@ -334,7 +305,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         >
           {renderCard(currentQuestion, {
             transform: `scale(${currentScale}) rotate(${currentRotation}deg)`,
-            transition: (isDragging || (!isAnimating && !isResetting)) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: 'none',
             position: 'relative',
           })}
         </div>
@@ -350,7 +321,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         >
           {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
             transform: `scale(${totalOffset < 0 ? incomingScale : 0.95}) rotate(${totalOffset < 0 ? incomingRotation : -3}deg)`,
-            transition: (isDragging || (!isAnimating && !isResetting)) ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: 'none',
             opacity: 1,
             position: 'relative',
           })}
