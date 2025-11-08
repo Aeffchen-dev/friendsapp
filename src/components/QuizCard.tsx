@@ -268,7 +268,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     <>
       <div
         ref={containerRef}
-        className="relative h-full w-full overflow-hidden select-none z-10 pt-8 md:pt-0"
+        className="relative h-full w-full overflow-hidden select-none z-10"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
