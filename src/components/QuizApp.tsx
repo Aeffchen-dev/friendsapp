@@ -224,10 +224,11 @@ export function QuizApp() {
             </div>
           ) : questions.length > 0 ? (
             <QuizCard
-              question={questions[currentIndex]}
+              currentQuestion={questions[currentIndex]}
+              nextQuestion={currentIndex < questions.length - 1 ? questions[currentIndex + 1] : null}
+              prevQuestion={currentIndex > 0 ? questions[currentIndex - 1] : null}
               onSwipeLeft={nextQuestion}
               onSwipeRight={prevQuestion}
-              animationClass={animationClass}
             />
           ) : (
             <div className="h-full flex items-center justify-center min-h-[calc(100svh-120px)]">

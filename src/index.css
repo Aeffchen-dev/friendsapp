@@ -6,11 +6,29 @@
 All colors MUST be HSL.
 */
 
+@font-face {
+  font-family: 'Factor A';
+  src: url('/assets/FactorA-Bold.woff2') format('woff2'),
+       url('/assets/FactorA-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Factor A';
+  src: url('/assets/FactorA-BoldItalic.woff2') format('woff2'),
+       url('/assets/FactorA-BoldItalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --background: 0 0% 0%;
     --foreground: 0 0% 98%;
-    --card-background: 0 0% 8.6%;
+    --card-background: 0 0% 7%;
 
     --card: 0 0% 10%;
     --card-foreground: 0 0% 98%;
@@ -47,43 +65,43 @@ All colors MUST be HSL.
     --quiz-background: 0 0% 7%;
     --quiz-surface: 0 0% 12%;
     
-    /* Category-specific colors */
-    --quiz-fuck-bg: 0 100% 50%;           /* Red #FF0000 */
-    --quiz-fuck-text: 0 0% 98%;           /* White text on red */
-    --quiz-connection-bg: 240 100% 50%;   /* Blue #0000FF */
-    --quiz-connection-text: 0 0% 100%;    /* White text on blue */
-    --quiz-identity-bg: 266 100% 51%;     /* Purple #7004FF */
-    --quiz-identity-text: 0 0% 98%;       /* White text on purple */
-    --quiz-party-bg: 60 100% 71%;         /* Yellow #FFFE6F */
-    --quiz-party-text: 0 0% 0%;           /* Black text on yellow */
+    /* Category-specific colors - Warm palette */
+    --quiz-fuck-bg: 327 100% 79%;           /* #FF92D3 */
+    --quiz-fuck-text: 0 0% 0%;
+    --quiz-connection-bg: 281 98% 25%;      /* #55017D */
+    --quiz-connection-text: 0 0% 98%;
+    --quiz-identity-bg: 278 100% 57%;       /* #AF25FF */
+    --quiz-identity-text: 0 0% 98%;
+    --quiz-party-bg: 290 100% 72%;          /* #E772FF */
+    --quiz-party-text: 0 0% 0%;
     
-    /* Additional categories with proper colors */
-    --quiz-friends-bg: 120 100% 50%;      /* Green #00FF00 */
-    --quiz-friends-text: 0 0% 0%;         /* Black text on green */
-    --quiz-self-reflection-bg: 195 100% 50%; /* Light blue #00BFFF */
-    --quiz-self-reflection-text: 0 0% 0%; /* Black text on light blue */
-    --quiz-family-bg: 30 100% 70%;        /* Orange #FFCC66 */
-    --quiz-family-text: 0 0% 0%;          /* Black text on orange */
-    --quiz-career-bg: 35 100% 62%;        /* Orange #FFB23E */
-    --quiz-career-text: 0 0% 0%;          /* Black text on orange */
-    --quiz-travel-bg: 92 100% 83%;        /* Light green #CCFFAC */
-    --quiz-travel-text: 0 0% 0%;          /* Black text on light green */
-    --quiz-health-bg: 330 84% 67%;        /* Pink */
-    --quiz-health-text: 0 0% 98%;         /* White text on pink */
-    --quiz-money-bg: 45 95% 55%;          /* Gold */
-    --quiz-money-text: 0 0% 0%;           /* Black text on gold */
-    --quiz-love-bg: 350 85% 60%;          /* Red */
-    --quiz-love-text: 0 0% 98%;           /* White text on red */
-    --quiz-hobby-bg: 25 60% 45%;          /* Brown */
-    --quiz-hobby-text: 0 0% 98%;          /* White text on brown */
-    --quiz-dreams-bg: 270 75% 65%;        /* Purple */
-    --quiz-dreams-text: 0 0% 98%;         /* White text on purple */
-    --quiz-fear-bg: 210 10% 40%;          /* Gray */
-    --quiz-fear-text: 0 0% 98%;           /* White text on gray */
-    --quiz-wisdom-bg: 239 84% 67%;        /* Indigo */
-    --quiz-wisdom-text: 0 0% 98%;         /* White text on indigo */
-    --quiz-future-bg: 199 89% 48%;        /* Sky blue */
-    --quiz-future-text: 0 0% 98%;         /* White text on sky blue */
+    /* Additional categories with warm colors */
+    --quiz-friends-bg: 315 100% 64%;        /* #FF47D1 */
+    --quiz-friends-text: 0 0% 0%;
+    --quiz-self-reflection-bg: 338 97% 61%; /* #FC3D82 */
+    --quiz-self-reflection-text: 0 0% 98%;
+    --quiz-family-bg: 10 100% 50%;          /* #FF2B00 */
+    --quiz-family-text: 0 0% 98%;
+    --quiz-career-bg: 24 100% 50%;          /* #FF6600 */
+    --quiz-career-text: 0 0% 0%;
+    --quiz-travel-bg: 327 100% 79%;         /* #FF92D3 */
+    --quiz-travel-text: 0 0% 0%;
+    --quiz-health-bg: 281 98% 25%;          /* #55017D */
+    --quiz-health-text: 0 0% 98%;
+    --quiz-money-bg: 278 100% 57%;          /* #AF25FF */
+    --quiz-money-text: 0 0% 98%;
+    --quiz-love-bg: 290 100% 72%;           /* #E772FF */
+    --quiz-love-text: 0 0% 0%;
+    --quiz-hobby-bg: 315 100% 64%;          /* #FF47D1 */
+    --quiz-hobby-text: 0 0% 0%;
+    --quiz-dreams-bg: 338 97% 61%;          /* #FC3D82 */
+    --quiz-dreams-text: 0 0% 98%;
+    --quiz-fear-bg: 10 100% 50%;            /* #FF2B00 */
+    --quiz-fear-text: 0 0% 98%;
+    --quiz-wisdom-bg: 24 100% 50%;          /* #FF6600 */
+    --quiz-wisdom-text: 0 0% 0%;
+    --quiz-future-bg: 327 100% 79%;         /* #FF92D3 */
+    --quiz-future-text: 0 0% 0%;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
@@ -168,7 +186,12 @@ All colors MUST be HSL.
     height: 100vh;
     height: 100svh;
     background-color: #000000;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Factor A', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  
+  /* Stylistic alternative for first letter */
+  .question-text::first-letter {
+    font-feature-settings: 'ss01' 1;
   }
 }
 
