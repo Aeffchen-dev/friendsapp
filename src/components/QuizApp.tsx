@@ -382,7 +382,7 @@ export function QuizApp() {
       </div>
       {/* App Header - Always visible */}
       <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'transparent'}}>
-        <div className="flex justify-between items-center px-4">
+        <div className="flex justify-between items-center px-4 py-4">
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
@@ -403,7 +403,7 @@ export function QuizApp() {
       </div>
 
       {/* Main Quiz Container */}
-      <div className="flex-1 flex justify-center items-center overflow-hidden absolute z-10" style={{ top: 'calc(32px + 24px)', bottom: 0, left: 0, right: 0 }}>
+      <div className="flex-1 flex justify-center items-center overflow-hidden absolute z-10" style={{ top: 'calc(64px + 24px)', bottom: 0, left: 0, right: 0 }}>
         <div className="w-full h-full flex justify-center items-center">
           {loading ? (
             <div className="h-full flex items-center justify-center min-h-[calc(100svh-120px)]">
