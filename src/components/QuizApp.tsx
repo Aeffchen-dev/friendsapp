@@ -304,7 +304,6 @@ export function QuizApp() {
   };
 
   const getCurrentBackgroundColor = () => {
-    if (categorySelectorOpen) return 'hsl(0, 0%, 0%)'; // Black when modal is open
     if (loading) return 'hsl(0, 100%, 65%)';
     if (questions.length === 0) return 'hsl(0, 100%, 65%)';
     
@@ -329,48 +328,45 @@ export function QuizApp() {
   return (
     <div 
       className="h-[100svh] overflow-hidden flex flex-col relative"
+      style={{ 
+        backgroundColor: currentBodyColor,
+        transition: 'background-color 0.8s ease-out'
+      }}
     >
       {/* Large "Friends" text at bottom */}
       <div 
-        className="fixed inset-0 pointer-events-none z-0"
+        className="fixed left-1/2 pointer-events-none z-0"
+        style={{
+          bottom: '0',
+          transform: 'translateX(-50%) translateY(20%)',
+          width: '150vw',
+        }}
       >
+        {/* Desktop: Friends */}
         <div 
-          className="fixed left-1/2 z-0"
+          className="hidden md:block font-bold whitespace-nowrap text-center"
           style={{
-            bottom: '0',
-            transform: 'translateX(-50%) translateY(20%)',
-            width: '150vw',
-            backgroundColor: currentBodyColor,
-            transition: 'background-color 0.8s ease-out',
-            height: '100vh'
+            fontSize: '30vw',
+            lineHeight: '1',
+            fontFamily: "'Factor A', sans-serif",
+            color: '#000000',
+            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
           }}
         >
-          {/* Desktop: Friends */}
-          <div 
-            className="hidden md:block font-bold whitespace-nowrap text-center"
-            style={{
-              fontSize: '30vw',
-              lineHeight: '1',
-              fontFamily: "'Factor A', sans-serif",
-              color: '#000000',
-              fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-            }}
-          >
-            Friends
-          </div>
-          {/* Mobile: Ask */}
-          <div 
-            className="block md:hidden font-bold whitespace-nowrap text-center"
-            style={{
-              fontSize: '60vw',
-              lineHeight: '1',
-              fontFamily: "'Factor A', sans-serif",
-              color: '#000000',
-              fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-            }}
-          >
-            Ask
-          </div>
+          Friends
+        </div>
+        {/* Mobile: Ask */}
+        <div 
+          className="block md:hidden font-bold whitespace-nowrap text-center"
+          style={{
+            fontSize: '60vw',
+            lineHeight: '1',
+            fontFamily: "'Factor A', sans-serif",
+            color: '#000000',
+            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+          }}
+        >
+          Ask
         </div>
       </div>
       {/* App Header - Always visible */}
