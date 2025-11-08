@@ -184,19 +184,55 @@ export function CategorySelector({
                            position: 'relative'
                          }}
                       >
-                        {/* Toggle circle */}
+                        {/* Toggle circle with smiley */}
                         <div
-                          className="transition-all ease-out duration-75"
+                          className="transition-all ease-out duration-75 flex items-center justify-center"
                           style={{
-                            width: '30px',
-                            height: '30px',
+                            width: '26px',
+                            height: '26px',
                             borderRadius: '50%',
-                            backgroundColor: 'white',
+                            backgroundColor: isSelected ? colorClasses : 'white',
                             position: 'absolute',
-                            top: '1px',
-                            left: isSelected ? '21px' : '1px',
+                            top: '3px',
+                            left: isSelected ? '23px' : '3px',
+                            transform: isSelected ? 'rotate(360deg)' : 'rotate(0deg)',
+                            transition: 'all 0.075s ease-out',
                           }}
-                        />
+                        >
+                          {/* Eyes */}
+                          <div style={{ 
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}>
+                            <div style={{ display: 'flex', gap: '6px', marginTop: '-2px' }}>
+                              <div style={{ 
+                                width: '3px', 
+                                height: '3px', 
+                                borderRadius: '50%', 
+                                backgroundColor: isSelected ? 'white' : colorClasses 
+                              }} />
+                              <div style={{ 
+                                width: '3px', 
+                                height: '3px', 
+                                borderRadius: '50%', 
+                                backgroundColor: isSelected ? 'white' : colorClasses 
+                              }} />
+                            </div>
+                            {/* Mouth */}
+                            <div style={{
+                              width: '8px',
+                              height: '4px',
+                              borderBottom: `1.5px solid ${isSelected ? 'white' : colorClasses}`,
+                              borderRadius: '0 0 8px 8px',
+                              marginTop: '1px'
+                            }} />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
