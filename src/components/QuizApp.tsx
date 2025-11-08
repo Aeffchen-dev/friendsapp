@@ -333,10 +333,6 @@ export function QuizApp() {
       {/* Large "Friends" text at bottom */}
       <div 
         className="fixed inset-0 pointer-events-none z-0"
-        style={{
-          backgroundColor: currentBodyColor,
-          transition: 'background-color 0.8s ease-out'
-        }}
       >
         <div 
           className="fixed left-1/2 z-0"
@@ -344,6 +340,9 @@ export function QuizApp() {
             bottom: '0',
             transform: 'translateX(-50%) translateY(20%)',
             width: '150vw',
+            backgroundColor: currentBodyColor,
+            transition: 'background-color 0.8s ease-out',
+            height: '100vh'
           }}
         >
           {/* Desktop: Friends */}
