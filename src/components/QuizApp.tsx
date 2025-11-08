@@ -253,28 +253,6 @@ export function QuizApp() {
       className="h-[100svh] overflow-hidden flex flex-col transition-colors duration-500 relative"
       style={{ backgroundColor: currentBodyColor }}
     >
-      {/* Large "Friends" text at bottom */}
-      <div 
-        className="fixed left-1/2 pointer-events-none z-0"
-        style={{
-          bottom: '0',
-          transform: 'translateX(-50%) translateY(20%)',
-          width: '150vw',
-        }}
-      >
-        <div 
-          className="font-bold whitespace-nowrap text-center"
-          style={{
-            fontSize: '30vw',
-            lineHeight: '1',
-            fontFamily: "'Factor A', sans-serif",
-            color: '#000000',
-            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-          }}
-        >
-          Friends
-        </div>
-      </div>
       {/* App Header - Always visible */}
       <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'transparent'}}>
         <div className="flex justify-between items-baseline px-4 py-4">
