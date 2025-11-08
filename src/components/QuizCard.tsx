@@ -186,6 +186,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const progress = getDragProgress();
   const totalOffset = dragOffset + animationOffset;
   const direction = totalOffset < 0 ? -1 : 1;
+  const containerWidthPx = containerRef.current?.offsetWidth || 1;
+  const normalizedOffset = totalOffset / containerWidthPx; // -1 .. 1
 
   // Current card: 100% -> 80% scale, 0deg -> 5deg rotation (away from direction)
   const currentScale = 1 - (progress * 0.2);
@@ -281,7 +283,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       <div 
         className="flex items-center h-full"
         style={{
-          transform: `translateX(calc(-33.333% + ${dragOffset + animationOffset}px))`,
+          transform: `translateX(${(-33.333 + normalizedOffset * 33.333).toFixed(3)}%)`,
           transition: (isDragging || !isAnimating) ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           width: '300%',
           position: 'relative',

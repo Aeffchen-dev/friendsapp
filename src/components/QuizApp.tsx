@@ -11,41 +11,41 @@ interface Question {
 const getCategoryBodyColor = (category: string) => {
   switch (category.toLowerCase()) {
     case 'fuck':
-      return 'hsl(300, 100%, 50%)';
+      return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'friends':
-      return 'hsl(0, 100%, 65%)'; // 200% more vibrant
+      return 'hsl(0, 100%, 50%)'; // #FF0000
     case 'self reflection':
-      return 'hsl(300, 100%, 50%)';
+      return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'party':
-      return 'hsl(25, 100%, 50%)';
+      return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'family':
-      return 'hsl(0, 100%, 50%)';
+      return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'connection':
-      return 'hsl(0, 100%, 50%)';
+      return 'hsl(0, 100%, 50%)'; // #FF0000
     case 'identity':
-      return 'hsl(328, 100%, 55%)'; // More vibrant
+      return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'career':
-      return 'hsl(328, 100%, 70%)';
+      return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'travel':
-      return 'hsl(25, 100%, 50%)';
+      return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'health':
-      return 'hsl(0, 100%, 65%)';
+      return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'money':
-      return 'hsl(300, 100%, 50%)';
+      return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'love':
-      return 'hsl(0, 100%, 50%)';
+      return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'hobby':
-      return 'hsl(328, 100%, 70%)';
+      return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'dreams':
-      return 'hsl(25, 100%, 50%)';
+      return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'fear':
-      return 'hsl(0, 100%, 65%)';
+      return 'hsl(0, 100%, 50%)'; // #FF0000
     case 'wisdom':
-      return 'hsl(300, 100%, 50%)';
+      return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'future':
-      return 'hsl(0, 100%, 50%)';
+      return 'hsl(15, 100%, 50%)'; // #FF4100
     default:
-      return 'hsl(290, 100%, 85%)';
+      return 'hsl(290, 100%, 50%)'; // Default matches strip palette
   }
 };
 
