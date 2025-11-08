@@ -329,7 +329,7 @@ export function QuizApp() {
     <div 
       className="h-[100svh] overflow-hidden flex flex-col relative"
       style={{ 
-        backgroundColor: 'hsl(0, 0%, 0%)',
+        backgroundColor: currentBodyColor,
         transition: 'background-color 0.8s ease-out'
       }}
     >
