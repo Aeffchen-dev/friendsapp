@@ -188,6 +188,42 @@ export function QuizApp() {
     }
   }, [selectedCategories, allQuestions]);
 
+  // Update body background color based on current question's category
+  useEffect(() => {
+    if (questions.length > 0 && questions[currentIndex]) {
+      const category = questions[currentIndex].category.toLowerCase().replace(/\s+/g, '-');
+      const categoryColorMap: Record<string, string> = {
+        'fuck': '150 100% 50%',
+        'connection': '270 100% 65%',
+        'identity': '20 100% 55%',
+        'party': '190 100% 20%',
+        'friends': '320 100% 60%',
+        'self-reflection': '340 100% 25%',
+        'family': '150 100% 50%',
+        'career': '270 100% 65%',
+        'travel': '20 100% 55%',
+        'health': '190 100% 20%',
+        'money': '320 100% 60%',
+        'love': '340 100% 25%',
+        'hobby': '150 100% 50%',
+        'dreams': '270 100% 65%',
+        'fear': '20 100% 55%',
+        'wisdom': '190 100% 20%',
+        'future': '320 100% 60%',
+        'wer-aus-der-runde': '340 100% 25%',
+      };
+      
+      const color = categoryColorMap[category] || '0 0% 0%';
+      document.body.style.backgroundColor = `hsl(${color})`;
+      document.body.style.transition = 'background-color 0.3s ease';
+    }
+    
+    // Cleanup function to reset background on unmount
+    return () => {
+      document.body.style.backgroundColor = '#000000';
+    };
+  }, [currentIndex, questions]);
+
   const triggerLogoStretch = () => {
     setLogoStretch(true);
     setTimeout(() => setLogoStretch(false), 2500);
