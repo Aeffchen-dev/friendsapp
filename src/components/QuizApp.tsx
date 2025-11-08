@@ -325,6 +325,14 @@ export function QuizApp() {
     setLogoSqueezeDirection(progress > 0 ? direction : 0);
   };
 
+  // Update theme-color meta tag for iOS status bar
+  useEffect(() => {
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', currentBodyColor);
+    }
+  }, [currentBodyColor]);
+
   return (
     <div 
       className="h-[100svh] overflow-hidden flex flex-col relative"
