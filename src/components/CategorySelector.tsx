@@ -186,7 +186,6 @@ export function CategorySelector({
                       >
                         {/* Toggle circle with smiley */}
                         <div
-                          className="transition-all ease-out duration-75 flex items-center justify-center"
                           style={{
                             width: '26px',
                             height: '26px',
@@ -197,9 +196,12 @@ export function CategorySelector({
                             left: isSelected ? '23px' : '3px',
                             transform: isSelected ? 'rotate(360deg)' : 'rotate(0deg)',
                             transition: 'all 0.075s ease-out',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
                           }}
                         >
-                          {/* Eyes */}
+                          {/* Smiley face */}
                           <div style={{ 
                             position: 'absolute',
                             width: '100%',
@@ -209,6 +211,7 @@ export function CategorySelector({
                             alignItems: 'center',
                             justifyContent: 'center'
                           }}>
+                            {/* Eyes */}
                             <div style={{ display: 'flex', gap: '6px', marginTop: '-3px' }}>
                               <div style={{ 
                                 width: '3px', 
@@ -223,13 +226,13 @@ export function CategorySelector({
                                 backgroundColor: 'black'
                               }} />
                             </div>
-                            {/* Mouth */}
+                            {/* Mouth - solid line */}
                             <div style={{
-                              width: '8px',
-                              height: '4px',
-                              borderBottom: '1.5px solid black',
-                              borderRadius: '0 0 8px 8px',
-                              marginTop: '3px'
+                              width: '10px',
+                              height: '1.5px',
+                              backgroundColor: 'black',
+                              borderRadius: '2px',
+                              marginTop: '5px'
                             }} />
                           </div>
                         </div>
