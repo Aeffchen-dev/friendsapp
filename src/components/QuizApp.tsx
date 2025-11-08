@@ -253,6 +253,28 @@ export function QuizApp() {
       className="h-[100svh] overflow-hidden flex flex-col transition-colors duration-500 relative"
       style={{ backgroundColor: currentBodyColor }}
     >
+      {/* Large "Friends" text at bottom */}
+      <div 
+        className="fixed left-1/2 pointer-events-none z-0"
+        style={{
+          bottom: '0',
+          transform: 'translateX(-50%) translateY(20%)',
+          width: '150vw',
+        }}
+      >
+        <div 
+          className="font-bold whitespace-nowrap text-center"
+          style={{
+            fontSize: '30vw',
+            lineHeight: '1',
+            fontFamily: "'Factor A', sans-serif",
+            color: '#000000',
+            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+          }}
+        >
+          Friends
+        </div>
+      </div>
       {/* App Header - Always visible */}
       <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'transparent'}}>
         <div className="flex justify-between items-baseline px-4 py-4">
@@ -274,7 +296,7 @@ export function QuizApp() {
       </div>
 
       {/* Main Quiz Container */}
-      <div className="flex-1 flex justify-center items-center mx-4 overflow-hidden absolute inset-0 z-10" style={{ height: '100vh' }}>
+      <div className="flex-1 flex justify-center items-center overflow-hidden absolute inset-0 z-10" style={{ height: '100vh', width: '100vw' }}>
         <div className="w-full h-full flex justify-center items-center">
           {loading ? (
             <div className="h-full flex items-center justify-center min-h-[calc(100svh-120px)]">
