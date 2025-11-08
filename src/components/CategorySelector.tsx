@@ -29,39 +29,39 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(344 95% 16%)'; // #4F0216
-      case 'connection':
-        return 'hsl(270 95% 17%)'; // #2C0255
-      case 'identity':
-        return 'hsl(0 65% 13%)'; // #380C0C
-      case 'party':
         return 'hsl(14 100% 43%)'; // #D93300
-      case 'friends':
+      case 'connection':
         return 'hsl(281 100% 13%)'; // #2C0041
-      case 'self reflection':
+      case 'identity':
         return 'hsl(159 100% 13%)'; // #00422B
+      case 'party':
+        return 'hsl(178 93% 17%)'; // #035653
+      case 'friends':
+        return 'hsl(14 100% 43%)'; // #D93300
+      case 'self reflection':
+        return 'hsl(281 100% 13%)'; // #2C0041
       case 'family':
-        return 'hsl(23 98% 24%)'; // #7B2F01
+        return 'hsl(159 100% 13%)'; // #00422B
       case 'career':
         return 'hsl(178 93% 17%)'; // #035653
       case 'travel':
-        return 'hsl(170 100% 14%)'; // #00463A
-      case 'health':
-        return 'hsl(205 100% 19%)'; // #003A63
-      case 'money':
-        return 'hsl(187 94% 13%)'; // #023B42
-      case 'love':
-        return 'hsl(344 95% 16%)'; // #4F0216
-      case 'hobby':
-        return 'hsl(270 95% 17%)'; // #2C0255
-      case 'dreams':
-        return 'hsl(0 65% 13%)'; // #380C0C
-      case 'fear':
         return 'hsl(14 100% 43%)'; // #D93300
-      case 'wisdom':
+      case 'health':
         return 'hsl(281 100% 13%)'; // #2C0041
-      case 'future':
+      case 'money':
         return 'hsl(159 100% 13%)'; // #00422B
+      case 'love':
+        return 'hsl(178 93% 17%)'; // #035653
+      case 'hobby':
+        return 'hsl(14 100% 43%)'; // #D93300
+      case 'dreams':
+        return 'hsl(281 100% 13%)'; // #2C0041
+      case 'fear':
+        return 'hsl(159 100% 13%)'; // #00422B
+      case 'wisdom':
+        return 'hsl(178 93% 17%)'; // #035653
+      case 'future':
+        return 'hsl(14 100% 43%)'; // #D93300
       default:
         return 'hsl(290 100% 85%)';
     }
