@@ -180,7 +180,7 @@ export function CategorySelector({
                            width: '52px', 
                            height: '32px', 
                            borderRadius: '32px',
-                           backgroundColor: isSelected ? 'rgba(0, 0, 0, 0.25)' : 'rgba(255, 255, 255, 0.25)',
+                           backgroundColor: isSelected ? 'rgba(0, 0, 0, 0.25)' : 'rgba(255, 255, 255, 0.1)',
                            position: 'relative'
                          }}
                       >
