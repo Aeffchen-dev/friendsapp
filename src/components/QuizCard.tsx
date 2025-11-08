@@ -282,18 +282,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         }}
       >
       <div 
-        className="flex items-start h-full"
+        className="flex items-center h-full"
         style={{
           transform: `translateX(${(-33.333 + normalizedOffset * 33.333).toFixed(3)}%)`,
           transition: isSnapping ? 'transform 0.25s ease-out' : 'none',
           width: '300%',
           position: 'relative',
-          paddingTop: '48px',
         }}
       >
         {/* Previous card (left) */}
         <div 
-          className="flex justify-center items-start" 
+          className="flex justify-center items-center" 
           style={{ 
             width: '33.333%',
             height: '100%',
@@ -310,7 +309,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
 
         {/* Current card (center) */}
         <div 
-          className="flex justify-center items-start" 
+          className="flex justify-center items-center" 
           style={{ 
             width: '33.333%',
             height: '100%',
@@ -326,7 +325,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
 
         {/* Next card (right) */}
         <div 
-          className="flex justify-center items-start" 
+          className="flex justify-center items-center" 
           style={{ 
             width: '33.333%',
             height: '100%',
