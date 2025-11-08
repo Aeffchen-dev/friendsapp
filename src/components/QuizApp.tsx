@@ -254,7 +254,7 @@ export function QuizApp() {
       style={{ backgroundColor: currentBodyColor }}
     >
       {/* App Header - Always visible */}
-      <div className="app-header bg-black flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: '#000000'}}>
+      <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50}}>
         <div className="flex justify-between items-baseline px-4 py-4">
           <img 
             src="/assets/logo.png" 
@@ -296,7 +296,7 @@ export function QuizApp() {
       </div>
         
       {/* Bottom Link - Always visible */}
-      <div className="app-footer bg-background/80 backdrop-blur-sm flex-shrink-0 h-5">
+      <div className="app-footer flex-shrink-0 h-5 md:mb-4">
         <div className="flex justify-center items-center px-4 h-full">
           <a 
             href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
