@@ -304,6 +304,7 @@ export function QuizApp() {
   };
 
   const getCurrentBackgroundColor = () => {
+    if (categorySelectorOpen) return 'hsl(0, 0%, 0%)'; // Black when modal is open
     if (loading) return 'hsl(0, 100%, 65%)';
     if (questions.length === 0) return 'hsl(0, 100%, 65%)';
     
