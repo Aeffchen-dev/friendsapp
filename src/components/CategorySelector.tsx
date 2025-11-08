@@ -29,41 +29,41 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(300 100% 50%)'; // Magenta/Purple
+        return 'hsl(300 100% 50%)'; // #FF00FF
       case 'connection':
-        return 'hsl(0 100% 50%)'; // Red-Pink
+        return 'hsl(300 100% 50%)'; // #FF00FF
       case 'identity':
-        return 'hsl(328 100% 55%)'; // More vibrant
+        return 'hsl(0 100% 50%)'; // #FF0000
       case 'party':
-        return 'hsl(25 100% 50%)'; // Orange
+        return 'hsl(25 100% 50%)'; // #FF4100
       case 'friends':
-        return 'hsl(0 100% 65%)'; // 200% more vibrant (Wer aus der Runde)
+        return 'hsl(0 100% 50%)'; // #FF0000 (Wer aus der Runde)
       case 'self reflection':
-        return 'hsl(300 100% 50%)'; // Magenta/Purple
+        return 'hsl(290 100% 50%)'; // #D400FF
       case 'family':
-        return 'hsl(0 100% 50%)'; // Red-Pink
+        return 'hsl(328 100% 55%)'; // #FF20A2
       case 'career':
-        return 'hsl(328 100% 70%)'; // Light Pink
+        return 'hsl(290 100% 50%)'; // #D400FF
       case 'travel':
-        return 'hsl(25 100% 50%)'; // Orange
+        return 'hsl(25 100% 50%)'; // #FF4100
       case 'health':
-        return 'hsl(0 100% 65%)'; // Coral
+        return 'hsl(328 100% 55%)'; // #FF20A2
       case 'money':
-        return 'hsl(300 100% 50%)'; // Magenta/Purple
+        return 'hsl(300 100% 50%)'; // #FF00FF
       case 'love':
-        return 'hsl(0 100% 50%)'; // Red-Pink
+        return 'hsl(0 100% 50%)'; // #FF0000
       case 'hobby':
-        return 'hsl(328 100% 70%)'; // Light Pink
+        return 'hsl(290 100% 50%)'; // #D400FF
       case 'dreams':
-        return 'hsl(25 100% 50%)'; // Orange
+        return 'hsl(25 100% 50%)'; // #FF4100
       case 'fear':
-        return 'hsl(0 100% 65%)'; // Coral
+        return 'hsl(328 100% 55%)'; // #FF20A2
       case 'wisdom':
-        return 'hsl(300 100% 50%)'; // Magenta/Purple
+        return 'hsl(300 100% 50%)'; // #FF00FF
       case 'future':
-        return 'hsl(0 100% 50%)'; // Red-Pink
+        return 'hsl(0 100% 50%)'; // #FF0000
       default:
-        return 'hsl(290 100% 85%)';
+        return 'hsl(290 100% 50%)'; // #D400FF
     }
   };
 
@@ -92,7 +92,7 @@ export function CategorySelector({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-screen h-screen max-w-none bg-background border-0 rounded-none p-0 overflow-hidden [&>button]:hidden data-[state=closed]:animate-none data-[state=closed]:duration-0" style={{ width: '100vw', height: '100vh' }}>
+      <DialogContent className="w-screen h-screen max-w-none bg-background border-0 rounded-3xl p-0 overflow-hidden [&>button]:hidden data-[state=closed]:animate-none data-[state=closed]:duration-0" style={{ width: '100vw', height: '100vh' }}>
         <DialogDescription className="sr-only">
           Wählen Sie die Kategorien aus, die Sie sehen möchten
         </DialogDescription>
