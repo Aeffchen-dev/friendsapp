@@ -180,11 +180,11 @@ export function CategorySelector({
                            width: '52px', 
                            height: '32px', 
                            borderRadius: '32px',
-                           backgroundColor: isSelected ? 'rgba(0, 0, 0, 0.25)' : 'rgba(255, 255, 255, 0.1)',
+                           backgroundColor: isSelected ? 'rgba(0, 0, 0, 0.35)' : 'rgba(255, 255, 255, 0.2)',
                            position: 'relative'
                          }}
                       >
-                        {/* Toggle circle with smiley */}
+                        {/* Toggle circle */}
                         <div
                           style={{
                             width: '26px',
@@ -196,46 +196,8 @@ export function CategorySelector({
                             left: isSelected ? '23px' : '3px',
                             transition: 'left 0.15s ease-out, transform 0.15s ease-out',
                             transform: isSelected ? 'rotate(360deg)' : 'rotate(0deg)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
                           }}
-                        >
-                          {/* Simple smiley face */}
-                          <div style={{ 
-                            position: 'absolute',
-                            width: '100%',
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                          }}>
-                            {/* Eyes - simple dots */}
-                            <div style={{ display: 'flex', gap: '5px', marginTop: '-1px' }}>
-                              <div style={{ 
-                                width: '2.5px', 
-                                height: '2.5px', 
-                                borderRadius: '50%', 
-                                backgroundColor: 'black'
-                              }} />
-                              <div style={{ 
-                                width: '2.5px', 
-                                height: '2.5px', 
-                                borderRadius: '50%', 
-                                backgroundColor: 'black'
-                              }} />
-                            </div>
-                            {/* Mouth - simple curve with thicker stroke */}
-                            <div style={{
-                              width: '8px',
-                              height: '3px',
-                              borderBottom: '1.5px solid black',
-                              borderRadius: '0 0 8px 8px',
-                              marginTop: '3px'
-                            }} />
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
