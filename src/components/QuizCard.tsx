@@ -151,9 +151,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           height: '80vh',
           maxHeight: '80vh',
           backgroundColor: 'rgba(0, 0, 0, 0.40)',
-          backdropFilter: 'blur(40px)',
-          WebkitBackdropFilter: 'blur(40px)',
-          boxShadow: '0 0 24px 16px rgba(0, 0, 0, 0.16)',
+          backdropFilter: 'blur(32px)',
+          WebkitBackdropFilter: 'blur(32px)',
+          boxShadow: '0 0 24px 16px rgba(0, 0, 0, 0.24)',
         }}
       >
         {/* Category Strip */}
@@ -178,7 +178,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         {/* Main Content */}
         <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-8">
-            <h1 className="question-text text-4xl md:text-5xl lg:text-6xl font-bold text-white w-full max-w-full" style={{ lineHeight: '1.15' }}>
+            <h1 className="question-text text-4xl md:text-5xl lg:text-5xl font-bold text-white w-full max-w-full" style={{ lineHeight: '1.15' }}>
               {question.question}
             </h1>
           </div>
