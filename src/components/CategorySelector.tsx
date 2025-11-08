@@ -173,34 +173,32 @@ export function CategorySelector({
                          setTempSelection(newCategories);
                        }}
                     >
+                      {/* Toggle switch */}
                       <div
-                        className={`flex items-center justify-center transition-all ease-out ${isSelected ? 'bg-white duration-75' : 'bg-transparent duration-75 hover:bg-white/10'}`}
+                        className={`transition-all ease-out duration-75`}
                          style={{ 
-                           width: '32px', 
+                           width: '52px', 
                            height: '32px', 
                            borderRadius: '32px',
+                           backgroundColor: isSelected ? 'white' : 'transparent',
                            outline: '1px solid white',
-                           outlineOffset: '0px'
+                           outlineOffset: '0px',
+                           position: 'relative'
                          }}
                       >
-                         {isSelected && (
-                           <svg 
-                             width="20" 
-                             height="20" 
-                             viewBox="0 0 16 16" 
-                             fill="none"
-                             className="checkmark-animate"
-                           >
-                             <path 
-                               d="M3 8l3 3 7-7" 
-                               stroke="black" 
-                               strokeWidth="2" 
-                               strokeLinecap="round" 
-                               strokeLinejoin="round"
-                               fill="none"
-                             />
-                           </svg>
-                         )}
+                        {/* Toggle circle */}
+                        <div
+                          className="transition-all ease-out duration-75"
+                          style={{
+                            width: '24px',
+                            height: '24px',
+                            borderRadius: '50%',
+                            backgroundColor: isSelected ? 'black' : 'white',
+                            position: 'absolute',
+                            top: '3px',
+                            left: isSelected ? '24px' : '3px',
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
