@@ -25,41 +25,41 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { stripBg: 'bg-quiz-fuck-strip', cardBg: 'hsl(300, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-fuck-strip', cardBg: 'hsl(300, 100%, 2%)' };
       case 'friends':
-        return { stripBg: 'bg-quiz-friends-strip', cardBg: 'hsl(180, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-friends-strip', cardBg: 'hsl(180, 100%, 2%)' };
       case 'self reflection':
-        return { stripBg: 'bg-quiz-self-reflection-strip', cardBg: 'hsl(270, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-self-reflection-strip', cardBg: 'hsl(270, 100%, 2%)' };
       case 'party':
-        return { stripBg: 'bg-quiz-party-strip', cardBg: 'hsl(50, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-party-strip', cardBg: 'hsl(50, 100%, 2%)' };
       case 'family':
-        return { stripBg: 'bg-quiz-family-strip', cardBg: 'hsl(30, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-family-strip', cardBg: 'hsl(30, 100%, 2%)' };
       case 'connection':
-        return { stripBg: 'bg-quiz-connection-strip', cardBg: 'hsl(330, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-connection-strip', cardBg: 'hsl(330, 100%, 2%)' };
       case 'identity':
-        return { stripBg: 'bg-quiz-identity-strip', cardBg: 'hsl(210, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-identity-strip', cardBg: 'hsl(210, 100%, 2%)' };
       case 'career':
-        return { stripBg: 'bg-quiz-career-strip', cardBg: 'hsl(120, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-career-strip', cardBg: 'hsl(120, 100%, 2%)' };
       case 'travel':
-        return { stripBg: 'bg-quiz-travel-strip', cardBg: 'hsl(200, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-travel-strip', cardBg: 'hsl(200, 100%, 2%)' };
       case 'health':
-        return { stripBg: 'bg-quiz-health-strip', cardBg: 'hsl(140, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-health-strip', cardBg: 'hsl(140, 100%, 2%)' };
       case 'money':
-        return { stripBg: 'bg-quiz-money-strip', cardBg: 'hsl(160, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-money-strip', cardBg: 'hsl(160, 100%, 2%)' };
       case 'love':
-        return { stripBg: 'bg-quiz-love-strip', cardBg: 'hsl(350, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-love-strip', cardBg: 'hsl(350, 100%, 2%)' };
       case 'hobby':
-        return { stripBg: 'bg-quiz-hobby-strip', cardBg: 'hsl(280, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-hobby-strip', cardBg: 'hsl(280, 100%, 2%)' };
       case 'dreams':
-        return { stripBg: 'bg-quiz-dreams-strip', cardBg: 'hsl(260, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-dreams-strip', cardBg: 'hsl(260, 100%, 2%)' };
       case 'fear':
-        return { stripBg: 'bg-quiz-fear-strip', cardBg: 'hsl(0, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-fear-strip', cardBg: 'hsl(0, 100%, 2%)' };
       case 'wisdom':
-        return { stripBg: 'bg-quiz-wisdom-strip', cardBg: 'hsl(240, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-wisdom-strip', cardBg: 'hsl(240, 100%, 2%)' };
       case 'future':
-        return { stripBg: 'bg-quiz-future-strip', cardBg: 'hsl(190, 100%, 8%)' };
+        return { stripBg: 'bg-quiz-future-strip', cardBg: 'hsl(190, 100%, 2%)' };
       default:
-        return { stripBg: 'bg-primary', cardBg: 'hsl(0, 0%, 8%)' };
+        return { stripBg: 'bg-primary', cardBg: 'hsl(0, 0%, 2%)' };
     }
   };
 
