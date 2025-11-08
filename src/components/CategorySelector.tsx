@@ -29,47 +29,47 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(335 100% 81%)'; // Pink
+        return 'hsl(165 100% 40%)'; // Teal - complementary to pink
       case 'connection':
-        return 'hsl(289 100% 79%)'; // Purple
+        return 'hsl(76 100% 40%)'; // Lime - complementary to purple
       case 'identity':
-        return 'hsl(76 100% 75%)'; // Lime
+        return 'hsl(289 100% 45%)'; // Purple - complementary to lime
       case 'party':
-        return 'hsl(183 89% 69%)'; // Cyan
+        return 'hsl(14 100% 45%)'; // Red/Orange - complementary to cyan
       case 'friends':
-        return 'hsl(67 100% 49%)'; // Yellow
+        return 'hsl(250 100% 40%)'; // Blue - complementary to yellow
       case 'self reflection':
-        return 'hsl(335 100% 81%)'; // Pink
+        return 'hsl(165 100% 40%)'; // Teal - complementary to pink
       case 'family':
-        return 'hsl(289 100% 79%)'; // Purple
+        return 'hsl(76 100% 40%)'; // Lime - complementary to purple
       case 'career':
-        return 'hsl(76 100% 75%)'; // Lime
+        return 'hsl(289 100% 45%)'; // Purple - complementary to lime
       case 'travel':
-        return 'hsl(183 89% 69%)'; // Cyan
+        return 'hsl(14 100% 45%)'; // Red/Orange - complementary to cyan
       case 'health':
-        return 'hsl(67 100% 49%)'; // Yellow
+        return 'hsl(250 100% 40%)'; // Blue - complementary to yellow
       case 'money':
-        return 'hsl(335 100% 81%)'; // Pink
+        return 'hsl(165 100% 40%)'; // Teal - complementary to pink
       case 'love':
-        return 'hsl(289 100% 79%)'; // Purple
+        return 'hsl(76 100% 40%)'; // Lime - complementary to purple
       case 'hobby':
-        return 'hsl(76 100% 75%)'; // Lime
+        return 'hsl(289 100% 45%)'; // Purple - complementary to lime
       case 'dreams':
-        return 'hsl(183 89% 69%)'; // Cyan
+        return 'hsl(14 100% 45%)'; // Red/Orange - complementary to cyan
       case 'fear':
-        return 'hsl(67 100% 49%)'; // Yellow
+        return 'hsl(250 100% 40%)'; // Blue - complementary to yellow
       case 'wisdom':
-        return 'hsl(335 100% 81%)'; // Pink
+        return 'hsl(165 100% 40%)'; // Teal - complementary to pink
       case 'future':
-        return 'hsl(289 100% 79%)'; // Purple
+        return 'hsl(76 100% 40%)'; // Lime - complementary to purple
       default:
         return 'hsl(290 100% 85%)';
     }
   };
 
   const getCategoryTextColors = (category: string) => {
-    // All vibrant colors work with black text
-    return 'hsl(0 0% 0%)';
+    // All vibrant colors work with white text for better contrast
+    return 'hsl(0 0% 100%)';
   };
 
   const handleCategoryToggle = (category: string) => {
