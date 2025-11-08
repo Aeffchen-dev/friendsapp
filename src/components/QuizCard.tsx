@@ -254,7 +254,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
             transform: `scale(${dragOffset > 0 ? incomingScale : 0.9}) rotate(${dragOffset > 0 ? incomingRotation : 5}deg)`,
             transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            opacity: dragOffset > 0 ? progress : 0,
+            opacity: 1,
             position: 'relative',
           })}
         </div>
@@ -287,7 +287,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
             transform: `scale(${dragOffset < 0 ? incomingScale : 0.9}) rotate(${dragOffset < 0 ? incomingRotation : -5}deg)`,
             transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            opacity: dragOffset < 0 ? progress : 0,
+            opacity: 1,
             position: 'relative',
           })}
         </div>
