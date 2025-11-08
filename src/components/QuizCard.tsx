@@ -148,8 +148,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         className="flex-shrink-0 w-full max-w-[500px] rounded-2xl overflow-hidden"
         style={{
           ...style,
-          height: 'calc(100svh - 64px - 20px - 16px - 32px)',
-          maxHeight: '100%',
+          height: '80vh',
+          maxHeight: '80vh',
           backgroundColor: 'rgba(0, 0, 0, 0.40)',
           backdropFilter: 'blur(64px)',
           WebkitBackdropFilter: 'blur(64px)',
@@ -228,8 +228,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         onMouseUp={onMouseUp}
         onMouseLeave={onMouseLeave}
         style={{
-          height: 'calc(100svh - 64px - 20px - 16px - 32px)',
-          maxHeight: '100%',
+          height: '100vh',
+          maxHeight: '100vh',
         }}
       >
       <div 
