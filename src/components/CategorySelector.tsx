@@ -29,39 +29,39 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(165 100% 40%)'; // Teal - complementary to pink
+        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
       case 'connection':
-        return 'hsl(76 100% 40%)'; // Lime - complementary to purple
+        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
       case 'identity':
-        return 'hsl(289 100% 45%)'; // Purple - complementary to lime
+        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
       case 'party':
-        return 'hsl(14 100% 45%)'; // Red/Orange - complementary to cyan
+        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
       case 'friends':
-        return 'hsl(250 100% 40%)'; // Blue - complementary to yellow
+        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
       case 'self reflection':
-        return 'hsl(165 100% 40%)'; // Teal - complementary to pink
+        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
       case 'family':
-        return 'hsl(76 100% 40%)'; // Lime - complementary to purple
+        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
       case 'career':
-        return 'hsl(289 100% 45%)'; // Purple - complementary to lime
+        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
       case 'travel':
-        return 'hsl(14 100% 45%)'; // Red/Orange - complementary to cyan
+        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
       case 'health':
-        return 'hsl(250 100% 40%)'; // Blue - complementary to yellow
+        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
       case 'money':
-        return 'hsl(165 100% 40%)'; // Teal - complementary to pink
+        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
       case 'love':
-        return 'hsl(76 100% 40%)'; // Lime - complementary to purple
+        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
       case 'hobby':
-        return 'hsl(289 100% 45%)'; // Purple - complementary to lime
+        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
       case 'dreams':
-        return 'hsl(14 100% 45%)'; // Red/Orange - complementary to cyan
+        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
       case 'fear':
-        return 'hsl(250 100% 40%)'; // Blue - complementary to yellow
+        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
       case 'wisdom':
-        return 'hsl(165 100% 40%)'; // Teal - complementary to pink
+        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
       case 'future':
-        return 'hsl(76 100% 40%)'; // Lime - complementary to purple
+        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
       default:
         return 'hsl(290 100% 85%)';
     }

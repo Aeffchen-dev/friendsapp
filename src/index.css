@@ -87,24 +87,24 @@ All colors MUST be HSL.
     --quiz-wisdom-neon: 335 100% 75%;       /* #FF9DC6 - Pink */
     --quiz-future-neon: 289 100% 72%;       /* #EC94FF - Purple */
     
-    /* High contrast complementary strip colors */
-    --quiz-fuck-strip: 165 100% 40%;        /* Teal - complementary to pink */
-    --quiz-connection-strip: 76 100% 40%;   /* Lime - complementary to purple */
-    --quiz-identity-strip: 289 100% 45%;    /* Purple - complementary to lime */
-    --quiz-party-strip: 14 100% 45%;        /* Red/Orange - complementary to cyan */
-    --quiz-friends-strip: 250 100% 40%;     /* Blue - complementary to yellow */
-    --quiz-self-reflection-strip: 165 100% 40%; /* Teal - complementary to pink */
-    --quiz-family-strip: 76 100% 40%;       /* Lime - complementary to purple */
-    --quiz-career-strip: 289 100% 45%;      /* Purple - complementary to lime */
-    --quiz-travel-strip: 14 100% 45%;       /* Red/Orange - complementary to cyan */
-    --quiz-health-strip: 250 100% 40%;      /* Blue - complementary to yellow */
-    --quiz-money-strip: 165 100% 40%;       /* Teal - complementary to pink */
-    --quiz-love-strip: 76 100% 40%;         /* Lime - complementary to purple */
-    --quiz-hobby-strip: 289 100% 45%;       /* Purple - complementary to lime */
-    --quiz-dreams-strip: 14 100% 45%;       /* Red/Orange - complementary to cyan */
-    --quiz-fear-strip: 250 100% 40%;        /* Blue - complementary to yellow */
-    --quiz-wisdom-strip: 165 100% 40%;      /* Teal - complementary to pink */
-    --quiz-future-strip: 76 100% 40%;       /* Lime - complementary to purple */
+    /* Tetradic harmony strip colors */
+    --quiz-fuck-strip: 65 100% 45%;         /* Yellow-Green - tetradic to pink */
+    --quiz-connection-strip: 19 100% 50%;   /* Orange - tetradic to purple */
+    --quiz-identity-strip: 346 100% 45%;    /* Magenta - tetradic to lime */
+    --quiz-party-strip: 3 100% 50%;         /* Red - tetradic to cyan */
+    --quiz-friends-strip: 247 100% 45%;     /* Blue - tetradic to yellow */
+    --quiz-self-reflection-strip: 65 100% 45%; /* Yellow-Green - tetradic to pink */
+    --quiz-family-strip: 19 100% 50%;       /* Orange - tetradic to purple */
+    --quiz-career-strip: 346 100% 45%;      /* Magenta - tetradic to lime */
+    --quiz-travel-strip: 3 100% 50%;        /* Red - tetradic to cyan */
+    --quiz-health-strip: 247 100% 45%;      /* Blue - tetradic to yellow */
+    --quiz-money-strip: 65 100% 45%;        /* Yellow-Green - tetradic to pink */
+    --quiz-love-strip: 19 100% 50%;         /* Orange - tetradic to purple */
+    --quiz-hobby-strip: 346 100% 45%;       /* Magenta - tetradic to lime */
+    --quiz-dreams-strip: 3 100% 50%;        /* Red - tetradic to cyan */
+    --quiz-fear-strip: 247 100% 45%;        /* Blue - tetradic to yellow */
+    --quiz-wisdom-strip: 65 100% 45%;       /* Yellow-Green - tetradic to pink */
+    --quiz-future-strip: 19 100% 50%;       /* Orange - tetradic to purple */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
