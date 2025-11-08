@@ -29,47 +29,47 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(281 98% 25%)'; // #55017D - dark purple strip
-      case 'friends':
-        return 'hsl(278 100% 57%)'; // #AF25FF - bright purple strip
-      case 'family':
-        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange strip
-      case 'self reflection':
-        return 'hsl(338 97% 61%)'; // #FC3D82 - hot pink strip
-      case 'party':
-        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange strip
+        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
       case 'connection':
-        return 'hsl(278 100% 57%)'; // #AF25FF - bright purple strip
+        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
       case 'identity':
-        return 'hsl(281 98% 25%)'; // #55017D - dark purple strip
+        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
+      case 'party':
+        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
+      case 'friends':
+        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
+      case 'self reflection':
+        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
+      case 'family':
+        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
       case 'career':
-        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange strip
+        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
       case 'travel':
-        return 'hsl(278 100% 57%)'; // #AF25FF - bright purple strip
+        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
       case 'health':
-        return 'hsl(338 97% 61%)'; // #FC3D82 - hot pink strip
+        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
       case 'money':
-        return 'hsl(338 97% 61%)'; // #FC3D82 - hot pink strip
+        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
       case 'love':
-        return 'hsl(281 98% 25%)'; // #55017D - dark purple strip
+        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
       case 'hobby':
-        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange strip
+        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
       case 'dreams':
-        return 'hsl(278 100% 57%)'; // #AF25FF - bright purple strip
+        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
       case 'fear':
-        return 'hsl(338 97% 61%)'; // #FC3D82 - hot pink strip
+        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
       case 'wisdom':
-        return 'hsl(10 100% 50%)'; // #FF2B00 - red-orange strip
+        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
       case 'future':
-        return 'hsl(281 98% 25%)'; // #55017D - dark purple strip
+        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
       default:
-        return 'hsl(281 98% 25%)'; // Default dark purple
+        return 'hsl(290 100% 85%)';
     }
   };
 
   const getCategoryTextColors = (category: string) => {
-    // All strip colors are dark, so use white text
-    return 'hsl(0 0% 98%)'; // White text on all dark strips
+    // All vibrant colors work with white text for better contrast
+    return 'hsl(0 0% 100%)';
   };
 
   const handleCategoryToggle = (category: string) => {
@@ -138,7 +138,10 @@ export function CategorySelector({
                   />
                   
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
-                    style={{ color: isSelected ? textColor : 'white' }}>
+                    style={{ 
+                      color: isSelected ? textColor : 'white',
+                      fontFamily: "'Factor A', sans-serif"
+                    }}>
                     {category}
                   </span>
                   <div onClick={(e) => e.stopPropagation()}>

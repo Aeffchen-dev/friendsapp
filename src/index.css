@@ -28,9 +28,9 @@ All colors MUST be HSL.
   :root {
     --background: 0 0% 0%;
     --foreground: 0 0% 98%;
-    --card-background: 0 0% 7%;
+    --card-background: 0 0% 20%;
 
-    --card: 0 0% 10%;
+    --card: 0 0% 20%;
     --card-foreground: 0 0% 98%;
 
     --popover: 0 0% 10%;
@@ -57,86 +57,54 @@ All colors MUST be HSL.
 
     --radius: 1rem;
     
-    /* Quiz App Custom Colors - Warm Palette */
-    --quiz-primary: 315 100% 64%;
-    --quiz-accent: 327 100% 79%;
-    --quiz-category-bg: 290 100% 72%;
-    --quiz-category-text: 0 0% 0%;
-    --quiz-background: 281 98% 25%;          /* #55017D - dark purple background */
-    --quiz-surface: 281 98% 30%;
+    /* Quiz App Custom Colors */
+    --quiz-primary: 280 100% 70%;
+    --quiz-accent: 290 100% 80%;
+    --quiz-category-bg: 290 100% 85%;
+    --quiz-category-text: 0 0% 15%;
+    --quiz-background: 0 0% 7%;
+    --quiz-surface: 0 0% 12%;
     
-    /* Category-specific colors - Pairs (lighter for card, darker for strip) */
-    /* Pair 1: #FF92D3 / #55017D */
-    --quiz-fuck-bg: 327 100% 79%;            /* #FF92D3 - light pink */
-    --quiz-fuck-text: 0 0% 0%;
-    --quiz-fuck-strip: 281 98% 25%;          /* #55017D - dark purple */
+    /* Category-specific neon colors - 5 vibrant colors cycling */
+    --quiz-fuck-neon: 335 100% 75%;         /* #FF9DC6 - Pink (more vibrant) */
+    --quiz-connection-neon: 289 100% 72%;   /* #EC94FF - Purple (more vibrant) */
+    --quiz-identity-neon: 76 100% 68%;      /* #DCFF80 - Lime (more vibrant) */
+    --quiz-party-neon: 183 100% 62%;         /* #67EFF4 - Cyan (more vibrant) */
     
-    --quiz-identity-bg: 327 100% 79%;        /* #FF92D3 - light pink */
-    --quiz-identity-text: 0 0% 0%;
-    --quiz-identity-strip: 281 98% 25%;      /* #55017D - dark purple */
+    --quiz-friends-neon: 67 100% 45%;       /* #D0FC00 - Yellow (more vibrant) */
+    --quiz-self-reflection-neon: 335 100% 75%; /* #FF9DC6 - Pink */
+    --quiz-family-neon: 289 100% 72%;       /* #EC94FF - Purple */
+    --quiz-career-neon: 76 100% 68%;        /* #DCFF80 - Lime */
     
-    --quiz-love-bg: 327 100% 79%;            /* #FF92D3 - light pink */
-    --quiz-love-text: 0 0% 0%;
-    --quiz-love-strip: 281 98% 25%;          /* #55017D - dark purple */
+    --quiz-travel-neon: 183 100% 62%;        /* #67EFF4 - Cyan */
+    --quiz-health-neon: 67 100% 45%;        /* #D0FC00 - Yellow */
+    --quiz-money-neon: 335 100% 75%;        /* #FF9DC6 - Pink */
+    --quiz-love-neon: 289 100% 72%;         /* #EC94FF - Purple */
     
-    --quiz-future-bg: 327 100% 79%;          /* #FF92D3 - light pink */
-    --quiz-future-text: 0 0% 0%;
-    --quiz-future-strip: 281 98% 25%;        /* #55017D - dark purple */
+    --quiz-hobby-neon: 76 100% 68%;         /* #DCFF80 - Lime */
+    --quiz-dreams-neon: 183 100% 62%;        /* #67EFF4 - Cyan */
+    --quiz-fear-neon: 67 100% 45%;          /* #D0FC00 - Yellow */
+    --quiz-wisdom-neon: 335 100% 75%;       /* #FF9DC6 - Pink */
+    --quiz-future-neon: 289 100% 72%;       /* #EC94FF - Purple */
     
-    /* Pair 2: #E772FF / #AF25FF */
-    --quiz-friends-bg: 290 100% 72%;         /* #E772FF - light purple */
-    --quiz-friends-text: 0 0% 0%;
-    --quiz-friends-strip: 278 100% 57%;      /* #AF25FF - bright purple */
-    
-    --quiz-travel-bg: 290 100% 72%;          /* #E772FF - light purple */
-    --quiz-travel-text: 0 0% 0%;
-    --quiz-travel-strip: 278 100% 57%;       /* #AF25FF - bright purple */
-    
-    --quiz-dreams-bg: 290 100% 72%;          /* #E772FF - light purple */
-    --quiz-dreams-text: 0 0% 0%;
-    --quiz-dreams-strip: 278 100% 57%;       /* #AF25FF - bright purple */
-    
-    --quiz-connection-bg: 290 100% 72%;      /* #E772FF - light purple */
-    --quiz-connection-text: 0 0% 0%;
-    --quiz-connection-strip: 278 100% 57%;   /* #AF25FF - bright purple */
-    
-    /* Pair 3: #FF47D1 / #FC3D82 */
-    --quiz-self-reflection-bg: 315 100% 64%; /* #FF47D1 - bright pink */
-    --quiz-self-reflection-text: 0 0% 0%;
-    --quiz-self-reflection-strip: 338 97% 61%; /* #FC3D82 - hot pink */
-    
-    --quiz-health-bg: 315 100% 64%;          /* #FF47D1 - bright pink */
-    --quiz-health-text: 0 0% 0%;
-    --quiz-health-strip: 338 97% 61%;        /* #FC3D82 - hot pink */
-    
-    --quiz-money-bg: 315 100% 64%;           /* #FF47D1 - bright pink */
-    --quiz-money-text: 0 0% 0%;
-    --quiz-money-strip: 338 97% 61%;         /* #FC3D82 - hot pink */
-    
-    --quiz-fear-bg: 315 100% 64%;            /* #FF47D1 - bright pink */
-    --quiz-fear-text: 0 0% 0%;
-    --quiz-fear-strip: 338 97% 61%;          /* #FC3D82 - hot pink */
-    
-    /* Pair 4: #FF6600 / #FF2B00 */
-    --quiz-party-bg: 24 100% 50%;            /* #FF6600 - orange */
-    --quiz-party-text: 0 0% 0%;
-    --quiz-party-strip: 10 100% 50%;         /* #FF2B00 - red-orange */
-    
-    --quiz-family-bg: 24 100% 50%;           /* #FF6600 - orange */
-    --quiz-family-text: 0 0% 0%;
-    --quiz-family-strip: 10 100% 50%;        /* #FF2B00 - red-orange */
-    
-    --quiz-career-bg: 24 100% 50%;           /* #FF6600 - orange */
-    --quiz-career-text: 0 0% 0%;
-    --quiz-career-strip: 10 100% 50%;        /* #FF2B00 - red-orange */
-    
-    --quiz-hobby-bg: 24 100% 50%;            /* #FF6600 - orange */
-    --quiz-hobby-text: 0 0% 0%;
-    --quiz-hobby-strip: 10 100% 50%;         /* #FF2B00 - red-orange */
-    
-    --quiz-wisdom-bg: 24 100% 50%;           /* #FF6600 - orange */
-    --quiz-wisdom-text: 0 0% 0%;
-    --quiz-wisdom-strip: 10 100% 50%;        /* #FF2B00 - red-orange */
+    /* Tetradic harmony strip colors */
+    --quiz-fuck-strip: 65 100% 45%;         /* Yellow-Green - tetradic to pink */
+    --quiz-connection-strip: 19 100% 50%;   /* Orange - tetradic to purple */
+    --quiz-identity-strip: 346 100% 45%;    /* Magenta - tetradic to lime */
+    --quiz-party-strip: 3 100% 50%;         /* Red - tetradic to cyan */
+    --quiz-friends-strip: 247 100% 45%;     /* Blue - tetradic to yellow */
+    --quiz-self-reflection-strip: 65 100% 45%; /* Yellow-Green - tetradic to pink */
+    --quiz-family-strip: 19 100% 50%;       /* Orange - tetradic to purple */
+    --quiz-career-strip: 346 100% 45%;      /* Magenta - tetradic to lime */
+    --quiz-travel-strip: 3 100% 50%;        /* Red - tetradic to cyan */
+    --quiz-health-strip: 247 100% 45%;      /* Blue - tetradic to yellow */
+    --quiz-money-strip: 65 100% 45%;        /* Yellow-Green - tetradic to pink */
+    --quiz-love-strip: 19 100% 50%;         /* Orange - tetradic to purple */
+    --quiz-hobby-strip: 346 100% 45%;       /* Magenta - tetradic to lime */
+    --quiz-dreams-strip: 3 100% 50%;        /* Red - tetradic to cyan */
+    --quiz-fear-strip: 247 100% 45%;        /* Blue - tetradic to yellow */
+    --quiz-wisdom-strip: 65 100% 45%;       /* Yellow-Green - tetradic to pink */
+    --quiz-future-strip: 19 100% 50%;       /* Orange - tetradic to purple */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
@@ -220,7 +188,7 @@ All colors MUST be HSL.
     overflow: hidden;
     height: 100vh;
     height: 100svh;
-    background-color: hsl(281 98% 25%); /* Dark purple from warm palette */
+    background-color: #000000;
     font-family: 'Factor A', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   
@@ -349,7 +317,7 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     z-index: 50;
-    background-color: hsl(281 98% 25%);
+    background-color: #000000;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
