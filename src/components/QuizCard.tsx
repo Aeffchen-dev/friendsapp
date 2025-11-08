@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface Question {
   question: string;
@@ -23,6 +23,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   
   const containerRef = useRef<HTMLDivElement>(null);
   const minSwipeDistance = 50;
+
+  // After parent index changes (currentQuestion updates), reset track instantly without anim
+  useEffect(() => {
+    setIsAnimating(false);
+    setDragOffset(0);
+    setAnimationOffset(0);
+  }, [currentQuestion]);
 
   // Get category-specific neon color - using the 5 color palette
   const getCategoryColors = (category: string) => {
@@ -110,8 +117,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         
         setTimeout(() => {
           onSwipeLeft();
-          setAnimationOffset(0);
-          setIsAnimating(false);
+          // Do not reset here; wait for parent to update currentQuestion
         }, 300);
         return;
       } else if (dragOffset > 0 && prevQuestion) {
@@ -127,8 +133,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         
         setTimeout(() => {
           onSwipeRight();
-          setAnimationOffset(0);
-          setIsAnimating(false);
+          // Do not reset here; wait for parent to update currentQuestion
         }, 300);
         return;
       }

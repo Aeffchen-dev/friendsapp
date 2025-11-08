@@ -176,26 +176,20 @@ export function QuizApp() {
   const nextQuestion = () => {
     if (currentIndex < questions.length - 1) {
       setLogoSqueezeDirection(-1);
-      // Let QuizCard's animation complete, then update index
-      setTimeout(() => {
-        setCurrentIndex(prev => prev + 1);
-        setDragProgress(0);
-        setTargetCategory('');
-        setLogoSqueezeDirection(0);
-      }, 300);
+      setCurrentIndex(prev => prev + 1);
+      setDragProgress(0);
+      setTargetCategory('');
+      setLogoSqueezeDirection(0);
     }
   };
 
   const prevQuestion = () => {
     if (currentIndex > 0) {
       setLogoSqueezeDirection(1);
-      // Let QuizCard's animation complete, then update index
-      setTimeout(() => {
-        setCurrentIndex(prev => prev - 1);
-        setDragProgress(0);
-        setTargetCategory('');
-        setLogoSqueezeDirection(0);
-      }, 300);
+      setCurrentIndex(prev => prev - 1);
+      setDragProgress(0);
+      setTargetCategory('');
+      setLogoSqueezeDirection(0);
     }
   };
 
