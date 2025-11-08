@@ -151,8 +151,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           height: '80vh',
           maxHeight: '80vh',
           backgroundColor: 'rgba(0, 0, 0, 0.40)',
-          backdropFilter: 'blur(64px)',
-          WebkitBackdropFilter: 'blur(64px)',
+          backdropFilter: 'blur(40px)',
+          WebkitBackdropFilter: 'blur(40px)',
           boxShadow: '0 0 24px 16px rgba(0, 0, 0, 0.16)',
         }}
       >
