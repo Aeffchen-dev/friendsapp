@@ -327,6 +327,10 @@ export function QuizApp() {
 
   // Update body background color and theme-color meta tag for iOS
   useEffect(() => {
+    // Update CSS variable to drive page background everywhere
+    document.documentElement.style.setProperty('--page-bg', currentBodyColor);
+
+    // Keep body transition smooth
     document.body.style.backgroundColor = currentBodyColor;
     document.body.style.transition = 'background-color 0.8s ease-out';
     
