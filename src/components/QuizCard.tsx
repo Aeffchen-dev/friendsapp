@@ -153,7 +153,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         }}
       >
         {/* Category Strip */}
-        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.stripBg} flex items-center justify-center overflow-hidden border-r-2 border-white`}>
+        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.stripBg} flex items-center justify-center overflow-hidden`} style={{ borderRight: '1.5px solid white' }}>
           <div className="transform -rotate-90 whitespace-nowrap">
             {Array(20).fill(question.category).map((cat, index) => (
               <span 
