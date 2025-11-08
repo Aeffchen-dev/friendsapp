@@ -92,13 +92,13 @@ export function CategorySelector({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-screen h-screen max-w-none bg-background border-0 rounded-none p-0 overflow-hidden [&>button]:hidden data-[state=closed]:animate-none data-[state=closed]:duration-0" style={{ width: '100vw', height: '100vh' }}>
+      <DialogContent className="w-screen h-screen max-w-none bg-background border-0 rounded-none p-0 overflow-hidden [&>button]:hidden data-[state=closed]:animate-none data-[state=closed]:duration-0 [&]:rounded-none" style={{ width: '100vw', height: '100vh', borderRadius: '0' }}>
         <DialogDescription className="sr-only">
           Wählen Sie die Kategorien aus, die Sie sehen möchten
         </DialogDescription>
         <div className="flex flex-col h-full relative w-full">
           {/* Header with close button */}
-          <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
+          <div className="absolute top-4 left-0 right-4 z-10 flex items-center justify-between pl-4">
             <h2 className="text-white text-xl font-normal">
               Kategorien wählen
             </h2>
@@ -112,7 +112,7 @@ export function CategorySelector({
           </div>
 
           {/* Categories List */}
-          <div className="flex-1 p-4 pt-20 pb-20 space-y-3 overflow-y-auto">
+          <div className="flex-1 pt-20 pb-20 space-y-3 overflow-y-auto">
             {categories.map((category) => {
               const isSelected = tempSelection.includes(category);
               const colorClasses = getCategoryColors(category);
@@ -121,8 +121,8 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className="flex items-center justify-between py-3 pr-3 pl-6 bg-[#161616] cursor-pointer relative overflow-hidden"
-                  style={{ borderRadius: '4px 999px 999px 4px' }}
+                  className="flex items-center justify-between py-3 pr-4 pl-4 bg-[#161616] cursor-pointer relative overflow-hidden"
+                  style={{ borderRadius: '0' }}
                   onClick={() => handleCategoryToggle(category)}
                 >
                   {/* Color strip - 8px when unselected, full width when selected */}
@@ -131,10 +131,7 @@ export function CategorySelector({
                     style={{ 
                       backgroundColor: colorClasses,
                       opacity: 0.8,
-                      borderTopLeftRadius: isSelected ? '4px' : '4px',
-                      borderBottomLeftRadius: isSelected ? '4px' : '4px',
-                      borderTopRightRadius: isSelected ? '999px' : '4px',
-                      borderBottomRightRadius: isSelected ? '999px' : '4px'
+                      borderRadius: '0'
                     }} 
                   />
                   
