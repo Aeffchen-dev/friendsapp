@@ -136,10 +136,13 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className={`flex items-center justify-between py-3 pr-3 pl-4 bg-[#161616] cursor-pointer relative overflow-visible transition-all ${isBouncing ? 'duration-100' : 'duration-100'}`}
+                  className={`flex items-center justify-between pl-4 bg-[#161616] cursor-pointer relative overflow-visible transition-all ${isBouncing ? 'duration-100' : 'duration-100'}`}
                   style={{ 
                     borderRadius: '0 999px 999px 0', 
-                    width: isBouncing ? '90.2vw' : '88vw'
+                    width: isBouncing ? '90.2vw' : '88vw',
+                    paddingTop: '8px',
+                    paddingRight: '8px',
+                    paddingBottom: '8px'
                   }}
                   onClick={() => handleCategoryToggle(category)}
                 >
@@ -173,17 +176,17 @@ export function CategorySelector({
                       <div
                         className={`flex items-center justify-center transition-all ease-out ${isSelected ? 'bg-white duration-100' : 'bg-transparent duration-100 hover:bg-white/10'}`}
                          style={{ 
-                           width: '48px', 
-                           height: '48px', 
-                           borderRadius: '48px',
+                           width: '32px', 
+                           height: '32px', 
+                           borderRadius: '32px',
                            outline: '1px solid white',
                            outlineOffset: '0px'
                          }}
                       >
                          {isSelected && (
                            <svg 
-                             width="28" 
-                             height="28" 
+                             width="20" 
+                             height="20" 
                              viewBox="0 0 16 16" 
                              fill="none"
                              className="checkmark-animate"
