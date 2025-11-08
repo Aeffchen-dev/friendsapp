@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 interface Question {
   question: string;
@@ -132,25 +132,24 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const progress = getDragProgress();
   const direction = dragOffset < 0 ? -1 : 1;
 
-  // Current card: 100% -> 90% scale, 0deg -> 5deg rotation
+  // Current card: 100% -> 90% scale, 0deg -> 5deg rotation (away from direction)
   const currentScale = 1 - (progress * 0.1);
   const currentRotation = progress * 5 * direction;
 
-  // Incoming card: 90% -> 100% scale, 5deg -> 0deg rotation
+  // Incoming card: 90% -> 100% scale, 5deg -> 0deg rotation (towards center)
   const incomingScale = 0.9 + (progress * 0.1);
-  const incomingRotation = 5 * -direction * (1 - progress);
+  const incomingRotation = -5 * direction * (1 - progress);
 
-  const renderCard = (question: Question, style: React.CSSProperties, isMain: boolean = false) => {
+  const renderCard = (question: Question, style: React.CSSProperties) => {
     const categoryColors = getCategoryColors(question.category);
     
     return (
       <div 
-        className={`absolute inset-0 max-w-[500px] mx-auto ${categoryColors.bg} rounded-2xl shadow-card overflow-hidden`}
+        className={`flex-shrink-0 w-full max-w-[500px] ${categoryColors.bg} rounded-2xl shadow-card overflow-hidden`}
         style={{
           ...style,
           height: 'calc(100svh - 64px - 20px - 16px - 32px)',
           maxHeight: '100%',
-          transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         }}
       >
         {/* Category Strip */}
@@ -180,13 +179,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     );
   };
 
-  const shouldShowPrev = dragOffset > 0 && prevQuestion;
-  const shouldShowNext = dragOffset < 0 && nextQuestion;
+  const shouldShowPrev = prevQuestion !== null;
+  const shouldShowNext = nextQuestion !== null;
 
   return (
     <div 
       ref={containerRef}
-      className="relative h-full w-full max-w-[500px] mx-auto select-none"
+      className="relative h-full w-full overflow-hidden select-none"
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -199,24 +198,65 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         maxHeight: '100%',
       }}
     >
-      {/* Incoming card (behind) */}
-      {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
-        transform: `scale(${incomingScale}) rotate(${incomingRotation}deg)`,
-        zIndex: 1,
-        opacity: progress,
-      })}
-      
-      {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
-        transform: `scale(${incomingScale}) rotate(${incomingRotation}deg)`,
-        zIndex: 1,
-        opacity: progress,
-      })}
+      <div 
+        className="flex items-center h-full"
+        style={{
+          transform: `translateX(calc(-100% + ${dragOffset}px))`,
+          transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          width: '300%',
+          position: 'relative',
+        }}
+      >
+        {/* Previous card (left) */}
+        <div 
+          className="flex justify-center items-center" 
+          style={{ 
+            width: '33.333%',
+            height: '100%',
+            position: 'relative',
+          }}
+        >
+          {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
+            transform: `scale(${dragOffset > 0 ? incomingScale : 0.9}) rotate(${dragOffset > 0 ? incomingRotation : 5}deg)`,
+            transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            opacity: dragOffset > 0 ? progress : 0,
+            position: 'relative',
+          })}
+        </div>
 
-      {/* Current card (on top) */}
-      {renderCard(currentQuestion, {
-        transform: `scale(${currentScale}) rotate(${currentRotation}deg) translateX(${dragOffset}px)`,
-        zIndex: 2,
-      }, true)}
+        {/* Current card (center) */}
+        <div 
+          className="flex justify-center items-center" 
+          style={{ 
+            width: '33.333%',
+            height: '100%',
+            position: 'relative',
+          }}
+        >
+          {renderCard(currentQuestion, {
+            transform: `scale(${currentScale}) rotate(${currentRotation}deg)`,
+            transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            position: 'relative',
+          })}
+        </div>
+
+        {/* Next card (right) */}
+        <div 
+          className="flex justify-center items-center" 
+          style={{ 
+            width: '33.333%',
+            height: '100%',
+            position: 'relative',
+          }}
+        >
+          {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
+            transform: `scale(${dragOffset < 0 ? incomingScale : 0.9}) rotate(${dragOffset < 0 ? incomingRotation : -5}deg)`,
+            transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            opacity: dragOffset < 0 ? progress : 0,
+            position: 'relative',
+          })}
+        </div>
+      </div>
     </div>
   );
 }

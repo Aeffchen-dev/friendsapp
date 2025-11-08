@@ -29,39 +29,39 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(327 100% 79%)'; // Neon pink
+        return 'hsl(61 100% 73%)'; // #EFFF75
       case 'friends':
-        return 'hsl(315 100% 70%)'; // Neon pink
+        return 'hsl(145 76% 69%)'; // #79E7A9
       case 'family':
-        return 'hsl(10 100% 60%)'; // Neon red
+        return 'hsl(261 80% 60%)'; // #8948E9
       case 'self reflection':
-        return 'hsl(338 97% 65%)'; // Neon pink
+        return 'hsl(189 100% 77%)'; // #88EDFF
       case 'party':
-        return 'hsl(290 100% 75%)'; // Neon purple
+        return 'hsl(184 85% 67%)'; // #5EEBF0
       case 'connection':
-        return 'hsl(281 98% 50%)'; // Neon purple
+        return 'hsl(263 83% 80%)'; // #D8B1F6
       case 'identity':
-        return 'hsl(278 100% 65%)'; // Neon purple
+        return 'hsl(314 98% 77%)'; // #FD8CEC
       case 'career':
-        return 'hsl(24 100% 60%)'; // Neon orange
+        return 'hsl(163 100% 77%)'; // #99FFDB
       case 'travel':
-        return 'hsl(327 100% 79%)'; // Neon pink
+        return 'hsl(61 100% 73%)'; // #EFFF75
       case 'health':
-        return 'hsl(281 98% 50%)'; // Neon purple
+        return 'hsl(263 83% 80%)'; // #D8B1F6
       case 'money':
-        return 'hsl(278 100% 65%)'; // Neon purple
+        return 'hsl(314 98% 77%)'; // #FD8CEC
       case 'love':
-        return 'hsl(290 100% 75%)'; // Neon purple
+        return 'hsl(184 85% 67%)'; // #5EEBF0
       case 'hobby':
-        return 'hsl(315 100% 70%)'; // Neon pink
+        return 'hsl(145 76% 69%)'; // #79E7A9
       case 'dreams':
-        return 'hsl(338 97% 65%)'; // Neon pink
+        return 'hsl(189 100% 77%)'; // #88EDFF
       case 'fear':
-        return 'hsl(10 100% 60%)'; // Neon red
+        return 'hsl(261 80% 60%)'; // #8948E9
       case 'wisdom':
-        return 'hsl(24 100% 60%)'; // Neon orange
+        return 'hsl(163 100% 77%)'; // #99FFDB
       case 'future':
-        return 'hsl(327 100% 79%)'; // Neon pink
+        return 'hsl(61 100% 73%)'; // #EFFF75
       default:
         return 'hsl(290 100% 85%)';
     }
