@@ -151,9 +151,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           height: 'calc(100svh - 64px - 20px - 16px - 32px)',
           maxHeight: '100%',
           backgroundColor: 'rgba(0, 0, 0, 0.40)',
-          backdropFilter: 'blur(100px)',
-          WebkitBackdropFilter: 'blur(100px)',
-          boxShadow: '0 0 24px rgba(0, 0, 0, 0.16)',
+          backdropFilter: 'blur(64px)',
+          WebkitBackdropFilter: 'blur(64px)',
+          boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)',
         }}
       >
         {/* Category Strip */}
