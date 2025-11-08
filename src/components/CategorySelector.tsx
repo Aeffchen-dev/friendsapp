@@ -29,47 +29,47 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(14 100% 43%)'; // #D93300
+        return 'hsl(335 100% 81%)'; // Pink
       case 'connection':
-        return 'hsl(281 100% 13%)'; // #2C0041
+        return 'hsl(289 100% 79%)'; // Purple
       case 'identity':
-        return 'hsl(159 100% 13%)'; // #00422B
+        return 'hsl(76 100% 75%)'; // Lime
       case 'party':
-        return 'hsl(178 93% 17%)'; // #035653
+        return 'hsl(183 89% 69%)'; // Cyan
       case 'friends':
-        return 'hsl(14 100% 43%)'; // #D93300
+        return 'hsl(67 100% 49%)'; // Yellow
       case 'self reflection':
-        return 'hsl(281 100% 13%)'; // #2C0041
+        return 'hsl(335 100% 81%)'; // Pink
       case 'family':
-        return 'hsl(159 100% 13%)'; // #00422B
+        return 'hsl(289 100% 79%)'; // Purple
       case 'career':
-        return 'hsl(178 93% 17%)'; // #035653
+        return 'hsl(76 100% 75%)'; // Lime
       case 'travel':
-        return 'hsl(14 100% 43%)'; // #D93300
+        return 'hsl(183 89% 69%)'; // Cyan
       case 'health':
-        return 'hsl(281 100% 13%)'; // #2C0041
+        return 'hsl(67 100% 49%)'; // Yellow
       case 'money':
-        return 'hsl(159 100% 13%)'; // #00422B
+        return 'hsl(335 100% 81%)'; // Pink
       case 'love':
-        return 'hsl(178 93% 17%)'; // #035653
+        return 'hsl(289 100% 79%)'; // Purple
       case 'hobby':
-        return 'hsl(14 100% 43%)'; // #D93300
+        return 'hsl(76 100% 75%)'; // Lime
       case 'dreams':
-        return 'hsl(281 100% 13%)'; // #2C0041
+        return 'hsl(183 89% 69%)'; // Cyan
       case 'fear':
-        return 'hsl(159 100% 13%)'; // #00422B
+        return 'hsl(67 100% 49%)'; // Yellow
       case 'wisdom':
-        return 'hsl(178 93% 17%)'; // #035653
+        return 'hsl(335 100% 81%)'; // Pink
       case 'future':
-        return 'hsl(14 100% 43%)'; // #D93300
+        return 'hsl(289 100% 79%)'; // Purple
       default:
         return 'hsl(290 100% 85%)';
     }
   };
 
   const getCategoryTextColors = (category: string) => {
-    // All strip colors are darker, so use white text
-    return 'hsl(0 0% 98%)';
+    // All vibrant colors work with black text
+    return 'hsl(0 0% 0%)';
   };
 
   const handleCategoryToggle = (category: string) => {

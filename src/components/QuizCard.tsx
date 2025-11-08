@@ -21,45 +21,45 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const containerRef = useRef<HTMLDivElement>(null);
   const minSwipeDistance = 50;
 
-  // Get category-specific colors
+  // Get category-specific neon color
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { bg: 'bg-quiz-fuck-bg', text: 'text-quiz-fuck-text', neon: 'bg-quiz-fuck-neon' };
+        return { neon: 'text-quiz-fuck-neon', neonBg: 'bg-quiz-fuck-neon' };
       case 'friends':
-        return { bg: 'bg-quiz-friends-bg', text: 'text-quiz-friends-text', neon: 'bg-quiz-friends-neon' };
+        return { neon: 'text-quiz-friends-neon', neonBg: 'bg-quiz-friends-neon' };
       case 'self reflection':
-        return { bg: 'bg-quiz-self-reflection-bg', text: 'text-quiz-self-reflection-text', neon: 'bg-quiz-self-reflection-neon' };
+        return { neon: 'text-quiz-self-reflection-neon', neonBg: 'bg-quiz-self-reflection-neon' };
       case 'party':
-        return { bg: 'bg-quiz-party-bg', text: 'text-quiz-party-text', neon: 'bg-quiz-party-neon' };
+        return { neon: 'text-quiz-party-neon', neonBg: 'bg-quiz-party-neon' };
       case 'family':
-        return { bg: 'bg-quiz-family-bg', text: 'text-quiz-family-text', neon: 'bg-quiz-family-neon' };
+        return { neon: 'text-quiz-family-neon', neonBg: 'bg-quiz-family-neon' };
       case 'connection':
-        return { bg: 'bg-quiz-connection-bg', text: 'text-quiz-connection-text', neon: 'bg-quiz-connection-neon' };
+        return { neon: 'text-quiz-connection-neon', neonBg: 'bg-quiz-connection-neon' };
       case 'identity':
-        return { bg: 'bg-quiz-identity-bg', text: 'text-quiz-identity-text', neon: 'bg-quiz-identity-neon' };
+        return { neon: 'text-quiz-identity-neon', neonBg: 'bg-quiz-identity-neon' };
       case 'career':
-        return { bg: 'bg-quiz-career-bg', text: 'text-quiz-career-text', neon: 'bg-quiz-career-neon' };
+        return { neon: 'text-quiz-career-neon', neonBg: 'bg-quiz-career-neon' };
       case 'travel':
-        return { bg: 'bg-quiz-travel-bg', text: 'text-quiz-travel-text', neon: 'bg-quiz-travel-neon' };
+        return { neon: 'text-quiz-travel-neon', neonBg: 'bg-quiz-travel-neon' };
       case 'health':
-        return { bg: 'bg-quiz-health-bg', text: 'text-quiz-health-text', neon: 'bg-quiz-health-neon' };
+        return { neon: 'text-quiz-health-neon', neonBg: 'bg-quiz-health-neon' };
       case 'money':
-        return { bg: 'bg-quiz-money-bg', text: 'text-quiz-money-text', neon: 'bg-quiz-money-neon' };
+        return { neon: 'text-quiz-money-neon', neonBg: 'bg-quiz-money-neon' };
       case 'love':
-        return { bg: 'bg-quiz-love-bg', text: 'text-quiz-love-text', neon: 'bg-quiz-love-neon' };
+        return { neon: 'text-quiz-love-neon', neonBg: 'bg-quiz-love-neon' };
       case 'hobby':
-        return { bg: 'bg-quiz-hobby-bg', text: 'text-quiz-hobby-text', neon: 'bg-quiz-hobby-neon' };
+        return { neon: 'text-quiz-hobby-neon', neonBg: 'bg-quiz-hobby-neon' };
       case 'dreams':
-        return { bg: 'bg-quiz-dreams-bg', text: 'text-quiz-dreams-text', neon: 'bg-quiz-dreams-neon' };
+        return { neon: 'text-quiz-dreams-neon', neonBg: 'bg-quiz-dreams-neon' };
       case 'fear':
-        return { bg: 'bg-quiz-fear-bg', text: 'text-quiz-fear-text', neon: 'bg-quiz-fear-neon' };
+        return { neon: 'text-quiz-fear-neon', neonBg: 'bg-quiz-fear-neon' };
       case 'wisdom':
-        return { bg: 'bg-quiz-wisdom-bg', text: 'text-quiz-wisdom-text', neon: 'bg-quiz-wisdom-neon' };
+        return { neon: 'text-quiz-wisdom-neon', neonBg: 'bg-quiz-wisdom-neon' };
       case 'future':
-        return { bg: 'bg-quiz-future-bg', text: 'text-quiz-future-text', neon: 'bg-quiz-future-neon' };
+        return { neon: 'text-quiz-future-neon', neonBg: 'bg-quiz-future-neon' };
       default:
-        return { bg: 'bg-quiz-category-bg', text: 'text-quiz-category-text', neon: 'bg-quiz-category-bg' };
+        return { neon: 'text-primary', neonBg: 'bg-primary' };
     }
   };
 
@@ -145,7 +145,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     return (
       <div 
-        className={`flex-shrink-0 w-full max-w-[500px] ${categoryColors.bg} rounded-2xl shadow-card overflow-hidden`}
+        className="flex-shrink-0 w-full max-w-[500px] bg-card rounded-2xl shadow-card overflow-hidden"
         style={{
           ...style,
           height: 'calc(100svh - 64px - 20px - 16px - 32px)',
@@ -153,12 +153,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         }}
       >
         {/* Category Strip */}
-        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.neon} flex items-center justify-center`}>
+        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.neonBg} flex items-center justify-center`}>
           <div className="transform -rotate-90 whitespace-nowrap">
             {Array(20).fill(question.category).map((cat, index) => (
               <span 
                 key={`${cat}-${index}`} 
-                className="text-white font-bold text-sm tracking-wide uppercase" 
+                className="text-black font-bold text-sm tracking-wide uppercase" 
                 style={{ 
                   marginRight: index < 19 ? '8px' : '0',
                   fontFamily: "'Factor A', sans-serif"
@@ -173,7 +173,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         {/* Main Content */}
         <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-16">
-            <h1 className={`question-text text-3xl md:text-4xl lg:text-4xl font-bold ${categoryColors.text} leading-tight w-full max-w-full`}>
+            <h1 className={`question-text text-3xl md:text-4xl lg:text-4xl font-bold ${categoryColors.neon} leading-tight w-full max-w-full`}>
               {question.question}
             </h1>
           </div>
