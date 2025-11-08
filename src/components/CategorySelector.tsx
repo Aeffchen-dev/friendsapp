@@ -180,10 +180,7 @@ export function CategorySelector({
                            width: '52px', 
                            height: '32px', 
                            borderRadius: '32px',
-                           backgroundColor: isSelected ? colorClasses : 'white',
-                           opacity: isSelected ? 0.8 : 1,
-                           outline: '1px solid white',
-                           outlineOffset: '0px',
+                           backgroundColor: 'rgba(0, 0, 0, 0.25)',
                            position: 'relative'
                          }}
                       >
