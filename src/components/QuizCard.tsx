@@ -153,12 +153,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         }}
       >
         {/* Category Strip */}
-        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.stripBg} flex items-center justify-center`}>
+        <div className={`absolute left-0 top-0 h-full w-8 ${categoryColors.stripBg} flex items-center justify-center overflow-hidden`}>
           <div className="transform -rotate-90 whitespace-nowrap">
             {Array(20).fill(question.category).map((cat, index) => (
               <span 
                 key={`${cat}-${index}`} 
-                className="text-white font-bold text-sm tracking-wide" 
+                className="text-white font-bold text-2xl tracking-wide uppercase" 
                 style={{ 
                   marginRight: index < 19 ? '8px' : '0',
                   fontFamily: "'Factor A', sans-serif"
@@ -173,7 +173,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         {/* Main Content */}
         <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-8">
-            <h1 className="question-text text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-none w-full max-w-full">
+            <h1 className="question-text text-4xl md:text-5xl lg:text-6xl font-bold text-white w-full max-w-full" style={{ lineHeight: '1.15' }}>
               {question.question}
             </h1>
           </div>

@@ -29,39 +29,39 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(300 89% 62%)'; // Magenta/Purple
+        return 'hsl(300 100% 50%)'; // Magenta/Purple
       case 'connection':
-        return 'hsl(0 85% 60%)'; // Red-Pink
+        return 'hsl(0 100% 50%)'; // Red-Pink
       case 'identity':
-        return 'hsl(328 85% 82%)'; // Light Pink
+        return 'hsl(328 100% 70%)'; // Light Pink
       case 'party':
-        return 'hsl(25 96% 61%)'; // Orange
+        return 'hsl(25 100% 50%)'; // Orange
       case 'friends':
-        return 'hsl(0 93% 81%)'; // Coral
+        return 'hsl(0 100% 65%)'; // Coral
       case 'self reflection':
-        return 'hsl(300 89% 62%)'; // Magenta/Purple
+        return 'hsl(300 100% 50%)'; // Magenta/Purple
       case 'family':
-        return 'hsl(0 85% 60%)'; // Red-Pink
+        return 'hsl(0 100% 50%)'; // Red-Pink
       case 'career':
-        return 'hsl(328 85% 82%)'; // Light Pink
+        return 'hsl(328 100% 70%)'; // Light Pink
       case 'travel':
-        return 'hsl(25 96% 61%)'; // Orange
+        return 'hsl(25 100% 50%)'; // Orange
       case 'health':
-        return 'hsl(0 93% 81%)'; // Coral
+        return 'hsl(0 100% 65%)'; // Coral
       case 'money':
-        return 'hsl(300 89% 62%)'; // Magenta/Purple
+        return 'hsl(300 100% 50%)'; // Magenta/Purple
       case 'love':
-        return 'hsl(0 85% 60%)'; // Red-Pink
+        return 'hsl(0 100% 50%)'; // Red-Pink
       case 'hobby':
-        return 'hsl(328 85% 82%)'; // Light Pink
+        return 'hsl(328 100% 70%)'; // Light Pink
       case 'dreams':
-        return 'hsl(25 96% 61%)'; // Orange
+        return 'hsl(25 100% 50%)'; // Orange
       case 'fear':
-        return 'hsl(0 93% 81%)'; // Coral
+        return 'hsl(0 100% 65%)'; // Coral
       case 'wisdom':
-        return 'hsl(300 89% 62%)'; // Magenta/Purple
+        return 'hsl(300 100% 50%)'; // Magenta/Purple
       case 'future':
-        return 'hsl(0 85% 60%)'; // Red-Pink
+        return 'hsl(0 100% 50%)'; // Red-Pink
       default:
         return 'hsl(290 100% 85%)';
     }

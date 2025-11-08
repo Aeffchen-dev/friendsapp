@@ -68,27 +68,27 @@ All colors MUST be HSL.
     /* Card background - almost black for all cards */
     --quiz-card-bg: 0 0% 5%;
     
-    /* Category strip colors - cycling through 5 colors from palette */
-    --quiz-fuck-strip: 300 89% 62%;         /* Magenta/Purple */
-    --quiz-connection-strip: 0 85% 60%;     /* Red-Pink */
-    --quiz-identity-strip: 328 85% 82%;     /* Light Pink */
-    --quiz-party-strip: 25 96% 61%;         /* Orange */
-    --quiz-friends-strip: 0 93% 81%;        /* Coral */
+    /* Category strip colors - 400% more vibrant */
+    --quiz-fuck-strip: 300 100% 50%;         /* Magenta/Purple */
+    --quiz-connection-strip: 0 100% 50%;     /* Red-Pink */
+    --quiz-identity-strip: 328 100% 70%;     /* Light Pink */
+    --quiz-party-strip: 25 100% 50%;         /* Orange */
+    --quiz-friends-strip: 0 100% 65%;        /* Coral */
     
-    --quiz-self-reflection-strip: 300 89% 62%; /* Magenta/Purple */
-    --quiz-family-strip: 0 85% 60%;         /* Red-Pink */
-    --quiz-career-strip: 328 85% 82%;       /* Light Pink */
-    --quiz-travel-strip: 25 96% 61%;        /* Orange */
+    --quiz-self-reflection-strip: 300 100% 50%; /* Magenta/Purple */
+    --quiz-family-strip: 0 100% 50%;         /* Red-Pink */
+    --quiz-career-strip: 328 100% 70%;       /* Light Pink */
+    --quiz-travel-strip: 25 100% 50%;        /* Orange */
     
-    --quiz-health-strip: 0 93% 81%;         /* Coral */
-    --quiz-money-strip: 300 89% 62%;        /* Magenta/Purple */
-    --quiz-love-strip: 0 85% 60%;           /* Red-Pink */
-    --quiz-hobby-strip: 328 85% 82%;        /* Light Pink */
+    --quiz-health-strip: 0 100% 65%;         /* Coral */
+    --quiz-money-strip: 300 100% 50%;        /* Magenta/Purple */
+    --quiz-love-strip: 0 100% 50%;           /* Red-Pink */
+    --quiz-hobby-strip: 328 100% 70%;        /* Light Pink */
     
-    --quiz-dreams-strip: 25 96% 61%;        /* Orange */
-    --quiz-fear-strip: 0 93% 81%;           /* Coral */
-    --quiz-wisdom-strip: 300 89% 62%;       /* Magenta/Purple */
-    --quiz-future-strip: 0 85% 60%;         /* Red-Pink */
+    --quiz-dreams-strip: 25 100% 50%;        /* Orange */
+    --quiz-fear-strip: 0 100% 65%;           /* Coral */
+    --quiz-wisdom-strip: 300 100% 50%;       /* Magenta/Purple */
+    --quiz-future-strip: 0 100% 50%;         /* Red-Pink */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
