@@ -218,7 +218,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     return (
       <div 
-        className="flex-shrink-0 w-full max-w-[500px] rounded-2xl overflow-hidden mx-2"
+        className="flex-shrink-0 w-full max-w-[500px] rounded-2xl overflow-hidden mx-4 md:mx-0"
         style={{
           ...style,
           height: '80vh',
