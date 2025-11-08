@@ -29,47 +29,83 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
-      case 'connection':
-        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
-      case 'identity':
-        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
-      case 'party':
-        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
+        return 'hsl(0 100% 50%)';
       case 'friends':
-        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
-      case 'self reflection':
-        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
+        return 'hsl(120 100% 50%)';
       case 'family':
-        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
+        return 'hsl(30 100% 70%)';
+      case 'self reflection':
+        return 'hsl(195 100% 50%)';
+      case 'party':
+        return 'hsl(60 100% 71%)';
+      case 'connection':
+        return 'hsl(240 100% 50%)';
+      case 'identity':
+        return 'hsl(266 100% 51%)';
       case 'career':
-        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
+        return 'hsl(35 100% 62%)';
       case 'travel':
-        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
+        return 'hsl(92 100% 83%)';
       case 'health':
-        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
+        return 'hsl(330 84% 67%)';
       case 'money':
-        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
+        return 'hsl(45 95% 55%)';
       case 'love':
-        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
+        return 'hsl(350 85% 60%)';
       case 'hobby':
-        return 'hsl(346 100% 45%)'; // Magenta - tetradic to lime
+        return 'hsl(25 60% 45%)';
       case 'dreams':
-        return 'hsl(3 100% 50%)'; // Red - tetradic to cyan
+        return 'hsl(270 75% 65%)';
       case 'fear':
-        return 'hsl(247 100% 45%)'; // Blue - tetradic to yellow
+        return 'hsl(210 10% 40%)';
       case 'wisdom':
-        return 'hsl(65 100% 45%)'; // Yellow-Green - tetradic to pink
+        return 'hsl(239 84% 67%)';
       case 'future':
-        return 'hsl(19 100% 50%)'; // Orange - tetradic to purple
+        return 'hsl(199 89% 48%)';
       default:
         return 'hsl(290 100% 85%)';
     }
   };
 
   const getCategoryTextColors = (category: string) => {
-    // All vibrant colors work with white text for better contrast
-    return 'hsl(0 0% 100%)';
+    switch (category.toLowerCase()) {
+      case 'fuck':
+        return 'hsl(0 0% 98%)'; // White text on red
+      case 'friends':
+        return 'hsl(0 0% 0%)'; // Black text on green
+      case 'family':
+        return 'hsl(0 0% 0%)'; // Black text on orange
+      case 'self reflection':
+        return 'hsl(0 0% 0%)'; // Black text on light blue
+      case 'party':
+        return 'hsl(0 0% 0%)'; // Black text on yellow
+      case 'connection':
+        return 'hsl(0 0% 100%)'; // White text on blue
+      case 'identity':
+        return 'hsl(0 0% 98%)'; // White text on purple
+      case 'career':
+        return 'hsl(0 0% 0%)'; // Black text on orange
+      case 'travel':
+        return 'hsl(0 0% 0%)'; // Black text on light green
+      case 'health':
+        return 'hsl(0 0% 98%)'; // White text on pink
+      case 'money':
+        return 'hsl(0 0% 0%)'; // Black text on gold
+      case 'love':
+        return 'hsl(0 0% 98%)'; // White text on red
+      case 'hobby':
+        return 'hsl(0 0% 98%)'; // White text on brown
+      case 'dreams':
+        return 'hsl(0 0% 98%)'; // White text on purple
+      case 'fear':
+        return 'hsl(0 0% 98%)'; // White text on gray
+      case 'wisdom':
+        return 'hsl(0 0% 98%)'; // White text on indigo
+      case 'future':
+        return 'hsl(0 0% 98%)'; // White text on sky blue
+      default:
+        return 'hsl(0 0% 15%)'; // Default dark text
+    }
   };
 
   const handleCategoryToggle = (category: string) => {
@@ -138,10 +174,7 @@ export function CategorySelector({
                   />
                   
                   <span className="font-bold text-sm uppercase tracking-wide relative z-10 transition-colors duration-300" 
-                    style={{ 
-                      color: isSelected ? textColor : 'white',
-                      fontFamily: "'Factor A', sans-serif"
-                    }}>
+                    style={{ color: isSelected ? textColor : 'white' }}>
                     {category}
                   </span>
                   <div onClick={(e) => e.stopPropagation()}>

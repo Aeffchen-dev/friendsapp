@@ -37,27 +37,16 @@ export function QuizApp() {
 
   const fetchQuestions = async () => {
     try {
-      let csvText = '';
+      // Google Sheets CSV export URL
+      const sheetId = '1-5NpzNwUiAsl_BPruHygyUbpO3LHkWr8E08fqkypOcU';
+      const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
       
-      // Try Google Sheets first
-      try {
-        const sheetId = '1-5NpzNwUiAsl_BPruHygyUbpO3LHkWr8E08fqkypOcU';
-        const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
-        
-        const response = await fetch(csvUrl);
-        if (!response.ok) {
-          throw new Error('Failed to fetch data from Google Sheets');
-        }
-        csvText = await response.text();
-      } catch (googleError) {
-        console.error('Error fetching from Google Sheets, trying local CSV:', googleError);
-        // Fallback to local CSV file
-        const localResponse = await fetch('/quiz_questions.csv');
-        if (!localResponse.ok) {
-          throw new Error('Failed to fetch local CSV file');
-        }
-        csvText = await localResponse.text();
+      const response = await fetch(csvUrl);
+      if (!response.ok) {
+        throw new Error('Failed to fetch data from Google Sheets');
       }
+      
+      const csvText = await response.text();
       
       // Parse CSV data
       const lines = csvText.split('\n');
@@ -90,7 +79,7 @@ export function QuizApp() {
         setSelectedCategories(categories); // Start with all categories selected
       }
     } catch (error) {
-      console.error('Error fetching questions:', error);
+      console.error('Error fetching questions from Google Sheets:', error);
     } finally {
       // Ensure animation plays for minimum 2.5s from start
       const elapsed = Date.now() - loadStartTime;
