@@ -403,7 +403,7 @@ export function QuizApp() {
       </div>
 
       {/* Main Quiz Container */}
-      <div className="flex-1 flex justify-center items-center overflow-visible absolute z-10" style={{ top: '64px', bottom: 0, left: 0, right: 0 }}>
+      <div className="flex-1 flex justify-center items-center overflow-visible absolute z-10" style={{ top: '48px', bottom: 0, left: 0, right: 0 }}>
         <div className="w-full h-full flex justify-center items-center" style={{ minHeight: 'calc(100svh - 64px)' }}>
           {loading ? (
             <div className="h-full flex items-center justify-center" style={{ minHeight: 'calc(100svh - 64px)' }}>
