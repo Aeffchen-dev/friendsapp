@@ -265,7 +265,7 @@ export function QuizApp() {
         <div 
           className="font-bold whitespace-nowrap text-center"
           style={{
-            fontSize: '38vw',
+            fontSize: '32vw',
             lineHeight: '1',
             fontFamily: "'Factor A', sans-serif",
             color: '#000000',
