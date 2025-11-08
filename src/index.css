@@ -65,75 +65,74 @@ All colors MUST be HSL.
     --quiz-background: 0 0% 7%;
     --quiz-surface: 0 0% 12%;
     
-    /* Category-specific colors - Warm palette (lighter bg, darker strip) */
-    --quiz-fuck-bg: 327 100% 79%;           /* #FF92D3 - Card bg (lighter) */
+    /* Category-specific colors - New vibrant palette */
+    --quiz-fuck-bg: 335 100% 81%;           /* #FF9DC6 - Card bg */
     --quiz-fuck-text: 0 0% 0%;
-    --quiz-fuck-neon: 281 98% 25%;          /* #55017D - Strip/filter (darker) */
+    --quiz-fuck-neon: 344 95% 16%;          /* #4F0216 - Strip/filter */
     
-    --quiz-connection-bg: 290 100% 72%;     /* #E772FF - Card bg (lighter) */
+    --quiz-connection-bg: 182 87% 68%;      /* #67EFF4 - Card bg */
     --quiz-connection-text: 0 0% 0%;
-    --quiz-connection-neon: 278 100% 57%;   /* #AF25FF - Strip/filter (darker) */
+    --quiz-connection-neon: 270 95% 17%;    /* #2C0255 - Strip/filter */
     
-    --quiz-identity-bg: 315 100% 64%;       /* #FF47D1 - Card bg (lighter) */
+    --quiz-identity-bg: 259 45% 72%;        /* #AD99D8 - Card bg */
     --quiz-identity-text: 0 0% 0%;
-    --quiz-identity-neon: 338 97% 61%;      /* #FC3D82 - Strip/filter (darker) */
+    --quiz-identity-neon: 0 65% 13%;        /* #380C0C - Strip/filter */
     
-    --quiz-party-bg: 24 100% 50%;           /* #FF6600 - Card bg (lighter) */
+    --quiz-party-bg: 335 100% 81%;          /* #FF9DC6 - Card bg */
     --quiz-party-text: 0 0% 0%;
-    --quiz-party-neon: 10 100% 50%;         /* #FF2B00 - Strip/filter (darker) */
+    --quiz-party-neon: 14 100% 43%;         /* #D93300 - Strip/filter */
     
-    /* Additional categories cycling through colors */
-    --quiz-friends-bg: 327 100% 79%;        /* #FF92D3 */
+    --quiz-friends-bg: 289 100% 79%;        /* #EC94FF - Card bg */
     --quiz-friends-text: 0 0% 0%;
-    --quiz-friends-neon: 281 98% 25%;       /* #55017D */
+    --quiz-friends-neon: 281 100% 13%;      /* #2C0041 - Strip/filter */
     
-    --quiz-self-reflection-bg: 290 100% 72%; /* #E772FF */
+    --quiz-self-reflection-bg: 76 100% 75%; /* #DCFF80 - Card bg */
     --quiz-self-reflection-text: 0 0% 0%;
-    --quiz-self-reflection-neon: 278 100% 57%; /* #AF25FF */
+    --quiz-self-reflection-neon: 159 100% 13%; /* #00422B - Strip/filter */
     
-    --quiz-family-bg: 315 100% 64%;         /* #FF47D1 */
+    --quiz-family-bg: 307 100% 80%;         /* #FF98F3 - Card bg */
     --quiz-family-text: 0 0% 0%;
-    --quiz-family-neon: 338 97% 61%;        /* #FC3D82 */
+    --quiz-family-neon: 23 98% 24%;         /* #7B2F01 - Strip/filter */
     
-    --quiz-career-bg: 24 100% 50%;          /* #FF6600 */
+    --quiz-career-bg: 157 100% 87%;         /* #BCFFE5 - Card bg */
     --quiz-career-text: 0 0% 0%;
-    --quiz-career-neon: 10 100% 50%;        /* #FF2B00 */
+    --quiz-career-neon: 178 93% 17%;        /* #035653 - Strip/filter */
     
-    --quiz-travel-bg: 327 100% 79%;         /* #FF92D3 */
+    --quiz-travel-bg: 156 100% 50%;         /* #00FF9B - Card bg */
     --quiz-travel-text: 0 0% 0%;
-    --quiz-travel-neon: 281 98% 25%;        /* #55017D */
+    --quiz-travel-neon: 170 100% 14%;       /* #00463A - Strip/filter */
     
-    --quiz-health-bg: 290 100% 72%;         /* #E772FF */
+    --quiz-health-bg: 200 100% 77%;         /* #89D8FF - Card bg */
     --quiz-health-text: 0 0% 0%;
-    --quiz-health-neon: 278 100% 57%;       /* #AF25FF */
+    --quiz-health-neon: 205 100% 19%;       /* #003A63 - Strip/filter */
     
-    --quiz-money-bg: 315 100% 64%;          /* #FF47D1 */
+    --quiz-money-bg: 70 100% 49%;           /* #D0FC00 - Card bg */
     --quiz-money-text: 0 0% 0%;
-    --quiz-money-neon: 338 97% 61%;         /* #FC3D82 */
+    --quiz-money-neon: 187 94% 13%;         /* #023B42 - Strip/filter */
     
-    --quiz-love-bg: 24 100% 50%;            /* #FF6600 */
+    --quiz-love-bg: 335 100% 81%;           /* #FF9DC6 - Card bg */
     --quiz-love-text: 0 0% 0%;
-    --quiz-love-neon: 10 100% 50%;          /* #FF2B00 */
+    --quiz-love-neon: 344 95% 16%;          /* #4F0216 - Strip/filter */
     
-    --quiz-hobby-bg: 327 100% 79%;          /* #FF92D3 */
+    --quiz-hobby-bg: 182 87% 68%;           /* #67EFF4 - Card bg */
     --quiz-hobby-text: 0 0% 0%;
-    --quiz-hobby-neon: 281 98% 25%;         /* #55017D */
+    --quiz-hobby-neon: 270 95% 17%;         /* #2C0255 - Strip/filter */
     
-    --quiz-dreams-bg: 290 100% 72%;         /* #E772FF */
+    --quiz-dreams-bg: 259 45% 72%;          /* #AD99D8 - Card bg */
     --quiz-dreams-text: 0 0% 0%;
-    --quiz-dreams-neon: 278 100% 57%;       /* #AF25FF */
+    --quiz-dreams-neon: 0 65% 13%;          /* #380C0C - Strip/filter */
     
-    --quiz-fear-bg: 315 100% 64%;           /* #FF47D1 */
+    --quiz-fear-bg: 335 100% 81%;           /* #FF9DC6 - Card bg */
     --quiz-fear-text: 0 0% 0%;
-    --quiz-fear-neon: 338 97% 61%;          /* #FC3D82 */
+    --quiz-fear-neon: 14 100% 43%;          /* #D93300 - Strip/filter */
     
-    --quiz-wisdom-bg: 24 100% 50%;          /* #FF6600 */
+    --quiz-wisdom-bg: 289 100% 79%;         /* #EC94FF - Card bg */
     --quiz-wisdom-text: 0 0% 0%;
-    --quiz-wisdom-neon: 10 100% 50%;        /* #FF2B00 */
+    --quiz-wisdom-neon: 281 100% 13%;       /* #2C0041 - Strip/filter */
     
-    --quiz-future-bg: 327 100% 79%;         /* #FF92D3 */
+    --quiz-future-bg: 76 100% 75%;          /* #DCFF80 - Card bg */
     --quiz-future-text: 0 0% 0%;
-    --quiz-future-neon: 281 98% 25%;        /* #55017D */
+    --quiz-future-neon: 159 100% 13%;       /* #00422B - Strip/filter */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
