@@ -21,45 +21,48 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const containerRef = useRef<HTMLDivElement>(null);
   const minSwipeDistance = 50;
 
-  // Get category-specific neon color
+  // Get category-specific color pairs
   const getCategoryColors = (category: string) => {
-    switch (category.toLowerCase()) {
+    const normalizedCategory = category.toLowerCase().replace(/\s+/g, '-');
+    switch (normalizedCategory) {
       case 'fuck':
-        return { stripBg: 'bg-quiz-fuck-strip' };
+        return { cardBg: 'bg-quiz-fuck-card', textColor: 'text-quiz-fuck-text', stripBg: 'bg-quiz-fuck-strip', stripText: 'text-white' };
       case 'friends':
-        return { stripBg: 'bg-quiz-friends-strip' };
-      case 'self reflection':
-        return { stripBg: 'bg-quiz-self-reflection-strip' };
+        return { cardBg: 'bg-quiz-friends-card', textColor: 'text-quiz-friends-text', stripBg: 'bg-quiz-friends-strip', stripText: 'text-white' };
+      case 'self-reflection':
+        return { cardBg: 'bg-quiz-self-reflection-card', textColor: 'text-quiz-self-reflection-text', stripBg: 'bg-quiz-self-reflection-strip', stripText: 'text-black' };
       case 'party':
-        return { stripBg: 'bg-quiz-party-strip' };
+        return { cardBg: 'bg-quiz-party-card', textColor: 'text-quiz-party-text', stripBg: 'bg-quiz-party-strip', stripText: 'text-black' };
       case 'family':
-        return { stripBg: 'bg-quiz-family-strip' };
+        return { cardBg: 'bg-quiz-family-card', textColor: 'text-quiz-family-text', stripBg: 'bg-quiz-family-strip', stripText: 'text-white' };
       case 'connection':
-        return { stripBg: 'bg-quiz-connection-strip' };
+        return { cardBg: 'bg-quiz-connection-card', textColor: 'text-quiz-connection-text', stripBg: 'bg-quiz-connection-strip', stripText: 'text-white' };
       case 'identity':
-        return { stripBg: 'bg-quiz-identity-strip' };
+        return { cardBg: 'bg-quiz-identity-card', textColor: 'text-quiz-identity-text', stripBg: 'bg-quiz-identity-strip', stripText: 'text-white' };
       case 'career':
-        return { stripBg: 'bg-quiz-career-strip' };
+        return { cardBg: 'bg-quiz-career-card', textColor: 'text-quiz-career-text', stripBg: 'bg-quiz-career-strip', stripText: 'text-white' };
       case 'travel':
-        return { stripBg: 'bg-quiz-travel-strip' };
+        return { cardBg: 'bg-quiz-travel-card', textColor: 'text-quiz-travel-text', stripBg: 'bg-quiz-travel-strip', stripText: 'text-white' };
       case 'health':
-        return { stripBg: 'bg-quiz-health-strip' };
+        return { cardBg: 'bg-quiz-health-card', textColor: 'text-quiz-health-text', stripBg: 'bg-quiz-health-strip', stripText: 'text-black' };
       case 'money':
-        return { stripBg: 'bg-quiz-money-strip' };
+        return { cardBg: 'bg-quiz-money-card', textColor: 'text-quiz-money-text', stripBg: 'bg-quiz-money-strip', stripText: 'text-white' };
       case 'love':
-        return { stripBg: 'bg-quiz-love-strip' };
+        return { cardBg: 'bg-quiz-love-card', textColor: 'text-quiz-love-text', stripBg: 'bg-quiz-love-strip', stripText: 'text-black' };
       case 'hobby':
-        return { stripBg: 'bg-quiz-hobby-strip' };
+        return { cardBg: 'bg-quiz-hobby-card', textColor: 'text-quiz-hobby-text', stripBg: 'bg-quiz-hobby-strip', stripText: 'text-white' };
       case 'dreams':
-        return { stripBg: 'bg-quiz-dreams-strip' };
+        return { cardBg: 'bg-quiz-dreams-card', textColor: 'text-quiz-dreams-text', stripBg: 'bg-quiz-dreams-strip', stripText: 'text-white' };
       case 'fear':
-        return { stripBg: 'bg-quiz-fear-strip' };
+        return { cardBg: 'bg-quiz-fear-card', textColor: 'text-quiz-fear-text', stripBg: 'bg-quiz-fear-strip', stripText: 'text-white' };
       case 'wisdom':
-        return { stripBg: 'bg-quiz-wisdom-strip' };
+        return { cardBg: 'bg-quiz-wisdom-card', textColor: 'text-quiz-wisdom-text', stripBg: 'bg-quiz-wisdom-strip', stripText: 'text-black' };
       case 'future':
-        return { stripBg: 'bg-quiz-future-strip' };
+        return { cardBg: 'bg-quiz-future-card', textColor: 'text-quiz-future-text', stripBg: 'bg-quiz-future-strip', stripText: 'text-white' };
+      case 'wer-aus-der-runde':
+        return { cardBg: 'bg-quiz-wer-aus-der-runde-card', textColor: 'text-quiz-wer-aus-der-runde-text', stripBg: 'bg-quiz-wer-aus-der-runde-strip', stripText: 'text-black' };
       default:
-        return { stripBg: 'bg-primary' };
+        return { cardBg: 'bg-primary', textColor: 'text-primary-foreground', stripBg: 'bg-primary', stripText: 'text-white' };
     }
   };
 
@@ -145,7 +148,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     return (
       <div 
-        className={`flex-shrink-0 w-full max-w-[500px] ${categoryColors.stripBg} rounded-2xl shadow-card overflow-hidden`}
+        className={`flex-shrink-0 w-full max-w-[500px] ${categoryColors.cardBg} rounded-2xl shadow-card overflow-hidden`}
         style={{
           ...style,
           height: 'calc(100svh - 64px - 20px - 16px - 32px)',
@@ -158,7 +161,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             {Array(20).fill(question.category).map((cat, index) => (
               <span 
                 key={`${cat}-${index}`} 
-                className="text-white font-bold text-sm tracking-wide uppercase" 
+                className={`${categoryColors.stripText} font-bold text-sm tracking-wide uppercase`}
                 style={{ 
                   marginRight: index < 19 ? '8px' : '0',
                   fontFamily: "'Factor A', sans-serif"
@@ -173,7 +176,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         {/* Main Content */}
         <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-8">
-            <h1 className="question-text text-4xl md:text-5xl lg:text-6xl font-bold text-white w-full max-w-full" style={{ lineHeight: '1.15' }}>
+            <h1 className={`question-text text-4xl md:text-5xl lg:text-6xl font-bold ${categoryColors.textColor} w-full max-w-full`} style={{ lineHeight: '1.15' }}>
               {question.question}
             </h1>
           </div>
