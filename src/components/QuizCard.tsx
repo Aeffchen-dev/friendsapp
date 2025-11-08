@@ -145,7 +145,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     return (
       <div 
-        className="flex-shrink-0 w-full max-w-[500px] rounded-2xl overflow-hidden mx-4 md:mx-0 translate-y-4 md:translate-y-0"
+        className="flex-shrink-0 w-full max-w-[500px] rounded-2xl overflow-hidden mx-4 md:mx-0 translate-y-8 md:translate-y-0"
         style={{
           ...style,
           height: '80vh',
@@ -153,7 +153,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           backgroundColor: 'rgba(0, 0, 0, 0.30)',
           backdropFilter: 'blur(32px)',
           WebkitBackdropFilter: 'blur(32px)',
-          boxShadow: '0 0 24px 4px rgba(0, 0, 0, 0.24)',
+          boxShadow: '0 0 24px 12px rgba(0, 0, 0, 0.24)',
           width: 'calc(100% - 32px)',
         }}
       >
