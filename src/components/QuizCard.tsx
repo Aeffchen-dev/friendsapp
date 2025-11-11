@@ -259,7 +259,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
                 lineHeight: '1.15',
                 hyphens: 'auto',
                 WebkitHyphens: 'auto',
-                wordBreak: 'break-word',
                 overflowWrap: 'break-word',
                 whiteSpace: 'normal'
               }}
