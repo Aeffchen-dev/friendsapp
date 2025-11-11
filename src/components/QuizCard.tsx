@@ -257,10 +257,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
               className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full" 
               style={{ 
                 lineHeight: '1.15',
-                hyphens: 'auto',
-                WebkitHyphens: 'auto',
-                msHyphens: 'auto',
-                overflowWrap: 'normal',
+                overflowWrap: 'break-word',
                 wordBreak: 'normal',
                 whiteSpace: 'normal'
               }}
