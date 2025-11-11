@@ -375,9 +375,21 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
               className="absolute left-0 top-0 h-full cursor-pointer z-20"
               style={{ width: '20%' }}
               onClick={(e) => {
-                if (!isDragging) {
+                if (!isDragging && !isSnapping && containerRef.current) {
                   e.stopPropagation();
-                  onSwipeRight();
+                  const containerWidth = containerRef.current.offsetWidth;
+                  
+                  // Animate to the right
+                  setIsSnapping(true);
+                  setDragOffset(containerWidth);
+                  
+                  if (onDragStateChange) {
+                    onDragStateChange(false, 1, prevQuestion.category, 1);
+                  }
+                  
+                  setTimeout(() => {
+                    onSwipeRight();
+                  }, 250);
                 }
               }}
             />
@@ -389,9 +401,21 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
               className="absolute right-0 top-0 h-full cursor-pointer z-20"
               style={{ width: '20%' }}
               onClick={(e) => {
-                if (!isDragging) {
+                if (!isDragging && !isSnapping && containerRef.current) {
                   e.stopPropagation();
-                  onSwipeLeft();
+                  const containerWidth = containerRef.current.offsetWidth;
+                  
+                  // Animate to the left
+                  setIsSnapping(true);
+                  setDragOffset(-containerWidth);
+                  
+                  if (onDragStateChange) {
+                    onDragStateChange(false, 1, nextQuestion.category, -1);
+                  }
+                  
+                  setTimeout(() => {
+                    onSwipeLeft();
+                  }, 250);
                 }
               }}
             />
