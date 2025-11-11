@@ -21,12 +21,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const [startX, setStartX] = useState(0);
   const [isSnapping, setIsSnapping] = useState(false);
   const [containerWidth, setContainerWidth] = useState(0);
-  const [hasDragged, setHasDragged] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLHeadingElement>(null);
   const minSwipeDistance = 50;
-  const [edgeActive, setEdgeActive] = useState<null | 'left' | 'right'>(null);
 
   // Reset drag when question changes
   useEffect(() => {
@@ -111,18 +109,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     setIsDragging(true);
     setStartX(clientX);
     setDragOffset(0);
-    setHasDragged(false);
   };
 
   const handleMove = (clientX: number) => {
     if (!isDragging) return;
     const offset = clientX - startX;
     setDragOffset(offset);
-    
-    // Mark as dragged if movement is significant
-    if (Math.abs(offset) > 5) {
-      setHasDragged(true);
-    }
     
     // Notify parent of drag state for color interpolation and logo squeeze
     if (onDragStateChange && containerRef.current) {
@@ -376,106 +368,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             position: 'relative',
           })}
-          
-          {/* Left click zone */}
-          {prevQuestion && (
-            <div
-              className="absolute left-0 top-0 h-full cursor-pointer"
-              style={{ width: '20%', zIndex: 30 }}
-              onMouseDown={(e) => { e.stopPropagation(); setEdgeActive('left'); }}
-              onTouchStart={(e) => { e.stopPropagation(); setEdgeActive('left'); }}
-              onMouseUp={(e) => {
-                e.stopPropagation();
-                if (!hasDragged && !isDragging && !isSnapping && containerRef.current) {
-                  const containerWidth = containerRef.current.offsetWidth;
-                  setIsSnapping(true);
-                  setDragOffset(containerWidth);
-                  if (onDragStateChange) {
-                    onDragStateChange(false, 1, prevQuestion.category, 1);
-                  }
-                  setTimeout(() => { onSwipeRight(); }, 250);
-                }
-                setEdgeActive(null);
-              }}
-              onTouchEnd={(e) => {
-                e.stopPropagation();
-                if (!hasDragged && !isDragging && !isSnapping && containerRef.current) {
-                  const containerWidth = containerRef.current.offsetWidth;
-                  setIsSnapping(true);
-                  setDragOffset(containerWidth);
-                  if (onDragStateChange) {
-                    onDragStateChange(false, 1, prevQuestion.category, 1);
-                  }
-                  setTimeout(() => { onSwipeRight(); }, 250);
-                }
-                setEdgeActive(null);
-              }}
-              onClick={(e) => {
-                // Fallback for desktop click
-                if (!hasDragged && !isDragging && !isSnapping && containerRef.current) {
-                  e.stopPropagation();
-                  const containerWidth = containerRef.current.offsetWidth;
-                  setIsSnapping(true);
-                  setDragOffset(containerWidth);
-                  if (onDragStateChange) {
-                    onDragStateChange(false, 1, prevQuestion.category, 1);
-                  }
-                  setTimeout(() => { onSwipeRight(); }, 250);
-                }
-                setEdgeActive(null);
-              }}
-            />
-          )}
-          
-          {/* Right click zone */}
-          {nextQuestion && (
-            <div
-              className="absolute right-0 top-0 h-full cursor-pointer"
-              style={{ width: '20%', zIndex: 30 }}
-              onMouseDown={(e) => { e.stopPropagation(); setEdgeActive('right'); }}
-              onTouchStart={(e) => { e.stopPropagation(); setEdgeActive('right'); }}
-              onMouseUp={(e) => {
-                e.stopPropagation();
-                if (!hasDragged && !isDragging && !isSnapping && containerRef.current) {
-                  const containerWidth = containerRef.current.offsetWidth;
-                  setIsSnapping(true);
-                  setDragOffset(-containerWidth);
-                  if (onDragStateChange) {
-                    onDragStateChange(false, 1, nextQuestion.category, -1);
-                  }
-                  setTimeout(() => { onSwipeLeft(); }, 250);
-                }
-                setEdgeActive(null);
-              }}
-              onTouchEnd={(e) => {
-                e.stopPropagation();
-                if (!hasDragged && !isDragging && !isSnapping && containerRef.current) {
-                  const containerWidth = containerRef.current.offsetWidth;
-                  setIsSnapping(true);
-                  setDragOffset(-containerWidth);
-                  if (onDragStateChange) {
-                    onDragStateChange(false, 1, nextQuestion.category, -1);
-                  }
-                  setTimeout(() => { onSwipeLeft(); }, 250);
-                }
-                setEdgeActive(null);
-              }}
-              onClick={(e) => {
-                // Fallback for desktop click
-                if (!hasDragged && !isDragging && !isSnapping && containerRef.current) {
-                  e.stopPropagation();
-                  const containerWidth = containerRef.current.offsetWidth;
-                  setIsSnapping(true);
-                  setDragOffset(-containerWidth);
-                  if (onDragStateChange) {
-                    onDragStateChange(false, 1, nextQuestion.category, -1);
-                  }
-                  setTimeout(() => { onSwipeLeft(); }, 250);
-                }
-                setEdgeActive(null);
-              }}
-            />
-          )}
         </div>
 
         {/* Next card (right) */}
