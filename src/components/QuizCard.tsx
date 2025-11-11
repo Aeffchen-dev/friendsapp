@@ -387,6 +387,57 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           })}
         </div>
       </div>
+      
+      {/* Edge Click Zones */}
+      {/* Left edge click zone */}
+      {prevQuestion && (
+        <div
+          className="absolute left-0 top-0 h-full cursor-pointer z-20"
+          style={{ width: '16px' }}
+          onClick={(e) => {
+            if (!isDragging && !isSnapping) {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsSnapping(true);
+              if (containerRef.current) {
+                const containerWidth = containerRef.current.offsetWidth;
+                setDragOffset(containerWidth);
+                if (onDragStateChange) {
+                  onDragStateChange(false, 1, prevQuestion.category, 1);
+                }
+              }
+              setTimeout(() => {
+                onSwipeRight();
+              }, 250);
+            }
+          }}
+        />
+      )}
+      
+      {/* Right edge click zone */}
+      {nextQuestion && (
+        <div
+          className="absolute right-0 top-0 h-full cursor-pointer z-20"
+          style={{ width: '16px' }}
+          onClick={(e) => {
+            if (!isDragging && !isSnapping) {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsSnapping(true);
+              if (containerRef.current) {
+                const containerWidth = containerRef.current.offsetWidth;
+                setDragOffset(-containerWidth);
+                if (onDragStateChange) {
+                  onDragStateChange(false, 1, nextQuestion.category, -1);
+                }
+              }
+              setTimeout(() => {
+                onSwipeLeft();
+              }, 250);
+            }
+          }}
+        />
+      )}
       </div>
     </>
   );
