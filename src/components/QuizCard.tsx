@@ -372,11 +372,14 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           {/* Left click zone */}
           {prevQuestion && (
             <div
-              className="absolute left-0 top-0 h-full cursor-pointer z-20"
-              style={{ width: '20%' }}
+              className="absolute left-0 top-0 h-full cursor-pointer"
+              style={{ width: '20%', zIndex: 30 }}
+              onMouseDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
               onClick={(e) => {
                 if (!isDragging && !isSnapping && containerRef.current) {
                   e.stopPropagation();
+                  e.preventDefault();
                   const containerWidth = containerRef.current.offsetWidth;
                   
                   // Animate to the right
@@ -398,11 +401,14 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           {/* Right click zone */}
           {nextQuestion && (
             <div
-              className="absolute right-0 top-0 h-full cursor-pointer z-20"
-              style={{ width: '20%' }}
+              className="absolute right-0 top-0 h-full cursor-pointer"
+              style={{ width: '20%', zIndex: 30 }}
+              onMouseDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
               onClick={(e) => {
                 if (!isDragging && !isSnapping && containerRef.current) {
                   e.stopPropagation();
+                  e.preventDefault();
                   const containerWidth = containerRef.current.offsetWidth;
                   
                   // Animate to the left
