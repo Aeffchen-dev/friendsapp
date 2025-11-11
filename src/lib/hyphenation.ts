@@ -24,6 +24,9 @@ function shouldExcludeWord(word: string): boolean {
   // Contains numbers or symbols
   if (/[\d§$%€&@#]/.test(word)) return true;
   
+  // Already contains a hyphen (don't add additional hyphens)
+  if (word.includes('-')) return true;
+  
   return false;
 }
 
