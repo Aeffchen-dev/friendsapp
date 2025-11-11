@@ -394,10 +394,35 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         <div
           className="absolute left-0 top-0 h-full cursor-pointer z-20"
           style={{ width: '16px' }}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onTouchStart={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onTouchEnd={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!isSnapping) {
+              setIsSnapping(true);
+              if (containerRef.current) {
+                const containerWidth = containerRef.current.offsetWidth;
+                setDragOffset(containerWidth);
+                if (onDragStateChange) {
+                  onDragStateChange(false, 1, prevQuestion.category, 1);
+                }
+              }
+              setTimeout(() => {
+                onSwipeRight();
+              }, 250);
+            }
+          }}
           onClick={(e) => {
-            if (!isDragging && !isSnapping) {
-              e.preventDefault();
-              e.stopPropagation();
+            e.preventDefault();
+            e.stopPropagation();
+            if (!isSnapping) {
               setIsSnapping(true);
               if (containerRef.current) {
                 const containerWidth = containerRef.current.offsetWidth;
@@ -419,10 +444,35 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         <div
           className="absolute right-0 top-0 h-full cursor-pointer z-20"
           style={{ width: '16px' }}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onTouchStart={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onTouchEnd={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!isSnapping) {
+              setIsSnapping(true);
+              if (containerRef.current) {
+                const containerWidth = containerRef.current.offsetWidth;
+                setDragOffset(-containerWidth);
+                if (onDragStateChange) {
+                  onDragStateChange(false, 1, nextQuestion.category, -1);
+                }
+              }
+              setTimeout(() => {
+                onSwipeLeft();
+              }, 250);
+            }
+          }}
           onClick={(e) => {
-            if (!isDragging && !isSnapping) {
-              e.preventDefault();
-              e.stopPropagation();
+            e.preventDefault();
+            e.stopPropagation();
+            if (!isSnapping) {
               setIsSnapping(true);
               if (containerRef.current) {
                 const containerWidth = containerRef.current.offsetWidth;
