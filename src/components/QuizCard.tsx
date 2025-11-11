@@ -21,6 +21,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const [startX, setStartX] = useState(0);
   const [isSnapping, setIsSnapping] = useState(false);
   const [containerWidth, setContainerWidth] = useState(0);
+  const [hasDragged, setHasDragged] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLHeadingElement>(null);
@@ -109,12 +110,18 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     setIsDragging(true);
     setStartX(clientX);
     setDragOffset(0);
+    setHasDragged(false);
   };
 
   const handleMove = (clientX: number) => {
     if (!isDragging) return;
     const offset = clientX - startX;
     setDragOffset(offset);
+    
+    // Mark as dragged if movement is significant
+    if (Math.abs(offset) > 5) {
+      setHasDragged(true);
+    }
     
     // Notify parent of drag state for color interpolation and logo squeeze
     if (onDragStateChange && containerRef.current) {
@@ -374,12 +381,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             <div
               className="absolute left-0 top-0 h-full cursor-pointer"
               style={{ width: '20%', zIndex: 30 }}
-              onMouseDown={(e) => e.stopPropagation()}
-              onTouchStart={(e) => e.stopPropagation()}
               onClick={(e) => {
-                if (!isDragging && !isSnapping && containerRef.current) {
+                if (!hasDragged && !isDragging && !isSnapping && containerRef.current) {
                   e.stopPropagation();
-                  e.preventDefault();
                   const containerWidth = containerRef.current.offsetWidth;
                   
                   // Animate to the right
@@ -403,12 +407,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             <div
               className="absolute right-0 top-0 h-full cursor-pointer"
               style={{ width: '20%', zIndex: 30 }}
-              onMouseDown={(e) => e.stopPropagation()}
-              onTouchStart={(e) => e.stopPropagation()}
               onClick={(e) => {
-                if (!isDragging && !isSnapping && containerRef.current) {
+                if (!hasDragged && !isDragging && !isSnapping && containerRef.current) {
                   e.stopPropagation();
-                  e.preventDefault();
                   const containerWidth = containerRef.current.offsetWidth;
                   
                   // Animate to the left
