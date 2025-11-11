@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
+import { applyGermanHyphenation } from '@/lib/hyphenation';
 
 interface Question {
   question: string;
@@ -19,8 +20,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [isSnapping, setIsSnapping] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
   
   const containerRef = useRef<HTMLDivElement>(null);
+  const questionRef = useRef<HTMLHeadingElement>(null);
   const minSwipeDistance = 50;
 
   // Reset drag when question changes
@@ -28,6 +31,37 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     setDragOffset(0);
     setIsSnapping(false);
   }, [currentQuestion]);
+
+  // Measure container width on mount and resize
+  useEffect(() => {
+    const updateWidth = () => {
+      if (questionRef.current) {
+        setContainerWidth(questionRef.current.offsetWidth);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+
+  // Apply hyphenation to question text
+  const hyphenateQuestion = (question: string) => {
+    if (!containerWidth || !questionRef.current) return question;
+
+    const computedStyle = window.getComputedStyle(questionRef.current);
+    const fontSize = parseFloat(computedStyle.fontSize);
+    const fontFamily = computedStyle.fontFamily || "'Factor A', sans-serif";
+    const fontWeight = computedStyle.fontWeight || 'bold';
+
+    return applyGermanHyphenation(question, {
+      containerWidth,
+      fontSize,
+      fontFamily,
+      fontWeight,
+      bufferPx: 16,
+    });
+  };
 
   // Get category-specific neon color - using the 5 color palette
   const getCategoryColors = (category: string) => {
@@ -215,6 +249,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
 
   const renderCard = (question: Question, style: React.CSSProperties) => {
     const categoryColors = getCategoryColors(question.category);
+    const hyphenatedText = hyphenateQuestion(question.question);
     
     return (
       <div 
@@ -253,18 +288,19 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-8">
             <h1 
+              ref={questionRef}
               lang="de" 
               className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full" 
               style={{ 
                 lineHeight: '1.15',
-                hyphens: 'auto',
-                WebkitHyphens: 'auto',
+                hyphens: 'manual',
+                WebkitHyphens: 'manual',
                 overflowWrap: 'normal',
                 wordBreak: 'normal',
                 whiteSpace: 'normal'
               }}
             >
-              {question.question}
+              {hyphenatedText}
             </h1>
           </div>
         </div>
