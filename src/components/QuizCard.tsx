@@ -339,11 +339,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       >
         {/* Previous card (left) */}
         <div 
-          className="flex justify-center items-center" 
+          className="flex justify-center items-center cursor-pointer" 
           style={{ 
             width: '33.333%',
             height: '100%',
             position: 'relative',
+          }}
+          onClick={(e) => {
+            if (!isDragging && prevQuestion) {
+              e.stopPropagation();
+              onSwipeRight();
+            }
           }}
         >
           {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
@@ -372,11 +378,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
 
         {/* Next card (right) */}
         <div 
-          className="flex justify-center items-center" 
+          className="flex justify-center items-center cursor-pointer" 
           style={{ 
             width: '33.333%',
             height: '100%',
             position: 'relative',
+          }}
+          onClick={(e) => {
+            if (!isDragging && nextQuestion) {
+              e.stopPropagation();
+              onSwipeLeft();
+            }
           }}
         >
           {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
