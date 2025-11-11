@@ -368,6 +368,34 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             position: 'relative',
           })}
+          
+          {/* Left click zone */}
+          {prevQuestion && (
+            <div
+              className="absolute left-0 top-0 h-full cursor-pointer z-20"
+              style={{ width: '20%' }}
+              onClick={(e) => {
+                if (!isDragging) {
+                  e.stopPropagation();
+                  onSwipeRight();
+                }
+              }}
+            />
+          )}
+          
+          {/* Right click zone */}
+          {nextQuestion && (
+            <div
+              className="absolute right-0 top-0 h-full cursor-pointer z-20"
+              style={{ width: '20%' }}
+              onClick={(e) => {
+                if (!isDragging) {
+                  e.stopPropagation();
+                  onSwipeLeft();
+                }
+              }}
+            />
+          )}
         </div>
 
         {/* Next card (right) */}
