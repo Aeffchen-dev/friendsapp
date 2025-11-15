@@ -303,29 +303,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
               {hyphenatedText}
             </h1>
           </div>
-          
-          {/* Bottom Left Icons */}
-          <div className="absolute bottom-4 left-12 flex gap-4">
-            {/* Share/Upload Icon - Stroke */}
-            <div className="cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-center" style={{ width: '48px', height: '28px' }}>
-              <svg width="24" height="24" viewBox="0 0 1080 1080">
-                <g fill="none" stroke="white" strokeWidth="54" strokeLinecap="butt" strokeLinejoin="miter">
-                  <polyline points="213.45,1005.72 213.45,502.84 462.41,502.84 462.41,556.84 267.45,556.84 267.45,951.72 847.95,951.72 847.95,556.84 652.99,556.84 652.99,502.84 901.95,502.84 901.95,1005.72 213.45,1005.72"/>
-                  <polyline points="530.74,784.71 530.74,417.39 530.74,302.24 530.74,183.08 411.58,302.24 335.22,302.24 335.22,302.24 478.93,158.52 554.13,158.52 554.13,85.37 770.99,302.24 694.63,302.24 584.74,192.35 584.74,302.24 584.74,417.39 584.74,784.71"/>
-                </g>
-              </svg>
-            </div>
-            
-            {/* Share/Upload Icon - Stroke */}
-            <div className="cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-center" style={{ width: '48px', height: '28px' }}>
-              <svg width="24" height="24" viewBox="0 0 1080 1080">
-                <g fill="none" stroke="white" strokeWidth="54" strokeLinecap="butt" strokeLinejoin="miter">
-                  <polyline points="213.45,1005.72 213.45,502.84 462.41,502.84 462.41,556.84 267.45,556.84 267.45,951.72 847.95,951.72 847.95,556.84 652.99,556.84 652.99,502.84 901.95,502.84 901.95,1005.72 213.45,1005.72"/>
-                  <polyline points="530.74,784.71 530.74,417.39 530.74,302.24 530.74,183.08 411.58,302.24 335.22,302.24 335.22,302.24 478.93,158.52 554.13,158.52 554.13,85.37 770.99,302.24 694.63,302.24 584.74,192.35 584.74,302.24 584.74,417.39 584.74,784.71"/>
-                </g>
-              </svg>
-            </div>
-          </div>
         </div>
       </div>
     );
