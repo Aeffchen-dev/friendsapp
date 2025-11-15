@@ -317,8 +317,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
                 onLikeToggle();
               }}
               aria-label="Like"
+              aria-pressed={isLiked}
             >
-              <Heart className={`w-6 h-6 text-white ${isLiked ? 'fill-current' : ''}`} />
+              <Heart
+                className="w-6 h-6 text-white"
+                fill={isLiked ? 'currentColor' : 'none'}
+              />
             </button>
             <button
               className="p-3 -m-3 cursor-pointer"
