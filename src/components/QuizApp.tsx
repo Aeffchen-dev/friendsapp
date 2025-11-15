@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { QuizCard } from './QuizCard';
 import { CategorySelector } from './CategorySelector';
-import Cookies from 'js-cookie';
 
 interface Question {
   question: string;
@@ -63,37 +62,10 @@ export function QuizApp() {
   const [dragProgress, setDragProgress] = useState(0);
   const [targetCategory, setTargetCategory] = useState<string>('');
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
-  const [likedQuestions, setLikedQuestions] = useState<string[]>([]);
 
   useEffect(() => {
     // Logo stretch already initialized to true, just fetch questions
     fetchQuestions();
-    
-    // Load liked questions from cookies
-    const saved = Cookies.get('likedQuestions');
-    console.log('Loading from cookies:', saved);
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        console.log('Parsed liked questions:', parsed);
-        const norm = (s: string) => s
-          .replace(/\r?\n/g, ' ')
-          .replace(/^["“”„]|["“”„]$/g, '')
-          .replace(/\s+/g, ' ')
-          .trim();
-        setLikedQuestions(Array.isArray(parsed) ? parsed.map((q: string) => norm(q)) : []);
-      } catch (e) {
-        console.error('Error parsing liked questions:', e);
-      }
-    }
-    
-    // Check URL for shared question
-    const urlParams = new URLSearchParams(window.location.search);
-    const sharedQuestion = urlParams.get('q');
-    if (sharedQuestion) {
-      // Will set index after questions are loaded
-      sessionStorage.setItem('sharedQuestion', sharedQuestion);
-    }
   }, []);
 
   const fetchQuestions = async () => {
@@ -339,100 +311,10 @@ export function QuizApp() {
 
   const currentBodyColor = getCurrentBackgroundColor();
 
-  // Precompute normalized question for like-state matching
-  const currentQuestionNormalized = !loading && questions[currentIndex]
-    ? questions[currentIndex].question
-        .replace(/\r?\n/g, ' ')
-        .replace(/^["“”„]|["“”„]$/g, '')
-        .replace(/\s+/g, ' ')
-        .trim()
-    : '';
-
   const handleDragStateChange = (isDragging: boolean, progress: number, category: string, direction: number) => {
     setDragProgress(progress);
     setTargetCategory(category);
     setLogoSqueezeDirection(progress > 0 ? direction : 0);
-  };
-
-  const handleLikeToggle = async () => {
-    const currentQRaw = questions[currentIndex].question;
-    const norm = (s: string) => s
-      .replace(/\r?\n/g, ' ')
-      .replace(/^["“”„]|["“”„]$/g, '')
-      .replace(/\s+/g, ' ')
-      .trim();
-    const currentQ = norm(currentQRaw);
-    const isCurrentlyLiked = likedQuestions.includes(currentQ);
-    
-    let updatedLikes: string[];
-    if (isCurrentlyLiked) {
-      updatedLikes = likedQuestions.filter(q => q !== currentQ);
-    } else {
-      updatedLikes = [...likedQuestions.filter(q => q !== currentQ), currentQ];
-    }
-    
-    console.log('Saving to cookies:', updatedLikes);
-    setLikedQuestions(updatedLikes);
-    
-    // Save to cookies with proper settings for third-party iframes
-    Cookies.set('likedQuestions', JSON.stringify(updatedLikes), { 
-      expires: 365,
-      path: '/',
-      sameSite: 'None',
-      secure: true,
-    });
-    
-    // Verify it was saved
-    console.log('Verification - Cookie value:', Cookies.get('likedQuestions'));
-    
-    // Update Google Sheets
-    try {
-      await fetch('https://script.google.com/macros/s/AKfycbxHpHvq-hqx1Wr2mj8LsNyy0w8KG4-eH_h14WJBVZfCxNyGEPnTtd1H-fqBNxHgZsY/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          question: currentQRaw,
-          questionNormalized: currentQ,
-          action: isCurrentlyLiked ? 'remove' : 'add'
-        })
-      });
-    } catch (error) {
-      console.error('Error updating Google Sheets:', error);
-    }
-  };
-
-  const handleShare = async () => {
-    const currentQ = questions[currentIndex];
-    const shareUrl = `${window.location.origin}${window.location.pathname}?q=${encodeURIComponent(currentQ.question)}`;
-    
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Check out this question!',
-          text: currentQ.question,
-          url: shareUrl
-        });
-      } catch (error) {
-        if ((error as Error).name !== 'AbortError') {
-          console.error('Error sharing:', error);
-          try {
-            await navigator.clipboard.writeText(shareUrl);
-            alert('Link copied to clipboard!');
-          } catch (e) {
-            console.error('Clipboard write failed:', e);
-          }
-        }
-      }
-    } else {
-      // Fallback: copy to clipboard
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        alert('Link copied to clipboard!');
-      } catch (e) {
-        console.error('Clipboard write failed:', e);
-      }
-    }
   };
 
   // Update body background color and theme-color meta tag for iOS
@@ -531,9 +413,6 @@ export function QuizApp() {
               onSwipeLeft={nextQuestion}
               onSwipeRight={prevQuestion}
               onDragStateChange={handleDragStateChange}
-              isLiked={likedQuestions.includes(questions[currentIndex].question)}
-              onLikeToggle={handleLikeToggle}
-              onShare={handleShare}
             />
           ) : (
             <div className="h-full flex items-center justify-center">

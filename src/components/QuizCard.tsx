@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { applyGermanHyphenation } from '@/lib/hyphenation';
-import { Heart, Share } from 'lucide-react';
 
 interface Question {
   question: string;
@@ -14,12 +13,9 @@ interface QuizCardProps {
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
   onDragStateChange?: (isDragging: boolean, progress: number, targetCategory: string, direction: number) => void;
-  isLiked: boolean;
-  onLikeToggle: () => void;
-  onShare: () => void;
 }
 
-export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight, onDragStateChange, isLiked, onLikeToggle, onShare }: QuizCardProps) {
+export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight, onDragStateChange }: QuizCardProps) {
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -289,7 +285,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         </div>
 
         {/* Main Content */}
-        <div className="ml-8 lg:ml-10 h-full flex flex-col px-8 lg:pr-10">
+        <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-8">
             <h1 
               ref={questionRef}
@@ -306,34 +302,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             >
               {hyphenatedText}
             </h1>
-          </div>
-          
-          {/* Action Icons */}
-          <div className="flex items-center gap-8 pb-8">
-            <button
-              className="p-3 -m-3 cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                onLikeToggle();
-              }}
-              aria-label="Like"
-              aria-pressed={isLiked}
-            >
-              <Heart
-                className="w-6 h-6 text-white"
-                fill={isLiked ? 'currentColor' : 'none'}
-              />
-            </button>
-            <button
-              className="p-3 -m-3 cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                onShare();
-              }}
-              aria-label="Share"
-            >
-              <Share className="w-6 h-6 text-white" />
-            </button>
           </div>
         </div>
       </div>
