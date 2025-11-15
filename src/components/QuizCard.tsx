@@ -14,9 +14,12 @@ interface QuizCardProps {
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
   onDragStateChange?: (isDragging: boolean, progress: number, targetCategory: string, direction: number) => void;
+  isLiked: boolean;
+  onLikeToggle: () => void;
+  onShare: () => void;
 }
 
-export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight, onDragStateChange }: QuizCardProps) {
+export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight, onDragStateChange, isLiked, onLikeToggle, onShare }: QuizCardProps) {
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -311,17 +314,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
               className="p-3 -m-3 cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
-                // Handle heart action
+                onLikeToggle();
               }}
               aria-label="Like"
             >
-              <Heart className="w-6 h-6 text-white" />
+              <Heart className={`w-6 h-6 text-white ${isLiked ? 'fill-current' : ''}`} />
             </button>
             <button
               className="p-3 -m-3 cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
-                // Handle share action
+                onShare();
               }}
               aria-label="Share"
             >
