@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { applyGermanHyphenation } from '@/lib/hyphenation';
-import { Heart, Share2 } from 'lucide-react';
+import { Heart, Share } from 'lucide-react';
 
 interface Question {
   question: string;
@@ -306,7 +306,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           </div>
           
           {/* Action Icons */}
-          <div className="flex items-center gap-4 pb-8">
+          <div className="flex items-center gap-8 pb-8">
             <button
               className="p-3 -m-3 cursor-pointer"
               onClick={(e) => {
@@ -325,7 +325,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
               }}
               aria-label="Share"
             >
-              <Share2 className="w-6 h-6 text-white" />
+              <Share className="w-6 h-6 text-white" />
             </button>
           </div>
         </div>
