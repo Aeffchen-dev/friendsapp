@@ -76,7 +76,12 @@ export function QuizApp() {
       try {
         const parsed = JSON.parse(saved);
         console.log('Parsed liked questions:', parsed);
-        setLikedQuestions(parsed);
+        const norm = (s: string) => s
+          .replace(/\r?\n/g, ' ')
+          .replace(/^["“”„]|["“”„]$/g, '')
+          .replace(/\s+/g, ' ')
+          .trim();
+        setLikedQuestions(Array.isArray(parsed) ? parsed.map((q: string) => norm(q)) : []);
       } catch (e) {
         console.error('Error parsing liked questions:', e);
       }
@@ -334,6 +339,15 @@ export function QuizApp() {
 
   const currentBodyColor = getCurrentBackgroundColor();
 
+  // Precompute normalized question for like-state matching
+  const currentQuestionNormalized = !loading && questions[currentIndex]
+    ? questions[currentIndex].question
+        .replace(/\r?\n/g, ' ')
+        .replace(/^["“”„]|["“”„]$/g, '')
+        .replace(/\s+/g, ' ')
+        .trim()
+    : '';
+
   const handleDragStateChange = (isDragging: boolean, progress: number, category: string, direction: number) => {
     setDragProgress(progress);
     setTargetCategory(category);
@@ -341,24 +355,31 @@ export function QuizApp() {
   };
 
   const handleLikeToggle = async () => {
-    const currentQ = questions[currentIndex].question;
+    const currentQRaw = questions[currentIndex].question;
+    const norm = (s: string) => s
+      .replace(/\r?\n/g, ' ')
+      .replace(/^["“”„]|["“”„]$/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const currentQ = norm(currentQRaw);
     const isCurrentlyLiked = likedQuestions.includes(currentQ);
     
     let updatedLikes: string[];
     if (isCurrentlyLiked) {
       updatedLikes = likedQuestions.filter(q => q !== currentQ);
     } else {
-      updatedLikes = [...likedQuestions, currentQ];
+      updatedLikes = [...likedQuestions.filter(q => q !== currentQ), currentQ];
     }
     
     console.log('Saving to cookies:', updatedLikes);
     setLikedQuestions(updatedLikes);
     
-    // Save to cookies with proper settings
+    // Save to cookies with proper settings for third-party iframes
     Cookies.set('likedQuestions', JSON.stringify(updatedLikes), { 
       expires: 365,
       path: '/',
-      sameSite: 'Lax'
+      sameSite: 'None',
+      secure: true,
     });
     
     // Verify it was saved
@@ -371,7 +392,7 @@ export function QuizApp() {
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          question: currentQ,
+          question: currentQRaw,
           action: isCurrentlyLiked ? 'remove' : 'add'
         })
       });
@@ -394,12 +415,22 @@ export function QuizApp() {
       } catch (error) {
         if ((error as Error).name !== 'AbortError') {
           console.error('Error sharing:', error);
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            alert('Link copied to clipboard!');
+          } catch (e) {
+            console.error('Clipboard write failed:', e);
+          }
         }
       }
     } else {
       // Fallback: copy to clipboard
-      await navigator.clipboard.writeText(shareUrl);
-      alert('Link copied to clipboard!');
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        alert('Link copied to clipboard!');
+      } catch (e) {
+        console.error('Clipboard write failed:', e);
+      }
     }
   };
 
