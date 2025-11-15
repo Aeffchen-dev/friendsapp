@@ -25,9 +25,9 @@ function doPost(e) {
     for (let i = 1; i < values.length; i++) { // Start from 1 to skip header
       if (values[i][0] === question) { // Column A contains questions
         if (action === 'add') {
-          sheet.getRange(i + 1, 3).setValue('❤️'); // Column C (index 2, but getRange is 1-based)
+          sheet.getRange(i + 1, 3).setValue('X'); // Column C - add X when liked
         } else if (action === 'remove') {
-          sheet.getRange(i + 1, 3).setValue(''); // Clear the heart
+          sheet.getRange(i + 1, 3).setValue(''); // Column C - remove X when unliked
         }
         break;
       }
@@ -67,5 +67,5 @@ function doPost(e) {
 
 1. User clicks heart → Question added to cookies
 2. App sends POST request to Google Apps Script
-3. Script finds the question row and adds ❤️ to column C
-4. User clicks filled heart → Question removed from cookies and ❤️ removed from sheet
+3. Script finds the question row and adds X to column C
+4. User clicks filled heart → Question removed from cookies and X removed from sheet
