@@ -71,9 +71,12 @@ export function QuizApp() {
     
     // Load liked questions from cookies
     const saved = Cookies.get('likedQuestions');
+    console.log('Loading from cookies:', saved);
     if (saved) {
       try {
-        setLikedQuestions(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        console.log('Parsed liked questions:', parsed);
+        setLikedQuestions(parsed);
       } catch (e) {
         console.error('Error parsing liked questions:', e);
       }
@@ -348,8 +351,18 @@ export function QuizApp() {
       updatedLikes = [...likedQuestions, currentQ];
     }
     
+    console.log('Saving to cookies:', updatedLikes);
     setLikedQuestions(updatedLikes);
-    Cookies.set('likedQuestions', JSON.stringify(updatedLikes), { expires: 365 });
+    
+    // Save to cookies with proper settings
+    Cookies.set('likedQuestions', JSON.stringify(updatedLikes), { 
+      expires: 365,
+      path: '/',
+      sameSite: 'Lax'
+    });
+    
+    // Verify it was saved
+    console.log('Verification - Cookie value:', Cookies.get('likedQuestions'));
     
     // Update Google Sheets
     try {
