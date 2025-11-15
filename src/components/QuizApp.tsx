@@ -393,6 +393,7 @@ export function QuizApp() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           question: currentQRaw,
+          questionNormalized: currentQ,
           action: isCurrentlyLiked ? 'remove' : 'add'
         })
       });
