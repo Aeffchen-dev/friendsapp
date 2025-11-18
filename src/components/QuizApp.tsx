@@ -242,7 +242,7 @@ export function QuizApp() {
     if (initialIndexApplied) {
       setCurrentIndex(0);
     }
-  }, [selectedCategories, allQuestions, initialIndexApplied]);
+  }, [selectedCategories, allQuestions]);
 
   // Apply deep-link from URL once questions are ready
   useEffect(() => {
@@ -256,6 +256,7 @@ export function QuizApp() {
     const qParam = params.get('q');
 
     if (!qParam) {
+      console.info('DeepLink: no q param, skipping');
       setInitialIndexApplied(true);
       return;
     }
@@ -264,14 +265,19 @@ export function QuizApp() {
     const numeric = parseInt(qParam, 10);
     if (!Number.isNaN(numeric) && numeric >= 0 && numeric < questions.length) {
       targetIndex = numeric;
+      console.info('DeepLink: using numeric index', targetIndex);
     } else {
       const textParam = qParam; // already decoded by URLSearchParams
       const normalized = textParam.trim();
       targetIndex = questions.findIndex(q => q.question.trim() === normalized);
+      console.info('DeepLink: matching by text', { qParam: normalized, targetIndex });
     }
 
     if (targetIndex >= 0 && targetIndex < questions.length) {
       setCurrentIndex(targetIndex);
+      console.info('DeepLink: applied index', targetIndex);
+    } else {
+      console.warn('DeepLink: could not find target index for q', qParam);
     }
     setInitialIndexApplied(true);
   }, [questions, initialIndexApplied]);

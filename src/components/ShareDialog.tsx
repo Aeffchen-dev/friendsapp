@@ -11,7 +11,11 @@ export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
 
   const handleShare = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    const shareUrl = `${window.location.origin}/?q=${encodeURIComponent(questionText ?? String(questionIndex))}`;
+    const url = new URL(window.location.href);
+    url.search = '';
+    url.hash = '';
+    url.searchParams.set('q', questionText ? questionText : String(questionIndex));
+    const shareUrl = url.toString();
     
     if (navigator.share) {
       try {
