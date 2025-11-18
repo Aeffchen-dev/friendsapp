@@ -1,13 +1,4 @@
-import { Share2 } from 'lucide-react';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
+import { Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface ShareDialogProps {
@@ -17,7 +8,8 @@ interface ShareDialogProps {
 export function ShareDialog({ questionIndex }: ShareDialogProps) {
   const { toast } = useToast();
 
-  const handleShare = async () => {
+  const handleShare = async (e: React.MouseEvent) => {
+    e.stopPropagation();
     const shareUrl = `${window.location.origin}/?q=${questionIndex}`;
     
     if (navigator.share) {
@@ -48,28 +40,12 @@ export function ShareDialog({ questionIndex }: ShareDialogProps) {
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button
-          className="absolute bottom-4 left-4 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <Share2 className="w-5 h-5 text-white" />
-        </button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Share this question</DialogTitle>
-          <DialogDescription>
-            Share this question with your friends. They'll see the exact same question when they open the link.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="flex flex-col gap-4">
-          <Button onClick={handleShare} className="w-full">
-            Share Link
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
+    <button
+      className="absolute bottom-8 z-30 hover:opacity-70 transition-opacity"
+      style={{ left: '4rem' }}
+      onClick={handleShare}
+    >
+      <Send className="w-6 h-6 text-white" />
+    </button>
   );
 }
