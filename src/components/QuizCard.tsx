@@ -309,7 +309,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         
         {/* Share Button - Only on current card */}
         {style.position === 'relative' && (
-          <ShareDialog questionIndex={questionIndex} />
+          <ShareDialog questionIndex={questionIndex} questionText={currentQuestion.question} />
         )}
       </div>
     );

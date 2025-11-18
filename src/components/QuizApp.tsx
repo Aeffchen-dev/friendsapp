@@ -62,7 +62,7 @@ export function QuizApp() {
   const [dragProgress, setDragProgress] = useState(0);
   const [targetCategory, setTargetCategory] = useState<string>('');
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
-
+  const [initialIndexApplied, setInitialIndexApplied] = useState(false);
   useEffect(() => {
     // Logo stretch already initialized to true, just fetch questions
     fetchQuestions();
@@ -122,15 +122,6 @@ export function QuizApp() {
         setAvailableCategories(categories);
         setSelectedCategories(categories); // Start with all categories selected
         
-        // Check URL for question parameter after questions are loaded
-        const params = new URLSearchParams(window.location.search);
-        const questionParam = params.get('q');
-        if (questionParam) {
-          const questionIndex = parseInt(questionParam, 10);
-          if (!isNaN(questionIndex) && questionIndex >= 0 && questionIndex < shuffledQuestions.length) {
-            setCurrentIndex(questionIndex);
-          }
-        }
       }
     } catch (error) {
       console.error('Error fetching questions:', error);
@@ -244,14 +235,45 @@ export function QuizApp() {
   useEffect(() => {
     if (selectedCategories.length === 0) {
       setQuestions([]);
-    } else {
-      const filteredQuestions = allQuestions.filter(q => 
-        selectedCategories.includes(q.category)
-      );
-      setQuestions(filteredQuestions);
-      setCurrentIndex(0); // Reset to first question when filtering
+      return;
     }
-  }, [selectedCategories, allQuestions]);
+    const filteredQuestions = allQuestions.filter(q => selectedCategories.includes(q.category));
+    setQuestions(filteredQuestions);
+    if (initialIndexApplied) {
+      setCurrentIndex(0);
+    }
+  }, [selectedCategories, allQuestions, initialIndexApplied]);
+
+  // Apply deep-link from URL once questions are ready
+  useEffect(() => {
+    if (initialIndexApplied) return;
+    if (questions.length === 0) {
+      // No questions yet; will re-run after setQuestions
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const qParam = params.get('q');
+
+    if (!qParam) {
+      setInitialIndexApplied(true);
+      return;
+    }
+
+    let targetIndex = -1;
+    const numeric = parseInt(qParam, 10);
+    if (!Number.isNaN(numeric) && numeric >= 0 && numeric < questions.length) {
+      targetIndex = numeric;
+    } else {
+      const decoded = decodeURIComponent(qParam);
+      targetIndex = questions.findIndex(q => q.question === decoded);
+    }
+
+    if (targetIndex >= 0 && targetIndex < questions.length) {
+      setCurrentIndex(targetIndex);
+    }
+    setInitialIndexApplied(true);
+  }, [questions, initialIndexApplied]);
 
   const triggerLogoStretch = () => {
     setLogoStretch(true);

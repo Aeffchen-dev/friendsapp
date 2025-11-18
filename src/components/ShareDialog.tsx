@@ -3,14 +3,15 @@ import { useToast } from '@/hooks/use-toast';
 
 interface ShareDialogProps {
   questionIndex: number;
+  questionText?: string;
 }
 
-export function ShareDialog({ questionIndex }: ShareDialogProps) {
+export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
   const { toast } = useToast();
 
   const handleShare = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    const shareUrl = `${window.location.origin}/?q=${questionIndex}`;
+    const shareUrl = `${window.location.origin}/?q=${encodeURIComponent(questionText ?? String(questionIndex))}`;
     
     if (navigator.share) {
       try {
