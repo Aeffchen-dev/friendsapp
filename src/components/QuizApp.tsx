@@ -66,6 +66,16 @@ export function QuizApp() {
   useEffect(() => {
     // Logo stretch already initialized to true, just fetch questions
     fetchQuestions();
+    
+    // Check URL for question parameter
+    const params = new URLSearchParams(window.location.search);
+    const questionParam = params.get('q');
+    if (questionParam) {
+      const questionIndex = parseInt(questionParam, 10);
+      if (!isNaN(questionIndex) && questionIndex >= 0) {
+        setCurrentIndex(questionIndex);
+      }
+    }
   }, []);
 
   const fetchQuestions = async () => {
@@ -413,6 +423,7 @@ export function QuizApp() {
               onSwipeLeft={nextQuestion}
               onSwipeRight={prevQuestion}
               onDragStateChange={handleDragStateChange}
+              questionIndex={currentIndex}
             />
           ) : (
             <div className="h-full flex items-center justify-center">

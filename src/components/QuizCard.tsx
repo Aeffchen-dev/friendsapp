@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { applyGermanHyphenation } from '@/lib/hyphenation';
+import { ShareDialog } from './ShareDialog';
 
 interface Question {
   question: string;
@@ -13,9 +14,10 @@ interface QuizCardProps {
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
   onDragStateChange?: (isDragging: boolean, progress: number, targetCategory: string, direction: number) => void;
+  questionIndex: number;
 }
 
-export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight, onDragStateChange }: QuizCardProps) {
+export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight, onDragStateChange, questionIndex }: QuizCardProps) {
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -304,6 +306,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             </h1>
           </div>
         </div>
+        
+        {/* Share Button - Only on current card */}
+        {style.position === 'relative' && (
+          <ShareDialog questionIndex={questionIndex} />
+        )}
       </div>
     );
   };
