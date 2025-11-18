@@ -265,8 +265,9 @@ export function QuizApp() {
     if (!Number.isNaN(numeric) && numeric >= 0 && numeric < questions.length) {
       targetIndex = numeric;
     } else {
-      const decoded = decodeURIComponent(qParam);
-      targetIndex = questions.findIndex(q => q.question === decoded);
+      const textParam = qParam; // already decoded by URLSearchParams
+      const normalized = textParam.trim();
+      targetIndex = questions.findIndex(q => q.question.trim() === normalized);
     }
 
     if (targetIndex >= 0 && targetIndex < questions.length) {
