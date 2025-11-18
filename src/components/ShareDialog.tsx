@@ -1,4 +1,4 @@
-import { Send } from 'lucide-react';
+import { Upload } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface ShareDialogProps {
@@ -45,7 +45,7 @@ export function ShareDialog({ questionIndex }: ShareDialogProps) {
       style={{ left: '4rem' }}
       onClick={handleShare}
     >
-      <Send className="w-6 h-6 text-white" />
+      <Upload className="w-6 h-6 text-white" />
     </button>
   );
 }
