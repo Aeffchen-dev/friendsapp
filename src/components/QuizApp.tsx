@@ -66,16 +66,6 @@ export function QuizApp() {
   useEffect(() => {
     // Logo stretch already initialized to true, just fetch questions
     fetchQuestions();
-    
-    // Check URL for question parameter
-    const params = new URLSearchParams(window.location.search);
-    const questionParam = params.get('q');
-    if (questionParam) {
-      const questionIndex = parseInt(questionParam, 10);
-      if (!isNaN(questionIndex) && questionIndex >= 0) {
-        setCurrentIndex(questionIndex);
-      }
-    }
   }, []);
 
   const fetchQuestions = async () => {
@@ -131,6 +121,16 @@ export function QuizApp() {
         const categories = Array.from(new Set(parsedQuestions.map(q => q.category)));
         setAvailableCategories(categories);
         setSelectedCategories(categories); // Start with all categories selected
+        
+        // Check URL for question parameter after questions are loaded
+        const params = new URLSearchParams(window.location.search);
+        const questionParam = params.get('q');
+        if (questionParam) {
+          const questionIndex = parseInt(questionParam, 10);
+          if (!isNaN(questionIndex) && questionIndex >= 0 && questionIndex < shuffledQuestions.length) {
+            setCurrentIndex(questionIndex);
+          }
+        }
       }
     } catch (error) {
       console.error('Error fetching questions:', error);
