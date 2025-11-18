@@ -15,8 +15,8 @@ export function ShareDialog({ questionIndex }: ShareDialogProps) {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Friends App - Question',
-          text: 'Check out this question!',
+          title: 'Friends App',
+          text: 'Frage für dich',
           url: shareUrl,
         });
       } catch (err) {
