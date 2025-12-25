@@ -377,7 +377,7 @@ export function QuizApp() {
 
   return (
     <div 
-      className="h-[100svh] overflow-hidden flex flex-col relative"
+      className="h-[100svh] overflow-visible flex flex-col relative"
       style={{ minHeight: '100svh' }}
     >
       {/* Large "Friends" text at bottom */}
