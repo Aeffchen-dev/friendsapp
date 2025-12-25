@@ -17,11 +17,13 @@ export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
     url.searchParams.set('q', questionText ? questionText : String(questionIndex));
     const shareUrl = url.toString();
     
+    const shareText = `Ich spiele gerade die Friends App und wollte dir diese Frage schicken:\n\n„${questionText}"`;
+    
     if (navigator.share) {
       try {
         await navigator.share({
           title: 'Friends App',
-          text: 'Frage für dich',
+          text: shareText,
           url: shareUrl,
         });
       } catch (err) {
@@ -46,11 +48,12 @@ export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
 
   return (
     <button
-      className="absolute bottom-8 z-30 hover:opacity-70 transition-opacity"
+      className="absolute bottom-8 z-30 hover:opacity-70 transition-opacity flex items-center gap-2"
       style={{ left: '4rem' }}
       onClick={handleShare}
     >
       <Upload className="w-6 h-6 text-white" />
+      <span className="text-white text-[16px]">Frage verschicken</span>
     </button>
   );
 }
