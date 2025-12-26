@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import { applyGermanHyphenation } from '@/lib/hyphenation';
 import { ShareDialog } from './ShareDialog';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { translateQuestion } from '@/lib/questionTranslations';
 
 interface Question {
   question: string;
@@ -254,7 +255,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
 
   const renderCard = (question: Question, style: React.CSSProperties, isCurrent: boolean = false) => {
     const categoryColors = getCategoryColors(question.category);
-    const questionText = language === 'en' ? question.questionEn : question.question;
+    const questionText = translateQuestion(question.question, language);
     const hyphenatedText = hyphenateQuestion(questionText);
     
     return (
