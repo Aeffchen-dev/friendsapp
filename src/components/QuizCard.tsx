@@ -111,7 +111,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'friends':
       case 'wer aus der runde':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
+        return { stripBg: 'hsl(290, 100%, 73%)', bodyBg: 'hsl(290, 100%, 73%)' }; // #e772ff
       case 'self reflection':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'party':
