@@ -40,7 +40,7 @@ export function CategorySelector({
       case 'party':
         return 'hsl(15 100% 50%)'; // #FF4100
       case 'friends':
-        return 'hsl(0 100% 50%)'; // #FF0000 (Wer aus der Runde)
+        return 'hsl(15 100% 50%)'; // #FF4100 (Wer aus der Runde)
       case 'self reflection':
         return 'hsl(290 100% 50%)'; // #D400FF
       case 'family':
