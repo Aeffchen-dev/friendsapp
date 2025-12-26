@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { applyGermanHyphenation } from '@/lib/hyphenation';
 import { ShareDialog } from './ShareDialog';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { translateQuestion } from '@/lib/questionTranslations';
+import { translateToEnglish, getCachedTranslation } from '@/lib/translationService';
 
 interface Question {
   question: string;
@@ -26,7 +26,42 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const [startX, setStartX] = useState(0);
   const [isSnapping, setIsSnapping] = useState(false);
   const [containerWidth, setContainerWidth] = useState(0);
+  const [translatedTexts, setTranslatedTexts] = useState<Record<string, string>>({});
   const { language } = useLanguage();
+
+  // Pre-translate questions when language is English
+  const translateQuestions = useCallback(async () => {
+    if (language !== 'en') return;
+    
+    const questionsToTranslate = [currentQuestion, nextQuestion, prevQuestion]
+      .filter((q): q is Question => q !== null)
+      .map(q => q.question);
+    
+    const newTranslations: Record<string, string> = {};
+    
+    for (const question of questionsToTranslate) {
+      // Skip if already translated
+      if (translatedTexts[question] || getCachedTranslation(question)) {
+        newTranslations[question] = translatedTexts[question] || getCachedTranslation(question)!;
+        continue;
+      }
+      
+      const translated = await translateToEnglish(question);
+      newTranslations[question] = translated;
+    }
+    
+    setTranslatedTexts(prev => ({ ...prev, ...newTranslations }));
+  }, [currentQuestion, nextQuestion, prevQuestion, language, translatedTexts]);
+
+  useEffect(() => {
+    translateQuestions();
+  }, [currentQuestion, nextQuestion, prevQuestion, language]);
+
+  // Get translated or original question text
+  const getQuestionText = (question: string): string => {
+    if (language === 'de') return question;
+    return translatedTexts[question] || getCachedTranslation(question) || question;
+  };
   
   const containerRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLHeadingElement>(null);
@@ -255,7 +290,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
 
   const renderCard = (question: Question, style: React.CSSProperties, isCurrent: boolean = false) => {
     const categoryColors = getCategoryColors(question.category);
-    const questionText = translateQuestion(question.question, language);
+    const questionText = getQuestionText(question.question);
     const hyphenatedText = hyphenateQuestion(questionText);
     
     return (
