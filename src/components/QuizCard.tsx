@@ -31,7 +31,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
 
   // Pre-translate questions when language is English
   const translateQuestions = useCallback(async () => {
-    if (language !== 'en') return;
+    if (language !== 'en') {
+      setTranslatedTexts({});
+      return;
+    }
     
     const questionsToTranslate = [currentQuestion, nextQuestion, prevQuestion]
       .filter((q): q is Question => q !== null)
@@ -40,9 +43,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     const newTranslations: Record<string, string> = {};
     
     for (const question of questionsToTranslate) {
-      // Skip if already translated
-      if (translatedTexts[question] || getCachedTranslation(question)) {
-        newTranslations[question] = translatedTexts[question] || getCachedTranslation(question)!;
+      // Check cache first
+      const cached = getCachedTranslation(question);
+      if (cached) {
+        newTranslations[question] = cached;
         continue;
       }
       
@@ -51,11 +55,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     }
     
     setTranslatedTexts(prev => ({ ...prev, ...newTranslations }));
-  }, [currentQuestion, nextQuestion, prevQuestion, language, translatedTexts]);
+  }, [currentQuestion, nextQuestion, prevQuestion, language]);
 
   useEffect(() => {
     translateQuestions();
-  }, [currentQuestion, nextQuestion, prevQuestion, language]);
+  }, [translateQuestions]);
 
   // Get translated or original question text
   const getQuestionText = (question: string): string => {
