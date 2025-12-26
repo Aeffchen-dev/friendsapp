@@ -29,7 +29,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const [translatedTexts, setTranslatedTexts] = useState<Record<string, string>>({});
   const { language } = useLanguage();
 
-  // Pre-translate questions when language is English
+  // Pre-translate questions when language is English - run in parallel for speed
   const translateQuestions = useCallback(async () => {
     if (language !== 'en') {
       setTranslatedTexts({});
@@ -38,21 +38,35 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     
     const questionsToTranslate = [currentQuestion, nextQuestion, prevQuestion]
       .filter((q): q is Question => q !== null)
-      .map(q => q.question);
+      .map(q => q.question)
+      .filter(q => !getCachedTranslation(q)); // Only translate uncached
     
-    const newTranslations: Record<string, string> = {};
+    // Add cached translations immediately
+    const cachedTranslations: Record<string, string> = {};
+    [currentQuestion, nextQuestion, prevQuestion]
+      .filter((q): q is Question => q !== null)
+      .forEach(q => {
+        const cached = getCachedTranslation(q.question);
+        if (cached) cachedTranslations[q.question] = cached;
+      });
     
-    for (const question of questionsToTranslate) {
-      // Check cache first
-      const cached = getCachedTranslation(question);
-      if (cached) {
-        newTranslations[question] = cached;
-        continue;
-      }
-      
-      const translated = await translateToEnglish(question);
-      newTranslations[question] = translated;
+    if (Object.keys(cachedTranslations).length > 0) {
+      setTranslatedTexts(prev => ({ ...prev, ...cachedTranslations }));
     }
+    
+    if (questionsToTranslate.length === 0) return;
+    
+    // Translate all uncached questions in parallel
+    const translationPromises = questionsToTranslate.map(async (question) => {
+      const translated = await translateToEnglish(question);
+      return { question, translated };
+    });
+    
+    const results = await Promise.all(translationPromises);
+    const newTranslations: Record<string, string> = {};
+    results.forEach(({ question, translated }) => {
+      newTranslations[question] = translated;
+    });
     
     setTranslatedTexts(prev => ({ ...prev, ...newTranslations }));
   }, [currentQuestion, nextQuestion, prevQuestion, language]);
