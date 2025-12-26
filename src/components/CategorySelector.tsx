@@ -3,7 +3,7 @@ import { X, Check } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useLanguage } from '@/contexts/LanguageContext';
-
+import { translateCategory } from '@/lib/questionTranslations';
 interface CategorySelectorProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -166,7 +166,7 @@ export function CategorySelector({
                       color: isSelected ? textColor : 'white',
                       fontFamily: "'Factor A', sans-serif"
                     }}>
-                    {category}
+                    {translateCategory(category, language)}
                   </span>
                   <div onClick={(e) => e.stopPropagation()}>
                     <div
