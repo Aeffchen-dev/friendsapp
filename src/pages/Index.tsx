@@ -1,7 +1,12 @@
 import { QuizApp } from '@/components/QuizApp';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const Index = () => {
-  return <QuizApp />;
+  return (
+    <LanguageProvider>
+      <QuizApp />
+    </LanguageProvider>
+  );
 };
 
 export default Index;
