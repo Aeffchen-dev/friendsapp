@@ -6,6 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Question {
   question: string;
+  questionEn: string;
   category: string;
 }
 
@@ -64,7 +65,7 @@ export function QuizApp() {
   const [targetCategory, setTargetCategory] = useState<string>('');
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
   const [initialIndexApplied, setInitialIndexApplied] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   useEffect(() => {
     // Logo stretch already initialized to true, just fetch questions
     fetchQuestions();
@@ -109,6 +110,7 @@ export function QuizApp() {
         if (columns.length >= 2 && columns[0] && columns[1]) {
           parsedQuestions.push({
             question: columns[0].trim(),
+            questionEn: columns.length >= 3 && columns[2] ? columns[2].trim() : columns[0].trim(),
             category: columns[1].trim()
           });
         }

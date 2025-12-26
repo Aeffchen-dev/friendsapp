@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { applyGermanHyphenation } from '@/lib/hyphenation';
 import { ShareDialog } from './ShareDialog';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Question {
   question: string;
+  questionEn: string;
   category: string;
 }
 
@@ -23,6 +25,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const [startX, setStartX] = useState(0);
   const [isSnapping, setIsSnapping] = useState(false);
   const [containerWidth, setContainerWidth] = useState(0);
+  const { language } = useLanguage();
   
   const containerRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLHeadingElement>(null);
@@ -249,9 +252,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
   const activeCategoryForColor = getActiveCategory();
   const activeCategoryColors = getCategoryColors(activeCategoryForColor);
 
-  const renderCard = (question: Question, style: React.CSSProperties) => {
+  const renderCard = (question: Question, style: React.CSSProperties, isCurrent: boolean = false) => {
     const categoryColors = getCategoryColors(question.category);
-    const hyphenatedText = hyphenateQuestion(question.question);
+    const questionText = language === 'en' ? question.questionEn : question.question;
+    const hyphenatedText = hyphenateQuestion(questionText);
     
     return (
       <div 
@@ -291,8 +295,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
           <div className="flex-1 flex items-start justify-start text-left w-full pt-8">
             <h1 
               ref={questionRef}
-              lang="de" 
-              className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full" 
+              lang={language === 'en' ? 'en' : 'de'} 
+              className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full"
               style={{ 
                 lineHeight: '1.15',
                 hyphens: 'manual',
@@ -308,8 +312,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         </div>
         
         {/* Share Button - Only on current card */}
-        {style.position === 'relative' && (
-          <ShareDialog questionIndex={questionIndex} questionText={currentQuestion.question} />
+        {isCurrent && (
+          <ShareDialog questionIndex={questionIndex} questionText={language === 'en' ? currentQuestion.questionEn : currentQuestion.question} />
         )}
       </div>
     );
@@ -358,7 +362,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             opacity: 1,
             position: 'relative',
-          })}
+          }, false)}
         </div>
 
         {/* Current card (center) */}
@@ -374,7 +378,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             transform: `scale(${currentScale}) rotate(${currentRotation}deg)`,
             transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             position: 'relative',
-          })}
+          }, true)}
         </div>
 
         {/* Next card (right) */}
@@ -391,7 +395,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
             transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             opacity: 1,
             position: 'relative',
-          })}
+          }, false)}
         </div>
       </div>
       
