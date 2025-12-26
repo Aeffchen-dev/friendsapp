@@ -73,7 +73,7 @@ All colors MUST be HSL.
     --quiz-connection-strip: 0 100% 50%;     /* #FF0000 */
     --quiz-identity-strip: 328 100% 56%;     /* #FF20A2 */
     --quiz-party-strip: 15 100% 50%;         /* #FF4100 */
-    --quiz-friends-strip: 0 100% 50%;        /* #FF0000 */
+    --quiz-friends-strip: 15 100% 50%;        /* #FF4100 */
     
     --quiz-self-reflection-strip: 290 100% 50%; /* #D400FF */
     --quiz-family-strip: 328 100% 56%;       /* #FF20A2 */
