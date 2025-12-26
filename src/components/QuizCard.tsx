@@ -75,10 +75,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     translateQuestions();
   }, [translateQuestions]);
 
-  // Get translated or original question text
+  // Get translated or original question text and check if translation is pending
   const getQuestionText = (question: string): string => {
     if (language === 'de') return question;
     return translatedTexts[question] || getCachedTranslation(question) || question;
+  };
+
+  // Check if a question is still waiting for translation
+  const isTranslationPending = (question: string): boolean => {
+    if (language === 'de') return false;
+    const hasTranslation = translatedTexts[question] || getCachedTranslation(question);
+    return !hasTranslation;
   };
   
   const containerRef = useRef<HTMLDivElement>(null);
@@ -311,6 +318,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     const categoryColors = getCategoryColors(question.category);
     const questionText = getQuestionText(question.question);
     const hyphenatedText = hyphenateQuestion(questionText);
+    const isPending = isTranslationPending(question.question);
     
     return (
       <div 
@@ -358,7 +366,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
                 WebkitHyphens: 'manual',
                 overflowWrap: 'normal',
                 wordBreak: 'normal',
-                whiteSpace: 'normal'
+                whiteSpace: 'normal',
+                filter: isPending ? 'blur(8px)' : 'none',
+                transition: 'filter 0.3s ease-out'
               }}
             >
               {hyphenatedText}
