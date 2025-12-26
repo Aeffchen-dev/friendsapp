@@ -183,6 +183,18 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* Shimmer animation for loading state */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 1.5s infinite;
+    background-image: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    background-size: 200% 100%;
+  }
+  
   /* Wobble animation for logo */
   @keyframes wobble {
     0% { transform: translateX(0%) rotate(0deg); }
