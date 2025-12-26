@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { QuizCard } from './QuizCard';
 import { CategorySelector } from './CategorySelector';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Question {
   question: string;
@@ -63,6 +64,7 @@ export function QuizApp() {
   const [targetCategory, setTargetCategory] = useState<string>('');
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
   const [initialIndexApplied, setInitialIndexApplied] = useState(false);
+  const { t } = useLanguage();
   useEffect(() => {
     // Logo stretch already initialized to true, just fetch questions
     fetchQuestions();
@@ -432,7 +434,7 @@ export function QuizApp() {
               className="text-black font-normal text-xs"
               style={{fontSize: '14px'}}
             >
-              Kategorien wählen
+              {t.chooseCategories}
             </button>
           )}
         </div>
@@ -457,7 +459,7 @@ export function QuizApp() {
             />
           ) : (
             <div className="h-full flex items-center justify-center">
-              <div className="text-black text-sm">Keine Fragen verfügbar</div>
+              <div className="text-black text-sm">{t.noQuestionsAvailable}</div>
             </div>
           )}
         </div>

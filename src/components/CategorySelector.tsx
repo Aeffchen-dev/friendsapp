@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { X, Check } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Checkbox } from '@/components/ui/checkbox';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface CategorySelectorProps {
   open: boolean;
@@ -21,6 +22,7 @@ export function CategorySelector({
   const [tempSelection, setTempSelection] = useState<string[]>(selectedCategories);
   const [strokeAnimations, setStrokeAnimations] = useState<{[key: string]: boolean}>({});
   const [bounceAnimations, setBounceAnimations] = useState<{[key: string]: boolean}>({});
+  const { language, toggleLanguage, t } = useLanguage();
 
   // Update temp selection when selectedCategories prop changes
   useEffect(() => {
@@ -107,13 +109,13 @@ export function CategorySelector({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="w-screen h-screen max-w-none bg-background border-0 rounded-none p-0 overflow-hidden [&>button]:hidden data-[state=closed]:animate-none data-[state=closed]:duration-0 [&]:rounded-none" style={{ width: '100vw', height: '100vh', borderRadius: '0' }}>
         <DialogDescription className="sr-only">
-          Wählen Sie die Kategorien aus, die Sie sehen möchten
+          {t.selectCategoriesDescription}
         </DialogDescription>
         <div className="flex flex-col h-full relative w-full">
           {/* Header with close button */}
           <div className="absolute left-0 right-4 z-10 flex items-center justify-between pl-4" style={{ top: '16px' }}>
             <h2 className="text-white text-xl font-normal">
-              Kategorien wählen
+              {t.chooseCategories}
             </h2>
             
             <button
@@ -210,15 +212,22 @@ export function CategorySelector({
             })}
           </div>
 
-          {/* Bottom Link */}
-          <div className="flex-shrink-0 h-20 flex items-center justify-center">
+          {/* Bottom Links */}
+          <div className="flex-shrink-0 h-20 flex items-center justify-between px-4">
             <a 
               href="mailto:hello@relationshipbydesign.de?subject=Friends%20App%20Frage" 
-              className="text-white font-normal text-xs"
+              className="text-white font-normal"
               style={{fontSize: '14px', lineHeight: '20px'}}
             >
-              Frage einreichen
+              {t.submitQuestion}
             </a>
+            <button
+              onClick={toggleLanguage}
+              className="text-white font-normal hover:opacity-70 transition-opacity"
+              style={{fontSize: '14px', lineHeight: '20px'}}
+            >
+              {language === 'de' ? 'English' : 'Deutsch'}
+            </button>
           </div>
         </div>
       </DialogContent>

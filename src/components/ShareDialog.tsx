@@ -1,5 +1,6 @@
 import { Upload } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ShareDialogProps {
   questionIndex: number;
@@ -8,6 +9,7 @@ interface ShareDialogProps {
 
 export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleShare = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -17,7 +19,7 @@ export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
     url.searchParams.set('q', questionText ? questionText : String(questionIndex));
     const shareUrl = url.toString();
     
-    const shareText = `Ich spiele gerade die Friends App und wollte dir diese Frage schicken:\n\n„${questionText}"`;
+    const shareText = `${t.shareExcerpt}\n\n„${questionText}"`;
     
     if (navigator.share) {
       try {
@@ -40,8 +42,8 @@ export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
       toast({
-        title: 'Link copied!',
-        description: 'Share link has been copied to clipboard',
+        title: t.linkCopied,
+        description: t.linkCopiedDescription,
       });
     });
   };
@@ -53,7 +55,7 @@ export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
       onClick={handleShare}
     >
       <Upload className="w-6 h-6 text-white" />
-      <span className="text-white text-[16px]">Frage verschicken</span>
+      <span className="text-white text-[16px]">{t.sendQuestion}</span>
     </button>
   );
 }
