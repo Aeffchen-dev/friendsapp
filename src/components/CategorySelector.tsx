@@ -41,7 +41,7 @@ export function CategorySelector({
         return 'hsl(15 100% 50%)'; // #FF4100
       case 'friends':
       case 'wer aus der runde':
-        return 'hsl(290 100% 73%)'; // #e772ff (Wer aus der Runde)
+        return 'hsl(281 98% 25%)'; // #55017d (Wer aus der Runde)
       case 'self reflection':
         return 'hsl(290 100% 50%)'; // #D400FF
       case 'family':
