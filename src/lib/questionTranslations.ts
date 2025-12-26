@@ -13,6 +13,18 @@ const translationMap: Record<string, string> = {
   // Add more translations as needed - the function will fall back to German if no translation exists
 };
 
+// Category translation map
+const categoryTranslationMap: Record<string, string> = {
+  'wer aus der runde': 'Which of us',
+  'friends': 'Friends',
+  'party': 'Party',
+  'self reflection': 'Self Reflection',
+  'family': 'Family',
+  'fuck': 'Fuck',
+  'deep': 'Deep',
+  'work': 'Work',
+};
+
 export function translateQuestion(germanQuestion: string, language: 'de' | 'en'): string {
   if (language === 'de') {
     return germanQuestion;
@@ -20,4 +32,13 @@ export function translateQuestion(germanQuestion: string, language: 'de' | 'en')
   
   // Return English translation if available, otherwise return original German
   return translationMap[germanQuestion] || germanQuestion;
+}
+
+export function translateCategory(category: string, language: 'de' | 'en'): string {
+  if (language === 'de') {
+    return category;
+  }
+  
+  const lowerCategory = category.toLowerCase();
+  return categoryTranslationMap[lowerCategory] || category;
 }

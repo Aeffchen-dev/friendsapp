@@ -3,7 +3,7 @@ import { applyGermanHyphenation } from '@/lib/hyphenation';
 import { ShareDialog } from './ShareDialog';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { translateToEnglish, getCachedTranslation } from '@/lib/translationService';
-
+import { translateCategory } from '@/lib/questionTranslations';
 interface Question {
   question: string;
   questionEn: string;
@@ -321,7 +321,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
                   fontFamily: "'Factor A', sans-serif"
                 }}
               >
-                {cat}
+                {translateCategory(cat, language)}
               </span>
             ))}
           </div>
