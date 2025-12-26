@@ -75,6 +75,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     translateQuestions();
   }, [translateQuestions]);
 
+  // Check if a question is currently being translated
+  const isTranslating = (question: string): boolean => {
+    if (language === 'de') return false;
+    return !translatedTexts[question] && !getCachedTranslation(question);
+  };
+
   // Get translated or original question text
   const getQuestionText = (question: string): string => {
     if (language === 'de') return question;
@@ -311,6 +317,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     const categoryColors = getCategoryColors(question.category);
     const questionText = getQuestionText(question.question);
     const hyphenatedText = hyphenateQuestion(questionText);
+    const showShimmer = isTranslating(question.question);
     
     return (
       <div 
@@ -348,21 +355,47 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         {/* Main Content */}
         <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-8">
-            <h1 
-              ref={questionRef}
-              lang={language === 'en' ? 'en' : 'de'} 
-              className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full"
-              style={{ 
-                lineHeight: '1.15',
-                hyphens: 'manual',
-                WebkitHyphens: 'manual',
-                overflowWrap: 'normal',
-                wordBreak: 'normal',
-                whiteSpace: 'normal'
-              }}
-            >
-              {hyphenatedText}
-            </h1>
+            {showShimmer ? (
+              <div className="w-full space-y-4">
+                <div className="h-10 w-full rounded bg-white/10 animate-shimmer" 
+                  style={{ 
+                    backgroundImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 1.5s infinite'
+                  }} 
+                />
+                <div className="h-10 w-4/5 rounded bg-white/10 animate-shimmer" 
+                  style={{ 
+                    backgroundImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 1.5s infinite 0.1s'
+                  }} 
+                />
+                <div className="h-10 w-3/5 rounded bg-white/10 animate-shimmer" 
+                  style={{ 
+                    backgroundImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 1.5s infinite 0.2s'
+                  }} 
+                />
+              </div>
+            ) : (
+              <h1 
+                ref={questionRef}
+                lang={language === 'en' ? 'en' : 'de'} 
+                className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full"
+                style={{ 
+                  lineHeight: '1.15',
+                  hyphens: 'manual',
+                  WebkitHyphens: 'manual',
+                  overflowWrap: 'normal',
+                  wordBreak: 'normal',
+                  whiteSpace: 'normal'
+                }}
+              >
+                {hyphenatedText}
+              </h1>
+            )}
           </div>
         </div>
         
