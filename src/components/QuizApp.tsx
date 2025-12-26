@@ -15,6 +15,7 @@ const getCategoryBodyColor = (category: string) => {
     case 'fuck':
       return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'friends':
+    case 'wer aus der runde':
       return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'self reflection':
       return 'hsl(290, 100%, 50%)'; // #D400FF
