@@ -16,7 +16,7 @@ const getCategoryBodyColor = (category: string) => {
       return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'friends':
     case 'wer aus der runde':
-      return 'hsl(281, 98%, 25%)'; // #55017d
+      return 'hsl(278, 100%, 57%)'; // #af25ff
     case 'self reflection':
       return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'party':
