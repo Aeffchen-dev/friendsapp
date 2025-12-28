@@ -30,6 +30,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
   const [translatedTexts, setTranslatedTexts] = useState<Record<string, string>>({});
   const { language } = useLanguage();
 
+  // Synchronously populate from cache on every render to prevent flicker
+  const getTranslation = useCallback((question: string): string | undefined => {
+    // Check local state first, then global cache
+    return translatedTexts[question] || getCachedTranslation(question);
+  }, [translatedTexts]);
+
   // Pre-translate questions when language is English - run in parallel for speed
   const translateQuestions = useCallback(async () => {
     if (language !== 'en') {
@@ -41,20 +47,21 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     const allQuestionsToProcess = [currentQuestion, nextQuestion, prevQuestion, ...adjacentQuestions]
       .filter((q): q is Question => q !== null);
     
-    const questionsToTranslate = allQuestionsToProcess
-      .map(q => q.question)
-      .filter(q => !getCachedTranslation(q)); // Only translate uncached
-    
-    // Add cached translations immediately
+    // Immediately sync all cached translations to state
     const cachedTranslations: Record<string, string> = {};
     allQuestionsToProcess.forEach(q => {
       const cached = getCachedTranslation(q.question);
       if (cached) cachedTranslations[q.question] = cached;
     });
     
+    // Always update state with cached values immediately
     if (Object.keys(cachedTranslations).length > 0) {
       setTranslatedTexts(prev => ({ ...prev, ...cachedTranslations }));
     }
+    
+    const questionsToTranslate = allQuestionsToProcess
+      .map(q => q.question)
+      .filter(q => !getCachedTranslation(q)); // Only translate uncached
     
     if (questionsToTranslate.length === 0) return;
     
@@ -78,15 +85,15 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
   }, [translateQuestions]);
 
   // Check if a question is currently being translated
-  const isTranslating = (question: string): boolean => {
+  const isTranslating = useCallback((question: string): boolean => {
     if (language === 'de') return false;
-    return !translatedTexts[question] && !getCachedTranslation(question);
-  };
+    return !getTranslation(question);
+  }, [language, getTranslation]);
 
   // Get translated or original question text
   const getQuestionText = (question: string): string => {
     if (language === 'de') return question;
-    return translatedTexts[question] || getCachedTranslation(question) || question;
+    return getTranslation(question) || question;
   };
   
   const containerRef = useRef<HTMLDivElement>(null);
