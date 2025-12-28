@@ -361,7 +361,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
             <h1 
               ref={isCurrent ? questionRef : undefined}
               lang={language === 'en' ? 'en' : 'de'} 
-              className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full transition-all duration-300"
+              className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full transition-[filter] duration-300 ease-out"
               style={{ 
                 lineHeight: '1.15',
                 hyphens: 'manual',
@@ -369,8 +369,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
                 overflowWrap: 'normal',
                 wordBreak: 'normal',
                 whiteSpace: 'normal',
-                filter: showShimmer ? 'blur(8px)' : 'blur(0px)',
-                opacity: showShimmer ? 0.6 : 1,
+                filter: showShimmer ? 'blur(6px)' : 'blur(0px)',
                 margin: '-12px',
                 padding: '12px',
               }}
