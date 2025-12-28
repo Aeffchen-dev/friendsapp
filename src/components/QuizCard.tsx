@@ -315,11 +315,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
   const activeCategoryForColor = getActiveCategory();
   const activeCategoryColors = getCategoryColors(activeCategoryForColor);
 
-  const renderCard = (question: Question, style: React.CSSProperties, isCurrent: boolean = false) => {
+  const renderCard = (question: Question, style: React.CSSProperties, cardQuestionIndex: number) => {
     const categoryColors = getCategoryColors(question.category);
     const questionText = getQuestionText(question.question);
     const hyphenatedText = hyphenateQuestion(questionText);
     const showShimmer = isTranslating(question.question);
+    const isCurrent = cardQuestionIndex === questionIndex;
     
     return (
       <div 
@@ -358,7 +359,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10 overflow-visible">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-8 overflow-visible">
             <h1 
-              ref={questionRef}
+              ref={isCurrent ? questionRef : undefined}
               lang={language === 'en' ? 'en' : 'de'} 
               className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full transition-all duration-300"
               style={{ 
@@ -374,15 +375,16 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
                 padding: '12px',
               }}
             >
-              {showShimmer ? currentQuestion.question : hyphenatedText}
+              {showShimmer ? question.question : hyphenatedText}
             </h1>
           </div>
         </div>
         
-        {/* Share Button - Only on current card */}
-        {isCurrent && (
-          <ShareDialog questionIndex={questionIndex} questionText={language === 'en' ? currentQuestion.questionEn : currentQuestion.question} />
-        )}
+        {/* Share Button - On every card */}
+        <ShareDialog 
+          questionIndex={cardQuestionIndex} 
+          questionText={language === 'en' ? question.questionEn : question.question} 
+        />
       </div>
     );
   };
@@ -430,7 +432,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
             transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             opacity: 1,
             position: 'relative',
-          }, false)}
+          }, questionIndex - 1)}
         </div>
 
         {/* Current card (center) */}
@@ -446,7 +448,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
             transform: `scale(${currentScale}) rotate(${currentRotation}deg)`,
             transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             position: 'relative',
-          }, true)}
+          }, questionIndex)}
         </div>
 
         {/* Next card (right) */}
@@ -463,7 +465,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
             transition: isSnapping ? 'all 0.25s ease-out' : 'none',
             opacity: 1,
             position: 'relative',
-          }, false)}
+          }, questionIndex + 1)}
         </div>
       </div>
       
