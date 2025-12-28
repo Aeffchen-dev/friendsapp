@@ -355,30 +355,27 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         </div>
 
         {/* Main Content */}
-        <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
-          <div className="flex-1 flex items-start justify-start text-left w-full pt-8">
-            {showShimmer ? (
-              <div className="w-full space-y-2">
-                <div className="h-11 w-[95%] rounded-md bg-white/8 animate-pulse-soft" />
-                <div className="h-11 w-[70%] rounded-md bg-white/8 animate-pulse-soft" style={{ animationDelay: '0.15s' }} />
-              </div>
-            ) : (
-              <h1 
-                ref={questionRef}
-                lang={language === 'en' ? 'en' : 'de'} 
-                className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full"
-                style={{ 
-                  lineHeight: '1.15',
-                  hyphens: 'manual',
-                  WebkitHyphens: 'manual',
-                  overflowWrap: 'normal',
-                  wordBreak: 'normal',
-                  whiteSpace: 'normal'
-                }}
-              >
-                {hyphenatedText}
-              </h1>
-            )}
+        <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10 overflow-visible">
+          <div className="flex-1 flex items-start justify-start text-left w-full pt-8 overflow-visible">
+            <h1 
+              ref={questionRef}
+              lang={language === 'en' ? 'en' : 'de'} 
+              className="question-text text-4xl md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full transition-all duration-300"
+              style={{ 
+                lineHeight: '1.15',
+                hyphens: 'manual',
+                WebkitHyphens: 'manual',
+                overflowWrap: 'normal',
+                wordBreak: 'normal',
+                whiteSpace: 'normal',
+                filter: showShimmer ? 'blur(8px)' : 'blur(0px)',
+                opacity: showShimmer ? 0.6 : 1,
+                margin: '-12px',
+                padding: '12px',
+              }}
+            >
+              {showShimmer ? currentQuestion.question : hyphenatedText}
+            </h1>
           </div>
         </div>
         
