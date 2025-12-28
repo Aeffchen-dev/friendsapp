@@ -356,28 +356,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
         <div className="ml-8 lg:ml-10 h-full flex flex-col justify-center px-8 lg:pr-10">
           <div className="flex-1 flex items-start justify-start text-left w-full pt-8">
             {showShimmer ? (
-              <div className="w-full space-y-4">
-                <div className="h-10 w-full rounded bg-white/10 animate-shimmer" 
-                  style={{ 
-                    backgroundImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 1.5s infinite'
-                  }} 
-                />
-                <div className="h-10 w-4/5 rounded bg-white/10 animate-shimmer" 
-                  style={{ 
-                    backgroundImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 1.5s infinite 0.1s'
-                  }} 
-                />
-                <div className="h-10 w-3/5 rounded bg-white/10 animate-shimmer" 
-                  style={{ 
-                    backgroundImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 1.5s infinite 0.2s'
-                  }} 
-                />
+              <div className="w-full space-y-3">
+                <div className="h-9 w-full rounded-md bg-white/8 animate-pulse-soft" />
+                <div className="h-9 w-[85%] rounded-md bg-white/8 animate-pulse-soft" style={{ animationDelay: '0.15s' }} />
+                <div className="h-9 w-[65%] rounded-md bg-white/8 animate-pulse-soft" style={{ animationDelay: '0.3s' }} />
               </div>
             ) : (
               <h1 
