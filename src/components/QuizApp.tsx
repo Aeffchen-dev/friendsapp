@@ -455,6 +455,12 @@ export function QuizApp() {
               currentQuestion={questions[currentIndex]}
               nextQuestion={currentIndex < questions.length - 1 ? questions[currentIndex + 1] : null}
               prevQuestion={currentIndex > 0 ? questions[currentIndex - 1] : null}
+              adjacentQuestions={[
+                questions[currentIndex - 3],
+                questions[currentIndex - 2],
+                questions[currentIndex + 2],
+                questions[currentIndex + 3],
+              ].filter((q): q is Question => q !== undefined)}
               onSwipeLeft={nextQuestion}
               onSwipeRight={prevQuestion}
               onDragStateChange={handleDragStateChange}
