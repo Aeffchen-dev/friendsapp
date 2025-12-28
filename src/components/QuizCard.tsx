@@ -14,13 +14,14 @@ interface QuizCardProps {
   currentQuestion: Question;
   nextQuestion: Question | null;
   prevQuestion: Question | null;
+  adjacentQuestions?: Question[];
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
   onDragStateChange?: (isDragging: boolean, progress: number, targetCategory: string, direction: number) => void;
   questionIndex: number;
 }
 
-export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeLeft, onSwipeRight, onDragStateChange, questionIndex }: QuizCardProps) {
+export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacentQuestions = [], onSwipeLeft, onSwipeRight, onDragStateChange, questionIndex }: QuizCardProps) {
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -36,19 +37,20 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
       return;
     }
     
-    const questionsToTranslate = [currentQuestion, nextQuestion, prevQuestion]
-      .filter((q): q is Question => q !== null)
+    // Include current, next, prev, and adjacent questions for pre-fetching
+    const allQuestionsToProcess = [currentQuestion, nextQuestion, prevQuestion, ...adjacentQuestions]
+      .filter((q): q is Question => q !== null);
+    
+    const questionsToTranslate = allQuestionsToProcess
       .map(q => q.question)
       .filter(q => !getCachedTranslation(q)); // Only translate uncached
     
     // Add cached translations immediately
     const cachedTranslations: Record<string, string> = {};
-    [currentQuestion, nextQuestion, prevQuestion]
-      .filter((q): q is Question => q !== null)
-      .forEach(q => {
-        const cached = getCachedTranslation(q.question);
-        if (cached) cachedTranslations[q.question] = cached;
-      });
+    allQuestionsToProcess.forEach(q => {
+      const cached = getCachedTranslation(q.question);
+      if (cached) cachedTranslations[q.question] = cached;
+    });
     
     if (Object.keys(cachedTranslations).length > 0) {
       setTranslatedTexts(prev => ({ ...prev, ...cachedTranslations }));
@@ -69,7 +71,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, onSwipeL
     });
     
     setTranslatedTexts(prev => ({ ...prev, ...newTranslations }));
-  }, [currentQuestion, nextQuestion, prevQuestion, language]);
+  }, [currentQuestion, nextQuestion, prevQuestion, adjacentQuestions, language]);
 
   useEffect(() => {
     translateQuestions();
