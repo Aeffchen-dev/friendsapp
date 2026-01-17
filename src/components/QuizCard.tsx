@@ -229,7 +229,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
             ${shadows.topLeft},
             ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 120, 200, 0.7)},
             ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 80, 180, 0.55)},
-            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 200, 140, 255, 0.5)}
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 120, 50, 160, 0.55)}
           `
         };
       case 'friends':
