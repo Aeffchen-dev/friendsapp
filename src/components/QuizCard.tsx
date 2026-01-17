@@ -336,7 +336,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           ...style,
           height: '80vh',
           maxHeight: '80vh',
-          backgroundColor: categoryColors.bodyBg,
+          backgroundColor: categoryColors.bodyBg.replace(')', ' / 0.25)').replace('hsl(', 'hsl('),
           boxShadow: '-2px 0 24px 4px rgba(0, 0, 0, 0.24)',
           width: 'calc(100% - 32px)',
         }}
