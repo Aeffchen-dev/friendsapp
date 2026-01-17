@@ -302,13 +302,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(328, 100%, 56%)', 
           bodyBg: 'hsl(328, 100%, 56%)', 
-          cardFill: 'rgba(80, 20, 120, 0.3)',
+          cardFill: 'rgba(80, 20, 120, 0.18)',
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 60, 200, 200, 0.75)},
-            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 220, 50, 0.6)},
-            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 80, 220, 180, 0.55)}
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 60, 200, 200, 0.5)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 220, 50, 0.4)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 80, 220, 180, 0.35)}
           `
         };
       case 'career':
