@@ -141,20 +141,20 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'rgba(107, 31, 45, 0.45)' }; // burgundy red
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'rgba(180, 30, 30, 0.45)' }; // red
       case 'friends':
       case 'wer aus der runde':
-        return { stripBg: 'hsl(278, 100%, 57%)', bodyBg: 'hsl(278, 100%, 57%)', cardFill: 'hsla(175, 70%, 40%, 0.15)' }; // turquoise
+        return { stripBg: 'hsl(278, 100%, 57%)', bodyBg: 'hsl(278, 100%, 57%)', cardFill: 'rgba(0, 140, 120, 0.35)' }; // turquoise green
       case 'self reflection':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 100%, 35%, 0.25)' }; // burgundy red
       case 'party':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'rgba(107, 31, 45, 0.45)' }; // burgundy red
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'rgba(200, 40, 40, 0.45)' }; // red
       case 'family':
         return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'hsla(300, 100%, 60%, 0.20)' }; // pink
       case 'connection':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)', cardFill: 'rgba(255, 100, 255, 0.15)' }; // vibrant pink, less milky
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)', cardFill: 'rgba(220, 120, 40, 0.35)' }; // orange
       case 'identity':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'rgba(107, 31, 45, 0.45)' }; // burgundy red
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'rgba(180, 30, 30, 0.45)' }; // red
       case 'career':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 100%, 35%, 0.25)' }; // burgundy red
       case 'travel':
