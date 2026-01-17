@@ -139,7 +139,7 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className={`flex items-center justify-between pl-4 bg-[#161616] cursor-pointer relative overflow-visible transition-all ${isBouncing ? 'duration-100' : 'duration-100'}`}
+                  className="flex items-center justify-between pl-4 bg-[#161616] cursor-pointer relative overflow-visible"
                   style={{ 
                     borderRadius: '0 999px 999px 0', 
                     width: isSelected 
@@ -147,24 +147,28 @@ export function CategorySelector({
                       : (isBouncing ? 'calc(90.2vw - 32px)' : 'calc(88vw - 32px)'),
                     paddingTop: '8px',
                     paddingRight: '8px',
-                    paddingBottom: '8px'
+                    paddingBottom: '8px',
+                    transition: 'width 250ms cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                   onClick={() => handleCategoryToggle(category)}
                 >
                   {/* Color strip - 8px when unselected, full width when selected */}
                   <div 
-                    className={`absolute inset-y-0 left-0 transition-all duration-350 ease-out ${isSelected ? 'w-full' : 'w-2'}`}
+                    className="absolute inset-y-0 left-0"
                     style={{ 
                       backgroundColor: colorClasses,
                       opacity: 0.8,
-                      borderRadius: '0 999px 999px 0'
+                      borderRadius: '0 999px 999px 0',
+                      width: isSelected ? '100%' : '8px',
+                      transition: 'width 300ms cubic-bezier(0.4, 0, 0.2, 1)',
                     }} 
                   />
                   
-                  <span className="font-bold text-sm tracking-wide relative z-10 transition-colors duration-300 uppercase" 
+                  <span className="font-bold text-sm tracking-wide relative z-10 uppercase" 
                     style={{ 
                       color: isSelected ? textColor : 'white',
-                      fontFamily: "'Factor A', sans-serif"
+                      fontFamily: "'Factor A', sans-serif",
+                      transition: 'color 200ms ease-out',
                     }}>
                     {translateCategory(category, language)}
                   </span>
@@ -179,32 +183,38 @@ export function CategorySelector({
                        }}
                     >
                       <div
-                        className={`flex items-center justify-center transition-all ease-out ${isSelected ? 'bg-white duration-75' : 'bg-transparent duration-75 hover:bg-white/10'}`}
+                        className="flex items-center justify-center"
                          style={{ 
                            width: '32px', 
                            height: '32px', 
                            borderRadius: '32px',
                            outline: '1px solid white',
-                           outlineOffset: '0px'
+                           outlineOffset: '0px',
+                           backgroundColor: isSelected ? 'white' : 'transparent',
+                           transition: 'background-color 200ms ease-out, transform 150ms ease-out',
+                           transform: isSelected ? 'scale(1)' : 'scale(1)',
                          }}
                       >
-                         {isSelected && (
-                           <svg 
-                             width="20" 
-                             height="20" 
-                             viewBox="0 0 16 16" 
+                         <svg 
+                           width="20" 
+                           height="20" 
+                           viewBox="0 0 16 16" 
+                           fill="none"
+                           style={{
+                             opacity: isSelected ? 1 : 0,
+                             transform: isSelected ? 'scale(1)' : 'scale(0.5)',
+                             transition: 'opacity 200ms ease-out, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                           }}
+                         >
+                           <path 
+                             d="M3 8l3 3 7-7" 
+                             stroke="black" 
+                             strokeWidth="2" 
+                             strokeLinecap="round" 
+                             strokeLinejoin="round"
                              fill="none"
-                           >
-                             <path 
-                               d="M3 8l3 3 7-7" 
-                               stroke="black" 
-                               strokeWidth="2" 
-                               strokeLinecap="round" 
-                               strokeLinejoin="round"
-                               fill="none"
-                             />
-                           </svg>
-                         )}
+                           />
+                         </svg>
                       </div>
                     </div>
                   </div>
