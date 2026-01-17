@@ -211,24 +211,24 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
       transparent 70%)`;
   };
 
-  // Build flame-like glow for fuck category - rising flames from bottom
+  // Build flame-like glow for fuck category - visible flames
   const buildFlameGradient = (w: number, h: number, x: number, y: number, r: number, g: number, b: number, intensity: number) => {
-    const flame1 = `radial-gradient(ellipse ${w * 0.5}% ${h * 2.5}% at ${x}% ${y + 40}%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.9}) 0%, 
-      rgba(${r}, ${g * 0.5}, ${b * 0.3}, ${intensity * 0.5}) 30%, 
-      transparent 60%)`;
-    const flame2 = `radial-gradient(ellipse ${w * 0.35}% ${h * 2.0}% at ${x - 15}% ${y + 50}%, 
-      rgba(255, 120, 20, ${intensity * 0.7}) 0%, 
-      rgba(255, 50, 10, ${intensity * 0.4}) 40%, 
+    const flame1 = `radial-gradient(ellipse ${w * 0.8}% ${h * 2.0}% at ${x}% 85%, 
+      rgba(${r}, ${g}, ${b}, ${intensity}) 0%, 
+      rgba(${r}, ${g * 0.5}, ${b * 0.3}, ${intensity * 0.6}) 35%, 
       transparent 70%)`;
-    const flame3 = `radial-gradient(ellipse ${w * 0.4}% ${h * 1.8}% at ${x + 18}% ${y + 45}%, 
-      rgba(255, 80, 50, ${intensity * 0.8}) 0%, 
-      rgba(200, 30, 30, ${intensity * 0.3}) 50%, 
+    const flame2 = `radial-gradient(ellipse ${w * 0.6}% ${h * 1.6}% at ${x - 20}% 90%, 
+      rgba(255, 120, 20, ${intensity * 0.9}) 0%, 
+      rgba(255, 50, 10, ${intensity * 0.5}) 40%, 
       transparent 75%)`;
-    const flameCore = `radial-gradient(ellipse ${w * 0.6}% ${h * 1.2}% at ${x}% ${y + 30}%, 
-      rgba(255, 200, 100, ${intensity * 0.6}) 0%, 
-      rgba(255, 100, 30, ${intensity * 0.3}) 40%, 
-      transparent 65%)`;
+    const flame3 = `radial-gradient(ellipse ${w * 0.7}% ${h * 1.4}% at ${x + 25}% 88%, 
+      rgba(255, 80, 50, ${intensity}) 0%, 
+      rgba(200, 30, 30, ${intensity * 0.4}) 45%, 
+      transparent 80%)`;
+    const flameCore = `radial-gradient(ellipse ${w}% ${h * 0.8}% at ${x}% 95%, 
+      rgba(255, 220, 120, ${intensity * 0.8}) 0%, 
+      rgba(255, 150, 50, ${intensity * 0.5}) 50%, 
+      transparent 80%)`;
     return `${flame1}, ${flame2}, ${flame3}, ${flameCore}`;
   };
 
