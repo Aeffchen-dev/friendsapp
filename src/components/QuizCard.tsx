@@ -261,9 +261,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         };
       case 'party':
         return { 
-          stripBg: 'hsl(300, 100%, 50%)', 
-          bodyBg: 'hsl(300, 100%, 50%)', 
-          cardFill: 'rgba(120, 40, 70, 0.18)',
+          stripBg: 'hsl(24, 95%, 53%)', 
+          bodyBg: 'hsl(24, 95%, 53%)', 
+          cardFill: 'rgba(255, 120, 50, 0.18)',
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
