@@ -144,10 +144,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(15, 100%, 50%)', 
           bodyBg: 'hsl(15, 100%, 50%)', 
-          cardFill: 'rgba(180, 40, 100, 0.50)', // dark pink
+          cardFill: 'rgba(180, 40, 100, 0.35)', // dark pink
           gradient: `
-            radial-gradient(ellipse 70% 50% at 5% 8%, rgba(0, 0, 0, 0.5) 0%, transparent 50%),
-            radial-gradient(ellipse 60% 45% at 95% 20%, rgba(0, 0, 0, 0.4) 0%, transparent 50%),
+            radial-gradient(ellipse 55% 40% at 3% 5%, rgba(0, 0, 0, 0.55) 0%, transparent 50%),
+            radial-gradient(ellipse 85% 70% at 98% 25%, rgba(0, 0, 0, 0.45) 0%, transparent 55%),
             radial-gradient(ellipse 90% 60% at 70% 92%, rgba(255, 230, 0, 0.35) 0%, transparent 50%)
           `
         };
@@ -156,10 +156,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(278, 100%, 57%)', 
           bodyBg: 'hsl(278, 100%, 57%)', 
-          cardFill: 'rgba(60, 200, 180, 0.30)', // lighter turquoise green
+          cardFill: 'rgba(60, 200, 180, 0.22)', // lighter turquoise green
           gradient: `
-            radial-gradient(ellipse 90% 70% at 15% 5%, rgba(0, 0, 0, 0.45) 0%, transparent 55%),
-            radial-gradient(ellipse 50% 40% at 85% 25%, rgba(0, 0, 0, 0.35) 0%, transparent 50%),
+            radial-gradient(ellipse 100% 85% at 12% 3%, rgba(0, 0, 0, 0.50) 0%, transparent 55%),
+            radial-gradient(ellipse 40% 30% at 92% 30%, rgba(0, 0, 0, 0.38) 0%, transparent 50%),
             radial-gradient(ellipse 80% 70% at 20% 85%, rgba(0, 255, 100, 0.35) 0%, transparent 55%)
           `
         };
@@ -167,10 +167,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(290, 100%, 50%)', 
           bodyBg: 'hsl(290, 100%, 50%)', 
-          cardFill: 'hsla(340, 100%, 35%, 0.25)',
+          cardFill: 'hsla(340, 100%, 35%, 0.18)',
           gradient: `
-            radial-gradient(ellipse 85% 55% at 8% 12%, rgba(0, 0, 0, 0.48) 0%, transparent 50%),
-            radial-gradient(ellipse 55% 50% at 92% 8%, rgba(0, 0, 0, 0.42) 0%, transparent 50%),
+            radial-gradient(ellipse 70% 45% at 6% 18%, rgba(0, 0, 0, 0.52) 0%, transparent 50%),
+            radial-gradient(ellipse 95% 80% at 95% 5%, rgba(0, 0, 0, 0.44) 0%, transparent 55%),
             radial-gradient(ellipse 100% 65% at 50% 95%, rgba(255, 255, 255, 0.18) 0%, transparent 50%)
           `
         };
@@ -178,10 +178,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(300, 100%, 50%)', 
           bodyBg: 'hsl(300, 100%, 50%)', 
-          cardFill: 'rgba(120, 40, 70, 0.50)', // darker berry
+          cardFill: 'rgba(120, 40, 70, 0.35)', // darker berry
           gradient: `
-            radial-gradient(ellipse 75% 60% at 10% 15%, rgba(0, 0, 0, 0.52) 0%, transparent 50%),
-            radial-gradient(ellipse 65% 55% at 88% 10%, rgba(0, 0, 0, 0.45) 0%, transparent 50%),
+            radial-gradient(ellipse 60% 50% at 8% 12%, rgba(0, 0, 0, 0.58) 0%, transparent 50%),
+            radial-gradient(ellipse 80% 65% at 85% 8%, rgba(0, 0, 0, 0.48) 0%, transparent 55%),
             radial-gradient(ellipse 85% 55% at 80% 88%, rgba(255, 50, 50, 0.40) 0%, transparent 55%)
           `
         };
@@ -189,10 +189,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(328, 100%, 56%)', 
           bodyBg: 'hsl(328, 100%, 56%)', 
-          cardFill: 'hsla(300, 100%, 60%, 0.20)',
+          cardFill: 'hsla(300, 100%, 60%, 0.14)',
           gradient: `
-            radial-gradient(ellipse 60% 45% at 12% 6%, rgba(0, 0, 0, 0.44) 0%, transparent 50%),
-            radial-gradient(ellipse 80% 65% at 90% 18%, rgba(0, 0, 0, 0.38) 0%, transparent 55%),
+            radial-gradient(ellipse 50% 35% at 15% 4%, rgba(0, 0, 0, 0.48) 0%, transparent 50%),
+            radial-gradient(ellipse 110% 90% at 88% 20%, rgba(0, 0, 0, 0.42) 0%, transparent 60%),
             radial-gradient(ellipse 70% 80% at 35% 90%, rgba(255, 255, 255, 0.20) 0%, transparent 50%)
           `
         };
@@ -200,10 +200,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(0, 100%, 50%)', 
           bodyBg: 'hsl(0, 100%, 50%)', 
-          cardFill: 'rgba(220, 60, 140, 0.45)', // more pink
+          cardFill: 'rgba(220, 60, 140, 0.32)', // more pink
           gradient: `
-            radial-gradient(ellipse 95% 70% at 5% 10%, rgba(0, 0, 0, 0.55) 0%, transparent 55%),
-            radial-gradient(ellipse 45% 35% at 80% 5%, rgba(0, 0, 0, 0.40) 0%, transparent 50%),
+            radial-gradient(ellipse 120% 95% at 2% 8%, rgba(0, 0, 0, 0.60) 0%, transparent 55%),
+            radial-gradient(ellipse 35% 25% at 88% 3%, rgba(0, 0, 0, 0.42) 0%, transparent 50%),
             radial-gradient(ellipse 75% 65% at 60% 95%, rgba(255, 255, 255, 0.18) 0%, transparent 50%)
           `
         };
@@ -211,10 +211,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(328, 100%, 56%)', 
           bodyBg: 'hsl(328, 100%, 56%)', 
-          cardFill: 'rgba(200, 30, 50, 0.45)', // more red
+          cardFill: 'rgba(200, 30, 50, 0.32)', // more red
           gradient: `
-            radial-gradient(ellipse 65% 50% at 8% 18%, rgba(0, 0, 0, 0.50) 0%, transparent 50%),
-            radial-gradient(ellipse 85% 60% at 95% 12%, rgba(0, 0, 0, 0.42) 0%, transparent 55%),
+            radial-gradient(ellipse 45% 35% at 5% 22%, rgba(0, 0, 0, 0.55) 0%, transparent 50%),
+            radial-gradient(ellipse 105% 75% at 97% 10%, rgba(0, 0, 0, 0.46) 0%, transparent 55%),
             radial-gradient(ellipse 95% 75% at 45% 92%, rgba(255, 120, 0, 0.45) 0%, transparent 55%)
           `
         };
@@ -222,10 +222,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(290, 100%, 50%)', 
           bodyBg: 'hsl(290, 100%, 50%)', 
-          cardFill: 'hsla(340, 100%, 35%, 0.25)',
+          cardFill: 'hsla(340, 100%, 35%, 0.18)',
           gradient: `
-            radial-gradient(ellipse 80% 55% at 15% 8%, rgba(0, 0, 0, 0.46) 0%, transparent 50%),
-            radial-gradient(ellipse 70% 60% at 85% 22%, rgba(0, 0, 0, 0.40) 0%, transparent 50%),
+            radial-gradient(ellipse 95% 70% at 10% 6%, rgba(0, 0, 0, 0.50) 0%, transparent 55%),
+            radial-gradient(ellipse 55% 45% at 90% 28%, rgba(0, 0, 0, 0.42) 0%, transparent 50%),
             radial-gradient(ellipse 65% 50% at 25% 88%, rgba(255, 255, 255, 0.20) 0%, transparent 50%)
           `
         };
@@ -233,10 +233,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(15, 100%, 50%)', 
           bodyBg: 'hsl(15, 100%, 50%)', 
-          cardFill: 'hsla(175, 70%, 40%, 0.15)',
+          cardFill: 'hsla(175, 70%, 40%, 0.12)',
           gradient: `
-            radial-gradient(ellipse 55% 40% at 5% 5%, rgba(0, 0, 0, 0.42) 0%, transparent 50%),
-            radial-gradient(ellipse 90% 70% at 92% 15%, rgba(0, 0, 0, 0.38) 0%, transparent 55%),
+            radial-gradient(ellipse 40% 30% at 3% 3%, rgba(0, 0, 0, 0.46) 0%, transparent 50%),
+            radial-gradient(ellipse 115% 85% at 95% 18%, rgba(0, 0, 0, 0.40) 0%, transparent 58%),
             radial-gradient(ellipse 110% 80% at 85% 90%, rgba(255, 255, 255, 0.19) 0%, transparent 55%)
           `
         };
@@ -244,10 +244,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(300, 100%, 50%)', 
           bodyBg: 'hsl(300, 100%, 50%)', 
-          cardFill: 'hsla(0, 100%, 40%, 0.20)',
+          cardFill: 'hsla(0, 100%, 40%, 0.15)',
           gradient: `
-            radial-gradient(ellipse 75% 65% at 12% 12%, rgba(0, 0, 0, 0.48) 0%, transparent 55%),
-            radial-gradient(ellipse 60% 45% at 88% 8%, rgba(0, 0, 0, 0.43) 0%, transparent 50%),
+            radial-gradient(ellipse 90% 75% at 15% 15%, rgba(0, 0, 0, 0.52) 0%, transparent 55%),
+            radial-gradient(ellipse 45% 35% at 92% 5%, rgba(0, 0, 0, 0.46) 0%, transparent 50%),
             radial-gradient(ellipse 80% 60% at 15% 92%, rgba(255, 255, 255, 0.21) 0%, transparent 50%)
           `
         };
@@ -255,10 +255,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(290, 100%, 50%)', 
           bodyBg: 'hsl(290, 100%, 50%)', 
-          cardFill: 'hsla(340, 100%, 35%, 0.25)',
+          cardFill: 'hsla(340, 100%, 35%, 0.18)',
           gradient: `
-            radial-gradient(ellipse 85% 60% at 8% 20%, rgba(0, 0, 0, 0.50) 0%, transparent 55%),
-            radial-gradient(ellipse 50% 40% at 90% 5%, rgba(0, 0, 0, 0.38) 0%, transparent 50%),
+            radial-gradient(ellipse 105% 80% at 5% 25%, rgba(0, 0, 0, 0.54) 0%, transparent 58%),
+            radial-gradient(ellipse 38% 28% at 95% 2%, rgba(0, 0, 0, 0.40) 0%, transparent 50%),
             radial-gradient(ellipse 90% 70% at 75% 95%, rgba(255, 255, 255, 0.17) 0%, transparent 55%)
           `
         };
@@ -266,10 +266,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(15, 100%, 50%)', 
           bodyBg: 'hsl(15, 100%, 50%)', 
-          cardFill: 'hsla(300, 100%, 60%, 0.20)',
+          cardFill: 'hsla(300, 100%, 60%, 0.14)',
           gradient: `
-            radial-gradient(ellipse 70% 55% at 10% 6%, rgba(0, 0, 0, 0.44) 0%, transparent 50%),
-            radial-gradient(ellipse 75% 50% at 95% 18%, rgba(0, 0, 0, 0.36) 0%, transparent 50%),
+            radial-gradient(ellipse 58% 45% at 8% 4%, rgba(0, 0, 0, 0.48) 0%, transparent 50%),
+            radial-gradient(ellipse 88% 65% at 98% 22%, rgba(0, 0, 0, 0.38) 0%, transparent 55%),
             radial-gradient(ellipse 100% 85% at 50% 88%, rgba(255, 255, 255, 0.23) 0%, transparent 55%)
           `
         };
@@ -277,10 +277,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(328, 100%, 56%)', 
           bodyBg: 'hsl(328, 100%, 56%)', 
-          cardFill: 'hsla(175, 70%, 40%, 0.15)',
+          cardFill: 'hsla(175, 70%, 40%, 0.12)',
           gradient: `
-            radial-gradient(ellipse 90% 65% at 5% 15%, rgba(0, 0, 0, 0.46) 0%, transparent 55%),
-            radial-gradient(ellipse 55% 45% at 85% 10%, rgba(0, 0, 0, 0.40) 0%, transparent 50%),
+            radial-gradient(ellipse 110% 80% at 3% 18%, rgba(0, 0, 0, 0.50) 0%, transparent 58%),
+            radial-gradient(ellipse 42% 32% at 88% 8%, rgba(0, 0, 0, 0.44) 0%, transparent 50%),
             radial-gradient(ellipse 70% 55% at 40% 92%, rgba(255, 255, 255, 0.19) 0%, transparent 50%)
           `
         };
@@ -288,10 +288,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(300, 100%, 50%)', 
           bodyBg: 'hsl(300, 100%, 50%)', 
-          cardFill: 'hsla(0, 100%, 40%, 0.20)',
+          cardFill: 'hsla(0, 100%, 40%, 0.15)',
           gradient: `
-            radial-gradient(ellipse 60% 50% at 15% 8%, rgba(0, 0, 0, 0.47) 0%, transparent 50%),
-            radial-gradient(ellipse 80% 65% at 90% 20%, rgba(0, 0, 0, 0.42) 0%, transparent 55%),
+            radial-gradient(ellipse 48% 38% at 18% 6%, rgba(0, 0, 0, 0.52) 0%, transparent 50%),
+            radial-gradient(ellipse 98% 78% at 92% 25%, rgba(0, 0, 0, 0.45) 0%, transparent 58%),
             radial-gradient(ellipse 85% 60% at 30% 95%, rgba(255, 255, 255, 0.22) 0%, transparent 55%)
           `
         };
@@ -299,10 +299,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(0, 100%, 50%)', 
           bodyBg: 'hsl(0, 100%, 50%)', 
-          cardFill: 'hsla(340, 100%, 35%, 0.25)',
+          cardFill: 'hsla(340, 100%, 35%, 0.18)',
           gradient: `
-            radial-gradient(ellipse 95% 75% at 8% 10%, rgba(0, 0, 0, 0.55) 0%, transparent 55%),
-            radial-gradient(ellipse 55% 40% at 92% 15%, rgba(0, 0, 0, 0.48) 0%, transparent 50%),
+            radial-gradient(ellipse 115% 90% at 5% 8%, rgba(0, 0, 0, 0.62) 0%, transparent 58%),
+            radial-gradient(ellipse 40% 30% at 95% 18%, rgba(0, 0, 0, 0.52) 0%, transparent 50%),
             radial-gradient(ellipse 75% 55% at 65% 90%, rgba(255, 255, 255, 0.16) 0%, transparent 50%)
           `
         };
@@ -310,10 +310,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(290, 100%, 50%)', 
           bodyBg: 'hsl(290, 100%, 50%)', 
-          cardFill: 'hsla(300, 100%, 60%, 0.20)',
+          cardFill: 'hsla(300, 100%, 60%, 0.14)',
           gradient: `
-            radial-gradient(ellipse 65% 45% at 12% 12%, rgba(0, 0, 0, 0.43) 0%, transparent 50%),
-            radial-gradient(ellipse 85% 70% at 88% 8%, rgba(0, 0, 0, 0.38) 0%, transparent 55%),
+            radial-gradient(ellipse 52% 38% at 10% 15%, rgba(0, 0, 0, 0.46) 0%, transparent 50%),
+            radial-gradient(ellipse 102% 82% at 90% 5%, rgba(0, 0, 0, 0.40) 0%, transparent 58%),
             radial-gradient(ellipse 95% 70% at 55% 92%, rgba(255, 255, 255, 0.21) 0%, transparent 55%)
           `
         };
@@ -321,10 +321,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(15, 100%, 50%)', 
           bodyBg: 'hsl(15, 100%, 50%)', 
-          cardFill: 'hsla(175, 70%, 40%, 0.15)',
+          cardFill: 'hsla(175, 70%, 40%, 0.12)',
           gradient: `
-            radial-gradient(ellipse 75% 55% at 10% 18%, rgba(0, 0, 0, 0.44) 0%, transparent 50%),
-            radial-gradient(ellipse 65% 50% at 92% 6%, rgba(0, 0, 0, 0.40) 0%, transparent 50%),
+            radial-gradient(ellipse 62% 48% at 8% 22%, rgba(0, 0, 0, 0.48) 0%, transparent 50%),
+            radial-gradient(ellipse 78% 58% at 95% 4%, rgba(0, 0, 0, 0.42) 0%, transparent 55%),
             radial-gradient(ellipse 80% 65% at 80% 88%, rgba(255, 255, 255, 0.20) 0%, transparent 55%)
           `
         };
@@ -332,10 +332,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(290, 100%, 50%)', 
           bodyBg: 'hsl(290, 100%, 50%)', 
-          cardFill: 'hsla(300, 100%, 60%, 0.20)',
+          cardFill: 'hsla(300, 100%, 60%, 0.14)',
           gradient: `
-            radial-gradient(ellipse 80% 60% at 10% 10%, rgba(0, 0, 0, 0.45) 0%, transparent 50%),
-            radial-gradient(ellipse 70% 55% at 90% 15%, rgba(0, 0, 0, 0.38) 0%, transparent 50%),
+            radial-gradient(ellipse 80% 60% at 10% 10%, rgba(0, 0, 0, 0.48) 0%, transparent 55%),
+            radial-gradient(ellipse 70% 55% at 90% 15%, rgba(0, 0, 0, 0.40) 0%, transparent 55%),
             radial-gradient(ellipse 90% 70% at 50% 90%, rgba(255, 255, 255, 0.20) 0%, transparent 55%)
           `
         };
