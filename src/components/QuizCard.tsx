@@ -148,7 +148,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             radial-gradient(ellipse 70% 50% at 5% 8%, rgba(0, 0, 0, 0.5) 0%, transparent 50%),
             radial-gradient(ellipse 60% 45% at 95% 20%, rgba(0, 0, 0, 0.4) 0%, transparent 50%),
-            radial-gradient(ellipse 90% 60% at 70% 92%, rgba(255, 255, 255, 0.20) 0%, transparent 50%)
+            radial-gradient(ellipse 90% 60% at 70% 92%, rgba(255, 230, 0, 0.35) 0%, transparent 50%)
           `
         };
       case 'friends':
@@ -160,7 +160,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             radial-gradient(ellipse 90% 70% at 15% 5%, rgba(0, 0, 0, 0.45) 0%, transparent 55%),
             radial-gradient(ellipse 50% 40% at 85% 25%, rgba(0, 0, 0, 0.35) 0%, transparent 50%),
-            radial-gradient(ellipse 80% 70% at 20% 85%, rgba(255, 255, 255, 0.22) 0%, transparent 55%)
+            radial-gradient(ellipse 80% 70% at 20% 85%, rgba(0, 255, 100, 0.35) 0%, transparent 55%)
           `
         };
       case 'self reflection':
@@ -182,7 +182,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             radial-gradient(ellipse 75% 60% at 10% 15%, rgba(0, 0, 0, 0.52) 0%, transparent 50%),
             radial-gradient(ellipse 65% 55% at 88% 10%, rgba(0, 0, 0, 0.45) 0%, transparent 50%),
-            radial-gradient(ellipse 85% 55% at 80% 88%, rgba(255, 255, 255, 0.24) 0%, transparent 55%)
+            radial-gradient(ellipse 85% 55% at 80% 88%, rgba(255, 50, 50, 0.40) 0%, transparent 55%)
           `
         };
       case 'family':
@@ -215,7 +215,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             radial-gradient(ellipse 65% 50% at 8% 18%, rgba(0, 0, 0, 0.50) 0%, transparent 50%),
             radial-gradient(ellipse 85% 60% at 95% 12%, rgba(0, 0, 0, 0.42) 0%, transparent 55%),
-            radial-gradient(ellipse 95% 75% at 45% 92%, rgba(255, 255, 255, 0.22) 0%, transparent 55%)
+            radial-gradient(ellipse 95% 75% at 45% 92%, rgba(255, 120, 0, 0.45) 0%, transparent 55%)
           `
         };
       case 'career':
