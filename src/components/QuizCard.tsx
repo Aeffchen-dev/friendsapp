@@ -144,10 +144,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(15, 100%, 50%)', 
           bodyBg: 'hsl(15, 100%, 50%)', 
-          cardFill: 'rgba(180, 40, 100, 0.30)', // dark pink
+          cardFill: 'rgba(180, 40, 100, 0.25)',
           gradient: `
-            radial-gradient(ellipse 140% 120% at -20% 50%, rgba(180, 0, 255, 0.50) 0%, rgba(180, 0, 255, 0.20) 30%, transparent 60%),
-            radial-gradient(ellipse 80% 100% at 110% 80%, rgba(0, 0, 0, 0.40) 0%, transparent 50%)
+            radial-gradient(ellipse 60% 80% at -15% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 200, 255, 0.6) 20%, rgba(180, 100, 180, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 100% 100% at 100% 100%, rgba(0, 0, 0, 0.25) 0%, transparent 50%)
           `
         };
       case 'friends':
@@ -155,170 +155,170 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(278, 100%, 57%)', 
           bodyBg: 'hsl(278, 100%, 57%)', 
-          cardFill: 'rgba(60, 200, 180, 0.18)', // lighter turquoise green
+          cardFill: 'rgba(60, 180, 160, 0.18)',
           gradient: `
-            radial-gradient(ellipse 130% 110% at -15% 40%, rgba(255, 80, 80, 0.55) 0%, rgba(255, 80, 80, 0.20) 35%, transparent 60%),
-            radial-gradient(ellipse 90% 90% at 105% 90%, rgba(0, 0, 0, 0.35) 0%, transparent 50%)
+            radial-gradient(ellipse 55% 75% at -12% 45%, rgba(255, 255, 255, 0.95) 0%, rgba(200, 255, 240, 0.6) 20%, rgba(100, 200, 180, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 90% 90% at 105% 95%, rgba(0, 0, 0, 0.22) 0%, transparent 50%)
           `
         };
       case 'self reflection':
         return { 
           stripBg: 'hsl(290, 100%, 50%)', 
           bodyBg: 'hsl(290, 100%, 50%)', 
-          cardFill: 'hsla(340, 100%, 35%, 0.15)',
+          cardFill: 'hsla(340, 100%, 35%, 0.12)',
           gradient: `
-            radial-gradient(ellipse 120% 130% at -10% 70%, rgba(255, 200, 100, 0.50) 0%, rgba(255, 200, 100, 0.18) 30%, transparent 55%),
-            radial-gradient(ellipse 85% 85% at 110% 20%, rgba(0, 0, 0, 0.38) 0%, transparent 50%)
+            radial-gradient(ellipse 65% 85% at -18% 55%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 220, 200, 0.6) 20%, rgba(200, 150, 130, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 85% 85% at 108% 90%, rgba(0, 0, 0, 0.24) 0%, transparent 50%)
           `
         };
       case 'party':
         return { 
           stripBg: 'hsl(300, 100%, 50%)', 
           bodyBg: 'hsl(300, 100%, 50%)', 
-          cardFill: 'rgba(120, 40, 70, 0.28)', // darker berry
+          cardFill: 'rgba(120, 40, 70, 0.22)',
           gradient: `
-            radial-gradient(ellipse 150% 140% at -25% 60%, rgba(255, 50, 50, 0.55) 0%, rgba(255, 50, 50, 0.22) 35%, transparent 60%),
-            radial-gradient(ellipse 75% 95% at 108% 75%, rgba(0, 0, 0, 0.42) 0%, transparent 50%)
+            radial-gradient(ellipse 58% 78% at -14% 48%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 180, 180, 0.6) 20%, rgba(200, 100, 100, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 95% 88% at 102% 88%, rgba(0, 0, 0, 0.26) 0%, transparent 50%)
           `
         };
       case 'family':
         return { 
           stripBg: 'hsl(328, 100%, 56%)', 
           bodyBg: 'hsl(328, 100%, 56%)', 
-          cardFill: 'hsla(300, 100%, 60%, 0.12)',
+          cardFill: 'hsla(300, 100%, 60%, 0.10)',
           gradient: `
-            radial-gradient(ellipse 125% 115% at -12% 35%, rgba(255, 180, 220, 0.52) 0%, rgba(255, 180, 220, 0.18) 32%, transparent 58%),
-            radial-gradient(ellipse 95% 80% at 112% 85%, rgba(0, 0, 0, 0.36) 0%, transparent 50%)
+            radial-gradient(ellipse 62% 82% at -16% 52%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 210, 230, 0.6) 20%, rgba(200, 140, 170, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 88% 92% at 106% 92%, rgba(0, 0, 0, 0.22) 0%, transparent 50%)
           `
         };
       case 'connection':
         return { 
           stripBg: 'hsl(0, 100%, 50%)', 
           bodyBg: 'hsl(0, 100%, 50%)', 
-          cardFill: 'rgba(220, 60, 140, 0.25)', // more pink
+          cardFill: 'rgba(220, 60, 140, 0.20)',
           gradient: `
-            radial-gradient(ellipse 135% 125% at -18% 55%, rgba(255, 140, 0, 0.58) 0%, rgba(255, 140, 0, 0.22) 32%, transparent 58%),
-            radial-gradient(ellipse 70% 100% at 115% 70%, rgba(0, 0, 0, 0.45) 0%, transparent 50%)
+            radial-gradient(ellipse 56% 76% at -13% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 200, 160, 0.6) 20%, rgba(220, 140, 100, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 92% 85% at 104% 86%, rgba(0, 0, 0, 0.28) 0%, transparent 50%)
           `
         };
       case 'identity':
         return { 
           stripBg: 'hsl(328, 100%, 56%)', 
           bodyBg: 'hsl(328, 100%, 56%)', 
-          cardFill: 'rgba(200, 30, 50, 0.28)', // more red
+          cardFill: 'rgba(200, 30, 50, 0.22)',
           gradient: `
-            radial-gradient(ellipse 145% 135% at -22% 45%, rgba(255, 120, 0, 0.55) 0%, rgba(255, 120, 0, 0.20) 35%, transparent 62%),
-            radial-gradient(ellipse 88% 88% at 108% 88%, rgba(0, 0, 0, 0.40) 0%, transparent 50%)
+            radial-gradient(ellipse 64% 84% at -17% 46%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 190, 150, 0.6) 20%, rgba(220, 130, 90, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 86% 90% at 105% 94%, rgba(0, 0, 0, 0.25) 0%, transparent 50%)
           `
         };
       case 'career':
         return { 
           stripBg: 'hsl(290, 100%, 50%)', 
           bodyBg: 'hsl(290, 100%, 50%)', 
-          cardFill: 'hsla(340, 100%, 35%, 0.15)',
+          cardFill: 'hsla(340, 100%, 35%, 0.12)',
           gradient: `
-            radial-gradient(ellipse 130% 120% at -15% 65%, rgba(100, 200, 255, 0.50) 0%, rgba(100, 200, 255, 0.18) 30%, transparent 55%),
-            radial-gradient(ellipse 80% 90% at 110% 25%, rgba(0, 0, 0, 0.38) 0%, transparent 50%)
+            radial-gradient(ellipse 60% 80% at -15% 54%, rgba(255, 255, 255, 0.95) 0%, rgba(200, 230, 255, 0.6) 20%, rgba(120, 170, 200, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 90% 88% at 103% 90%, rgba(0, 0, 0, 0.24) 0%, transparent 50%)
           `
         };
       case 'travel':
         return { 
           stripBg: 'hsl(15, 100%, 50%)', 
           bodyBg: 'hsl(15, 100%, 50%)', 
-          cardFill: 'hsla(175, 70%, 40%, 0.10)',
+          cardFill: 'hsla(175, 70%, 40%, 0.08)',
           gradient: `
-            radial-gradient(ellipse 140% 110% at -20% 40%, rgba(0, 220, 180, 0.52) 0%, rgba(0, 220, 180, 0.18) 32%, transparent 58%),
-            radial-gradient(ellipse 92% 85% at 105% 80%, rgba(0, 0, 0, 0.35) 0%, transparent 50%)
+            radial-gradient(ellipse 58% 78% at -14% 48%, rgba(255, 255, 255, 0.95) 0%, rgba(180, 255, 240, 0.6) 20%, rgba(100, 200, 180, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 94% 86% at 106% 88%, rgba(0, 0, 0, 0.22) 0%, transparent 50%)
           `
         };
       case 'health':
         return { 
           stripBg: 'hsl(300, 100%, 50%)', 
           bodyBg: 'hsl(300, 100%, 50%)', 
-          cardFill: 'hsla(0, 100%, 40%, 0.12)',
+          cardFill: 'hsla(0, 100%, 40%, 0.10)',
           gradient: `
-            radial-gradient(ellipse 125% 130% at -12% 75%, rgba(120, 255, 150, 0.48) 0%, rgba(120, 255, 150, 0.16) 30%, transparent 55%),
-            radial-gradient(ellipse 78% 95% at 112% 30%, rgba(0, 0, 0, 0.40) 0%, transparent 50%)
+            radial-gradient(ellipse 62% 82% at -16% 52%, rgba(255, 255, 255, 0.95) 0%, rgba(200, 255, 200, 0.6) 20%, rgba(120, 200, 140, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 88% 90% at 104% 92%, rgba(0, 0, 0, 0.26) 0%, transparent 50%)
           `
         };
       case 'money':
         return { 
           stripBg: 'hsl(290, 100%, 50%)', 
           bodyBg: 'hsl(290, 100%, 50%)', 
-          cardFill: 'hsla(340, 100%, 35%, 0.15)',
+          cardFill: 'hsla(340, 100%, 35%, 0.12)',
           gradient: `
-            radial-gradient(ellipse 150% 125% at -25% 50%, rgba(255, 215, 0, 0.55) 0%, rgba(255, 215, 0, 0.20) 35%, transparent 60%),
-            radial-gradient(ellipse 85% 80% at 108% 85%, rgba(0, 0, 0, 0.38) 0%, transparent 50%)
+            radial-gradient(ellipse 56% 76% at -13% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 180, 0.6) 20%, rgba(220, 190, 100, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 92% 88% at 105% 86%, rgba(0, 0, 0, 0.24) 0%, transparent 50%)
           `
         };
       case 'love':
         return { 
           stripBg: 'hsl(15, 100%, 50%)', 
           bodyBg: 'hsl(15, 100%, 50%)', 
-          cardFill: 'hsla(300, 100%, 60%, 0.12)',
+          cardFill: 'hsla(300, 100%, 60%, 0.10)',
           gradient: `
-            radial-gradient(ellipse 135% 115% at -18% 60%, rgba(255, 100, 150, 0.55) 0%, rgba(255, 100, 150, 0.20) 32%, transparent 58%),
-            radial-gradient(ellipse 90% 92% at 110% 75%, rgba(0, 0, 0, 0.35) 0%, transparent 50%)
+            radial-gradient(ellipse 64% 84% at -17% 46%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 200, 210, 0.6) 20%, rgba(220, 140, 160, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 86% 92% at 103% 94%, rgba(0, 0, 0, 0.22) 0%, transparent 50%)
           `
         };
       case 'hobby':
         return { 
           stripBg: 'hsl(328, 100%, 56%)', 
           bodyBg: 'hsl(328, 100%, 56%)', 
-          cardFill: 'hsla(175, 70%, 40%, 0.10)',
+          cardFill: 'hsla(175, 70%, 40%, 0.08)',
           gradient: `
-            radial-gradient(ellipse 120% 140% at -10% 80%, rgba(0, 200, 255, 0.52) 0%, rgba(0, 200, 255, 0.18) 30%, transparent 55%),
-            radial-gradient(ellipse 82% 78% at 115% 20%, rgba(0, 0, 0, 0.36) 0%, transparent 50%)
+            radial-gradient(ellipse 60% 80% at -15% 54%, rgba(255, 255, 255, 0.95) 0%, rgba(180, 230, 255, 0.6) 20%, rgba(100, 170, 220, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 90% 86% at 106% 90%, rgba(0, 0, 0, 0.24) 0%, transparent 50%)
           `
         };
       case 'dreams':
         return { 
           stripBg: 'hsl(300, 100%, 50%)', 
           bodyBg: 'hsl(300, 100%, 50%)', 
-          cardFill: 'hsla(0, 100%, 40%, 0.12)',
+          cardFill: 'hsla(0, 100%, 40%, 0.10)',
           gradient: `
-            radial-gradient(ellipse 145% 120% at -22% 45%, rgba(200, 150, 255, 0.55) 0%, rgba(200, 150, 255, 0.20) 35%, transparent 60%),
-            radial-gradient(ellipse 75% 95% at 108% 80%, rgba(0, 0, 0, 0.40) 0%, transparent 50%)
+            radial-gradient(ellipse 58% 78% at -14% 48%, rgba(255, 255, 255, 0.95) 0%, rgba(220, 200, 255, 0.6) 20%, rgba(160, 140, 200, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 94% 90% at 104% 88%, rgba(0, 0, 0, 0.26) 0%, transparent 50%)
           `
         };
       case 'fear':
         return { 
           stripBg: 'hsl(0, 100%, 50%)', 
           bodyBg: 'hsl(0, 100%, 50%)', 
-          cardFill: 'hsla(340, 100%, 35%, 0.15)',
+          cardFill: 'hsla(340, 100%, 35%, 0.12)',
           gradient: `
-            radial-gradient(ellipse 140% 130% at -20% 55%, rgba(80, 80, 180, 0.52) 0%, rgba(80, 80, 180, 0.18) 32%, transparent 58%),
-            radial-gradient(ellipse 88% 85% at 112% 70%, rgba(0, 0, 0, 0.45) 0%, transparent 50%)
+            radial-gradient(ellipse 62% 82% at -16% 52%, rgba(255, 255, 255, 0.95) 0%, rgba(180, 200, 220, 0.6) 20%, rgba(100, 130, 160, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 88% 88% at 105% 92%, rgba(0, 0, 0, 0.30) 0%, transparent 50%)
           `
         };
       case 'wisdom':
         return { 
           stripBg: 'hsl(290, 100%, 50%)', 
           bodyBg: 'hsl(290, 100%, 50%)', 
-          cardFill: 'hsla(300, 100%, 60%, 0.12)',
+          cardFill: 'hsla(300, 100%, 60%, 0.10)',
           gradient: `
-            radial-gradient(ellipse 130% 125% at -15% 70%, rgba(255, 220, 180, 0.50) 0%, rgba(255, 220, 180, 0.18) 30%, transparent 55%),
-            radial-gradient(ellipse 95% 88% at 105% 25%, rgba(0, 0, 0, 0.35) 0%, transparent 50%)
+            radial-gradient(ellipse 56% 76% at -13% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 220, 0.6) 20%, rgba(220, 190, 160, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 92% 90% at 103% 86%, rgba(0, 0, 0, 0.22) 0%, transparent 50%)
           `
         };
       case 'future':
         return { 
           stripBg: 'hsl(15, 100%, 50%)', 
           bodyBg: 'hsl(15, 100%, 50%)', 
-          cardFill: 'hsla(175, 70%, 40%, 0.10)',
+          cardFill: 'hsla(175, 70%, 40%, 0.08)',
           gradient: `
-            radial-gradient(ellipse 125% 135% at -12% 35%, rgba(0, 255, 200, 0.52) 0%, rgba(0, 255, 200, 0.18) 32%, transparent 58%),
-            radial-gradient(ellipse 80% 90% at 110% 85%, rgba(0, 0, 0, 0.38) 0%, transparent 50%)
+            radial-gradient(ellipse 64% 84% at -17% 46%, rgba(255, 255, 255, 0.95) 0%, rgba(180, 255, 220, 0.6) 20%, rgba(100, 200, 160, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 86% 88% at 106% 94%, rgba(0, 0, 0, 0.24) 0%, transparent 50%)
           `
         };
       default:
         return { 
           stripBg: 'hsl(290, 100%, 50%)', 
           bodyBg: 'hsl(290, 100%, 50%)', 
-          cardFill: 'hsla(300, 100%, 60%, 0.12)',
+          cardFill: 'hsla(300, 100%, 60%, 0.10)',
           gradient: `
-            radial-gradient(ellipse 130% 120% at -15% 50%, rgba(255, 200, 150, 0.50) 0%, rgba(255, 200, 150, 0.18) 30%, transparent 55%),
-            radial-gradient(ellipse 85% 85% at 110% 80%, rgba(0, 0, 0, 0.38) 0%, transparent 50%)
+            radial-gradient(ellipse 60% 80% at -15% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(220, 240, 255, 0.6) 20%, rgba(160, 190, 210, 0.3) 45%, transparent 70%),
+            radial-gradient(ellipse 90% 90% at 105% 90%, rgba(0, 0, 0, 0.24) 0%, transparent 50%)
           `
         };
     }
