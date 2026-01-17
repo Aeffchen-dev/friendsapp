@@ -203,9 +203,26 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     return { mainX, mainY, mainW, mainH, secX, secY, secW, secH, terX, terY, terW, terH };
   };
 
-  // Build nebula-like fog gradient with vertical organic shapes
+  // Build nebula-like fog gradient with organic shapes (horizontal)
   const buildAuraGradient = (w: number, h: number, x: number, y: number, r: number, g: number, b: number, intensity: number) => {
-    // Create multiple overlapping vertical fog layers for nebula effect
+    // Create multiple overlapping fog layers for nebula effect
+    const fogLayer1 = `radial-gradient(ellipse ${w * 1.8}% ${h * 0.4}% at ${x - 5}% ${y + 8}%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.6}) 0%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.3}) 40%, 
+      transparent 70%)`;
+    const fogLayer2 = `radial-gradient(ellipse ${w * 0.5}% ${h * 2.2}% at ${x + 12}% ${y - 5}%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.5}) 0%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.2}) 50%, 
+      transparent 80%)`;
+    const fogLayer3 = `radial-gradient(ellipse ${w * 1.2}% ${h * 0.6}% at ${x + 5}% ${y + 15}%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.4}) 0%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.15}) 60%, 
+      transparent 90%)`;
+    return `${fogLayer1}, ${fogLayer2}, ${fogLayer3}`;
+  };
+
+  // Build vertical nebula fog gradient (only for party category)
+  const buildVerticalAuraGradient = (w: number, h: number, x: number, y: number, r: number, g: number, b: number, intensity: number) => {
     const fogLayer1 = `radial-gradient(ellipse ${w * 0.4}% ${h * 1.8}% at ${x + 8}% ${y - 5}%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.6}) 0%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.3}) 40%, 
@@ -275,9 +292,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 30, 60, 0.75)},
-            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 50, 200, 0.65)},
-            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 200, 30, 255, 0.6)}
+            ${buildVerticalAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 30, 60, 0.75)},
+            ${buildVerticalAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 50, 200, 0.65)},
+            ${buildVerticalAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 200, 30, 255, 0.6)}
           `
         };
       case 'family':
