@@ -28,7 +28,7 @@ const getCategoryBodyColor = (category: string) => {
     case 'family':
       return 'hsl(300, 100%, 73%)'; // Pink
     case 'connection':
-      return 'hsl(340, 100%, 20%)'; // Burgundy
+      return 'hsl(141, 99%, 59%)'; // Green
     case 'identity':
       return 'hsl(268, 100%, 79%)'; // Purple
     case 'career':
