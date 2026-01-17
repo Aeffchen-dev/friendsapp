@@ -137,51 +137,46 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     });
   };
 
-  // Get category-specific colors based on brand palette (5 colors)
-  // Green, Purple, Orange, Pink, Burgundy
+  // Get category-specific neon color - using the 5 color palette
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
-      case 'drink':
-        return { stripBg: 'hsl(141, 99%, 59%)', cardFill: 'hsl(191, 100%, 16%)' }; // Green #31FE6A
-      case 'talk':
-        return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple #C294FF
       case 'fuck':
-        return { stripBg: 'hsl(22, 100%, 50%)', cardFill: 'hsl(22, 30%, 15%)' }; // Orange #FF5D01
-      case 'party':
-        return { stripBg: 'hsl(300, 100%, 73%)', cardFill: 'hsl(340, 50%, 25%)' }; // Pink #FF6FFF
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'friends':
       case 'wer aus der runde':
-        return { stripBg: 'hsl(340, 100%, 20%)', cardFill: 'hsl(340, 80%, 12%)' }; // Burgundy #680030
+        return { stripBg: 'hsl(278, 100%, 57%)', bodyBg: 'hsl(278, 100%, 57%)' }; // #af25ff
       case 'self reflection':
-        return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
+      case 'party':
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'family':
-        return { stripBg: 'hsl(300, 100%, 73%)', cardFill: 'hsl(340, 50%, 25%)' }; // Pink
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'connection':
-        return { stripBg: 'hsl(141, 99%, 59%)', cardFill: 'hsl(191, 100%, 16%)' }; // Green
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
       case 'identity':
-        return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'career':
-        return { stripBg: 'hsl(141, 99%, 59%)', cardFill: 'hsl(191, 100%, 16%)' }; // Green
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'travel':
-        return { stripBg: 'hsl(22, 100%, 50%)', cardFill: 'hsl(22, 30%, 15%)' }; // Orange
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'health':
-        return { stripBg: 'hsl(300, 100%, 73%)', cardFill: 'hsl(340, 50%, 25%)' }; // Pink
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'money':
-        return { stripBg: 'hsl(141, 99%, 59%)', cardFill: 'hsl(191, 100%, 16%)' }; // Green
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'love':
-        return { stripBg: 'hsl(300, 100%, 73%)', cardFill: 'hsl(340, 50%, 25%)' }; // Pink
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'hobby':
-        return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'dreams':
-        return { stripBg: 'hsl(141, 99%, 59%)', cardFill: 'hsl(191, 100%, 16%)' }; // Green
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'fear':
-        return { stripBg: 'hsl(340, 100%, 20%)', cardFill: 'hsl(340, 80%, 12%)' }; // Burgundy
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
       case 'wisdom':
-        return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'future':
-        return { stripBg: 'hsl(22, 100%, 50%)', cardFill: 'hsl(22, 30%, 15%)' }; // Orange
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       default:
-        return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple default
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
     }
   };
 
@@ -334,12 +329,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     const showShimmer = isTranslating(question.question);
     const isCurrent = cardQuestionIndex === questionIndex;
     
-    // Parse HSL to extract values for rgba-style opacity
-    const hslMatch = categoryColors.cardFill.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
-    const cardBgColor = hslMatch 
-      ? `hsla(${hslMatch[1]}, ${hslMatch[2]}%, ${hslMatch[3]}%, 0.25)` 
-      : 'rgba(0, 0, 0, 0.25)';
-    
     return (
       <div 
         className="flex-shrink-0 w-full max-w-[500px] rounded-2xl overflow-hidden mx-4 md:mx-0"
@@ -347,7 +336,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           ...style,
           height: '80vh',
           maxHeight: '80vh',
-          backgroundColor: cardBgColor,
+          backgroundColor: 'rgba(0, 0, 0, 0.25)',
           backdropFilter: 'blur(28px)',
           WebkitBackdropFilter: 'blur(28px)',
           boxShadow: '-2px 0 24px 4px rgba(0, 0, 0, 0.24)',
