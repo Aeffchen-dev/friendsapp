@@ -157,7 +157,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
       case 'family':
         return { stripBg: 'hsl(300, 100%, 73%)', cardFill: 'hsl(340, 50%, 25%)' }; // Pink
       case 'connection':
-        return { stripBg: 'hsl(340, 100%, 20%)', cardFill: 'hsl(340, 80%, 12%)' }; // Burgundy
+        return { stripBg: 'hsl(141, 99%, 59%)', cardFill: 'hsl(191, 100%, 16%)' }; // Green
       case 'identity':
         return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple
       case 'career':
