@@ -207,10 +207,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
   const buildAuraGradient = (w: number, h: number, x: number, y: number, r: number, g: number, b: number, intensity: number) => {
     return `radial-gradient(ellipse ${w}% ${h}% at ${x}% ${y}%, 
       rgba(${r}, ${g}, ${b}, ${intensity}) 0%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.9}) 40%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.6}) 60%, 
-      rgba(${r}, ${g}, ${b}, 0) 70%, 
-      transparent 75%)`;
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.85}) 30%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.5}) 55%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.15}) 75%, 
+      transparent 85%)`;
   };
 
   // Get category-specific neon color - using sharp edge glows with multiple colors from bottom-right
@@ -302,13 +302,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(328, 100%, 56%)', 
           bodyBg: 'hsl(328, 100%, 56%)', 
-          cardFill: 'rgba(160, 25, 15, 0.25)',
+          cardFill: 'rgba(200, 80, 15, 0.35)',
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 240, 100, 0.75)},
-            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 180, 40, 0.6)},
-            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 50, 30, 0.5)}
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 120, 60, 0.72)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 80, 40, 0.58)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 180, 50, 180, 0.45)}
           `
         };
       case 'career':
