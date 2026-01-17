@@ -227,9 +227,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 50, 140, 0.75)},
-            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 220, 30, 120, 0.6)},
-            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 100, 30, 150, 0.7)}
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 80, 160, 0.6)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 230, 60, 140, 0.5)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 110, 40, 140, 0.55)}
           `
         };
       case 'friends':
