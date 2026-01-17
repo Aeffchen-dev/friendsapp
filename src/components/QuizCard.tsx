@@ -141,20 +141,20 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: '#6b1f2d' }; // burgundy red
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'rgba(107, 31, 45, 0.25)' }; // burgundy red
       case 'friends':
       case 'wer aus der runde':
         return { stripBg: 'hsl(278, 100%, 57%)', bodyBg: 'hsl(278, 100%, 57%)', cardFill: 'hsla(175, 70%, 40%, 0.15)' }; // turquoise
       case 'self reflection':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 100%, 35%, 0.25)' }; // burgundy red
       case 'party':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: '#6b1f2d' }; // burgundy red
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'rgba(107, 31, 45, 0.25)' }; // burgundy red
       case 'family':
         return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'hsla(300, 100%, 60%, 0.20)' }; // pink
       case 'connection':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)', cardFill: '#ffb6ff' }; // light pink
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)', cardFill: 'rgba(255, 182, 255, 0.25)' }; // light pink
       case 'identity':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: '#6b1f2d' }; // burgundy red
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'rgba(107, 31, 45, 0.25)' }; // burgundy red
       case 'career':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 100%, 35%, 0.25)' }; // burgundy red
       case 'travel':
