@@ -36,7 +36,7 @@ All colors MUST be HSL.
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 280 100% 70%;
+    --primary: 277 100% 57%;
     --primary-foreground: 0 0% 98%;
 
     --secondary: 0 0% 15%;
@@ -45,22 +45,28 @@ All colors MUST be HSL.
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 280 100% 70%;
+    --accent: 289 100% 73%;
     --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 10 100% 50%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 20%;
     --input: 0 0% 15%;
-    --ring: 280 100% 70%;
+    --ring: 277 100% 57%;
 
     --radius: 1rem;
     
-    /* Quiz App Custom Colors */
-    --quiz-primary: 280 100% 70%;
-    --quiz-accent: 290 100% 80%;
-    --quiz-category-bg: 290 100% 85%;
+    /* Quiz App Custom Colors - New 5 color palette */
+    /* #AF25FF → 277 100% 57% (purple) */
+    /* #E772FF → 289 100% 73% (light purple) */
+    /* #FF47D1 → 318 100% 64% (pink) */
+    /* #FC3D82 → 341 97% 61% (hot pink) */
+    /* #FF2B00 → 10 100% 50% (red-orange) */
+    
+    --quiz-primary: 277 100% 57%;
+    --quiz-accent: 289 100% 73%;
+    --quiz-category-bg: 289 100% 85%;
     --quiz-category-text: 0 0% 15%;
     --quiz-background: 0 0% 7%;
     --quiz-surface: 0 0% 12%;
@@ -69,33 +75,33 @@ All colors MUST be HSL.
     --quiz-card-bg: 0 0% 5%;
     
     /* Category strip colors - 5 color palette */
-    --quiz-fuck-strip: 300 100% 50%;         /* #FF00FF */
-    --quiz-connection-strip: 0 100% 50%;     /* #FF0000 */
-    --quiz-identity-strip: 328 100% 56%;     /* #FF20A2 */
-    --quiz-party-strip: 15 100% 50%;         /* #FF4100 */
-    --quiz-friends-strip: 15 100% 50%;        /* #FF4100 */
+    --quiz-fuck-strip: 277 100% 57%;         /* #AF25FF purple */
+    --quiz-connection-strip: 10 100% 50%;    /* #FF2B00 red-orange */
+    --quiz-identity-strip: 318 100% 64%;     /* #FF47D1 pink */
+    --quiz-party-strip: 341 97% 61%;         /* #FC3D82 hot pink */
+    --quiz-friends-strip: 289 100% 73%;      /* #E772FF light purple */
     
-    --quiz-self-reflection-strip: 290 100% 50%; /* #D400FF */
-    --quiz-family-strip: 328 100% 56%;       /* #FF20A2 */
-    --quiz-career-strip: 290 100% 50%;       /* #D400FF */
-    --quiz-travel-strip: 15 100% 50%;        /* #FF4100 */
+    --quiz-self-reflection-strip: 277 100% 57%; /* #AF25FF purple */
+    --quiz-family-strip: 318 100% 64%;       /* #FF47D1 pink */
+    --quiz-career-strip: 289 100% 73%;       /* #E772FF light purple */
+    --quiz-travel-strip: 341 97% 61%;        /* #FC3D82 hot pink */
     
-    --quiz-health-strip: 300 100% 50%;       /* #FF00FF */
-    --quiz-money-strip: 290 100% 50%;        /* #D400FF */
-    --quiz-love-strip: 15 100% 50%;          /* #FF4100 */
-    --quiz-hobby-strip: 328 100% 56%;        /* #FF20A2 */
+    --quiz-health-strip: 10 100% 50%;        /* #FF2B00 red-orange */
+    --quiz-money-strip: 277 100% 57%;        /* #AF25FF purple */
+    --quiz-love-strip: 318 100% 64%;         /* #FF47D1 pink */
+    --quiz-hobby-strip: 289 100% 73%;        /* #E772FF light purple */
     
-    --quiz-dreams-strip: 300 100% 50%;       /* #FF00FF */
-    --quiz-fear-strip: 0 100% 50%;           /* #FF0000 */
-    --quiz-wisdom-strip: 290 100% 50%;       /* #D400FF */
-    --quiz-future-strip: 15 100% 50%;        /* #FF4100 */
+    --quiz-dreams-strip: 341 97% 61%;        /* #FC3D82 hot pink */
+    --quiz-fear-strip: 10 100% 50%;          /* #FF2B00 red-orange */
+    --quiz-wisdom-strip: 277 100% 57%;       /* #AF25FF purple */
+    --quiz-future-strip: 289 100% 73%;       /* #E772FF light purple */
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
+    --gradient-primary: linear-gradient(135deg, hsl(277 100% 57%), hsl(289 100% 73%));
     --gradient-surface: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 15%));
     
     /* Shadows */
-    --shadow-glow: 0 0 40px hsl(280 100% 70% / 0.3);
+    --shadow-glow: 0 0 40px hsl(277 100% 57% / 0.3);
     --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.5);
     
     /* Animations */
