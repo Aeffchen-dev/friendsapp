@@ -385,7 +385,7 @@ export function QuizApp() {
       className="h-[100svh] flex flex-col relative"
       style={{ minHeight: '100svh' }}
     >
-      {/* Large "Friends" text at bottom - positioned outside clip context */}
+      {/* Large "Friends" text at bottom */}
       <div 
         className="pointer-events-none z-0"
         style={{
@@ -393,10 +393,6 @@ export function QuizApp() {
           bottom: '0',
           left: '0',
           right: '0',
-          height: '50vh',
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
           WebkitTransform: 'translateZ(0)',
           transform: 'translateZ(0)',
         }}
@@ -410,8 +406,7 @@ export function QuizApp() {
             fontFamily: "'Factor A', sans-serif",
             color: '#000000',
             fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-            transform: 'translateY(20%)',
-            WebkitTransform: 'translateY(20%)',
+            marginBottom: '-6vw',
           }}
         >
           Friends
@@ -425,9 +420,7 @@ export function QuizApp() {
             fontFamily: "'Factor A', sans-serif",
             color: '#000000',
             fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-            transform: 'translateY(15%)',
-            WebkitTransform: 'translateY(15%)',
-            paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+            marginBottom: '-9vw',
           }}
         >
           Ask
