@@ -368,7 +368,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
             <h1 
               ref={isCurrent ? questionRef : undefined}
               lang={language === 'en' ? 'en' : 'de'} 
-              className="question-text text-[34px] md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full"
+              className="question-text text-[32px] md:text-4xl lg:text-4xl font-bold text-white w-full max-w-full"
               style={{ 
                 lineHeight: '1.15',
                 hyphens: 'manual',
