@@ -382,8 +382,8 @@ export function QuizApp() {
 
   return (
     <div 
-      className="h-[100svh] overflow-hidden flex flex-col relative"
-      style={{ minHeight: '100svh' }}
+      className="h-[100svh] flex flex-col relative"
+      style={{ minHeight: '100svh', overflow: 'clip' }}
     >
       {/* Large "Friends" text at bottom */}
       <div 
@@ -392,6 +392,7 @@ export function QuizApp() {
           bottom: '0',
           transform: 'translateX(-50%) translateY(20%)',
           width: '150vw',
+          overflow: 'visible',
         }}
       >
         {/* Desktop: Friends */}
@@ -416,6 +417,7 @@ export function QuizApp() {
             fontFamily: "'Factor A', sans-serif",
             color: '#000000',
             fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+            overflow: 'visible',
           }}
         >
           Ask
