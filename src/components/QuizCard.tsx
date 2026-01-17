@@ -141,42 +141,42 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'hsla(340, 80%, 25%, 0.25)' }; // burgundy red
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'hsla(340, 80%, 25%, 0.15)' }; // burgundy red
       case 'friends':
       case 'wer aus der runde':
-        return { stripBg: 'hsl(278, 100%, 57%)', bodyBg: 'hsl(278, 100%, 57%)', cardFill: 'hsla(175, 70%, 40%, 0.25)' }; // turquoise
+        return { stripBg: 'hsl(278, 100%, 57%)', bodyBg: 'hsl(278, 100%, 57%)', cardFill: 'hsla(175, 70%, 40%, 0.15)' }; // turquoise
       case 'self reflection':
-        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 80%, 25%, 0.25)' }; // burgundy red
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 80%, 25%, 0.15)' }; // burgundy red
       case 'party':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'hsla(0, 100%, 50%, 0.25)' }; // red (from connection)
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'hsla(0, 100%, 50%, 0.15)' }; // red (from connection)
       case 'family':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'hsla(300, 100%, 50%, 0.25)' }; // pink (from party)
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'hsla(300, 100%, 50%, 0.15)' }; // pink (from party)
       case 'connection':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)', cardFill: 'hsla(300, 100%, 50%, 0.25)' }; // pink (from party)
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)', cardFill: 'hsla(300, 100%, 50%, 0.15)' }; // pink (from party)
       case 'identity':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'hsla(340, 80%, 25%, 0.25)' }; // burgundy red
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'hsla(340, 80%, 25%, 0.15)' }; // burgundy red
       case 'career':
-        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 80%, 25%, 0.25)' }; // burgundy red
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 80%, 25%, 0.15)' }; // burgundy red
       case 'travel':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'hsla(175, 70%, 40%, 0.25)' }; // turquoise
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'hsla(175, 70%, 40%, 0.15)' }; // turquoise
       case 'health':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'hsla(0, 100%, 50%, 0.25)' }; // red
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'hsla(0, 100%, 50%, 0.15)' }; // red
       case 'money':
-        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 80%, 25%, 0.25)' }; // burgundy red
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 80%, 25%, 0.15)' }; // burgundy red
       case 'love':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'hsla(300, 100%, 50%, 0.25)' }; // pink
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'hsla(300, 100%, 50%, 0.15)' }; // pink
       case 'hobby':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'hsla(175, 70%, 40%, 0.25)' }; // turquoise
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'hsla(175, 70%, 40%, 0.15)' }; // turquoise
       case 'dreams':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'hsla(0, 100%, 50%, 0.25)' }; // red
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'hsla(0, 100%, 50%, 0.15)' }; // red
       case 'fear':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)', cardFill: 'hsla(340, 80%, 25%, 0.25)' }; // burgundy red
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)', cardFill: 'hsla(340, 80%, 25%, 0.15)' }; // burgundy red
       case 'wisdom':
-        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(300, 100%, 50%, 0.25)' }; // pink
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(300, 100%, 50%, 0.15)' }; // pink
       case 'future':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'hsla(175, 70%, 40%, 0.25)' }; // turquoise
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'hsla(175, 70%, 40%, 0.15)' }; // turquoise
       default:
-        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(300, 100%, 50%, 0.25)' }; // pink
+        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(300, 100%, 50%, 0.15)' }; // pink
     }
   };
 
