@@ -203,50 +203,22 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     return { mainX, mainY, mainW, mainH, secX, secY, secW, secH, terX, terY, terW, terH };
   };
 
-  // Build nebula-like fog gradient with extreme diagonal organic shapes
+  // Build nebula-like fog gradient with organic shapes
   const buildAuraGradient = (w: number, h: number, x: number, y: number, r: number, g: number, b: number, intensity: number) => {
-    // Create many extreme diagonal overlapping fog layers for nebula effect
-    const fogLayer1 = `radial-gradient(ellipse ${w * 4}% ${h * 0.15}% at ${x - 15}% ${y + 25}%, 
+    // Create multiple overlapping fog layers for nebula effect
+    const fogLayer1 = `radial-gradient(ellipse ${w * 1.8}% ${h * 0.4}% at ${x - 5}% ${y + 8}%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.6}) 0%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.3}) 40%, 
+      transparent 70%)`;
+    const fogLayer2 = `radial-gradient(ellipse ${w * 0.5}% ${h * 2.2}% at ${x + 12}% ${y - 5}%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.5}) 0%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.2}) 50%, 
       transparent 80%)`;
-    const fogLayer2 = `radial-gradient(ellipse ${w * 0.18}% ${h * 4.5}% at ${x + 22}% ${y - 18}%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.45}) 0%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.15}) 55%, 
-      transparent 85%)`;
-    const fogLayer3 = `radial-gradient(ellipse ${w * 3.5}% ${h * 0.2}% at ${x + 10}% ${y + 35}%, 
+    const fogLayer3 = `radial-gradient(ellipse ${w * 1.2}% ${h * 0.6}% at ${x + 5}% ${y + 15}%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.4}) 0%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.1}) 60%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.15}) 60%, 
       transparent 90%)`;
-    const fogLayer4 = `radial-gradient(ellipse ${w * 0.2}% ${h * 3.8}% at ${x - 20}% ${y + 8}%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.35}) 0%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.08}) 50%, 
-      transparent 80%)`;
-    const fogLayer5 = `radial-gradient(ellipse ${w * 5}% ${h * 0.12}% at ${x + 30}% ${y - 10}%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.3}) 0%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.06}) 55%, 
-      transparent 85%)`;
-    const fogLayer6 = `radial-gradient(ellipse ${w * 0.15}% ${h * 3.2}% at ${x + 5}% ${y + 40}%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.28}) 0%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.05}) 60%, 
-      transparent 90%)`;
-    const fogLayer7 = `radial-gradient(ellipse ${w * 3}% ${h * 0.18}% at ${x - 25}% ${y + 18}%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.32}) 0%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.08}) 45%, 
-      transparent 75%)`;
-    const fogLayer8 = `radial-gradient(ellipse ${w * 0.22}% ${h * 5}% at ${x + 35}% ${y + 5}%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.25}) 0%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.04}) 55%, 
-      transparent 85%)`;
-    const fogLayer9 = `radial-gradient(ellipse ${w * 4.5}% ${h * 0.1}% at ${x - 8}% ${y + 45}%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.22}) 0%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.03}) 60%, 
-      transparent 90%)`;
-    const fogLayer10 = `radial-gradient(ellipse ${w * 0.12}% ${h * 4}% at ${x + 15}% ${y - 25}%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.2}) 0%, 
-      rgba(${r}, ${g}, ${b}, ${intensity * 0.02}) 50%, 
-      transparent 80%)`;
-    return `${fogLayer1}, ${fogLayer2}, ${fogLayer3}, ${fogLayer4}, ${fogLayer5}, ${fogLayer6}, ${fogLayer7}, ${fogLayer8}, ${fogLayer9}, ${fogLayer10}`;
+    return `${fogLayer1}, ${fogLayer2}, ${fogLayer3}`;
   };
 
   // Get category-specific neon color - using sharp edge glows with multiple colors from bottom-right
