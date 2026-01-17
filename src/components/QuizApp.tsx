@@ -383,16 +383,20 @@ export function QuizApp() {
   return (
     <div 
       className="h-[100svh] flex flex-col relative"
-      style={{ minHeight: '100svh', overflow: 'clip' }}
+      style={{ minHeight: '100svh' }}
     >
-      {/* Large "Friends" text at bottom */}
+      {/* Large "Friends" text at bottom - positioned outside clip context */}
       <div 
-        className="fixed left-1/2 pointer-events-none z-0"
+        className="pointer-events-none z-0"
         style={{
+          position: 'fixed',
           bottom: '0',
-          transform: 'translateX(-50%) translateY(20%)',
-          width: '150vw',
-          overflow: 'visible',
+          left: '0',
+          right: '0',
+          height: '40vh',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
         }}
       >
         {/* Desktop: Friends */}
@@ -400,10 +404,11 @@ export function QuizApp() {
           className="hidden md:block font-bold whitespace-nowrap text-center"
           style={{
             fontSize: '30vw',
-            lineHeight: '1',
+            lineHeight: '0.8',
             fontFamily: "'Factor A', sans-serif",
             color: '#000000',
             fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+            transform: 'translateY(20%)',
           }}
         >
           Friends
@@ -413,11 +418,11 @@ export function QuizApp() {
           className="block md:hidden font-bold whitespace-nowrap text-center"
           style={{
             fontSize: '60vw',
-            lineHeight: '1',
+            lineHeight: '0.8',
             fontFamily: "'Factor A', sans-serif",
             color: '#000000',
             fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-            overflow: 'visible',
+            transform: 'translateY(20%)',
           }}
         >
           Ask
