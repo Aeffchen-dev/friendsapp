@@ -144,17 +144,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)', cardFill: 'rgba(180, 30, 30, 0.45)' }; // red
       case 'friends':
       case 'wer aus der runde':
-        return { stripBg: 'hsl(278, 100%, 57%)', bodyBg: 'hsl(278, 100%, 57%)', cardFill: 'rgba(0, 140, 120, 0.35)' }; // turquoise green
+        return { stripBg: 'hsl(278, 100%, 57%)', bodyBg: 'hsl(278, 100%, 57%)', cardFill: 'rgba(60, 200, 180, 0.30)' }; // lighter turquoise green
       case 'self reflection':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 100%, 35%, 0.25)' }; // burgundy red
       case 'party':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'rgba(200, 40, 40, 0.45)' }; // red
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)', cardFill: 'rgba(80, 30, 120, 0.50)' }; // dark purple
       case 'family':
         return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'hsla(300, 100%, 60%, 0.20)' }; // pink
       case 'connection':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)', cardFill: 'rgba(220, 120, 40, 0.35)' }; // orange
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)', cardFill: 'rgba(255, 120, 180, 0.35)' }; // pink
       case 'identity':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'rgba(180, 30, 30, 0.45)' }; // red
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)', cardFill: 'rgba(120, 25, 50, 0.55)' }; // darker berry red
       case 'career':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)', cardFill: 'hsla(340, 100%, 35%, 0.25)' }; // burgundy red
       case 'travel':
