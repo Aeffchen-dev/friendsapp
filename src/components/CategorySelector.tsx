@@ -41,13 +41,13 @@ export function CategorySelector({
         return 'hsl(300 100% 73%)'; // Pink #FF6FFF
       case 'friends':
       case 'wer aus der runde':
-        return 'hsl(141 99% 59%)'; // Green
+        return 'hsl(340 100% 20%)'; // Burgundy #680030
       case 'self reflection':
         return 'hsl(268 100% 79%)'; // Purple
       case 'family':
         return 'hsl(300 100% 73%)'; // Pink
       case 'connection':
-        return 'hsl(22 100% 50%)'; // Orange
+        return 'hsl(340 100% 20%)'; // Burgundy
       case 'identity':
         return 'hsl(268 100% 79%)'; // Purple
       case 'career':
@@ -65,11 +65,11 @@ export function CategorySelector({
       case 'dreams':
         return 'hsl(141 99% 59%)'; // Green
       case 'fear':
-        return 'hsl(22 100% 50%)'; // Orange
+        return 'hsl(340 100% 20%)'; // Burgundy
       case 'wisdom':
         return 'hsl(268 100% 79%)'; // Purple
       case 'future':
-        return 'hsl(300 100% 73%)'; // Pink
+        return 'hsl(22 100% 50%)'; // Orange
       default:
         return 'hsl(268 100% 79%)'; // Purple default
     }

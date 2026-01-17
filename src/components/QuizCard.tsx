@@ -137,27 +137,27 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     });
   };
 
-  // Get category-specific colors based on brand palette
-  // Background = bright color, Card fill = dark circle color (with opacity)
+  // Get category-specific colors based on brand palette (5 colors)
+  // Green, Purple, Orange, Pink, Burgundy
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'drink':
-        return { stripBg: 'hsl(141, 99%, 59%)', cardFill: 'hsl(191, 100%, 16%)' }; // Green #31FE6A, Deep green #004051
+        return { stripBg: 'hsl(141, 99%, 59%)', cardFill: 'hsl(191, 100%, 16%)' }; // Green #31FE6A
       case 'talk':
-        return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple #C294FF, Blue circle
+        return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple #C294FF
       case 'fuck':
-        return { stripBg: 'hsl(22, 100%, 50%)', cardFill: 'hsl(22, 30%, 15%)' }; // Orange #FF5D01, Dark circle
+        return { stripBg: 'hsl(22, 100%, 50%)', cardFill: 'hsl(22, 30%, 15%)' }; // Orange #FF5D01
       case 'party':
-        return { stripBg: 'hsl(300, 100%, 73%)', cardFill: 'hsl(340, 50%, 25%)' }; // Pink #FF6FFF, Dark maroon
+        return { stripBg: 'hsl(300, 100%, 73%)', cardFill: 'hsl(340, 50%, 25%)' }; // Pink #FF6FFF
       case 'friends':
       case 'wer aus der runde':
-        return { stripBg: 'hsl(141, 99%, 59%)', cardFill: 'hsl(191, 100%, 16%)' }; // Green
+        return { stripBg: 'hsl(340, 100%, 20%)', cardFill: 'hsl(340, 80%, 12%)' }; // Burgundy #680030
       case 'self reflection':
         return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple
       case 'family':
         return { stripBg: 'hsl(300, 100%, 73%)', cardFill: 'hsl(340, 50%, 25%)' }; // Pink
       case 'connection':
-        return { stripBg: 'hsl(22, 100%, 50%)', cardFill: 'hsl(22, 30%, 15%)' }; // Orange
+        return { stripBg: 'hsl(340, 100%, 20%)', cardFill: 'hsl(340, 80%, 12%)' }; // Burgundy
       case 'identity':
         return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple
       case 'career':
@@ -175,11 +175,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
       case 'dreams':
         return { stripBg: 'hsl(141, 99%, 59%)', cardFill: 'hsl(191, 100%, 16%)' }; // Green
       case 'fear':
-        return { stripBg: 'hsl(22, 100%, 50%)', cardFill: 'hsl(22, 30%, 15%)' }; // Orange
+        return { stripBg: 'hsl(340, 100%, 20%)', cardFill: 'hsl(340, 80%, 12%)' }; // Burgundy
       case 'wisdom':
         return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple
       case 'future':
-        return { stripBg: 'hsl(300, 100%, 73%)', cardFill: 'hsl(340, 50%, 25%)' }; // Pink
+        return { stripBg: 'hsl(22, 100%, 50%)', cardFill: 'hsl(22, 30%, 15%)' }; // Orange
       default:
         return { stripBg: 'hsl(268, 100%, 79%)', cardFill: 'hsl(220, 100%, 50%)' }; // Purple default
     }
