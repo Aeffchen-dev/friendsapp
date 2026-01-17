@@ -336,7 +336,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           ...style,
           height: '80vh',
           maxHeight: '80vh',
-          backgroundColor: categoryColors.cardFill,
+          background: `
+            radial-gradient(ellipse 120% 80% at 30% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+            radial-gradient(ellipse 100% 100% at 80% 90%, rgba(0, 0, 0, 0.15) 0%, transparent 60%),
+            ${categoryColors.cardFill}
+          `,
           backdropFilter: 'blur(28px)',
           WebkitBackdropFilter: 'blur(28px)',
           boxShadow: '-2px 0 24px 4px rgba(0, 0, 0, 0.24)',
