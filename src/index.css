@@ -69,11 +69,11 @@ All colors MUST be HSL.
     --quiz-card-bg: 0 0% 5%;
     
     /* Category strip colors - 5 color palette */
-    --quiz-fuck-strip: 300 100% 50%;         /* #FF00FF */
-    --quiz-connection-strip: 0 100% 50%;     /* #FF0000 */
-    --quiz-identity-strip: 328 100% 56%;     /* #FF20A2 */
-    --quiz-party-strip: 15 100% 50%;         /* #FF4100 */
-    --quiz-friends-strip: 15 100% 50%;        /* #FF4100 */
+    --quiz-fuck-strip: 72 91% 62%;           /* #D9F743 */
+    --quiz-connection-strip: 291 33% 88%;    /* #E8D6EB */
+    --quiz-identity-strip: 21 100% 56%;      /* #FF6C1F */
+    --quiz-party-strip: 319 97% 86%;         /* #FEBAED */
+    --quiz-friends-strip: 177 86% 84%;       /* #AFEFFB */
     
     --quiz-self-reflection-strip: 290 100% 50%; /* #D400FF */
     --quiz-family-strip: 328 100% 56%;       /* #FF20A2 */
