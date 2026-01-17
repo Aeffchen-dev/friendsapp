@@ -156,9 +156,33 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     };
   };
 
-  // Get category-specific neon color - using sharp edge glows with multiple colors
+  // Generate randomized glow positions from bottom-right area
+  const getGlowPositions = (seed: number) => {
+    // Main glow - bottom right area with randomization
+    const mainX = ((seed * 47) % 20) + 70; // 70-90% x
+    const mainY = ((seed * 53) % 25) + 60; // 60-85% y
+    const mainW = ((seed * 59) % 25) + 45; // 45-70% width
+    const mainH = ((seed * 61) % 20) + 40; // 40-60% height
+    
+    // Secondary glow - bottom area
+    const secX = ((seed * 67) % 30) + 55; // 55-85% x
+    const secY = ((seed * 71) % 20) + 75; // 75-95% y
+    const secW = ((seed * 73) % 20) + 30; // 30-50% width
+    const secH = ((seed * 79) % 25) + 35; // 35-60% height
+    
+    // Tertiary glow - right edge
+    const terX = ((seed * 83) % 15) + 85; // 85-100% x
+    const terY = ((seed * 89) % 30) + 40; // 40-70% y
+    const terW = ((seed * 97) % 20) + 35; // 35-55% width
+    const terH = ((seed * 101) % 25) + 40; // 40-65% height
+    
+    return { mainX, mainY, mainW, mainH, secX, secY, secW, secH, terX, terY, terW, terH };
+  };
+
+  // Get category-specific neon color - using sharp edge glows with multiple colors from bottom-right
   const getCategoryColors = (category: string, qIndex: number = 0) => {
     const shadows = getDarkShadows(qIndex);
+    const glow = getGlowPositions(qIndex);
     
     switch (category.toLowerCase()) {
       case 'fuck':
@@ -169,9 +193,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 45% 40% at 30% 50%, rgba(255, 120, 200, 0.75) 0%, rgba(255, 120, 200, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse 35% 50% at 15% 35%, rgba(180, 0, 255, 0.65) 0%, rgba(180, 0, 255, 0.3) 50%, transparent 80%),
-            radial-gradient(ellipse 40% 35% at 70% 70%, rgba(255, 100, 50, 0.55) 0%, rgba(255, 100, 50, 0.25) 45%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 120, 200, 0.75) 0%, rgba(255, 120, 200, 0.4) 40%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(180, 0, 255, 0.65) 0%, rgba(180, 0, 255, 0.3) 50%, transparent 80%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(255, 100, 50, 0.55) 0%, rgba(255, 100, 50, 0.25) 45%, transparent 75%)
           `
         };
       case 'friends':
@@ -183,9 +207,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 50% 45% at 35% 50%, rgba(100, 220, 200, 0.80) 0%, rgba(100, 220, 200, 0.35) 45%, transparent 75%),
-            radial-gradient(ellipse 30% 45% at 10% 40%, rgba(255, 80, 80, 0.60) 0%, rgba(255, 80, 80, 0.25) 50%, transparent 80%),
-            radial-gradient(ellipse 35% 40% at 75% 65%, rgba(100, 255, 150, 0.55) 0%, rgba(100, 255, 150, 0.2) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(100, 220, 200, 0.80) 0%, rgba(100, 220, 200, 0.35) 45%, transparent 75%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 80, 80, 0.60) 0%, rgba(255, 80, 80, 0.25) 50%, transparent 80%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(100, 255, 150, 0.55) 0%, rgba(100, 255, 150, 0.2) 50%, transparent 75%)
           `
         };
       case 'self reflection':
@@ -196,9 +220,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 45% 40% at 40% 50%, rgba(255, 180, 120, 0.75) 0%, rgba(255, 180, 120, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse 35% 50% at 15% 45%, rgba(200, 100, 255, 0.65) 0%, rgba(200, 100, 255, 0.25) 50%, transparent 80%),
-            radial-gradient(ellipse 40% 35% at 80% 60%, rgba(255, 200, 100, 0.55) 0%, rgba(255, 200, 100, 0.2) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 180, 120, 0.75) 0%, rgba(255, 180, 120, 0.35) 45%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(200, 100, 255, 0.65) 0%, rgba(200, 100, 255, 0.25) 50%, transparent 80%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(255, 200, 100, 0.55) 0%, rgba(255, 200, 100, 0.2) 50%, transparent 75%)
           `
         };
       case 'party':
@@ -209,9 +233,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 50% 45% at 30% 50%, rgba(255, 80, 80, 0.80) 0%, rgba(255, 80, 80, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse 35% 45% at 12% 35%, rgba(255, 50, 150, 0.65) 0%, rgba(255, 50, 150, 0.3) 45%, transparent 75%),
-            radial-gradient(ellipse 40% 40% at 75% 70%, rgba(255, 180, 50, 0.55) 0%, rgba(255, 180, 50, 0.2) 50%, transparent 80%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 80, 80, 0.80) 0%, rgba(255, 80, 80, 0.4) 40%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 50, 150, 0.65) 0%, rgba(255, 50, 150, 0.3) 45%, transparent 75%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(255, 180, 50, 0.55) 0%, rgba(255, 180, 50, 0.2) 50%, transparent 80%)
           `
         };
       case 'family':
@@ -222,9 +246,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 45% 40% at 35% 50%, rgba(255, 180, 200, 0.75) 0%, rgba(255, 180, 200, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse 35% 45% at 15% 40%, rgba(255, 100, 180, 0.60) 0%, rgba(255, 100, 180, 0.25) 50%, transparent 80%),
-            radial-gradient(ellipse 40% 35% at 80% 65%, rgba(200, 150, 255, 0.55) 0%, rgba(200, 150, 255, 0.2) 45%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 180, 200, 0.75) 0%, rgba(255, 180, 200, 0.35) 45%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 100, 180, 0.60) 0%, rgba(255, 100, 180, 0.25) 50%, transparent 80%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(200, 150, 255, 0.55) 0%, rgba(200, 150, 255, 0.2) 45%, transparent 75%)
           `
         };
       case 'connection':
@@ -235,9 +259,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 50% 45% at 32% 50%, rgba(255, 140, 80, 0.80) 0%, rgba(255, 140, 80, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse 35% 50% at 10% 45%, rgba(255, 80, 180, 0.65) 0%, rgba(255, 80, 180, 0.3) 45%, transparent 75%),
-            radial-gradient(ellipse 40% 40% at 78% 65%, rgba(255, 200, 100, 0.55) 0%, rgba(255, 200, 100, 0.2) 50%, transparent 80%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 140, 80, 0.80) 0%, rgba(255, 140, 80, 0.4) 40%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 80, 180, 0.65) 0%, rgba(255, 80, 180, 0.3) 45%, transparent 75%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(255, 200, 100, 0.55) 0%, rgba(255, 200, 100, 0.2) 50%, transparent 80%)
           `
         };
       case 'identity':
@@ -248,9 +272,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 45% 40% at 35% 50%, rgba(255, 100, 80, 0.78) 0%, rgba(255, 100, 80, 0.38) 42%, transparent 70%),
-            radial-gradient(ellipse 35% 45% at 12% 40%, rgba(255, 150, 50, 0.62) 0%, rgba(255, 150, 50, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 35% at 80% 68%, rgba(200, 80, 150, 0.55) 0%, rgba(200, 80, 150, 0.22) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 100, 80, 0.78) 0%, rgba(255, 100, 80, 0.38) 42%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 150, 50, 0.62) 0%, rgba(255, 150, 50, 0.28) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(200, 80, 150, 0.55) 0%, rgba(200, 80, 150, 0.22) 50%, transparent 75%)
           `
         };
       case 'career':
@@ -261,9 +285,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 50% 45% at 30% 50%, rgba(100, 180, 255, 0.75) 0%, rgba(100, 180, 255, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse 35% 50% at 12% 42%, rgba(150, 100, 255, 0.62) 0%, rgba(150, 100, 255, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 40% at 78% 70%, rgba(100, 220, 200, 0.52) 0%, rgba(100, 220, 200, 0.2) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(100, 180, 255, 0.75) 0%, rgba(100, 180, 255, 0.35) 45%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(150, 100, 255, 0.62) 0%, rgba(150, 100, 255, 0.28) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(100, 220, 200, 0.52) 0%, rgba(100, 220, 200, 0.2) 50%, transparent 75%)
           `
         };
       case 'travel':
@@ -274,9 +298,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 50% 45% at 32% 50%, rgba(80, 220, 200, 0.80) 0%, rgba(80, 220, 200, 0.38) 42%, transparent 70%),
-            radial-gradient(ellipse 35% 45% at 15% 38%, rgba(100, 180, 255, 0.62) 0%, rgba(100, 180, 255, 0.25) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 35% at 75% 65%, rgba(150, 255, 180, 0.52) 0%, rgba(150, 255, 180, 0.2) 45%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(80, 220, 200, 0.80) 0%, rgba(80, 220, 200, 0.38) 42%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(100, 180, 255, 0.62) 0%, rgba(100, 180, 255, 0.25) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(150, 255, 180, 0.52) 0%, rgba(150, 255, 180, 0.2) 45%, transparent 75%)
           `
         };
       case 'health':
@@ -287,9 +311,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 45% 40% at 35% 50%, rgba(120, 255, 150, 0.78) 0%, rgba(120, 255, 150, 0.38) 42%, transparent 70%),
-            radial-gradient(ellipse 35% 50% at 12% 45%, rgba(100, 200, 255, 0.62) 0%, rgba(100, 200, 255, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 40% at 80% 68%, rgba(200, 255, 150, 0.52) 0%, rgba(200, 255, 150, 0.2) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(120, 255, 150, 0.78) 0%, rgba(120, 255, 150, 0.38) 42%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(100, 200, 255, 0.62) 0%, rgba(100, 200, 255, 0.28) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(200, 255, 150, 0.52) 0%, rgba(200, 255, 150, 0.2) 50%, transparent 75%)
           `
         };
       case 'money':
@@ -300,9 +324,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 50% 45% at 30% 50%, rgba(255, 220, 100, 0.80) 0%, rgba(255, 220, 100, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse 35% 45% at 12% 40%, rgba(255, 180, 50, 0.65) 0%, rgba(255, 180, 50, 0.3) 45%, transparent 75%),
-            radial-gradient(ellipse 40% 40% at 78% 68%, rgba(200, 255, 100, 0.52) 0%, rgba(200, 255, 100, 0.2) 50%, transparent 78%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 220, 100, 0.80) 0%, rgba(255, 220, 100, 0.4) 40%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 180, 50, 0.65) 0%, rgba(255, 180, 50, 0.3) 45%, transparent 75%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(200, 255, 100, 0.52) 0%, rgba(200, 255, 100, 0.2) 50%, transparent 78%)
           `
         };
       case 'love':
@@ -313,9 +337,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 50% 45% at 32% 50%, rgba(255, 120, 150, 0.78) 0%, rgba(255, 120, 150, 0.38) 42%, transparent 70%),
-            radial-gradient(ellipse 35% 50% at 10% 42%, rgba(255, 80, 120, 0.62) 0%, rgba(255, 80, 120, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 35% at 78% 70%, rgba(255, 180, 200, 0.55) 0%, rgba(255, 180, 200, 0.22) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 120, 150, 0.78) 0%, rgba(255, 120, 150, 0.38) 42%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 80, 120, 0.62) 0%, rgba(255, 80, 120, 0.28) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(255, 180, 200, 0.55) 0%, rgba(255, 180, 200, 0.22) 50%, transparent 75%)
           `
         };
       case 'hobby':
@@ -326,9 +350,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 45% 40% at 35% 50%, rgba(100, 200, 255, 0.75) 0%, rgba(100, 200, 255, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse 35% 45% at 15% 40%, rgba(150, 100, 255, 0.62) 0%, rgba(150, 100, 255, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 40% at 78% 65%, rgba(100, 255, 220, 0.52) 0%, rgba(100, 255, 220, 0.2) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(100, 200, 255, 0.75) 0%, rgba(100, 200, 255, 0.35) 45%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(150, 100, 255, 0.62) 0%, rgba(150, 100, 255, 0.28) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(100, 255, 220, 0.52) 0%, rgba(100, 255, 220, 0.2) 50%, transparent 75%)
           `
         };
       case 'dreams':
@@ -339,9 +363,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 50% 45% at 30% 50%, rgba(200, 150, 255, 0.80) 0%, rgba(200, 150, 255, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse 35% 50% at 12% 45%, rgba(255, 100, 200, 0.62) 0%, rgba(255, 100, 200, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 40% at 80% 68%, rgba(150, 200, 255, 0.55) 0%, rgba(150, 200, 255, 0.22) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(200, 150, 255, 0.80) 0%, rgba(200, 150, 255, 0.4) 40%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 100, 200, 0.62) 0%, rgba(255, 100, 200, 0.28) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(150, 200, 255, 0.55) 0%, rgba(150, 200, 255, 0.22) 50%, transparent 75%)
           `
         };
       case 'fear':
@@ -352,9 +376,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 45% 40% at 35% 50%, rgba(100, 120, 180, 0.75) 0%, rgba(100, 120, 180, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse 35% 45% at 12% 40%, rgba(80, 100, 200, 0.60) 0%, rgba(80, 100, 200, 0.25) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 35% at 78% 68%, rgba(150, 100, 180, 0.52) 0%, rgba(150, 100, 180, 0.2) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(100, 120, 180, 0.75) 0%, rgba(100, 120, 180, 0.35) 45%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(80, 100, 200, 0.60) 0%, rgba(80, 100, 200, 0.25) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(150, 100, 180, 0.52) 0%, rgba(150, 100, 180, 0.2) 50%, transparent 75%)
           `
         };
       case 'wisdom':
@@ -365,9 +389,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 50% 45% at 32% 50%, rgba(255, 220, 180, 0.78) 0%, rgba(255, 220, 180, 0.38) 42%, transparent 70%),
-            radial-gradient(ellipse 35% 50% at 10% 42%, rgba(255, 180, 120, 0.60) 0%, rgba(255, 180, 120, 0.25) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 40% at 80% 70%, rgba(220, 200, 150, 0.52) 0%, rgba(220, 200, 150, 0.2) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 220, 180, 0.78) 0%, rgba(255, 220, 180, 0.38) 42%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 180, 120, 0.60) 0%, rgba(255, 180, 120, 0.25) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(220, 200, 150, 0.52) 0%, rgba(220, 200, 150, 0.2) 50%, transparent 75%)
           `
         };
       case 'future':
@@ -378,9 +402,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 50% 45% at 30% 50%, rgba(100, 255, 200, 0.80) 0%, rgba(100, 255, 200, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse 35% 45% at 15% 40%, rgba(80, 200, 255, 0.62) 0%, rgba(80, 200, 255, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 40% at 78% 68%, rgba(150, 255, 180, 0.55) 0%, rgba(150, 255, 180, 0.22) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(100, 255, 200, 0.80) 0%, rgba(100, 255, 200, 0.4) 40%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(80, 200, 255, 0.62) 0%, rgba(80, 200, 255, 0.28) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(150, 255, 180, 0.55) 0%, rgba(150, 255, 180, 0.22) 50%, transparent 75%)
           `
         };
       default:
@@ -391,9 +415,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse 45% 40% at 35% 50%, rgba(200, 180, 255, 0.75) 0%, rgba(200, 180, 255, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse 35% 45% at 12% 40%, rgba(255, 150, 200, 0.60) 0%, rgba(255, 150, 200, 0.25) 48%, transparent 78%),
-            radial-gradient(ellipse 40% 40% at 78% 65%, rgba(150, 200, 255, 0.52) 0%, rgba(150, 200, 255, 0.2) 50%, transparent 75%)
+            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(200, 180, 255, 0.75) 0%, rgba(200, 180, 255, 0.35) 45%, transparent 70%),
+            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 150, 200, 0.60) 0%, rgba(255, 150, 200, 0.25) 48%, transparent 78%),
+            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(150, 200, 255, 0.52) 0%, rgba(150, 200, 255, 0.2) 50%, transparent 75%)
           `
         };
     }
