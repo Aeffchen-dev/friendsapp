@@ -31,43 +31,43 @@ export function CategorySelector({
 
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
-      case 'fuck':
-        return 'hsl(15 100% 50%)'; // #FF4100
-      case 'connection':
-        return 'hsl(0 100% 50%)'; // #FF0000
-      case 'identity':
-        return 'hsl(328 100% 56%)'; // #FF20A2
       case 'party':
-        return 'hsl(300 100% 50%)'; // #FF00FF
+        return 'hsl(330 80% 20%)'; // dark maroon strip
+      case 'fuck':
+        return 'hsl(230 70% 55%)'; // blue strip
+      case 'identity':
+        return 'hsl(15 100% 50%)'; // orange strip
       case 'friends':
       case 'wer aus der runde':
-        return 'hsl(278 100% 57%)'; // #af25ff (Wer aus der Runde)
+        return 'hsl(160 70% 15%)'; // dark green strip
+      case 'connection':
+        return 'hsl(250 70% 75%)'; // lavender strip
       case 'self reflection':
-        return 'hsl(290 100% 50%)'; // #D400FF
+        return 'hsl(330 80% 20%)'; // dark maroon strip
       case 'family':
-        return 'hsl(328 100% 56%)'; // #FF20A2
+        return 'hsl(15 100% 50%)'; // orange strip
       case 'career':
-        return 'hsl(290 100% 50%)'; // #D400FF
+        return 'hsl(230 70% 55%)'; // blue strip
       case 'travel':
-        return 'hsl(15 100% 50%)'; // #FF4100
+        return 'hsl(160 70% 15%)'; // dark green strip
       case 'health':
-        return 'hsl(300 100% 50%)'; // #FF00FF
+        return 'hsl(250 70% 75%)'; // lavender strip
       case 'money':
-        return 'hsl(290 100% 50%)'; // #D400FF
+        return 'hsl(330 80% 20%)'; // dark maroon strip
       case 'love':
-        return 'hsl(15 100% 50%)'; // #FF4100
+        return 'hsl(15 100% 50%)'; // orange strip
       case 'hobby':
-        return 'hsl(328 100% 56%)'; // #FF20A2
+        return 'hsl(230 70% 55%)'; // blue strip
       case 'dreams':
-        return 'hsl(300 100% 50%)'; // #FF00FF
+        return 'hsl(160 70% 15%)'; // dark green strip
       case 'fear':
-        return 'hsl(0 100% 50%)'; // #FF0000
+        return 'hsl(250 70% 75%)'; // lavender strip
       case 'wisdom':
-        return 'hsl(290 100% 50%)'; // #D400FF
+        return 'hsl(330 80% 20%)'; // dark maroon strip
       case 'future':
-        return 'hsl(15 100% 50%)'; // #FF4100
+        return 'hsl(15 100% 50%)'; // orange strip
       default:
-        return 'hsl(290 100% 50%)'; // #D400FF
+        return 'hsl(330 80% 20%)'; // dark maroon strip
     }
   };
 

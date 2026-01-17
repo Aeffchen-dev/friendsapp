@@ -69,26 +69,26 @@ All colors MUST be HSL.
     --quiz-card-bg: 0 0% 5%;
     
     /* Category strip colors - 5 color palette */
-    --quiz-fuck-strip: 15 100% 50%;          /* #FF4100 */
-    --quiz-connection-strip: 0 100% 50%;     /* #FF0000 */
-    --quiz-identity-strip: 328 100% 56%;     /* #FF20A2 */
-    --quiz-party-strip: 300 100% 50%;        /* #FF00FF */
-    --quiz-friends-strip: 15 100% 50%;        /* #FF4100 */
+    --quiz-party-strip: 330 80% 20%;         /* dark maroon */
+    --quiz-fuck-strip: 230 70% 55%;          /* blue */
+    --quiz-identity-strip: 15 100% 50%;      /* orange */
+    --quiz-friends-strip: 160 70% 15%;       /* dark green */
+    --quiz-connection-strip: 250 70% 75%;    /* lavender */
     
-    --quiz-self-reflection-strip: 290 100% 50%; /* #D400FF */
-    --quiz-family-strip: 328 100% 56%;       /* #FF20A2 */
-    --quiz-career-strip: 290 100% 50%;       /* #D400FF */
-    --quiz-travel-strip: 15 100% 50%;        /* #FF4100 */
+    --quiz-self-reflection-strip: 330 80% 20%; /* dark maroon */
+    --quiz-family-strip: 15 100% 50%;        /* orange */
+    --quiz-career-strip: 230 70% 55%;        /* blue */
+    --quiz-travel-strip: 160 70% 15%;        /* dark green */
     
-    --quiz-health-strip: 300 100% 50%;       /* #FF00FF */
-    --quiz-money-strip: 290 100% 50%;        /* #D400FF */
-    --quiz-love-strip: 15 100% 50%;          /* #FF4100 */
-    --quiz-hobby-strip: 328 100% 56%;        /* #FF20A2 */
+    --quiz-health-strip: 250 70% 75%;        /* lavender */
+    --quiz-money-strip: 330 80% 20%;         /* dark maroon */
+    --quiz-love-strip: 15 100% 50%;          /* orange */
+    --quiz-hobby-strip: 230 70% 55%;         /* blue */
     
-    --quiz-dreams-strip: 300 100% 50%;       /* #FF00FF */
-    --quiz-fear-strip: 0 100% 50%;           /* #FF0000 */
-    --quiz-wisdom-strip: 290 100% 50%;       /* #D400FF */
-    --quiz-future-strip: 15 100% 50%;        /* #FF4100 */
+    --quiz-dreams-strip: 160 70% 15%;        /* dark green */
+    --quiz-fear-strip: 250 70% 75%;          /* lavender */
+    --quiz-wisdom-strip: 330 80% 20%;        /* dark maroon */
+    --quiz-future-strip: 15 100% 50%;        /* orange */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 100% 80%));
