@@ -54,8 +54,8 @@ export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
       style={{ left: '4rem' }}
       onClick={handleShare}
     >
-      <ArrowUpFromLine className="w-6 h-6 text-white" strokeWidth={2} />
-      <span className="text-white text-xl font-normal">{t.sendQuestion}</span>
+      <ArrowUpFromLine className="w-4 h-4 text-white" strokeWidth={2} />
+      <span className="text-white font-normal text-xs" style={{ fontSize: '14px' }}>{t.sendQuestion}</span>
     </button>
   );
 }
