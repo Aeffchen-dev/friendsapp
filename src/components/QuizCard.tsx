@@ -148,7 +148,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             radial-gradient(ellipse 55% 40% at 3% 5%, rgba(0, 0, 0, 0.55) 0%, transparent 50%),
             radial-gradient(ellipse 85% 70% at 98% 25%, rgba(0, 0, 0, 0.45) 0%, transparent 55%),
-            radial-gradient(ellipse 90% 60% at 70% 92%, rgba(255, 230, 0, 0.35) 0%, transparent 50%)
+            radial-gradient(ellipse 90% 60% at 70% 92%, rgba(180, 0, 255, 0.40) 0%, transparent 50%)
           `
         };
       case 'friends':
@@ -160,7 +160,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             radial-gradient(ellipse 100% 85% at 12% 3%, rgba(0, 0, 0, 0.50) 0%, transparent 55%),
             radial-gradient(ellipse 40% 30% at 92% 30%, rgba(0, 0, 0, 0.38) 0%, transparent 50%),
-            radial-gradient(ellipse 80% 70% at 20% 85%, rgba(0, 255, 100, 0.35) 0%, transparent 55%)
+            radial-gradient(ellipse 80% 70% at 20% 85%, rgba(255, 50, 50, 0.40) 0%, transparent 55%)
           `
         };
       case 'self reflection':
@@ -204,7 +204,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             radial-gradient(ellipse 120% 95% at 2% 8%, rgba(0, 0, 0, 0.60) 0%, transparent 55%),
             radial-gradient(ellipse 35% 25% at 88% 3%, rgba(0, 0, 0, 0.42) 0%, transparent 50%),
-            radial-gradient(ellipse 75% 65% at 60% 95%, rgba(255, 255, 255, 0.18) 0%, transparent 50%)
+            radial-gradient(ellipse 75% 65% at 60% 95%, rgba(255, 120, 0, 0.45) 0%, transparent 50%)
           `
         };
       case 'identity':
