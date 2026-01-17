@@ -156,25 +156,25 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     };
   };
 
-  // Generate randomized glow positions from bottom-right area
+  // Generate randomized glow positions from bottom-right middle area (not touching edges)
   const getGlowPositions = (seed: number) => {
-    // Main glow - bottom right area with randomization
-    const mainX = ((seed * 47) % 20) + 70; // 70-90% x
-    const mainY = ((seed * 53) % 25) + 60; // 60-85% y
-    const mainW = ((seed * 59) % 25) + 45; // 45-70% width
-    const mainH = ((seed * 61) % 20) + 40; // 40-60% height
+    // Main glow - bottom right middle area with randomization
+    const mainX = ((seed * 47) % 15) + 60; // 60-75% x (more centered)
+    const mainY = ((seed * 53) % 15) + 55; // 55-70% y (more centered)
+    const mainW = ((seed * 59) % 20) + 40; // 40-60% width
+    const mainH = ((seed * 61) % 15) + 35; // 35-50% height
     
-    // Secondary glow - bottom area
-    const secX = ((seed * 67) % 30) + 55; // 55-85% x
-    const secY = ((seed * 71) % 20) + 75; // 75-95% y
-    const secW = ((seed * 73) % 20) + 30; // 30-50% width
-    const secH = ((seed * 79) % 25) + 35; // 35-60% height
+    // Secondary glow - slightly offset from main
+    const secX = ((seed * 67) % 15) + 55; // 55-70% x
+    const secY = ((seed * 71) % 15) + 60; // 60-75% y
+    const secW = ((seed * 73) % 15) + 25; // 25-40% width
+    const secH = ((seed * 79) % 15) + 30; // 30-45% height
     
-    // Tertiary glow - right edge
-    const terX = ((seed * 83) % 15) + 85; // 85-100% x
-    const terY = ((seed * 89) % 30) + 40; // 40-70% y
-    const terW = ((seed * 97) % 20) + 35; // 35-55% width
-    const terH = ((seed * 101) % 25) + 40; // 40-65% height
+    // Tertiary glow - another offset
+    const terX = ((seed * 83) % 15) + 65; // 65-80% x
+    const terY = ((seed * 89) % 15) + 50; // 50-65% y
+    const terW = ((seed * 97) % 15) + 30; // 30-45% width
+    const terH = ((seed * 101) % 15) + 35; // 35-50% height
     
     return { mainX, mainY, mainW, mainH, secX, secY, secW, secH, terX, terY, terW, terH };
   };
