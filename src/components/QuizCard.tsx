@@ -144,7 +144,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(15, 100%, 50%)', 
           bodyBg: 'hsl(15, 100%, 50%)', 
-          cardFill: 'rgba(255, 100, 150, 0.40)', // pink
+          cardFill: 'rgba(255, 0, 150, 0.35)', // neon pink
           gradient: `
             radial-gradient(ellipse 80% 60% at 10% 95%, rgba(0, 0, 0, 0.4) 0%, transparent 50%),
             radial-gradient(ellipse 80% 60% at 90% 95%, rgba(0, 0, 0, 0.35) 0%, transparent 50%),
@@ -211,7 +211,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(328, 100%, 56%)', 
           bodyBg: 'hsl(328, 100%, 56%)', 
-          cardFill: 'rgba(160, 50, 80, 0.40)', // lighter berry
+          cardFill: 'rgba(200, 30, 50, 0.45)', // more red
           gradient: `
             radial-gradient(ellipse 80% 60% at 10% 95%, rgba(0, 0, 0, 0.4) 0%, transparent 50%),
             radial-gradient(ellipse 80% 60% at 90% 95%, rgba(0, 0, 0, 0.35) 0%, transparent 50%),
