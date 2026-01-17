@@ -267,9 +267,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 80, 80, 0.75)},
-            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 50, 150, 0.6)},
-            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 180, 50, 0.5)}
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 60, 200, 200, 0.7)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 150, 50, 200, 0.6)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 80, 180, 220, 0.5)}
           `
         };
       case 'family':
