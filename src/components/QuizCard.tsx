@@ -203,18 +203,18 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     return { mainX, mainY, mainW, mainH, secX, secY, secW, secH, terX, terY, terW, terH };
   };
 
-  // Build nebula-like fog gradient with organic shapes
+  // Build nebula-like fog gradient with vertical organic shapes
   const buildAuraGradient = (w: number, h: number, x: number, y: number, r: number, g: number, b: number, intensity: number) => {
-    // Create multiple overlapping fog layers for nebula effect
-    const fogLayer1 = `radial-gradient(ellipse ${w * 1.8}% ${h * 0.4}% at ${x - 5}% ${y + 8}%, 
+    // Create multiple overlapping vertical fog layers for nebula effect
+    const fogLayer1 = `radial-gradient(ellipse ${w * 0.4}% ${h * 1.8}% at ${x + 8}% ${y - 5}%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.6}) 0%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.3}) 40%, 
       transparent 70%)`;
-    const fogLayer2 = `radial-gradient(ellipse ${w * 0.5}% ${h * 2.2}% at ${x + 12}% ${y - 5}%, 
+    const fogLayer2 = `radial-gradient(ellipse ${w * 0.35}% ${h * 2.5}% at ${x - 5}% ${y + 12}%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.5}) 0%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.2}) 50%, 
       transparent 80%)`;
-    const fogLayer3 = `radial-gradient(ellipse ${w * 1.2}% ${h * 0.6}% at ${x + 5}% ${y + 15}%, 
+    const fogLayer3 = `radial-gradient(ellipse ${w * 0.5}% ${h * 1.4}% at ${x + 15}% ${y + 5}%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.4}) 0%, 
       rgba(${r}, ${g}, ${b}, ${intensity * 0.15}) 60%, 
       transparent 90%)`;
