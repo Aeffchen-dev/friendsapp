@@ -393,10 +393,12 @@ export function QuizApp() {
           bottom: '0',
           left: '0',
           right: '0',
-          height: '40vh',
+          height: '50vh',
           display: 'flex',
           alignItems: 'flex-end',
           justifyContent: 'center',
+          WebkitTransform: 'translateZ(0)',
+          transform: 'translateZ(0)',
         }}
       >
         {/* Desktop: Friends */}
@@ -409,6 +411,7 @@ export function QuizApp() {
             color: '#000000',
             fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
             transform: 'translateY(20%)',
+            WebkitTransform: 'translateY(20%)',
           }}
         >
           Friends
@@ -418,11 +421,13 @@ export function QuizApp() {
           className="block md:hidden font-bold whitespace-nowrap text-center"
           style={{
             fontSize: '60vw',
-            lineHeight: '0.8',
+            lineHeight: '0.75',
             fontFamily: "'Factor A', sans-serif",
             color: '#000000',
             fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-            transform: 'translateY(20%)',
+            transform: 'translateY(15%)',
+            WebkitTransform: 'translateY(15%)',
+            paddingBottom: 'env(safe-area-inset-bottom, 0px)',
           }}
         >
           Ask
