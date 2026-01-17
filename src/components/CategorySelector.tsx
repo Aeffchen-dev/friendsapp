@@ -148,7 +148,7 @@ export function CategorySelector({
                     paddingTop: '8px',
                     paddingRight: '8px',
                     paddingBottom: '8px',
-                    transition: 'width 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+                    transition: 'width 170ms cubic-bezier(0.34, 1.56, 0.64, 1)',
                   }}
                   onClick={() => handleCategoryToggle(category)}
                 >
@@ -160,7 +160,7 @@ export function CategorySelector({
                       opacity: 0.8,
                       borderRadius: '0 999px 999px 0',
                       width: isSelected ? '100%' : '8px',
-                      transition: 'width 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+                      transition: 'width 220ms cubic-bezier(0.34, 1.56, 0.64, 1)',
                     }} 
                   />
                   
@@ -168,7 +168,7 @@ export function CategorySelector({
                     style={{ 
                       color: isSelected ? textColor : 'white',
                       fontFamily: "'Factor A', sans-serif",
-                      transition: 'color 200ms ease-out',
+                      transition: 'color 120ms ease-out',
                     }}>
                     {translateCategory(category, language)}
                   </span>
@@ -191,8 +191,8 @@ export function CategorySelector({
                            outline: '1px solid white',
                            outlineOffset: '0px',
                            backgroundColor: isSelected ? 'white' : 'transparent',
-                           transition: 'background-color 200ms ease-out, transform 150ms ease-out',
-                           transform: isSelected ? 'scale(1)' : 'scale(1)',
+                           transition: 'background-color 120ms ease-out, transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                           transform: isSelected ? 'scale(1.08)' : 'scale(1)',
                          }}
                       >
                          <svg 
@@ -202,8 +202,8 @@ export function CategorySelector({
                            fill="none"
                            style={{
                              opacity: isSelected ? 1 : 0,
-                             transform: isSelected ? 'scale(1)' : 'scale(0.5)',
-                             transition: 'opacity 200ms ease-out, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                             transform: isSelected ? 'scale(1.1)' : 'scale(0.3)',
+                             transition: 'opacity 120ms ease-out, transform 120ms cubic-bezier(0.34, 1.8, 0.64, 1)',
                            }}
                          >
                            <path 
