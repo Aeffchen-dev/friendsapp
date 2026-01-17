@@ -137,46 +137,46 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     });
   };
 
-  // Get category-specific neon color - using the 5 color palette
+  // Get category-specific colors - strip and body colors
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
+      case 'party':
+        return { stripBg: 'hsl(330, 80%, 20%)', bodyBg: 'hsl(315, 100%, 90%)' }; // dark maroon strip, light pink bg
       case 'fuck':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
+        return { stripBg: 'hsl(230, 70%, 55%)', bodyBg: 'hsl(180, 100%, 80%)' }; // blue strip, light cyan bg
+      case 'identity':
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(255, 70%, 75%)' }; // orange strip, light purple bg
       case 'friends':
       case 'wer aus der runde':
-        return { stripBg: 'hsl(278, 100%, 57%)', bodyBg: 'hsl(278, 100%, 57%)' }; // #af25ff
-      case 'self reflection':
-        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
-      case 'party':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
-      case 'family':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
+        return { stripBg: 'hsl(160, 70%, 15%)', bodyBg: 'hsl(120, 60%, 65%)' }; // dark green strip, light green bg
       case 'connection':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
-      case 'identity':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
+        return { stripBg: 'hsl(250, 70%, 75%)', bodyBg: 'hsl(55, 100%, 70%)' }; // lavender strip, yellow bg
+      case 'self reflection':
+        return { stripBg: 'hsl(330, 80%, 20%)', bodyBg: 'hsl(315, 100%, 90%)' }; // dark maroon strip, light pink bg
+      case 'family':
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(255, 70%, 75%)' }; // orange strip, light purple bg
       case 'career':
-        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
+        return { stripBg: 'hsl(230, 70%, 55%)', bodyBg: 'hsl(180, 100%, 80%)' }; // blue strip, light cyan bg
       case 'travel':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
+        return { stripBg: 'hsl(160, 70%, 15%)', bodyBg: 'hsl(120, 60%, 65%)' }; // dark green strip, light green bg
       case 'health':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
+        return { stripBg: 'hsl(250, 70%, 75%)', bodyBg: 'hsl(55, 100%, 70%)' }; // lavender strip, yellow bg
       case 'money':
-        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
+        return { stripBg: 'hsl(330, 80%, 20%)', bodyBg: 'hsl(315, 100%, 90%)' }; // dark maroon strip, light pink bg
       case 'love':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(255, 70%, 75%)' }; // orange strip, light purple bg
       case 'hobby':
-        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
+        return { stripBg: 'hsl(230, 70%, 55%)', bodyBg: 'hsl(180, 100%, 80%)' }; // blue strip, light cyan bg
       case 'dreams':
-        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
+        return { stripBg: 'hsl(160, 70%, 15%)', bodyBg: 'hsl(120, 60%, 65%)' }; // dark green strip, light green bg
       case 'fear':
-        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
+        return { stripBg: 'hsl(250, 70%, 75%)', bodyBg: 'hsl(55, 100%, 70%)' }; // lavender strip, yellow bg
       case 'wisdom':
-        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
+        return { stripBg: 'hsl(330, 80%, 20%)', bodyBg: 'hsl(315, 100%, 90%)' }; // dark maroon strip, light pink bg
       case 'future':
-        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(255, 70%, 75%)' }; // orange strip, light purple bg
       default:
-        return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
+        return { stripBg: 'hsl(330, 80%, 20%)', bodyBg: 'hsl(315, 100%, 90%)' }; // dark maroon strip, light pink bg
     }
   };
 
