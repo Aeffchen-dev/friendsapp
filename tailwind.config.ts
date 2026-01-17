@@ -190,9 +190,9 @@ export default {
 					'0%': { transform: 'translateX(0)', opacity: '1' },
 					'100%': { transform: 'translateX(100%)', opacity: '0' }
 				},
-			'glow-pulse': {
-					'0%, 100%': { boxShadow: '0 0 20px hsl(277 100% 57% / 0.3)' },
-					'50%': { boxShadow: '0 0 40px hsl(277 100% 57% / 0.6)' }
+				'glow-pulse': {
+					'0%, 100%': { boxShadow: '0 0 20px hsl(280 100% 70% / 0.3)' },
+					'50%': { boxShadow: '0 0 40px hsl(280 100% 70% / 0.6)' }
 				}
 			},
 			animation: {
