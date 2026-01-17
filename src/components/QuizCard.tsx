@@ -337,8 +337,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           height: '80vh',
           maxHeight: '80vh',
           background: `
-            radial-gradient(ellipse 120% 80% at 30% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-            radial-gradient(ellipse 100% 100% at 80% 90%, rgba(0, 0, 0, 0.15) 0%, transparent 60%),
+            radial-gradient(ellipse 120% 80% at 30% 20%, rgba(255, 255, 255, 0.18) 0%, transparent 50%),
+            radial-gradient(ellipse 100% 100% at 80% 90%, rgba(0, 0, 0, 0.35) 0%, transparent 60%),
             ${categoryColors.cardFill}
           `,
           backdropFilter: 'blur(28px)',
