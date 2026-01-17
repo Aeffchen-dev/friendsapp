@@ -227,8 +227,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 100, 180, 0.75)},
-            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 80, 160, 0.6)},
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 30, 60, 0.78)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 180, 50, 0.35)},
             ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 100, 30, 150, 0.7)}
           `
         };
