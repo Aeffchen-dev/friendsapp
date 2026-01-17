@@ -143,8 +143,8 @@ export function CategorySelector({
                   style={{ 
                     borderRadius: '0 999px 999px 0', 
                     width: isSelected 
-                      ? (isBouncing ? '94vw' : '88vw')
-                      : (isBouncing ? 'calc(94vw - 32px)' : 'calc(88vw - 32px)'),
+                      ? (isBouncing ? '90.2vw' : '88vw')
+                      : (isBouncing ? 'calc(90.2vw - 32px)' : 'calc(88vw - 32px)'),
                     paddingTop: '8px',
                     paddingRight: '8px',
                     paddingBottom: '8px',
@@ -191,7 +191,8 @@ export function CategorySelector({
                            outline: '1px solid white',
                            outlineOffset: '0px',
                            backgroundColor: isSelected ? 'white' : 'transparent',
-                           transition: 'background-color 120ms ease-out',
+                           transition: 'background-color 120ms ease-out, transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                           transform: isBouncing ? 'scaleX(0.7) scaleY(1.15)' : 'scaleX(1) scaleY(1)',
                          }}
                       >
                          <svg 
