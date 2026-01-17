@@ -156,25 +156,30 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     };
   };
 
-  // Generate randomized glow positions from bottom-right middle area (not touching edges)
+  // Generate randomized glow positions - smaller but elongated diagonally
   const getGlowPositions = (seed: number) => {
-    // Main glow - bottom right middle area with randomization
-    const mainX = ((seed * 47) % 15) + 60; // 60-75% x (more centered)
-    const mainY = ((seed * 53) % 15) + 55; // 55-70% y (more centered)
-    const mainW = ((seed * 59) % 20) + 40; // 40-60% width
-    const mainH = ((seed * 61) % 15) + 35; // 35-50% height
+    // Randomize shape orientation per slide (some wider, some taller for diagonal effect)
+    const isMainDiagonal = (seed % 2) === 0;
+    const isSecDiagonal = ((seed + 1) % 2) === 0;
+    const isTerDiagonal = ((seed + 2) % 3) === 0;
     
-    // Secondary glow - slightly offset from main
+    // Main glow - bottom right middle area, elongated shape
+    const mainX = ((seed * 47) % 15) + 60; // 60-75% x
+    const mainY = ((seed * 53) % 15) + 55; // 55-70% y
+    const mainW = isMainDiagonal ? ((seed * 59) % 15) + 35 : ((seed * 59) % 10) + 20; // wider or narrower
+    const mainH = isMainDiagonal ? ((seed * 61) % 10) + 18 : ((seed * 61) % 15) + 30; // shorter or taller
+    
+    // Secondary glow - slightly offset, elongated
     const secX = ((seed * 67) % 15) + 55; // 55-70% x
     const secY = ((seed * 71) % 15) + 60; // 60-75% y
-    const secW = ((seed * 73) % 15) + 25; // 25-40% width
-    const secH = ((seed * 79) % 15) + 30; // 30-45% height
+    const secW = isSecDiagonal ? ((seed * 73) % 12) + 28 : ((seed * 73) % 8) + 15; 
+    const secH = isSecDiagonal ? ((seed * 79) % 8) + 15 : ((seed * 79) % 12) + 25;
     
-    // Tertiary glow - another offset
+    // Tertiary glow - another offset, elongated
     const terX = ((seed * 83) % 15) + 65; // 65-80% x
     const terY = ((seed * 89) % 15) + 50; // 50-65% y
-    const terW = ((seed * 97) % 15) + 30; // 30-45% width
-    const terH = ((seed * 101) % 15) + 35; // 35-50% height
+    const terW = isTerDiagonal ? ((seed * 97) % 12) + 25 : ((seed * 97) % 8) + 12;
+    const terH = isTerDiagonal ? ((seed * 101) % 8) + 12 : ((seed * 101) % 12) + 22;
     
     return { mainX, mainY, mainW, mainH, secX, secY, secW, secH, terX, terY, terW, terH };
   };
