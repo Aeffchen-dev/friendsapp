@@ -294,7 +294,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
             ${shadows.topRight},
             ${shadows.topLeft},
             ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 80, 150, 0.72)},
-            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 64, 200, 210, 0.55)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 140, 50, 0.55)},
             ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 120, 180, 0.5)}
           `
         };
