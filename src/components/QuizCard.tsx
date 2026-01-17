@@ -289,7 +289,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(0, 100%, 50%)', 
           bodyBg: 'hsl(0, 100%, 50%)', 
-          cardFill: 'rgba(110, 55, 35, 0.28)',
+          cardFill: 'rgba(90, 50, 30, 0.30)',
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
