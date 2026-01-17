@@ -32,13 +32,13 @@ export function CategorySelector({
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return 'hsl(300 100% 50%)'; // #FF00FF
+        return 'hsl(15 100% 50%)'; // #FF4100
       case 'connection':
         return 'hsl(0 100% 50%)'; // #FF0000
       case 'identity':
         return 'hsl(328 100% 56%)'; // #FF20A2
       case 'party':
-        return 'hsl(15 100% 50%)'; // #FF4100
+        return 'hsl(300 100% 50%)'; // #FF00FF
       case 'friends':
       case 'wer aus der runde':
         return 'hsl(278 100% 57%)'; // #af25ff (Wer aus der Runde)
