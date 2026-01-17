@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
 import { QuizCard } from './QuizCard';
 import { CategorySelector } from './CategorySelector';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -382,54 +381,48 @@ export function QuizApp() {
   }, [currentBodyColor, categorySelectorOpen]);
 
   return (
-    <>
-      {/* Large "Friends/Ask" text at bottom - rendered via portal to avoid clipping */}
-      {typeof document !== 'undefined' && createPortal(
+    <div 
+      className="h-[100svh] flex flex-col relative"
+      style={{ minHeight: '100svh', overflow: 'clip' }}
+    >
+      {/* Large "Friends" text at bottom */}
+      <div 
+        className="fixed left-1/2 pointer-events-none z-0"
+        style={{
+          bottom: '0',
+          transform: 'translateX(-50%) translateY(20%)',
+          width: '150vw',
+          overflow: 'visible',
+        }}
+      >
+        {/* Desktop: Friends */}
         <div 
-          className="pointer-events-none"
+          className="hidden md:block font-bold whitespace-nowrap text-center"
           style={{
-            position: 'fixed',
-            top: 'calc(100dvh - 42vw)',
-            left: '0',
-            right: '0',
-            zIndex: 0,
-            WebkitTransform: 'translate3d(0,0,0)',
-            transform: 'translate3d(0,0,0)',
+            fontSize: '30vw',
+            lineHeight: '1',
+            fontFamily: "'Factor A', sans-serif",
+            color: '#000000',
+            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
           }}
         >
-          {/* Desktop: Friends */}
-          <div 
-            className="hidden md:block font-bold whitespace-nowrap text-center"
-            style={{
-              fontSize: '30vw',
-              lineHeight: '0.8',
-              fontFamily: "'Factor A', sans-serif",
-              color: '#000000',
-              fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-            }}
-          >
-            Friends
-          </div>
-          {/* Mobile: Ask */}
-          <div 
-            className="block md:hidden font-bold whitespace-nowrap text-center"
-            style={{
-              fontSize: '60vw',
-              lineHeight: '0.75',
-              fontFamily: "'Factor A', sans-serif",
-              color: '#000000',
-              fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-            }}
-          >
-            Ask
-          </div>
-        </div>,
-        document.body
-      )}
-      <div 
-        className="h-[100svh] flex flex-col relative"
-        style={{ minHeight: '100svh' }}
-      >
+          Friends
+        </div>
+        {/* Mobile: Ask */}
+        <div 
+          className="block md:hidden font-bold whitespace-nowrap text-center"
+          style={{
+            fontSize: '60vw',
+            lineHeight: '1',
+            fontFamily: "'Factor A', sans-serif",
+            color: '#000000',
+            fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
+            overflow: 'visible',
+          }}
+        >
+          Ask
+        </div>
+      </div>
       {/* App Header - Always visible */}
       <div className="app-header flex-shrink-0" style={{position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'transparent'}}>
         <div className="flex justify-between items-center px-4" style={{ height: '64px' }}>
@@ -490,7 +483,6 @@ export function QuizApp() {
         selectedCategories={selectedCategories}
         onCategoriesChange={handleCategoriesChange}
       />
-      </div>
-    </>
+    </div>
   );
 }
