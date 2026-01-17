@@ -12,43 +12,47 @@ interface Question {
 
 const getCategoryBodyColor = (category: string) => {
   switch (category.toLowerCase()) {
+    case 'drink':
+      return 'hsl(141, 99%, 59%)'; // Green #31FE6A
+    case 'talk':
+      return 'hsl(268, 100%, 79%)'; // Purple #C294FF
     case 'fuck':
-      return 'hsl(15, 100%, 50%)'; // #FF4100
+      return 'hsl(22, 100%, 50%)'; // Orange #FF5D01
+    case 'party':
+      return 'hsl(300, 100%, 73%)'; // Pink #FF6FFF
     case 'friends':
     case 'wer aus der runde':
-      return 'hsl(278, 100%, 57%)'; // #af25ff
+      return 'hsl(141, 99%, 59%)'; // Green
     case 'self reflection':
-      return 'hsl(290, 100%, 50%)'; // #D400FF
-    case 'party':
-      return 'hsl(300, 100%, 50%)'; // #FF00FF
+      return 'hsl(268, 100%, 79%)'; // Purple
     case 'family':
-      return 'hsl(328, 100%, 56%)'; // #FF20A2
+      return 'hsl(300, 100%, 73%)'; // Pink
     case 'connection':
-      return 'hsl(0, 100%, 50%)'; // #FF0000
+      return 'hsl(22, 100%, 50%)'; // Orange
     case 'identity':
-      return 'hsl(328, 100%, 56%)'; // #FF20A2
+      return 'hsl(268, 100%, 79%)'; // Purple
     case 'career':
-      return 'hsl(290, 100%, 50%)'; // #D400FF
+      return 'hsl(141, 99%, 59%)'; // Green
     case 'travel':
-      return 'hsl(15, 100%, 50%)'; // #FF4100
+      return 'hsl(22, 100%, 50%)'; // Orange
     case 'health':
-      return 'hsl(300, 100%, 50%)'; // #FF00FF
+      return 'hsl(300, 100%, 73%)'; // Pink
     case 'money':
-      return 'hsl(290, 100%, 50%)'; // #D400FF
+      return 'hsl(141, 99%, 59%)'; // Green
     case 'love':
-      return 'hsl(15, 100%, 50%)'; // #FF4100
+      return 'hsl(300, 100%, 73%)'; // Pink
     case 'hobby':
-      return 'hsl(328, 100%, 56%)'; // #FF20A2
+      return 'hsl(268, 100%, 79%)'; // Purple
     case 'dreams':
-      return 'hsl(300, 100%, 50%)'; // #FF00FF
+      return 'hsl(141, 99%, 59%)'; // Green
     case 'fear':
-      return 'hsl(0, 100%, 50%)'; // #FF0000
+      return 'hsl(22, 100%, 50%)'; // Orange
     case 'wisdom':
-      return 'hsl(290, 100%, 50%)'; // #D400FF
+      return 'hsl(268, 100%, 79%)'; // Purple
     case 'future':
-      return 'hsl(15, 100%, 50%)'; // #FF4100
+      return 'hsl(300, 100%, 73%)'; // Pink
     default:
-      return 'hsl(290, 100%, 50%)'; // Default matches strip palette
+      return 'hsl(268, 100%, 79%)'; // Purple default
   }
 };
 
