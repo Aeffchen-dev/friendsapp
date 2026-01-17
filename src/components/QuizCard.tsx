@@ -342,9 +342,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            ${buildAuraGradient(glow.secW, glow.mainH * 1.2, glow.mainX + 15, glow.mainY - 10, 255, 230, 180, 0.7)},
-            ${buildAuraGradient(glow.mainW * 0.8, glow.secH, glow.secX - 10, glow.secY + 5, 255, 245, 220, 0.6)},
-            ${buildAuraGradient(glow.terW * 1.3, glow.terH * 0.7, glow.terX, glow.terY, 255, 220, 150, 0.55)}
+            ${buildAuraGradient(glow.secW, glow.mainH * 1.2, glow.mainX + 15, glow.mainY - 10, 255, 200, 120, 0.55)},
+            ${buildAuraGradient(glow.mainW * 0.8, glow.secH, glow.secX - 10, glow.secY + 5, 255, 210, 140, 0.48)},
+            ${buildAuraGradient(glow.terW * 1.3, glow.terH * 0.7, glow.terX, glow.terY, 255, 180, 100, 0.45)}
           `
         };
       case 'career':
