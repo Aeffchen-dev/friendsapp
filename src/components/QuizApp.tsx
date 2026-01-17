@@ -13,14 +13,14 @@ interface Question {
 const getCategoryBodyColor = (category: string) => {
   switch (category.toLowerCase()) {
     case 'fuck':
-      return 'hsl(300, 100%, 50%)'; // #FF00FF
+      return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'friends':
     case 'wer aus der runde':
       return 'hsl(278, 100%, 57%)'; // #af25ff
     case 'self reflection':
       return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'party':
-      return 'hsl(15, 100%, 50%)'; // #FF4100
+      return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'family':
       return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'connection':

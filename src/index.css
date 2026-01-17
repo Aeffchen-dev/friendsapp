@@ -69,10 +69,10 @@ All colors MUST be HSL.
     --quiz-card-bg: 0 0% 5%;
     
     /* Category strip colors - 5 color palette */
-    --quiz-fuck-strip: 300 100% 50%;         /* #FF00FF */
+    --quiz-fuck-strip: 15 100% 50%;          /* #FF4100 */
     --quiz-connection-strip: 0 100% 50%;     /* #FF0000 */
     --quiz-identity-strip: 328 100% 56%;     /* #FF20A2 */
-    --quiz-party-strip: 15 100% 50%;         /* #FF4100 */
+    --quiz-party-strip: 300 100% 50%;        /* #FF00FF */
     --quiz-friends-strip: 15 100% 50%;        /* #FF4100 */
     
     --quiz-self-reflection-strip: 290 100% 50%; /* #D400FF */
