@@ -1,4 +1,4 @@
-import { Share2 } from 'lucide-react';
+import { ArrowUpFromLine } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -54,8 +54,8 @@ export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
       style={{ left: '4rem' }}
       onClick={handleShare}
     >
-      <Share2 className="w-6 h-6 text-white" strokeWidth={1} />
-      <span className="text-white text-[16px] uppercase tracking-wide" style={{ fontFamily: "'Factor A', sans-serif" }}>{t.sendQuestion}</span>
+      <ArrowUpFromLine className="w-6 h-6 text-white" strokeWidth={1} />
+      <span className="text-white text-xl font-normal">{t.sendQuestion}</span>
     </button>
   );
 }
