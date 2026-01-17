@@ -141,20 +141,20 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
   const getCategoryColors = (category: string) => {
     switch (category.toLowerCase()) {
       case 'fuck':
-        return { stripBg: 'hsl(72, 91%, 62%)', bodyBg: 'hsl(72, 91%, 62%)' }; // #D9F743
+        return { stripBg: 'hsl(300, 100%, 50%)', bodyBg: 'hsl(300, 100%, 50%)' }; // #FF00FF
       case 'friends':
       case 'wer aus der runde':
-        return { stripBg: 'hsl(177, 86%, 84%)', bodyBg: 'hsl(177, 86%, 84%)' }; // #AFEFFB
+        return { stripBg: 'hsl(278, 100%, 57%)', bodyBg: 'hsl(278, 100%, 57%)' }; // #af25ff
       case 'self reflection':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'party':
-        return { stripBg: 'hsl(319, 97%, 86%)', bodyBg: 'hsl(319, 97%, 86%)' }; // #FEBAED
+        return { stripBg: 'hsl(15, 100%, 50%)', bodyBg: 'hsl(15, 100%, 50%)' }; // #FF4100
       case 'family':
         return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'connection':
-        return { stripBg: 'hsl(291, 33%, 88%)', bodyBg: 'hsl(291, 33%, 88%)' }; // #E8D6EB
+        return { stripBg: 'hsl(0, 100%, 50%)', bodyBg: 'hsl(0, 100%, 50%)' }; // #FF0000
       case 'identity':
-        return { stripBg: 'hsl(21, 100%, 56%)', bodyBg: 'hsl(21, 100%, 56%)' }; // #FF6C1F
+        return { stripBg: 'hsl(328, 100%, 56%)', bodyBg: 'hsl(328, 100%, 56%)' }; // #FF20A2
       case 'career':
         return { stripBg: 'hsl(290, 100%, 50%)', bodyBg: 'hsl(290, 100%, 50%)' }; // #D400FF
       case 'travel':

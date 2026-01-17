@@ -13,20 +13,20 @@ interface Question {
 const getCategoryBodyColor = (category: string) => {
   switch (category.toLowerCase()) {
     case 'fuck':
-      return 'hsl(72, 91%, 62%)'; // #D9F743
+      return 'hsl(300, 100%, 50%)'; // #FF00FF
     case 'friends':
     case 'wer aus der runde':
-      return 'hsl(177, 86%, 84%)'; // #AFEFFB
+      return 'hsl(278, 100%, 57%)'; // #af25ff
     case 'self reflection':
       return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'party':
-      return 'hsl(319, 97%, 86%)'; // #FEBAED
+      return 'hsl(15, 100%, 50%)'; // #FF4100
     case 'family':
       return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'connection':
-      return 'hsl(291, 33%, 88%)'; // #E8D6EB
+      return 'hsl(0, 100%, 50%)'; // #FF0000
     case 'identity':
-      return 'hsl(21, 100%, 56%)'; // #FF6C1F
+      return 'hsl(328, 100%, 56%)'; // #FF20A2
     case 'career':
       return 'hsl(290, 100%, 50%)'; // #D400FF
     case 'travel':
