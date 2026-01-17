@@ -156,32 +156,61 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     };
   };
 
-  // Generate randomized glow positions - smaller but elongated diagonally
+  // Generate randomized glow positions - aura-like spread with varied shapes
   const getGlowPositions = (seed: number) => {
-    // Randomize shape orientation per slide (some wider, some taller for diagonal effect)
-    const isMainDiagonal = (seed % 2) === 0;
-    const isSecDiagonal = ((seed + 1) % 2) === 0;
-    const isTerDiagonal = ((seed + 2) % 3) === 0;
+    // More shape variety per slide
+    const shapeVariant = seed % 4;
     
-    // Main glow - bottom right middle area, elongated shape
-    const mainX = ((seed * 47) % 15) + 60; // 60-75% x
-    const mainY = ((seed * 53) % 15) + 55; // 55-70% y
-    const mainW = isMainDiagonal ? ((seed * 59) % 15) + 35 : ((seed * 59) % 10) + 20; // wider or narrower
-    const mainH = isMainDiagonal ? ((seed * 61) % 10) + 18 : ((seed * 61) % 15) + 30; // shorter or taller
+    // Main glow - larger aura spread
+    const mainX = ((seed * 47) % 18) + 58; // 58-76% x
+    const mainY = ((seed * 53) % 18) + 52; // 52-70% y
+    // Vary aspect ratios more dramatically for aura effect
+    const mainW = shapeVariant === 0 ? ((seed * 59) % 20) + 50 : 
+                  shapeVariant === 1 ? ((seed * 59) % 15) + 35 :
+                  shapeVariant === 2 ? ((seed * 59) % 25) + 45 :
+                  ((seed * 59) % 18) + 40;
+    const mainH = shapeVariant === 0 ? ((seed * 61) % 15) + 25 : 
+                  shapeVariant === 1 ? ((seed * 61) % 20) + 45 :
+                  shapeVariant === 2 ? ((seed * 61) % 12) + 20 :
+                  ((seed * 61) % 22) + 38;
     
-    // Secondary glow - slightly offset, elongated
-    const secX = ((seed * 67) % 15) + 55; // 55-70% x
-    const secY = ((seed * 71) % 15) + 60; // 60-75% y
-    const secW = isSecDiagonal ? ((seed * 73) % 12) + 28 : ((seed * 73) % 8) + 15; 
-    const secH = isSecDiagonal ? ((seed * 79) % 8) + 15 : ((seed * 79) % 12) + 25;
+    // Secondary glow - offset aura layer
+    const secX = ((seed * 67) % 20) + 52; // 52-72% x
+    const secY = ((seed * 71) % 20) + 55; // 55-75% y
+    const secVariant = (seed + 1) % 4;
+    const secW = secVariant === 0 ? ((seed * 73) % 18) + 42 : 
+                 secVariant === 1 ? ((seed * 73) % 12) + 28 :
+                 secVariant === 2 ? ((seed * 73) % 22) + 38 :
+                 ((seed * 73) % 15) + 32;
+    const secH = secVariant === 0 ? ((seed * 79) % 12) + 20 : 
+                 secVariant === 1 ? ((seed * 79) % 18) + 38 :
+                 secVariant === 2 ? ((seed * 79) % 10) + 18 :
+                 ((seed * 79) % 20) + 35;
     
-    // Tertiary glow - another offset, elongated
-    const terX = ((seed * 83) % 15) + 65; // 65-80% x
-    const terY = ((seed * 89) % 15) + 50; // 50-65% y
-    const terW = isTerDiagonal ? ((seed * 97) % 12) + 25 : ((seed * 97) % 8) + 12;
-    const terH = isTerDiagonal ? ((seed * 101) % 8) + 12 : ((seed * 101) % 12) + 22;
+    // Tertiary glow - outer aura layer
+    const terX = ((seed * 83) % 22) + 55; // 55-77% x
+    const terY = ((seed * 89) % 22) + 48; // 48-70% y
+    const terVariant = (seed + 2) % 4;
+    const terW = terVariant === 0 ? ((seed * 97) % 20) + 45 : 
+                 terVariant === 1 ? ((seed * 97) % 14) + 30 :
+                 terVariant === 2 ? ((seed * 97) % 25) + 40 :
+                 ((seed * 97) % 16) + 35;
+    const terH = terVariant === 0 ? ((seed * 101) % 14) + 22 : 
+                 terVariant === 1 ? ((seed * 101) % 20) + 40 :
+                 terVariant === 2 ? ((seed * 101) % 12) + 18 :
+                 ((seed * 101) % 18) + 32;
     
     return { mainX, mainY, mainW, mainH, secX, secY, secW, secH, terX, terY, terW, terH };
+  };
+
+  // Build aura gradient with multiple color stops for soft spread
+  const buildAuraGradient = (w: number, h: number, x: number, y: number, r: number, g: number, b: number, intensity: number) => {
+    return `radial-gradient(ellipse ${w}% ${h}% at ${x}% ${y}%, 
+      rgba(${r}, ${g}, ${b}, ${intensity}) 0%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.7}) 20%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.4}) 45%, 
+      rgba(${r}, ${g}, ${b}, ${intensity * 0.15}) 70%, 
+      transparent 90%)`;
   };
 
   // Get category-specific neon color - using sharp edge glows with multiple colors from bottom-right
@@ -198,9 +227,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 120, 200, 0.75) 0%, rgba(255, 120, 200, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(180, 0, 255, 0.65) 0%, rgba(180, 0, 255, 0.3) 50%, transparent 80%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(255, 100, 50, 0.55) 0%, rgba(255, 100, 50, 0.25) 45%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 120, 200, 0.7)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 180, 0, 255, 0.6)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 100, 50, 0.5)}
           `
         };
       case 'friends':
@@ -212,9 +241,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(100, 220, 200, 0.80) 0%, rgba(100, 220, 200, 0.35) 45%, transparent 75%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 80, 80, 0.60) 0%, rgba(255, 80, 80, 0.25) 50%, transparent 80%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(100, 255, 150, 0.55) 0%, rgba(100, 255, 150, 0.2) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 100, 220, 200, 0.75)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 80, 80, 0.55)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 100, 255, 150, 0.5)}
           `
         };
       case 'self reflection':
@@ -225,9 +254,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 180, 120, 0.75) 0%, rgba(255, 180, 120, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(200, 100, 255, 0.65) 0%, rgba(200, 100, 255, 0.25) 50%, transparent 80%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(255, 200, 100, 0.55) 0%, rgba(255, 200, 100, 0.2) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 180, 120, 0.7)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 200, 100, 255, 0.6)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 200, 100, 0.5)}
           `
         };
       case 'party':
@@ -238,9 +267,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 80, 80, 0.80) 0%, rgba(255, 80, 80, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 50, 150, 0.65) 0%, rgba(255, 50, 150, 0.3) 45%, transparent 75%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(255, 180, 50, 0.55) 0%, rgba(255, 180, 50, 0.2) 50%, transparent 80%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 80, 80, 0.75)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 50, 150, 0.6)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 180, 50, 0.5)}
           `
         };
       case 'family':
@@ -251,9 +280,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 180, 200, 0.75) 0%, rgba(255, 180, 200, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 100, 180, 0.60) 0%, rgba(255, 100, 180, 0.25) 50%, transparent 80%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(200, 150, 255, 0.55) 0%, rgba(200, 150, 255, 0.2) 45%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 180, 200, 0.7)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 100, 180, 0.55)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 200, 150, 255, 0.5)}
           `
         };
       case 'connection':
@@ -264,9 +293,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 140, 80, 0.80) 0%, rgba(255, 140, 80, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 80, 180, 0.65) 0%, rgba(255, 80, 180, 0.3) 45%, transparent 75%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(255, 200, 100, 0.55) 0%, rgba(255, 200, 100, 0.2) 50%, transparent 80%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 140, 80, 0.75)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 80, 180, 0.6)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 200, 100, 0.5)}
           `
         };
       case 'identity':
@@ -277,9 +306,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 100, 80, 0.78) 0%, rgba(255, 100, 80, 0.38) 42%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 150, 50, 0.62) 0%, rgba(255, 150, 50, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(200, 80, 150, 0.55) 0%, rgba(200, 80, 150, 0.22) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 100, 80, 0.72)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 150, 50, 0.58)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 200, 80, 150, 0.5)}
           `
         };
       case 'career':
@@ -290,9 +319,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(100, 180, 255, 0.75) 0%, rgba(100, 180, 255, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(150, 100, 255, 0.62) 0%, rgba(150, 100, 255, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(100, 220, 200, 0.52) 0%, rgba(100, 220, 200, 0.2) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 100, 180, 255, 0.7)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 150, 100, 255, 0.58)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 100, 220, 200, 0.48)}
           `
         };
       case 'travel':
@@ -303,9 +332,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(80, 220, 200, 0.80) 0%, rgba(80, 220, 200, 0.38) 42%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(100, 180, 255, 0.62) 0%, rgba(100, 180, 255, 0.25) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(150, 255, 180, 0.52) 0%, rgba(150, 255, 180, 0.2) 45%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 80, 220, 200, 0.75)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 100, 180, 255, 0.58)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 150, 255, 180, 0.48)}
           `
         };
       case 'health':
@@ -316,9 +345,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(120, 255, 150, 0.78) 0%, rgba(120, 255, 150, 0.38) 42%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(100, 200, 255, 0.62) 0%, rgba(100, 200, 255, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(200, 255, 150, 0.52) 0%, rgba(200, 255, 150, 0.2) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 120, 255, 150, 0.72)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 100, 200, 255, 0.58)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 200, 255, 150, 0.48)}
           `
         };
       case 'money':
@@ -329,9 +358,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 220, 100, 0.80) 0%, rgba(255, 220, 100, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 180, 50, 0.65) 0%, rgba(255, 180, 50, 0.3) 45%, transparent 75%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(200, 255, 100, 0.52) 0%, rgba(200, 255, 100, 0.2) 50%, transparent 78%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 220, 100, 0.75)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 180, 50, 0.6)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 200, 255, 100, 0.48)}
           `
         };
       case 'love':
@@ -342,9 +371,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 120, 150, 0.78) 0%, rgba(255, 120, 150, 0.38) 42%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 80, 120, 0.62) 0%, rgba(255, 80, 120, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(255, 180, 200, 0.55) 0%, rgba(255, 180, 200, 0.22) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 120, 150, 0.72)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 80, 120, 0.58)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 180, 200, 0.5)}
           `
         };
       case 'hobby':
@@ -355,9 +384,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(100, 200, 255, 0.75) 0%, rgba(100, 200, 255, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(150, 100, 255, 0.62) 0%, rgba(150, 100, 255, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(100, 255, 220, 0.52) 0%, rgba(100, 255, 220, 0.2) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 100, 200, 255, 0.7)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 150, 100, 255, 0.58)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 100, 255, 220, 0.48)}
           `
         };
       case 'dreams':
@@ -368,9 +397,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(200, 150, 255, 0.80) 0%, rgba(200, 150, 255, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 100, 200, 0.62) 0%, rgba(255, 100, 200, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(150, 200, 255, 0.55) 0%, rgba(150, 200, 255, 0.22) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 200, 150, 255, 0.75)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 100, 200, 0.58)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 150, 200, 255, 0.5)}
           `
         };
       case 'fear':
@@ -381,9 +410,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(100, 120, 180, 0.75) 0%, rgba(100, 120, 180, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(80, 100, 200, 0.60) 0%, rgba(80, 100, 200, 0.25) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(150, 100, 180, 0.52) 0%, rgba(150, 100, 180, 0.2) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 100, 120, 180, 0.7)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 80, 100, 200, 0.55)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 150, 100, 180, 0.48)}
           `
         };
       case 'wisdom':
@@ -394,9 +423,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(255, 220, 180, 0.78) 0%, rgba(255, 220, 180, 0.38) 42%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 180, 120, 0.60) 0%, rgba(255, 180, 120, 0.25) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(220, 200, 150, 0.52) 0%, rgba(220, 200, 150, 0.2) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 220, 180, 0.72)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 180, 120, 0.55)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 220, 200, 150, 0.48)}
           `
         };
       case 'future':
@@ -407,9 +436,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(100, 255, 200, 0.80) 0%, rgba(100, 255, 200, 0.4) 40%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(80, 200, 255, 0.62) 0%, rgba(80, 200, 255, 0.28) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(150, 255, 180, 0.55) 0%, rgba(150, 255, 180, 0.22) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 100, 255, 200, 0.75)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 80, 200, 255, 0.58)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 150, 255, 180, 0.5)}
           `
         };
       default:
@@ -420,9 +449,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            radial-gradient(ellipse ${glow.mainW}% ${glow.mainH}% at ${glow.mainX}% ${glow.mainY}%, rgba(200, 180, 255, 0.75) 0%, rgba(200, 180, 255, 0.35) 45%, transparent 70%),
-            radial-gradient(ellipse ${glow.secW}% ${glow.secH}% at ${glow.secX}% ${glow.secY}%, rgba(255, 150, 200, 0.60) 0%, rgba(255, 150, 200, 0.25) 48%, transparent 78%),
-            radial-gradient(ellipse ${glow.terW}% ${glow.terH}% at ${glow.terX}% ${glow.terY}%, rgba(150, 200, 255, 0.52) 0%, rgba(150, 200, 255, 0.2) 50%, transparent 75%)
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 200, 180, 255, 0.7)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 150, 200, 0.55)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 150, 200, 255, 0.48)}
           `
         };
     }
