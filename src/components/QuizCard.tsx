@@ -293,9 +293,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
-            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 140, 80, 0.75)},
-            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 80, 180, 0.6)},
-            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 200, 100, 0.5)}
+            ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 64, 224, 208, 0.75)},
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 80, 140, 255, 0.6)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 100, 180, 0.5)}
           `
         };
       case 'identity':
