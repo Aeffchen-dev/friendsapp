@@ -192,7 +192,7 @@ export function CategorySelector({
                            outlineOffset: '0px',
                            backgroundColor: isSelected ? 'white' : 'transparent',
                            transition: 'background-color 120ms ease-out, transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1)',
-                           transform: isBouncing ? 'scaleX(0.7) scaleY(1.15)' : 'scaleX(1) scaleY(1)',
+                           transform: isBouncing ? 'scaleX(1.5)' : 'scaleX(1)',
                          }}
                       >
                          <svg 
