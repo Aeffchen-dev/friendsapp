@@ -389,7 +389,7 @@ export function QuizApp() {
           className="pointer-events-none"
           style={{
             position: 'fixed',
-            bottom: '0',
+            top: 'calc(100dvh - 42vw)',
             left: '0',
             right: '0',
             zIndex: 0,
@@ -406,7 +406,6 @@ export function QuizApp() {
               fontFamily: "'Factor A', sans-serif",
               color: '#000000',
               fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-              marginBottom: '-6vw',
             }}
           >
             Friends
@@ -420,7 +419,6 @@ export function QuizApp() {
               fontFamily: "'Factor A', sans-serif",
               color: '#000000',
               fontFeatureSettings: "'salt' 1, 'ss01' 1, 'ss02' 1",
-              marginBottom: '-9vw',
             }}
           >
             Ask
