@@ -223,13 +223,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         return { 
           stripBg: 'hsl(15, 100%, 50%)', 
           bodyBg: 'hsl(15, 100%, 50%)', 
-          cardFill: 'rgba(75, 15, 70, 0.38)',
+          cardFill: 'rgba(75, 15, 70, 0.22)',
           gradient: `
             ${shadows.topRight},
             ${shadows.topLeft},
             ${buildAuraGradient(glow.mainW, glow.mainH, glow.mainX, glow.mainY, 255, 120, 200, 0.7)},
-            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 180, 0, 255, 0.6)},
-            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 255, 100, 50, 0.5)}
+            ${buildAuraGradient(glow.secW, glow.secH, glow.secX, glow.secY, 255, 80, 180, 0.55)},
+            ${buildAuraGradient(glow.terW, glow.terH, glow.terX, glow.terY, 200, 140, 255, 0.5)}
           `
         };
       case 'friends':
