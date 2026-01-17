@@ -143,8 +143,8 @@ export function CategorySelector({
                   style={{ 
                     borderRadius: '0 999px 999px 0', 
                     width: isSelected 
-                      ? (isBouncing ? '90.2vw' : '88vw')
-                      : (isBouncing ? 'calc(90.2vw - 32px)' : 'calc(88vw - 32px)'),
+                      ? (isBouncing ? '94vw' : '88vw')
+                      : (isBouncing ? 'calc(94vw - 32px)' : 'calc(88vw - 32px)'),
                     paddingTop: '8px',
                     paddingRight: '8px',
                     paddingBottom: '8px',
