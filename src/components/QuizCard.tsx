@@ -645,7 +645,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     
     return (
       <div 
-        className="flex-shrink-0 w-full max-w-[500px] rounded-2xl overflow-hidden mx-4 md:mx-0"
+        className="flex-shrink-0 w-full max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] rounded-2xl overflow-hidden mx-4 md:mx-0"
         style={{
           ...style,
           height: '80vh',
