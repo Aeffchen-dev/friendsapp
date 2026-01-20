@@ -90,10 +90,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     return !getTranslation(question);
   }, [language, getTranslation]);
 
-  // Get translated or original question text
-  const getQuestionText = (question: string): string => {
-    if (language === 'de') return question;
-    return getTranslation(question) || question;
+  // Get translated or original question text - uses questionEn from data
+  const getQuestionText = (questionObj: Question): string => {
+    if (language === 'de') return questionObj.question;
+    // Use the English translation from the CSV/data source
+    return questionObj.questionEn || questionObj.question;
   };
   
   const containerRef = useRef<HTMLDivElement>(null);
@@ -637,7 +638,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
 
   const renderCard = (question: Question, style: React.CSSProperties, cardQuestionIndex: number) => {
     const categoryColors = getCategoryColors(question.category, cardQuestionIndex);
-    const questionText = getQuestionText(question.question);
+    const questionText = getQuestionText(question);
     const hyphenatedText = hyphenateQuestion(questionText);
     const showShimmer = isTranslating(question.question);
     const isCurrent = cardQuestionIndex === questionIndex;
