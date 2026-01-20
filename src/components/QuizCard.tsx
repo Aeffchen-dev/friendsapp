@@ -90,11 +90,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     return !getTranslation(question);
   }, [language, getTranslation]);
 
-  // Get translated or original question text - uses questionEn from data
+  // Get translated or original question text - uses translation API
   const getQuestionText = (questionObj: Question): string => {
     if (language === 'de') return questionObj.question;
-    // Use the English translation from the CSV/data source
-    return questionObj.questionEn || questionObj.question;
+    // Use the translation from the API cache
+    return getTranslation(questionObj.question) || questionObj.question;
   };
   
   const containerRef = useRef<HTMLDivElement>(null);
