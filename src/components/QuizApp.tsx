@@ -377,7 +377,7 @@ export function QuizApp() {
 
     // Keep body transition smooth
     document.body.style.backgroundColor = backgroundColor;
-    document.body.style.transition = 'background-color 0.3s ease-in-out';
+    document.body.style.transition = 'background-color 0.5s ease-out';
     
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
