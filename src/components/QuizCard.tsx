@@ -28,7 +28,47 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
   const [isSnapping, setIsSnapping] = useState(false);
   const [containerWidth, setContainerWidth] = useState(0);
   const [translatedTexts, setTranslatedTexts] = useState<Record<string, string>>({});
+  const [showSwipeHint, setShowSwipeHint] = useState(false);
   const { language } = useLanguage();
+  const hintTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Swipe hint animation - triggers on first slide after 3s of inactivity
+  useEffect(() => {
+    const startHintTimer = () => {
+      if (hintTimeoutRef.current) {
+        clearTimeout(hintTimeoutRef.current);
+      }
+      
+      // Only show hint on first slide when not interacting
+      if (questionIndex === 0 && !isDragging && !isSnapping) {
+        hintTimeoutRef.current = setTimeout(() => {
+          setShowSwipeHint(true);
+          // Reset hint after animation duration
+          setTimeout(() => {
+            setShowSwipeHint(false);
+          }, 400);
+        }, 3000);
+      }
+    };
+
+    startHintTimer();
+
+    return () => {
+      if (hintTimeoutRef.current) {
+        clearTimeout(hintTimeoutRef.current);
+      }
+    };
+  }, [questionIndex, isDragging, isSnapping]);
+
+  // Cancel hint on any interaction
+  useEffect(() => {
+    if (isDragging || isSnapping) {
+      setShowSwipeHint(false);
+      if (hintTimeoutRef.current) {
+        clearTimeout(hintTimeoutRef.current);
+      }
+    }
+  }, [isDragging, isSnapping]);
 
   // Synchronously populate from cache on every render to prevent flicker
   const getTranslation = useCallback((question: string): string | undefined => {
@@ -769,8 +809,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           }}
         >
           {renderCard(currentQuestion, {
-            transform: `scale(${currentScale}) rotate(${currentRotation}deg)`,
-            transition: isSnapping ? 'all 0.25s ease-out' : 'none',
+            transform: showSwipeHint 
+              ? 'translateX(-60px) scale(0.96) rotate(-2deg)' 
+              : `scale(${currentScale}) rotate(${currentRotation}deg)`,
+            transition: showSwipeHint 
+              ? 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)' 
+              : isSnapping ? 'all 0.25s ease-out' : 'none',
             position: 'relative',
           }, questionIndex)}
         </div>
@@ -785,8 +829,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           }}
         >
           {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
-            transform: `scale(${totalOffset < 0 ? incomingScale : 0.95}) rotate(${totalOffset < 0 ? incomingRotation : -3}deg)`,
-            transition: isSnapping ? 'all 0.25s ease-out' : 'none',
+            transform: showSwipeHint 
+              ? 'translateX(calc(100% + 16px - 60px)) scale(0.86)' 
+              : `scale(${totalOffset < 0 ? incomingScale : 0.95}) rotate(${totalOffset < 0 ? incomingRotation : -3}deg)`,
+            transition: showSwipeHint 
+              ? 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)' 
+              : isSnapping ? 'all 0.25s ease-out' : 'none',
             opacity: 1,
             position: 'relative',
           }, questionIndex + 1)}
