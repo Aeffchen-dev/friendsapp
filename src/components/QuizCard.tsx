@@ -645,10 +645,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     
     // Snap back to center if cancelled
     setIsTransitioning(true);
-    if (onDragStateChange) {
-      onDragStateChange(false, 0, currentQuestion.category, 0);
-    }
-    
     setIsDragging(false);
     
     setTimeout(() => {
@@ -656,6 +652,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
       setTimeout(() => {
         setIsTransitioning(false);
         setTransitionDirection(null);
+        // Reset logo after snap-back transition completes
+        if (onDragStateChange) {
+          onDragStateChange(false, 0, currentQuestion.category, 0);
+        }
       }, 300);
     }, 0);
   };
