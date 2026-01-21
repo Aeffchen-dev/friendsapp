@@ -206,23 +206,17 @@ export function QuizApp() {
 
   const nextQuestion = () => {
     if (currentIndex < questions.length - 1) {
-      setLogoSqueezeDirection(-1);
       setCurrentIndex(prev => prev + 1);
       setDragProgress(0);
       setTargetCategory('');
-      // Reset squeeze after transition duration
-      setTimeout(() => setLogoSqueezeDirection(0), 300);
     }
   };
 
   const prevQuestion = () => {
     if (currentIndex > 0) {
-      setLogoSqueezeDirection(1);
       setCurrentIndex(prev => prev - 1);
       setDragProgress(0);
       setTargetCategory('');
-      // Reset squeeze after transition duration
-      setTimeout(() => setLogoSqueezeDirection(0), 300);
     }
   };
 
@@ -361,7 +355,16 @@ export function QuizApp() {
   const handleDragStateChange = (isDragging: boolean, progress: number, category: string, direction: number) => {
     setDragProgress(progress);
     setTargetCategory(category);
-    setLogoSqueezeDirection(progress > 0 ? direction : 0);
+    
+    if (progress > 0) {
+      setLogoSqueezeDirection(direction);
+      // If this is the final transition (not dragging, full progress), reset after animation
+      if (!isDragging && progress === 1) {
+        setTimeout(() => setLogoSqueezeDirection(0), 300);
+      }
+    } else {
+      setLogoSqueezeDirection(0);
+    }
   };
 
   // Update body background color and theme-color meta tag for iOS
