@@ -698,13 +698,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   // next-2: translateX(200% + 32px) scale(0.8)
   const getSlideStyle = (slidePosition: 'prev2' | 'prev' | 'active' | 'next' | 'next2'): React.CSSProperties => {
     const baseTransition = isDragging ? 'none' : 'all 0.3s ease-in-out';
-    // For non-active slides, calculate offset based on container width
-    const slideOffset = containerWidthPx ? totalOffset / containerWidthPx * 100 : 0;
+    // Use pixel offset directly for drag, not percentage
+    const slideOffsetPx = totalOffset;
     
     switch (slidePosition) {
       case 'prev2':
         return {
-          transform: `translate(-50%, -50%) translateX(calc(-200% - 32px + ${slideOffset}%)) scale(0.8)`,
+          transform: `translate(-50%, -50%) translateX(calc(-200% - 32px + ${slideOffsetPx}px)) scale(0.8)`,
           transition: baseTransition,
           zIndex: 0,
         };
@@ -712,7 +712,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         const prevScale = totalOffset > 0 ? incomingScale : 0.8;
         const prevRotation = totalOffset > 0 ? (5 * (1 - progress)) : 0;
         return {
-          transform: `translate(-50%, -50%) translateX(calc(-100% - 16px + ${slideOffset}%)) scale(${prevScale}) rotate(${prevRotation}deg)`,
+          transform: `translate(-50%, -50%) translateX(calc(-100% - 16px + ${slideOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
           transition: baseTransition,
           zIndex: 1,
         };
@@ -725,7 +725,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           };
         }
         return {
-          transform: `translate(-50%, -50%) translateX(${slideOffset}%) scale(${currentScale}) rotate(${currentRotation}deg)`,
+          transform: `translate(-50%, -50%) translateX(${slideOffsetPx}px) scale(${currentScale}) rotate(${currentRotation}deg)`,
           transition: baseTransition,
           zIndex: 2,
         };
@@ -740,13 +740,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           };
         }
         return {
-          transform: `translate(-50%, -50%) translateX(calc(100% + 16px + ${slideOffset}%)) scale(${nextScale}) rotate(${nextRotation}deg)`,
+          transform: `translate(-50%, -50%) translateX(calc(100% + 16px + ${slideOffsetPx}px)) scale(${nextScale}) rotate(${nextRotation}deg)`,
           transition: baseTransition,
           zIndex: 1,
         };
       case 'next2':
         return {
-          transform: `translate(-50%, -50%) translateX(calc(200% + 32px + ${slideOffset}%)) scale(0.8)`,
+          transform: `translate(-50%, -50%) translateX(calc(200% + 32px + ${slideOffsetPx}px)) scale(0.8)`,
           transition: baseTransition,
           zIndex: 0,
         };
