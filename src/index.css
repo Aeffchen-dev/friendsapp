@@ -213,30 +213,9 @@ All colors MUST be HSL.
     100% { transform: scaleX(1); }
   }
   
-  /* Logo squeeze animations for slide transitions */
-  @keyframes logo-squeeze-left {
-    0% { transform: scaleX(1.15); }
-    100% { transform: scaleX(1); }
-  }
-  
-  @keyframes logo-squeeze-right {
-    0% { transform: scaleX(1.15); }
-    100% { transform: scaleX(1); }
-  }
-  
   .logo-stretch {
     animation: logo-stretch 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform-origin: center;
-  }
-  
-  .logo-squeeze-left {
-    animation: logo-squeeze-left 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-    transform-origin: right;
-  }
-  
-  .logo-squeeze-right {
-    animation: logo-squeeze-right 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-    transform-origin: left;
   }
   
   .logo-clickable {

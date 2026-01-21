@@ -433,7 +433,7 @@ export function QuizApp() {
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
-            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${!isDraggingLogo && logoSqueezeDirection < 0 ? 'logo-squeeze-left' : !isDraggingLogo && logoSqueezeDirection > 0 ? 'logo-squeeze-right' : ''}`}
+            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''}`}
             onClick={handleLogoClick}
             style={{ 
               filter: 'brightness(0)',
