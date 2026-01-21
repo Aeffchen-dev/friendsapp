@@ -440,11 +440,9 @@ export function QuizApp() {
             // During drag: apply squeeze transform directly based on progress
               ...(isDraggingLogo && dragProgress > 0 ? {
                 transform: `scaleX(${1 + dragProgress * 0.15})`,
-                transformOrigin: logoSqueezeDirection < 0 ? 'right' : 'left',
+                transformOrigin: 'left',
                 transition: 'none',
-              } : {
-                transition: 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)',
-              })
+              } : {})
             }}
           />
           {!loading && (
