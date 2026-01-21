@@ -55,7 +55,7 @@ All colors MUST be HSL.
     --input: 0 0% 15%;
     --ring: 280 100% 70%;
 
-    --radius: 32px;
+    --radius: 1rem;
     
     /* Quiz App Custom Colors */
     --quiz-primary: 280 100% 70%;
