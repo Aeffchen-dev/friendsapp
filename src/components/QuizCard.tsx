@@ -41,7 +41,22 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   const hintTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLHeadingElement>(null);
+  const activeCardRef = useRef<HTMLDivElement>(null);
   const dragThreshold = 100; // Threshold for triggering transition
+  
+  // Get the actual card width for accurate slide positioning
+  const getCardWidth = () => {
+    if (activeCardRef.current) {
+      return activeCardRef.current.offsetWidth;
+    }
+    // Fallback: estimate based on container
+    if (containerRef.current) {
+      const containerW = containerRef.current.offsetWidth;
+      // Card width is calc(100% - 32px) with max-width constraints
+      return Math.min(containerW - 32, 700 - 32); // matches max-w-[700px]
+    }
+    return 500; // reasonable default
+  };
 
   // Swipe hint animation - triggers on first slide after 3s of inactivity
   useEffect(() => {
@@ -591,7 +606,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   const handleEnd = () => {
     if (!isDragging || !containerRef.current) return;
     
-    const containerWidth = containerRef.current.offsetWidth;
+    // Use card width + gap for accurate positioning (matches translateX(100% + 16px))
+    const slideDistance = getCardWidth() + 16;
     
     if (Math.abs(dragOffset) > dragThreshold) {
       if (dragOffset < 0 && nextQuestion) {
@@ -599,7 +615,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         setIsTransitioning(true);
         setTransitionDirection('left');
         setIsDragging(false);
-        setDragOffset(-containerWidth);
+        setDragOffset(-slideDistance);
         
         if (onDragStateChange) {
           onDragStateChange(false, 1, nextQuestion.category, -1);
@@ -614,7 +630,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         setIsTransitioning(true);
         setTransitionDirection('right');
         setIsDragging(false);
-        setDragOffset(containerWidth);
+        setDragOffset(slideDistance);
         
         if (onDragStateChange) {
           onDragStateChange(false, 1, prevQuestion.category, 1);
@@ -786,6 +802,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     
     return (
       <div 
+        ref={isCurrent ? activeCardRef : undefined}
         className="absolute left-1/2 top-1/2 flex-shrink-0 w-full max-w-[700px] lg:max-w-[600px] xl:max-w-[500px] rounded-2xl overflow-hidden mx-4 md:mx-0"
         style={{
           ...style,
@@ -908,14 +925,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning) {
+                const slideDistance = getCardWidth() + 16;
                 setIsTransitioning(true);
                 setTransitionDirection('right');
-                if (containerRef.current) {
-                  const containerWidth = containerRef.current.offsetWidth;
-                  setDragOffset(containerWidth);
-                  if (onDragStateChange) {
-                    onDragStateChange(false, 1, prevQuestion.category, 1);
-                  }
+                setDragOffset(slideDistance);
+                if (onDragStateChange) {
+                  onDragStateChange(false, 1, prevQuestion.category, 1);
                 }
                 setTimeout(() => {
                   onSwipeRight();
@@ -926,14 +941,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning) {
+                const slideDistance = getCardWidth() + 16;
                 setIsTransitioning(true);
                 setTransitionDirection('right');
-                if (containerRef.current) {
-                  const containerWidth = containerRef.current.offsetWidth;
-                  setDragOffset(containerWidth);
-                  if (onDragStateChange) {
-                    onDragStateChange(false, 1, prevQuestion.category, 1);
-                  }
+                setDragOffset(slideDistance);
+                if (onDragStateChange) {
+                  onDragStateChange(false, 1, prevQuestion.category, 1);
                 }
                 setTimeout(() => {
                   onSwipeRight();
@@ -960,14 +973,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning) {
+                const slideDistance = getCardWidth() + 16;
                 setIsTransitioning(true);
                 setTransitionDirection('left');
-                if (containerRef.current) {
-                  const containerWidth = containerRef.current.offsetWidth;
-                  setDragOffset(-containerWidth);
-                  if (onDragStateChange) {
-                    onDragStateChange(false, 1, nextQuestion.category, -1);
-                  }
+                setDragOffset(-slideDistance);
+                if (onDragStateChange) {
+                  onDragStateChange(false, 1, nextQuestion.category, -1);
                 }
                 setTimeout(() => {
                   onSwipeLeft();
@@ -978,14 +989,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning) {
+                const slideDistance = getCardWidth() + 16;
                 setIsTransitioning(true);
                 setTransitionDirection('left');
-                if (containerRef.current) {
-                  const containerWidth = containerRef.current.offsetWidth;
-                  setDragOffset(-containerWidth);
-                  if (onDragStateChange) {
-                    onDragStateChange(false, 1, nextQuestion.category, -1);
-                  }
+                setDragOffset(-slideDistance);
+                if (onDragStateChange) {
+                  onDragStateChange(false, 1, nextQuestion.category, -1);
                 }
                 setTimeout(() => {
                   onSwipeLeft();
