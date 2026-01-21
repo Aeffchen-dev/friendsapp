@@ -210,7 +210,8 @@ export function QuizApp() {
       setCurrentIndex(prev => prev + 1);
       setDragProgress(0);
       setTargetCategory('');
-      setLogoSqueezeDirection(0);
+      // Reset squeeze after transition duration
+      setTimeout(() => setLogoSqueezeDirection(0), 300);
     }
   };
 
@@ -220,7 +221,8 @@ export function QuizApp() {
       setCurrentIndex(prev => prev - 1);
       setDragProgress(0);
       setTargetCategory('');
-      setLogoSqueezeDirection(0);
+      // Reset squeeze after transition duration
+      setTimeout(() => setLogoSqueezeDirection(0), 300);
     }
   };
 
@@ -372,7 +374,7 @@ export function QuizApp() {
 
     // Keep body transition smooth
     document.body.style.backgroundColor = backgroundColor;
-    document.body.style.transition = 'background-color 0.8s ease-out';
+    document.body.style.transition = 'background-color 0.3s ease-in-out';
     
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {

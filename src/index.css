@@ -213,16 +213,16 @@ All colors MUST be HSL.
     100% { transform: scaleX(1); }
   }
   
-  /* Logo squeeze animations for slide transitions */
+  /* Logo squeeze animations for slide transitions - 300ms to match slide transition */
   @keyframes logo-squeeze-left {
     0% { transform: scaleX(1); }
-    37.5% { transform: scaleX(1.08); } /* Peak at 300ms out of 800ms total */
+    50% { transform: scaleX(1.08); }
     100% { transform: scaleX(1); }
   }
   
   @keyframes logo-squeeze-right {
     0% { transform: scaleX(1); }
-    37.5% { transform: scaleX(1.08); } /* Peak at 300ms out of 800ms total */
+    50% { transform: scaleX(1.08); }
     100% { transform: scaleX(1); }
   }
   
@@ -232,12 +232,12 @@ All colors MUST be HSL.
   }
   
   .logo-squeeze-left {
-    animation: logo-squeeze-left 1s ease-out;
+    animation: logo-squeeze-left 0.3s ease-in-out;
     transform-origin: right;
   }
   
   .logo-squeeze-right {
-    animation: logo-squeeze-right 1s ease-out;
+    animation: logo-squeeze-right 0.3s ease-in-out;
     transform-origin: left;
   }
   

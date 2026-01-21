@@ -803,7 +803,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     return (
       <div 
         ref={isCurrent ? activeCardRef : undefined}
-        className="absolute left-1/2 top-1/2 flex-shrink-0 w-full max-w-[700px] lg:max-w-[600px] xl:max-w-[500px] rounded-2xl overflow-hidden mx-4 md:mx-0"
+        className="absolute left-1/2 top-1/2 flex-shrink-0 rounded-2xl overflow-hidden"
         style={{
           ...style,
           height: '80vh',
