@@ -359,23 +359,9 @@ export function QuizApp() {
     setTargetCategory(category);
     setIsDraggingLogo(isDragging);
     
-    // Clear any pending logo reset when dragging starts or continues
-    if (isDragging && logoResetTimeoutRef.current) {
-      clearTimeout(logoResetTimeoutRef.current);
-      logoResetTimeoutRef.current = null;
-    }
-    
     if (progress > 0) {
       setLogoSqueezeDirection(direction);
-      // If this is the final transition (not dragging, full progress), reset after animation
-      if (!isDragging && progress === 1) {
-        logoResetTimeoutRef.current = setTimeout(() => {
-          setLogoSqueezeDirection(0);
-          logoResetTimeoutRef.current = null;
-        }, 300);
-      }
     } else if (!isDragging) {
-      // Only reset when not dragging (after snap-back completes)
       setLogoSqueezeDirection(0);
     }
   };
@@ -451,13 +437,13 @@ export function QuizApp() {
             onClick={handleLogoClick}
             style={{ 
               filter: 'brightness(0)',
-              // During drag: apply squeeze transform directly based on progress
+            // During drag: apply squeeze transform directly based on progress
               ...(isDraggingLogo && dragProgress > 0 ? {
-                transform: `scaleX(${1 + dragProgress * 0.08})`,
+                transform: `scaleX(${1 + dragProgress * 0.15})`,
                 transformOrigin: logoSqueezeDirection < 0 ? 'right' : 'left',
                 transition: 'none',
               } : {
-                transition: 'transform 0.3s ease-in-out',
+                transition: 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)',
               })
             }}
           />
