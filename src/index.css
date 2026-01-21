@@ -167,13 +167,28 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    /* Allow content to extend behind iOS browser bars */
+    height: 100%;
+    overflow: hidden;
+  }
+
   body {
     @apply bg-background text-foreground;
     overflow: hidden;
-    height: 100vh;
-    height: 100svh;
+    /* Use dynamic viewport height to adapt to iOS browser bar */
+    height: 100dvh;
+    min-height: 100dvh;
     background-color: #000000;
     font-family: 'Factor A', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    /* Extend content behind safe areas */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  
+  /* Root element should fill the entire viewport including safe areas */
+  #root {
+    height: 100%;
+    overflow: hidden;
   }
   
   /* Stylistic alternative for first letter */
