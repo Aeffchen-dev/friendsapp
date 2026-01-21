@@ -65,6 +65,7 @@ export function QuizApp() {
   const [dragProgress, setDragProgress] = useState(0);
   const [targetCategory, setTargetCategory] = useState<string>('');
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
+  const [isDraggingLogo, setIsDraggingLogo] = useState(false);
   const [initialIndexApplied, setInitialIndexApplied] = useState(false);
   const logoResetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { t, language } = useLanguage();
@@ -356,6 +357,7 @@ export function QuizApp() {
   const handleDragStateChange = (isDragging: boolean, progress: number, category: string, direction: number) => {
     setDragProgress(progress);
     setTargetCategory(category);
+    setIsDraggingLogo(isDragging);
     
     // Clear any pending logo reset when dragging starts or continues
     if (isDragging && logoResetTimeoutRef.current) {
@@ -372,7 +374,8 @@ export function QuizApp() {
           logoResetTimeoutRef.current = null;
         }, 300);
       }
-    } else {
+    } else if (!isDragging) {
+      // Only reset when not dragging (after snap-back completes)
       setLogoSqueezeDirection(0);
     }
   };
@@ -444,9 +447,19 @@ export function QuizApp() {
           <img 
             src="/assets/logo.png" 
             alt="Logo" 
-            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${logoSqueezeDirection < 0 ? 'logo-squeeze-left' : logoSqueezeDirection > 0 ? 'logo-squeeze-right' : ''}`}
+            className={`h-8 w-auto logo-clickable ${logoStretch ? 'logo-stretch' : ''} ${!isDraggingLogo && logoSqueezeDirection < 0 ? 'logo-squeeze-left' : !isDraggingLogo && logoSqueezeDirection > 0 ? 'logo-squeeze-right' : ''}`}
             onClick={handleLogoClick}
-            style={{ filter: 'brightness(0)' }}
+            style={{ 
+              filter: 'brightness(0)',
+              // During drag: apply squeeze transform directly based on progress
+              ...(isDraggingLogo && dragProgress > 0 ? {
+                transform: `scaleX(${1 + dragProgress * 0.08})`,
+                transformOrigin: logoSqueezeDirection < 0 ? 'right' : 'left',
+                transition: 'none',
+              } : {
+                transition: 'transform 0.3s ease-in-out',
+              })
+            }}
           />
           {!loading && (
             <button 
