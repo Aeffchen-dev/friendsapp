@@ -394,7 +394,7 @@ export function QuizApp() {
         className="fixed left-1/2 pointer-events-none z-0"
         style={{
           bottom: '0',
-          transform: 'translateX(-50%) translateY(30%)',
+          transform: 'translateX(-50%) translateY(20%)',
           width: '150vw',
           overflow: 'visible',
         }}
