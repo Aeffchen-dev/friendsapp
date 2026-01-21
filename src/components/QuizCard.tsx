@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useLayoutEffect } from 'react';
 import { applyGermanHyphenation } from '@/lib/hyphenation';
 import { ShareDialog } from './ShareDialog';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -152,22 +152,31 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
 
   // Track if we need to skip transition on next render (after question change)
   const [skipTransition, setSkipTransition] = useState(false);
+  const prevQuestionIndexRef = useRef(questionIndex);
   
-  // Reset drag when question changes - use skipTransition to prevent jump
-  useEffect(() => {
-    // Temporarily disable transitions to prevent visual jump
-    setSkipTransition(true);
-    setDragOffset(0);
-    setIsTransitioning(false);
-    setTransitionDirection(null);
-    
-    // Re-enable transitions after a frame
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setSkipTransition(false);
-      });
-    });
+  // Reset drag when question changes - use useLayoutEffect for synchronous update before paint
+  useLayoutEffect(() => {
+    if (prevQuestionIndexRef.current !== questionIndex) {
+      // Disable transitions synchronously before paint
+      setSkipTransition(true);
+      setDragOffset(0);
+      setIsTransitioning(false);
+      setTransitionDirection(null);
+      prevQuestionIndexRef.current = questionIndex;
+    }
   }, [questionIndex]);
+  
+  // Re-enable transitions after the position has settled
+  useEffect(() => {
+    if (skipTransition) {
+      // Wait for 2 frames to ensure the DOM has updated with no transition
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setSkipTransition(false);
+        });
+      });
+    }
+  }, [skipTransition]);
 
   // Measure container width on mount and resize
   useEffect(() => {
