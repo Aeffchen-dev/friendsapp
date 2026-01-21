@@ -170,12 +170,12 @@ All colors MUST be HSL.
   html {
     /* Allow content to extend behind iOS browser bars */
     height: 100%;
-    overflow: hidden;
+    overflow: visible;
   }
 
   body {
     @apply bg-background text-foreground;
-    overflow: hidden;
+    overflow: visible;
     /* Use dynamic viewport height to adapt to iOS browser bar */
     height: 100dvh;
     min-height: 100dvh;
@@ -188,7 +188,7 @@ All colors MUST be HSL.
   /* Root element should fill the entire viewport including safe areas */
   #root {
     height: 100%;
-    overflow: hidden;
+    overflow: visible;
   }
   
   /* Stylistic alternative for first letter */
