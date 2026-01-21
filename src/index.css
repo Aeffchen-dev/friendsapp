@@ -168,7 +168,9 @@ All colors MUST be HSL.
   }
 
   html, body {
-    overflow: visible !important;
+    min-height: 100lvh;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   
   body {

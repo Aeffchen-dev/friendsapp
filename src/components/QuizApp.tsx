@@ -393,10 +393,10 @@ export function QuizApp() {
       <div 
         className="fixed left-1/2 pointer-events-none z-0"
         style={{
-          bottom: '-100px',
+          bottom: '0',
           transform: 'translateX(-50%) translateY(20%)',
           width: '150vw',
-          overflow: 'visible',
+          height: '100lvh',
         }}
       >
         {/* Desktop: Friends */}
