@@ -14,23 +14,34 @@ interface QuizCardProps {
   currentQuestion: Question;
   nextQuestion: Question | null;
   prevQuestion: Question | null;
+  nextQuestion2: Question | null;
+  prevQuestion2: Question | null;
   adjacentQuestions?: Question[];
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
   onDragStateChange?: (isDragging: boolean, progress: number, targetCategory: string, direction: number) => void;
   questionIndex: number;
+  totalQuestions: number;
 }
 
-export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacentQuestions = [], onSwipeLeft, onSwipeRight, onDragStateChange, questionIndex }: QuizCardProps) {
-  const [dragOffset, setDragOffset] = useState(0);
+export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQuestion2, prevQuestion2, adjacentQuestions = [], onSwipeLeft, onSwipeRight, onDragStateChange, questionIndex, totalQuestions }: QuizCardProps) {
+  // Core drag state following described architecture
   const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionDirection, setTransitionDirection] = useState<'left' | 'right' | null>(null);
+  
+  // Additional state
   const [startX, setStartX] = useState(0);
-  const [isSnapping, setIsSnapping] = useState(false);
   const [containerWidth, setContainerWidth] = useState(0);
   const [translatedTexts, setTranslatedTexts] = useState<Record<string, string>>({});
   const [showSwipeHint, setShowSwipeHint] = useState(false);
+  
   const { language } = useLanguage();
   const hintTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const questionRef = useRef<HTMLHeadingElement>(null);
+  const dragThreshold = 100; // Threshold for triggering transition
 
   // Swipe hint animation - triggers on first slide after 3s of inactivity
   useEffect(() => {
@@ -40,7 +51,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
       }
       
       // Only show hint on first slide when not interacting
-      if (questionIndex === 0 && !isDragging && !isSnapping) {
+      if (questionIndex === 0 && !isDragging && !isTransitioning) {
         hintTimeoutRef.current = setTimeout(() => {
           setShowSwipeHint(true);
           // Reset hint after animation duration
@@ -58,17 +69,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         clearTimeout(hintTimeoutRef.current);
       }
     };
-  }, [questionIndex, isDragging, isSnapping]);
+  }, [questionIndex, isDragging, isTransitioning]);
 
   // Cancel hint on any interaction
   useEffect(() => {
-    if (isDragging || isSnapping) {
+    if (isDragging || isTransitioning) {
       setShowSwipeHint(false);
       if (hintTimeoutRef.current) {
         clearTimeout(hintTimeoutRef.current);
       }
     }
-  }, [isDragging, isSnapping]);
+  }, [isDragging, isTransitioning]);
 
   // Synchronously populate from cache on every render to prevent flicker
   const getTranslation = useCallback((question: string): string | undefined => {
@@ -137,14 +148,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     return getTranslation(questionObj.question) || questionObj.question;
   };
   
-  const containerRef = useRef<HTMLDivElement>(null);
-  const questionRef = useRef<HTMLHeadingElement>(null);
   const minSwipeDistance = 50;
 
   // Reset drag when question changes
   useEffect(() => {
     setDragOffset(0);
-    setIsSnapping(false);
+    setIsTransitioning(false);
+    setTransitionDirection(null);
   }, [currentQuestion]);
 
   // Measure container width on mount and resize
@@ -562,10 +572,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     
     const containerWidth = containerRef.current.offsetWidth;
     
-    if (Math.abs(dragOffset) > minSwipeDistance) {
+    if (Math.abs(dragOffset) > dragThreshold) {
       if (dragOffset < 0 && nextQuestion) {
-        // Swipe left - animate to completion
-        setIsSnapping(true);
+        // Swipe left - trigger transition
+        setIsTransitioning(true);
+        setTransitionDirection('left');
         setIsDragging(false);
         setDragOffset(-containerWidth);
         
@@ -575,11 +586,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         
         setTimeout(() => {
           onSwipeLeft();
-        }, 250);
+        }, 300);
         return;
       } else if (dragOffset > 0 && prevQuestion) {
-        // Swipe right - animate to completion
-        setIsSnapping(true);
+        // Swipe right - trigger transition
+        setIsTransitioning(true);
+        setTransitionDirection('right');
         setIsDragging(false);
         setDragOffset(containerWidth);
         
@@ -589,13 +601,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
         
         setTimeout(() => {
           onSwipeRight();
-        }, 250);
+        }, 300);
         return;
       }
     }
     
     // Snap back to center if cancelled
-    setIsSnapping(true);
+    setIsTransitioning(true);
     if (onDragStateChange) {
       onDragStateChange(false, 0, currentQuestion.category, 0);
     }
@@ -604,7 +616,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     
     setTimeout(() => {
       setDragOffset(0);
-      setTimeout(() => setIsSnapping(false), 250);
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setTransitionDirection(null);
+      }, 300);
     }, 0);
   };
 
@@ -640,34 +655,32 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     }
   };
 
-  // Calculate transformations based on drag
+  // Calculate transformations based on drag - following described architecture
+  // Scale: 1 → 0.8 during drag (20% reduction)
+  // Rotation: 0 → ±5° during drag
   const getDragProgress = () => {
     if (!containerRef.current) return 0;
     const containerWidth = containerRef.current.offsetWidth;
-    return Math.min(Math.abs(dragOffset) / containerWidth, 1);
+    return Math.min(Math.abs(dragOffset) / 300, 1); // Using 300px as reference for max effect
   };
 
   const progress = getDragProgress();
   const totalOffset = dragOffset;
   const direction = totalOffset < 0 ? -1 : 1;
-  const containerWidthPx = containerRef.current?.offsetWidth || 1;
-  const normalizedOffset = totalOffset / containerWidthPx; // -1 .. 1
+  const containerWidthPx = containerRef.current?.offsetWidth || window.innerWidth;
 
-  // Current card: 100% -> 95% scale, 0deg -> 3deg rotation (away from direction)
-  const currentScale = 1 - (progress * 0.05);
-  const currentRotation = progress * 3 * direction;
+  // Active Slide: scale 1 → 0.8, rotation 0 → ±5°
+  const currentScale = 1 - (progress * 0.2);
+  const currentRotation = (totalOffset / 300) * 5;
 
-  // Incoming card: 95% -> 100% scale, 3deg -> 0deg rotation (towards center)
-  const incomingScale = 0.95 + (progress * 0.05);
-  const incomingRotation = -3 * direction * (1 - progress);
+  // Incoming Slide: scale 0.8 → 1, rotation ±5° → 0°
+  const incomingScale = 0.8 + (progress * 0.2);
 
   // Determine which category color to show based on drag
   const getActiveCategory = () => {
     if (totalOffset < 0 && nextQuestion && progress > 0) {
-      // Swiping left - transition to next question
       return nextQuestion.category;
     } else if (totalOffset > 0 && prevQuestion && progress > 0) {
-      // Swiping right - transition to prev question
       return prevQuestion.category;
     }
     return currentQuestion.category;
@@ -675,6 +688,72 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
 
   const activeCategoryForColor = getActiveCategory();
   const activeCategoryColors = getCategoryColors(activeCategoryForColor, questionIndex);
+
+  // 5-slide window rendering helper
+  // Position calculations:
+  // prev-2: translateX(-200% - 32px) scale(0.8)
+  // prev:   translateX(-100% - 16px) scale(0.8)
+  // active: translateX(-50%) translateY(-50%) scale(1) - centered
+  // next:   translateX(100% + 16px) scale(0.8)
+  // next-2: translateX(200% + 32px) scale(0.8)
+  const getSlideStyle = (slidePosition: 'prev2' | 'prev' | 'active' | 'next' | 'next2'): React.CSSProperties => {
+    const baseTransition = isDragging ? 'none' : 'all 0.3s ease-in-out';
+    // For non-active slides, calculate offset based on container width
+    const slideOffset = containerWidthPx ? totalOffset / containerWidthPx * 100 : 0;
+    
+    switch (slidePosition) {
+      case 'prev2':
+        return {
+          transform: `translate(-50%, -50%) translateX(calc(-200% - 32px + ${slideOffset}%)) scale(0.8)`,
+          transition: baseTransition,
+          zIndex: 0,
+        };
+      case 'prev':
+        const prevScale = totalOffset > 0 ? incomingScale : 0.8;
+        const prevRotation = totalOffset > 0 ? (5 * (1 - progress)) : 0;
+        return {
+          transform: `translate(-50%, -50%) translateX(calc(-100% - 16px + ${slideOffset}%)) scale(${prevScale}) rotate(${prevRotation}deg)`,
+          transition: baseTransition,
+          zIndex: 1,
+        };
+      case 'active':
+        if (showSwipeHint) {
+          return {
+            transform: 'translate(-50%, -50%) translateX(-60px) scale(0.96) rotate(-2deg)',
+            transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            zIndex: 2,
+          };
+        }
+        return {
+          transform: `translate(-50%, -50%) translateX(${slideOffset}%) scale(${currentScale}) rotate(${currentRotation}deg)`,
+          transition: baseTransition,
+          zIndex: 2,
+        };
+      case 'next':
+        const nextScale = totalOffset < 0 ? incomingScale : 0.8;
+        const nextRotation = totalOffset < 0 ? (-5 * (1 - progress)) : 0;
+        if (showSwipeHint) {
+          return {
+            transform: 'translate(-50%, -50%) translateX(calc(100% + 16px - 60px)) scale(0.86)',
+            transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            zIndex: 1,
+          };
+        }
+        return {
+          transform: `translate(-50%, -50%) translateX(calc(100% + 16px + ${slideOffset}%)) scale(${nextScale}) rotate(${nextRotation}deg)`,
+          transition: baseTransition,
+          zIndex: 1,
+        };
+      case 'next2':
+        return {
+          transform: `translate(-50%, -50%) translateX(calc(200% + 32px + ${slideOffset}%)) scale(0.8)`,
+          transition: baseTransition,
+          zIndex: 0,
+        };
+    }
+  };
+
+  
 
   const renderCard = (question: Question, style: React.CSSProperties, cardQuestionIndex: number) => {
     const categoryColors = getCategoryColors(question.category, cardQuestionIndex);
@@ -685,7 +764,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     
     return (
       <div 
-        className="flex-shrink-0 w-full max-w-[700px] lg:max-w-[600px] xl:max-w-[500px] rounded-2xl overflow-hidden mx-4 md:mx-0"
+        className="absolute left-1/2 top-1/2 flex-shrink-0 w-full max-w-[700px] lg:max-w-[600px] xl:max-w-[500px] rounded-2xl overflow-hidden mx-4 md:mx-0"
         style={{
           ...style,
           height: '80vh',
@@ -698,6 +777,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           WebkitBackdropFilter: 'blur(16px)',
           boxShadow: '-2px 0 24px 4px rgba(0, 0, 0, 0.24)',
           width: 'calc(100% - 32px)',
+          maxWidth: 'calc(min(700px, 100%) - 32px)',
         }}
       >
         {/* Category Strip */}
@@ -753,9 +833,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
     );
   };
 
-  const shouldShowPrev = true;
-  const shouldShowNext = true;
-
   return (
     <>
       <div
@@ -773,174 +850,128 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, adjacent
           maxHeight: '100vh',
         }}
       >
-      <div 
-        className="flex items-center h-full"
-        style={{
-          transform: `translateX(${(-33.333 + normalizedOffset * 33.333).toFixed(3)}%)`,
-          transition: isSnapping ? 'transform 0.25s ease-out' : 'none',
-          width: '300%',
-          position: 'relative',
-        }}
-      >
-        {/* Previous card (left) */}
-        <div 
-          className="flex justify-center items-center" 
-          style={{ 
-            width: '33.333%',
-            height: '100%',
-            position: 'relative',
-          }}
-        >
-          {shouldShowPrev && prevQuestion && renderCard(prevQuestion, {
-            transform: `scale(${totalOffset > 0 ? incomingScale : 0.95}) rotate(${totalOffset > 0 ? incomingRotation : 3}deg)`,
-            transition: isSnapping ? 'all 0.25s ease-out' : 'none',
-            opacity: 1,
-            position: 'relative',
-          }, questionIndex - 1)}
+        {/* 5-Slide Window: prev-2, prev, active, next, next-2 */}
+        <div className="relative h-full w-full flex items-center justify-center">
+          {/* prev-2 slide */}
+          {prevQuestion2 && renderCard(prevQuestion2, getSlideStyle('prev2'), questionIndex - 2)}
+          
+          {/* prev slide */}
+          {prevQuestion && renderCard(prevQuestion, getSlideStyle('prev'), questionIndex - 1)}
+          
+          {/* active slide */}
+          {renderCard(currentQuestion, getSlideStyle('active'), questionIndex)}
+          
+          {/* next slide */}
+          {nextQuestion && renderCard(nextQuestion, getSlideStyle('next'), questionIndex + 1)}
+          
+          {/* next-2 slide */}
+          {nextQuestion2 && renderCard(nextQuestion2, getSlideStyle('next2'), questionIndex + 2)}
         </div>
-
-        {/* Current card (center) */}
-        <div 
-          className="flex justify-center items-center" 
-          style={{ 
-            width: '33.333%',
-            height: '100%',
-            position: 'relative',
-          }}
-        >
-          {renderCard(currentQuestion, {
-            transform: showSwipeHint 
-              ? 'translateX(-60px) scale(0.96) rotate(-2deg)' 
-              : `scale(${currentScale}) rotate(${currentRotation}deg)`,
-            transition: showSwipeHint 
-              ? 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)' 
-              : isSnapping ? 'all 0.25s ease-out' : 'none',
-            position: 'relative',
-          }, questionIndex)}
-        </div>
-
-        {/* Next card (right) */}
-        <div 
-          className="flex justify-center items-center" 
-          style={{ 
-            width: '33.333%',
-            height: '100%',
-            position: 'relative',
-          }}
-        >
-          {shouldShowNext && nextQuestion && renderCard(nextQuestion, {
-            transform: showSwipeHint 
-              ? 'translateX(calc(100% + 16px - 60px)) scale(0.86)' 
-              : `scale(${totalOffset < 0 ? incomingScale : 0.95}) rotate(${totalOffset < 0 ? incomingRotation : -3}deg)`,
-            transition: showSwipeHint 
-              ? 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)' 
-              : isSnapping ? 'all 0.25s ease-out' : 'none',
-            opacity: 1,
-            position: 'relative',
-          }, questionIndex + 1)}
-        </div>
-      </div>
-      
-      {/* Edge Click Zones */}
-      {/* Left edge click zone */}
-      {prevQuestion && (
-        <div
-          className="absolute left-0 top-0 h-full cursor-pointer z-20"
-          style={{ width: '16px' }}
-          onMouseDown={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-          onTouchStart={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (!isSnapping) {
-              setIsSnapping(true);
-              if (containerRef.current) {
-                const containerWidth = containerRef.current.offsetWidth;
-                setDragOffset(containerWidth);
-                if (onDragStateChange) {
-                  onDragStateChange(false, 1, prevQuestion.category, 1);
+        
+        {/* Edge Click Zones */}
+        {/* Left edge click zone */}
+        {prevQuestion && (
+          <div
+            className="absolute left-0 top-0 h-full cursor-pointer z-20"
+            style={{ width: '16px' }}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (!isTransitioning) {
+                setIsTransitioning(true);
+                setTransitionDirection('right');
+                if (containerRef.current) {
+                  const containerWidth = containerRef.current.offsetWidth;
+                  setDragOffset(containerWidth);
+                  if (onDragStateChange) {
+                    onDragStateChange(false, 1, prevQuestion.category, 1);
+                  }
                 }
+                setTimeout(() => {
+                  onSwipeRight();
+                }, 300);
               }
-              setTimeout(() => {
-                onSwipeRight();
-              }, 250);
-            }
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (!isSnapping) {
-              setIsSnapping(true);
-              if (containerRef.current) {
-                const containerWidth = containerRef.current.offsetWidth;
-                setDragOffset(containerWidth);
-                if (onDragStateChange) {
-                  onDragStateChange(false, 1, prevQuestion.category, 1);
+            }}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (!isTransitioning) {
+                setIsTransitioning(true);
+                setTransitionDirection('right');
+                if (containerRef.current) {
+                  const containerWidth = containerRef.current.offsetWidth;
+                  setDragOffset(containerWidth);
+                  if (onDragStateChange) {
+                    onDragStateChange(false, 1, prevQuestion.category, 1);
+                  }
                 }
+                setTimeout(() => {
+                  onSwipeRight();
+                }, 300);
               }
-              setTimeout(() => {
-                onSwipeRight();
-              }, 250);
-            }
-          }}
-        />
-      )}
-      
-      {/* Right edge click zone */}
-      {nextQuestion && (
-        <div
-          className="absolute right-0 top-0 h-full cursor-pointer z-20"
-          style={{ width: '16px' }}
-          onMouseDown={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-          onTouchStart={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (!isSnapping) {
-              setIsSnapping(true);
-              if (containerRef.current) {
-                const containerWidth = containerRef.current.offsetWidth;
-                setDragOffset(-containerWidth);
-                if (onDragStateChange) {
-                  onDragStateChange(false, 1, nextQuestion.category, -1);
+            }}
+          />
+        )}
+        
+        {/* Right edge click zone */}
+        {nextQuestion && (
+          <div
+            className="absolute right-0 top-0 h-full cursor-pointer z-20"
+            style={{ width: '16px' }}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (!isTransitioning) {
+                setIsTransitioning(true);
+                setTransitionDirection('left');
+                if (containerRef.current) {
+                  const containerWidth = containerRef.current.offsetWidth;
+                  setDragOffset(-containerWidth);
+                  if (onDragStateChange) {
+                    onDragStateChange(false, 1, nextQuestion.category, -1);
+                  }
                 }
+                setTimeout(() => {
+                  onSwipeLeft();
+                }, 300);
               }
-              setTimeout(() => {
-                onSwipeLeft();
-              }, 250);
-            }
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (!isSnapping) {
-              setIsSnapping(true);
-              if (containerRef.current) {
-                const containerWidth = containerRef.current.offsetWidth;
-                setDragOffset(-containerWidth);
-                if (onDragStateChange) {
-                  onDragStateChange(false, 1, nextQuestion.category, -1);
+            }}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (!isTransitioning) {
+                setIsTransitioning(true);
+                setTransitionDirection('left');
+                if (containerRef.current) {
+                  const containerWidth = containerRef.current.offsetWidth;
+                  setDragOffset(-containerWidth);
+                  if (onDragStateChange) {
+                    onDragStateChange(false, 1, nextQuestion.category, -1);
+                  }
                 }
+                setTimeout(() => {
+                  onSwipeLeft();
+                }, 300);
               }
-              setTimeout(() => {
-                onSwipeLeft();
-              }, 250);
-            }
-          }}
-        />
-      )}
+            }}
+          />
+        )}
       </div>
     </>
   );
