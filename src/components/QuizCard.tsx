@@ -748,7 +748,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         };
       case 'prev':
         const prevScale = totalOffset > 0 ? incomingScale : 0.8;
-        const prevRotation = totalOffset > 0 ? (5 * (1 - progress)) : 0;
+        const prevRotation = totalOffset > 0 ? (-5 * (1 - progress)) : 0;
         return {
           transform: `translate(-50%, -50%) translateX(calc(-100% - 16px + ${slideOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
           transition: baseTransition,
@@ -769,7 +769,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         };
       case 'next':
         const nextScale = totalOffset < 0 ? incomingScale : 0.8;
-        const nextRotation = totalOffset < 0 ? (-5 * (1 - progress)) : 0;
+        const nextRotation = totalOffset < 0 ? (5 * (1 - progress)) : 0;
         if (showSwipeHint) {
           return {
             transform: 'translate(-50%, -50%) translateX(calc(100% + 16px - 60px)) scale(0.86)',
