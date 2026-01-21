@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { QuizCard } from './QuizCard';
 import { CategorySelector } from './CategorySelector';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -66,6 +66,7 @@ export function QuizApp() {
   const [targetCategory, setTargetCategory] = useState<string>('');
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
   const [initialIndexApplied, setInitialIndexApplied] = useState(false);
+  const logoResetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { t, language } = useLanguage();
   useEffect(() => {
     // Logo stretch already initialized to true, just fetch questions
@@ -356,11 +357,20 @@ export function QuizApp() {
     setDragProgress(progress);
     setTargetCategory(category);
     
+    // Clear any pending logo reset when dragging starts or continues
+    if (isDragging && logoResetTimeoutRef.current) {
+      clearTimeout(logoResetTimeoutRef.current);
+      logoResetTimeoutRef.current = null;
+    }
+    
     if (progress > 0) {
       setLogoSqueezeDirection(direction);
       // If this is the final transition (not dragging, full progress), reset after animation
       if (!isDragging && progress === 1) {
-        setTimeout(() => setLogoSqueezeDirection(0), 300);
+        logoResetTimeoutRef.current = setTimeout(() => {
+          setLogoSqueezeDirection(0);
+          logoResetTimeoutRef.current = null;
+        }, 300);
       }
     } else {
       setLogoSqueezeDirection(0);
