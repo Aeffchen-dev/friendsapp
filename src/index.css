@@ -230,12 +230,12 @@ All colors MUST be HSL.
   }
   
   .logo-squeeze-left {
-    animation: logo-squeeze-left 0.3s ease-in-out forwards;
+    animation: logo-squeeze-left 0.3s ease-out forwards;
     transform-origin: right;
   }
   
   .logo-squeeze-right {
-    animation: logo-squeeze-right 0.3s ease-in-out forwards;
+    animation: logo-squeeze-right 0.3s ease-out forwards;
     transform-origin: left;
   }
   
