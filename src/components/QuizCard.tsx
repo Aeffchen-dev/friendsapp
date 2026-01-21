@@ -150,12 +150,24 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   
   const minSwipeDistance = 50;
 
-  // Reset drag when question changes
+  // Track if we need to skip transition on next render (after question change)
+  const [skipTransition, setSkipTransition] = useState(false);
+  
+  // Reset drag when question changes - use skipTransition to prevent jump
   useEffect(() => {
+    // Temporarily disable transitions to prevent visual jump
+    setSkipTransition(true);
     setDragOffset(0);
     setIsTransitioning(false);
     setTransitionDirection(null);
-  }, [currentQuestion]);
+    
+    // Re-enable transitions after a frame
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setSkipTransition(false);
+      });
+    });
+  }, [questionIndex]);
 
   // Measure container width on mount and resize
   useEffect(() => {
@@ -697,7 +709,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   // next:   translateX(100% + 16px) scale(0.8)
   // next-2: translateX(200% + 32px) scale(0.8)
   const getSlideStyle = (slidePosition: 'prev2' | 'prev' | 'active' | 'next' | 'next2'): React.CSSProperties => {
-    const baseTransition = isDragging ? 'none' : 'all 0.3s ease-in-out';
+    // Disable transitions during drag OR when skipping (after question change)
+    const baseTransition = (isDragging || skipTransition) ? 'none' : 'all 0.3s ease-in-out';
     // Use pixel offset directly for drag, not percentage
     const slideOffsetPx = totalOffset;
     
