@@ -396,7 +396,7 @@ export function QuizApp() {
           bottom: '0',
           transform: 'translateX(-50%) translateY(20%)',
           width: '150vw',
-          height: '100lvh',
+          overflow: 'visible',
         }}
       >
         {/* Desktop: Friends */}
