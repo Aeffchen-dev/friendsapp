@@ -393,7 +393,7 @@ export function QuizApp() {
       <div 
         className="fixed left-1/2 pointer-events-none z-0"
         style={{
-          bottom: 'calc(env(safe-area-inset-bottom, 0px) + 60px)',
+          bottom: '0',
           transform: 'translateX(-50%) translateY(20%)',
           width: '150vw',
           overflow: 'visible',
