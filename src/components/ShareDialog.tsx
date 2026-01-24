@@ -50,7 +50,8 @@ export function ShareDialog({ questionIndex, questionText }: ShareDialogProps) {
 
   return (
     <button
-      className="z-30 hover:opacity-70 transition-opacity flex items-center gap-2"
+      className="absolute bottom-8 z-30 hover:opacity-70 transition-opacity flex items-center gap-2"
+      style={{ left: '4rem' }}
       onClick={handleShare}
     >
       <ArrowUpFromLine className="w-4 h-4 text-white" strokeWidth={2} />

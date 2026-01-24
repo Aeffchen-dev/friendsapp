@@ -4,27 +4,11 @@ import { ShareDialog } from './ShareDialog';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { translateToEnglish, getCachedTranslation } from '@/lib/translationService';
 import { translateCategory } from '@/lib/questionTranslations';
-import { Heart } from 'lucide-react';
-
 interface Question {
   question: string;
   questionEn: string;
   category: string;
 }
-
-// Helper functions for localStorage favorites
-const getFavorites = (): Set<string> => {
-  try {
-    const stored = localStorage.getItem('quiz-favorites');
-    return stored ? new Set(JSON.parse(stored)) : new Set();
-  } catch {
-    return new Set();
-  }
-};
-
-const saveFavorites = (favorites: Set<string>) => {
-  localStorage.setItem('quiz-favorites', JSON.stringify([...favorites]));
-};
 
 interface QuizCardProps {
   currentQuestion: Question;
@@ -52,23 +36,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   const [containerWidth, setContainerWidth] = useState(0);
   const [translatedTexts, setTranslatedTexts] = useState<Record<string, string>>({});
   const [showSwipeHint, setShowSwipeHint] = useState(false);
-  const [favorites, setFavorites] = useState<Set<string>>(() => getFavorites());
-
-  // Toggle favorite for a question
-  const toggleFavorite = useCallback((questionText: string, e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setFavorites(prev => {
-      const newFavorites = new Set(prev);
-      if (newFavorites.has(questionText)) {
-        newFavorites.delete(questionText);
-      } else {
-        newFavorites.add(questionText);
-      }
-      saveFavorites(newFavorites);
-      return newFavorites;
-    });
-  }, []);
   
   const { language } = useLanguage();
   const hintTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -930,34 +897,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           </div>
         </div>
         
-        {/* Share Button - Bottom left */}
-        <div className="absolute bottom-8 left-16 z-10">
-          <ShareDialog 
-            questionIndex={cardQuestionIndex} 
-            questionText={language === 'en' ? question.questionEn : question.question} 
-          />
-        </div>
-        
-        {/* Heart/Favorite Button - Bottom right */}
-        <button
-          onClick={(e) => toggleFavorite(question.question, e)}
-          onTouchEnd={(e) => toggleFavorite(question.question, e)}
-          className="absolute bottom-6 right-4 p-2 rounded-full transition-all duration-200 hover:scale-110 active:scale-95 z-10"
-          style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.15)',
-            backdropFilter: 'blur(8px)',
-          }}
-          aria-label={favorites.has(question.question) ? 'Remove from favorites' : 'Add to favorites'}
-        >
-          <Heart
-            size={24}
-            className="transition-all duration-200"
-            style={{
-              color: favorites.has(question.question) ? '#ff4d6d' : 'white',
-              fill: favorites.has(question.question) ? '#ff4d6d' : 'transparent',
-            }}
-          />
-        </button>
+        {/* Share Button - On every card */}
+        <ShareDialog 
+          questionIndex={cardQuestionIndex} 
+          questionText={language === 'en' ? question.questionEn : question.question} 
+        />
       </div>
     );
   };
