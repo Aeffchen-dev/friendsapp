@@ -912,7 +912,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         {prevQuestion && (
           <div
             className="absolute left-0 top-0 h-full cursor-pointer z-20"
-            style={{ width: '16px' }}
+            style={{ width: '20%' }}
             onMouseDown={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -960,7 +960,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         {nextQuestion && (
           <div
             className="absolute right-0 top-0 h-full cursor-pointer z-20"
-            style={{ width: '16px' }}
+            style={{ width: '20%' }}
             onMouseDown={(e) => {
               e.preventDefault();
               e.stopPropagation();
