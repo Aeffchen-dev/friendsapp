@@ -96,6 +96,40 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     }
   }, [isDragging, isTransitioning]);
 
+  // Keyboard arrow navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isTransitioning) return;
+      
+      if (e.key === 'ArrowLeft' && prevQuestion) {
+        const slideDistance = getCardWidth() + 16;
+        setIsTransitioning(true);
+        setTransitionDirection('right');
+        setDragOffset(slideDistance);
+        if (onDragStateChange) {
+          onDragStateChange(false, 1, prevQuestion.category, 1);
+        }
+        setTimeout(() => {
+          onSwipeRight();
+        }, 300);
+      } else if (e.key === 'ArrowRight' && nextQuestion) {
+        const slideDistance = getCardWidth() + 16;
+        setIsTransitioning(true);
+        setTransitionDirection('left');
+        setDragOffset(-slideDistance);
+        if (onDragStateChange) {
+          onDragStateChange(false, 1, nextQuestion.category, -1);
+        }
+        setTimeout(() => {
+          onSwipeLeft();
+        }, 300);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isTransitioning, prevQuestion, nextQuestion, onSwipeLeft, onSwipeRight, onDragStateChange]);
+
   // Synchronously populate from cache on every render to prevent flicker
   const getTranslation = useCallback((question: string): string | undefined => {
     // Check local state first, then global cache
