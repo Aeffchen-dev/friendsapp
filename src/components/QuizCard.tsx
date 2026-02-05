@@ -122,7 +122,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         }
         setTimeout(() => {
           onSwipeRight();
-        }, 300);
+        }, isMobile ? 300 : 400);
       } else if (e.key === 'ArrowRight' && nextQuestion) {
         const slideDistance = getSlideDistance();
         setIsTransitioning(true);
@@ -133,7 +133,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         }
         setTimeout(() => {
           onSwipeLeft();
-        }, 300);
+        }, isMobile ? 300 : 400);
       }
     };
 
@@ -780,7 +780,11 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   // next-2: translateX(200% + 32px) scale(0.8)
   const getSlideStyle = (slidePosition: 'prev2' | 'prev' | 'active' | 'next' | 'next2'): React.CSSProperties => {
     // Disable transitions during drag OR when skipping (after question change)
-    const baseTransition = (isDragging || skipTransition) ? 'none' : 'all 0.3s ease-in-out';
+    // Desktop: 400ms for smoother feel, mobile: 300ms
+    const transitionDuration = isMobile ? '0.3s' : '0.4s';
+    const baseTransition = (isDragging || skipTransition) ? 'none' : `all ${transitionDuration} ease-out`;
+    // Incoming cards get slightly delayed transition for staggered effect
+    const incomingTransition = (isDragging || skipTransition) ? 'none' : `all ${transitionDuration} cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
     // Use pixel offset directly for drag, not percentage
     const slideOffsetPx = totalOffset;
     
@@ -801,11 +805,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           zIndex: 0,
         };
       case 'prev':
-        const prevScale = totalOffset > 0 ? incomingScale : 0.8;
+        // Refined scale: starts smaller (0.85) for more dramatic entrance
+        const prevScale = totalOffset > 0 ? (0.85 + (progress * 0.15)) : 0.85;
         const prevRotation = totalOffset > 0 ? (-5 * (1 - progress)) : 0;
         return {
           transform: `translate(-50%, -50%) translateX(calc(${prevBase} + ${slideOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
-          transition: baseTransition,
+          transition: totalOffset > 0 ? incomingTransition : baseTransition,
           zIndex: 1,
         };
       case 'active':
@@ -822,7 +827,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           zIndex: 2,
         };
       case 'next':
-        const nextScale = totalOffset < 0 ? incomingScale : 0.8;
+        // Refined scale: starts smaller (0.85) for more dramatic entrance
+        const nextScale = totalOffset < 0 ? (0.85 + (progress * 0.15)) : 0.85;
         const nextRotation = totalOffset < 0 ? (5 * (1 - progress)) : 0;
         if (showSwipeHint) {
           return {
@@ -833,7 +839,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         }
         return {
           transform: `translate(-50%, -50%) translateX(calc(${nextBase} + ${slideOffsetPx}px)) scale(${nextScale}) rotate(${nextRotation}deg)`,
-          transition: baseTransition,
+          transition: totalOffset < 0 ? incomingTransition : baseTransition,
           zIndex: 1,
         };
       case 'next2':
