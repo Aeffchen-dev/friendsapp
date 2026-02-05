@@ -991,8 +991,14 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         {/* Left edge click zone */}
         {prevQuestion && (
           <div
-            className="absolute left-0 top-0 h-full cursor-pointer z-20"
-            style={{ width: '20%' }}
+            className="absolute top-1/2 cursor-pointer z-20"
+            style={{ 
+              width: isMobile ? '16px' : '40px',
+              height: '80vh',
+              maxHeight: '80vh',
+              transform: 'translateY(-50%)',
+              left: isMobile ? '16px' : `calc(50% - ${Math.min(500, getCardWidth()) / 2}px)`,
+            }}
             onTouchEnd={(e) => {
               // Only trigger click if it wasn't a drag gesture
               if (!isDragging && Math.abs(dragOffset) < 10) {
@@ -1038,8 +1044,14 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         {/* Right edge click zone */}
         {nextQuestion && (
           <div
-            className="absolute right-0 top-0 h-full cursor-pointer z-20"
-            style={{ width: '20%' }}
+            className="absolute top-1/2 cursor-pointer z-20"
+            style={{ 
+              width: isMobile ? '16px' : '40px',
+              height: '80vh',
+              maxHeight: '80vh',
+              transform: 'translateY(-50%)',
+              right: isMobile ? '16px' : `calc(50% - ${Math.min(500, getCardWidth()) / 2}px)`,
+            }}
             onTouchEnd={(e) => {
               // Only trigger click if it wasn't a drag gesture
               if (!isDragging && Math.abs(dragOffset) < 10) {
