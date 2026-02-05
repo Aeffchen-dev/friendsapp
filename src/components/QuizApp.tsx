@@ -66,6 +66,7 @@ export function QuizApp() {
   const [targetCategory, setTargetCategory] = useState<string>('');
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
   const [isDraggingLogo, setIsDraggingLogo] = useState(false);
+  const [isLogoAnimating, setIsLogoAnimating] = useState(false);
   const [initialIndexApplied, setInitialIndexApplied] = useState(false);
   const logoResetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { t, language } = useLanguage();
@@ -348,6 +349,21 @@ export function QuizApp() {
     
     if (progress > 0) {
       setLogoSqueezeDirection(direction);
+      
+      // Trigger logo animation for non-drag transitions (clicks, keyboard)
+      if (!isDragging && progress === 1) {
+        // Clear any existing timeout
+        if (logoResetTimeoutRef.current) {
+          clearTimeout(logoResetTimeoutRef.current);
+        }
+        setIsLogoAnimating(true);
+        // Reset after transition completes
+        logoResetTimeoutRef.current = setTimeout(() => {
+          setIsLogoAnimating(false);
+          setDragProgress(0);
+          setLogoSqueezeDirection(0);
+        }, 400);
+      }
     } else if (!isDragging) {
       setLogoSqueezeDirection(0);
     }
@@ -424,14 +440,23 @@ export function QuizApp() {
             onClick={handleLogoClick}
             style={{ 
               filter: 'brightness(0)',
-            // During drag: apply squeeze transform directly based on progress
-              ...(isDraggingLogo && dragProgress > 0 ? {
-                transform: `scaleX(${1 + dragProgress * 0.15})`,
-                transformOrigin: logoSqueezeDirection < 0 ? 'right' : 'left',
-                transition: 'none',
-              } : {
-                transition: 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)',
-              })
+              // During drag: apply squeeze transform directly based on progress
+              ...(isDraggingLogo && dragProgress > 0
+                ? {
+                    transform: `scaleX(${1 + dragProgress * 0.15})`,
+                    transformOrigin: logoSqueezeDirection < 0 ? 'right' : 'left',
+                    transition: 'none',
+                  }
+                : isLogoAnimating && dragProgress > 0
+                ? {
+                    // Animated transition for clicks/keyboard
+                    transform: `scaleX(${1 + dragProgress * 0.15})`,
+                    transformOrigin: logoSqueezeDirection < 0 ? 'right' : 'left',
+                    transition: 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  }
+                : {
+                    transition: 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)',
+                  }),
             }}
           />
           {!loading && (
