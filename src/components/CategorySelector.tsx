@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, Check } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { Checkbox } from '@/components/ui/checkbox';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { translateCategory } from '@/lib/questionTranslations';
 interface CategorySelectorProps {
@@ -20,8 +19,6 @@ export function CategorySelector({
   onCategoriesChange 
 }: CategorySelectorProps) {
   const [tempSelection, setTempSelection] = useState<string[]>(selectedCategories);
-  const [strokeAnimations, setStrokeAnimations] = useState<{[key: string]: boolean}>({});
-  const [bounceAnimations, setBounceAnimations] = useState<{[key: string]: boolean}>({});
   const { language, toggleLanguage, t } = useLanguage();
 
   // Update temp selection when selectedCategories prop changes
@@ -77,23 +74,11 @@ export function CategorySelector({
   };
 
   const handleCategoryToggle = (category: string) => {
-    const isCurrentlySelected = tempSelection.includes(category);
-    
     setTempSelection(prev => 
       prev.includes(category) 
         ? prev.filter(c => c !== category)
         : [...prev, category]
     );
-    
-    // Trigger bounce animation quickly
-    if (!isCurrentlySelected) {
-      setTimeout(() => {
-        setBounceAnimations(prev => ({ ...prev, [category]: true }));
-        setTimeout(() => {
-          setBounceAnimations(prev => ({ ...prev, [category]: false }));
-        }, 150);
-      }, 100);
-    }
   };
 
   const handleApply = () => {
@@ -134,21 +119,17 @@ export function CategorySelector({
               const colorClasses = getCategoryColors(category);
               const textColor = getCategoryTextColors(category);
               
-              const isBouncing = bounceAnimations[category];
-              
               return (
                 <div 
                   key={category}
                   className="flex items-center justify-between pl-4 bg-[#161616] cursor-pointer relative overflow-visible"
                   style={{ 
                     borderRadius: '0 999px 999px 0', 
-                    width: isSelected 
-                      ? (isBouncing ? '90.2vw' : '88vw')
-                      : (isBouncing ? 'calc(90.2vw - 32px)' : 'calc(88vw - 32px)'),
+                    width: isSelected ? '88vw' : 'calc(88vw - 32px)',
                     paddingTop: '8px',
                     paddingRight: '8px',
                     paddingBottom: '8px',
-                    transition: 'width 170ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    transition: 'width 200ms ease-out',
                   }}
                   onClick={() => handleCategoryToggle(category)}
                 >
