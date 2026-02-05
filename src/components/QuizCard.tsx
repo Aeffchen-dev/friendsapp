@@ -103,8 +103,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isTransitioning) return;
       
+      // Calculate slide distance: on desktop use viewport-based offset, on mobile use card width
+      const getSlideDistance = () => {
+        if (isMobile) {
+          return getCardWidth() + 16;
+        }
+        // Desktop: 50vw + 50% of card width
+        return (window.innerWidth / 2) + (getCardWidth() / 2);
+      };
+      
       if (e.key === 'ArrowLeft' && prevQuestion) {
-        const slideDistance = getCardWidth() + 16;
+        const slideDistance = getSlideDistance();
         setIsTransitioning(true);
         setTransitionDirection('right');
         setDragOffset(slideDistance);
@@ -115,7 +124,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           onSwipeRight();
         }, 300);
       } else if (e.key === 'ArrowRight' && nextQuestion) {
-        const slideDistance = getCardWidth() + 16;
+        const slideDistance = getSlideDistance();
         setIsTransitioning(true);
         setTransitionDirection('left');
         setDragOffset(-slideDistance);
@@ -130,7 +139,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isTransitioning, prevQuestion, nextQuestion, onSwipeLeft, onSwipeRight, onDragStateChange]);
+  }, [isTransitioning, prevQuestion, nextQuestion, onSwipeLeft, onSwipeRight, onDragStateChange, isMobile]);
 
   // Synchronously populate from cache on every render to prevent flicker
   const getTranslation = useCallback((question: string): string | undefined => {
