@@ -364,13 +364,15 @@ export function QuizApp() {
           clearTimeout(logoResetTimeoutRef.current);
         }
         setIsLogoAnimating(true);
-        // Reset after transition completes
+        // Reset after transition completes - use same timing as card transition
+        const isMobile = window.innerWidth < 768;
+        const transitionDuration = isMobile ? 300 : 400;
         logoResetTimeoutRef.current = setTimeout(() => {
           setIsLogoAnimating(false);
           setDragProgress(0);
           setLogoSqueezeDirection(0);
           setLockedTransformOrigin(null);
-        }, 400);
+        }, transitionDuration);
       }
     } else if (!isDragging) {
       setLogoSqueezeDirection(0);

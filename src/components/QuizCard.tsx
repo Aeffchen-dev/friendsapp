@@ -189,16 +189,24 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     const targetQuestion = direction === 'left' ? nextQuestion : prevQuestion;
     if (!targetQuestion) return;
     
-    const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
+    // Calculate slide distance exactly as in handleEnd
+    const getSlideDistance = () => {
+      if (isMobile) {
+        return getCardWidth() + 16;
+      }
+      // Desktop: 50vw + 50% of card width
+      return (window.innerWidth / 2) + (getCardWidth() / 2);
+    };
+    const slideDistance = getSlideDistance();
     const transitionDuration = isMobile ? 300 : 400;
-    const offset = direction === 'left' ? -slideDistance : slideDistance;
     
-    // Match swipe behavior exactly
+    // Match swipe behavior exactly - same flow as handleEnd
     setIsTransitioning(true);
-    setTransitionDirection(direction === 'left' ? 'left' : 'right');
+    setTransitionDirection(direction);
     setIsDragging(false);
-    setDragOffset(offset);
+    setDragOffset(direction === 'left' ? -slideDistance : slideDistance);
     
+    // Notify parent exactly as swipe does - this triggers logo animation
     if (onDragStateChange) {
       onDragStateChange(false, 1, targetQuestion.category, direction === 'left' ? -1 : 1);
     }
