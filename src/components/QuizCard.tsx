@@ -832,11 +832,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     // Use pixel offset directly for drag, not percentage
     const slideOffsetPx = totalOffset;
     
-    // Debug log for click transitions
-    if (isTransitioning && (slidePosition === 'active' || slidePosition === 'next' || slidePosition === 'prev')) {
-      console.log(`SLIDE ${slidePosition}:`, { totalOffset, slideOffsetPx, isDragging, skipTransition, isTransitioning, baseTransition });
-    }
-    
     // Desktop: use 100vw offset to hide prev/next cards outside viewport
     // Mobile: use percentage-based offset for visible peek
     // Desktop: 50vw + 50% positions card edge exactly at viewport edge
