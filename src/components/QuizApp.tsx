@@ -67,7 +67,7 @@ export function QuizApp() {
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
   const [isDraggingLogo, setIsDraggingLogo] = useState(false);
   const [isLogoAnimating, setIsLogoAnimating] = useState(false);
-  const [lockedTransformOrigin, setLockedTransformOrigin] = useState<'left' | 'right' | null>(null);
+  const [lockedTransformOrigin, setLockedTransformOrigin] = useState<string | null>(null);
   const [initialIndexApplied, setInitialIndexApplied] = useState(false);
   const logoResetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { t, language } = useLanguage();
@@ -354,7 +354,8 @@ export function QuizApp() {
       if (lockedTransformOrigin === null) {
         // For prev slide (direction > 0): fix LEFT edge
         // For next slide (direction < 0): fix RIGHT edge
-        setLockedTransformOrigin(direction > 0 ? 'left' : 'right');
+        // Only 30% of the edge stretches, 70% stays fixed
+        setLockedTransformOrigin(direction > 0 ? '30%' : '70%');
       }
       
       // Trigger logo animation for non-drag transitions (clicks, keyboard)
