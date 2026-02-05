@@ -455,6 +455,8 @@ export function QuizApp() {
                     transition: 'transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1)',
                   }
                 : {
+                    // Keep transformOrigin consistent to prevent jumping
+                    transformOrigin: logoSqueezeDirection < 0 ? 'right' : logoSqueezeDirection > 0 ? 'left' : 'left',
                     transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                   }),
             }}
