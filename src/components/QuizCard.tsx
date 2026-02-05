@@ -989,14 +989,15 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         
         {/* Edge Click Zones */}
         {/* Left edge click zone */}
-        {prevQuestion && (
           <div
-            className="absolute cursor-pointer z-20"
+            className="absolute z-20"
             style={{ 
               width: isMobile ? '16px' : '40px',
               height: '100%',
               top: 0,
               left: 0,
+              cursor: prevQuestion ? 'pointer' : 'default',
+              pointerEvents: prevQuestion ? 'auto' : 'none',
             }}
             onTouchStart={(e) => {
               e.stopPropagation();
@@ -1004,7 +1005,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
             onTouchEnd={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              if (!isTransitioning) {
+              if (!isTransitioning && prevQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
@@ -1021,7 +1022,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              if (!isTransitioning) {
+              if (!isTransitioning && prevQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
@@ -1036,17 +1037,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               }
             }}
           />
-        )}
         
         {/* Right edge click zone */}
-        {nextQuestion && (
           <div
-            className="absolute cursor-pointer z-20"
+            className="absolute z-20"
             style={{ 
               width: isMobile ? '16px' : '40px',
               height: '100%',
               top: 0,
               right: 0,
+              cursor: nextQuestion ? 'pointer' : 'default',
+              pointerEvents: nextQuestion ? 'auto' : 'none',
             }}
             onTouchStart={(e) => {
               e.stopPropagation();
@@ -1054,7 +1055,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
             onTouchEnd={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              if (!isTransitioning) {
+              if (!isTransitioning && nextQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
@@ -1071,7 +1072,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              if (!isTransitioning) {
+              if (!isTransitioning && nextQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
@@ -1086,7 +1087,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               }
             }}
           />
-        )}
       </div>
     </>
   );
