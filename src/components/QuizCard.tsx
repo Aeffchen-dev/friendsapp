@@ -990,7 +990,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         {/* Edge Click Zones */}
         {/* Left edge click zone */}
           <div
-            className="absolute z-20"
+            className="absolute z-50"
             style={{ 
               width: isMobile ? '16px' : '40px',
               height: '100%',
@@ -1001,9 +1001,28 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               touchAction: 'none',
             }}
             onPointerDown={(e) => {
+              console.log('LEFT ZONE: pointerDown', { prevQuestion: !!prevQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
               (e.nativeEvent as Event).stopImmediatePropagation();
+              if (!isTransitioning && prevQuestion) {
+                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
+                const transitionDuration = isMobile ? 300 : 400;
+                setIsTransitioning(true);
+                setTransitionDirection('right');
+                setDragOffset(slideDistance);
+                if (onDragStateChange) {
+                  onDragStateChange(false, 1, prevQuestion.category, 1);
+                }
+                setTimeout(() => {
+                  onSwipeRight();
+                }, transitionDuration);
+              }
+            }}
+            onTouchStart={(e) => {
+              console.log('LEFT ZONE: touchStart', { prevQuestion: !!prevQuestion, isTransitioning });
+              e.preventDefault();
+              e.stopPropagation();
               if (!isTransitioning && prevQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
@@ -1022,7 +1041,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         
         {/* Right edge click zone */}
           <div
-            className="absolute z-20"
+            className="absolute z-50"
             style={{ 
               width: isMobile ? '16px' : '40px',
               height: '100%',
@@ -1033,9 +1052,28 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               touchAction: 'none',
             }}
             onPointerDown={(e) => {
+              console.log('RIGHT ZONE: pointerDown', { nextQuestion: !!nextQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
               (e.nativeEvent as Event).stopImmediatePropagation();
+              if (!isTransitioning && nextQuestion) {
+                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
+                const transitionDuration = isMobile ? 300 : 400;
+                setIsTransitioning(true);
+                setTransitionDirection('left');
+                setDragOffset(-slideDistance);
+                if (onDragStateChange) {
+                  onDragStateChange(false, 1, nextQuestion.category, -1);
+                }
+                setTimeout(() => {
+                  onSwipeLeft();
+                }, transitionDuration);
+              }
+            }}
+            onTouchStart={(e) => {
+              console.log('RIGHT ZONE: touchStart', { nextQuestion: !!nextQuestion, isTransitioning });
+              e.preventDefault();
+              e.stopPropagation();
               if (!isTransitioning && nextQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
