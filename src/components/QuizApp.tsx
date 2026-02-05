@@ -456,7 +456,7 @@ export function QuizApp() {
               transformOrigin: (isDraggingLogo || isLogoAnimating) && logoSqueezeDirection !== 0
                 ? (logoSqueezeDirection > 0 ? 'left center' : 'right center')
                 : 'center',
-              transform: `scaleX(${(isDraggingLogo || isLogoAnimating) && dragProgress > 0 ? 1 + dragProgress * 0.12 : 1})`,
+              transform: `scaleX(${(isDraggingLogo || isLogoAnimating) && dragProgress > 0 ? 1 + dragProgress * 0.07 : 1})`,
               transition: isDraggingLogo 
                 ? 'transform 0.05s linear' 
                 : 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
