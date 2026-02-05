@@ -998,11 +998,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               top: 0,
               left: 0,
             }}
+            onTouchStart={(e) => {
+              e.stopPropagation();
+            }}
             onTouchEnd={(e) => {
-              // Only trigger click if it wasn't a drag gesture
-              if (!isDragging && Math.abs(dragOffset) < 10) {
-                e.preventDefault();
-                e.stopPropagation();
+              e.preventDefault();
+              e.stopPropagation();
               if (!isTransitioning) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
@@ -1016,11 +1017,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
                   onSwipeRight();
                 }, transitionDuration);
               }
-              }
             }}
             onClick={(e) => {
-              // Only trigger click if it wasn't a drag gesture
-              if (Math.abs(dragOffset) >= 10) return;
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning) {
@@ -1050,11 +1048,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               top: 0,
               right: 0,
             }}
+            onTouchStart={(e) => {
+              e.stopPropagation();
+            }}
             onTouchEnd={(e) => {
-              // Only trigger click if it wasn't a drag gesture
-              if (!isDragging && Math.abs(dragOffset) < 10) {
-                e.preventDefault();
-                e.stopPropagation();
+              e.preventDefault();
+              e.stopPropagation();
               if (!isTransitioning) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
@@ -1068,11 +1067,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
                   onSwipeLeft();
                 }, transitionDuration);
               }
-              }
             }}
             onClick={(e) => {
-              // Only trigger click if it wasn't a drag gesture
-              if (Math.abs(dragOffset) >= 10) return;
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning) {
