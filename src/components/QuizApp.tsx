@@ -352,9 +352,9 @@ export function QuizApp() {
       setLogoSqueezeDirection(direction);
       // Lock transform origin at the start of a stretch
       if (lockedTransformOrigin === null) {
-        // For prev slide (direction > 0): fix RIGHT edge
-        // For next slide (direction < 0): fix LEFT edge
-        setLockedTransformOrigin(direction > 0 ? 'right' : 'left');
+        // For prev slide (direction > 0): fix LEFT edge
+        // For next slide (direction < 0): fix RIGHT edge
+        setLockedTransformOrigin(direction > 0 ? 'left' : 'right');
       }
       
       // Trigger logo animation for non-drag transitions (clicks, keyboard)
@@ -453,10 +453,10 @@ export function QuizApp() {
               // During drag: use direction directly to avoid state delay
               // During return animation: use locked origin
               // At rest: use 'left' as default (doesn't matter since scale is 1)
-              // For prev slide (swipe right, direction > 0): fix RIGHT edge, stretch LEFT
-              // For next slide (swipe left, direction < 0): fix LEFT edge, stretch RIGHT
+              // For prev slide (swipe right, direction > 0): fix LEFT edge, stretch RIGHT
+              // For next slide (swipe left, direction < 0): fix RIGHT edge, stretch LEFT
               transformOrigin: isDraggingLogo
-                ? (logoSqueezeDirection > 0 ? 'right' : 'left')
+                ? (logoSqueezeDirection > 0 ? 'left' : 'right')
                 : (lockedTransformOrigin || 'center'),
               transform: (isDraggingLogo || isLogoAnimating) && dragProgress > 0
                 ? `scaleX(${1 + dragProgress * 0.10})`
