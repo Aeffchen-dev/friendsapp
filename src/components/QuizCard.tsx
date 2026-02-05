@@ -790,9 +790,15 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     // Disable transitions during drag OR when skipping (after question change)
     // Desktop: 400ms for smoother feel, mobile: 300ms
     const transitionDuration = isMobile ? '0.3s' : '0.4s';
+    // Enable transitions for click-triggered slides (isTransitioning) but disable during drag or skip
     const baseTransition = (isDragging || skipTransition) ? 'none' : `all ${transitionDuration} ease-out`;
     // Use pixel offset directly for drag, not percentage
     const slideOffsetPx = totalOffset;
+    
+    // Debug log for click transitions
+    if (isTransitioning && (slidePosition === 'active' || slidePosition === 'next' || slidePosition === 'prev')) {
+      console.log(`SLIDE ${slidePosition}:`, { totalOffset, slideOffsetPx, isDragging, skipTransition, isTransitioning, baseTransition });
+    }
     
     // Desktop: use 100vw offset to hide prev/next cards outside viewport
     // Mobile: use percentage-based offset for visible peek
