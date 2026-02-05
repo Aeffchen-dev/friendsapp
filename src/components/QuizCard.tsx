@@ -777,11 +777,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     
     // Desktop: use 100vw offset to hide prev/next cards outside viewport
     // Mobile: use percentage-based offset for visible peek
-    // Cards positioned by their own width + gap for visible peek at edges
-    const prevBase = '-100% - 16px';
-    const nextBase = '100% + 16px';
-    const prev2Base = '-200% - 32px';
-    const next2Base = '200% + 32px';
+    // Desktop: 50vw + 50% positions card edge exactly at viewport edge
+    // Mobile: percentage-based for visible peek
+    const prevBase = isMobile ? '-100% - 16px' : '-50vw - 50%';
+    const nextBase = isMobile ? '100% + 16px' : '50vw + 50%';
+    const prev2Base = isMobile ? '-200% - 32px' : '-100vw - 100%';
+    const next2Base = isMobile ? '200% + 32px' : '100vw + 100%';
     
     switch (slidePosition) {
       case 'prev2':
