@@ -651,8 +651,16 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   const handleEnd = () => {
     if (!isDragging || !containerRef.current) return;
     
-    // Use card width + gap for accurate positioning (matches translateX(100% + 16px))
-    const slideDistance = getCardWidth() + 16;
+    // Calculate slide distance: on desktop use viewport-based offset, on mobile use card width
+    const getSlideDistance = () => {
+      if (isMobile) {
+        return getCardWidth() + 16;
+      }
+      // Desktop: 50vw + 50% of card width
+      return (window.innerWidth / 2) + (getCardWidth() / 2);
+    };
+    const slideDistance = getSlideDistance();
+    const transitionDuration = isMobile ? 300 : 400;
     
     if (Math.abs(dragOffset) > dragThreshold) {
       if (dragOffset < 0 && nextQuestion) {
@@ -668,7 +676,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         
         setTimeout(() => {
           onSwipeLeft();
-        }, 300);
+        }, transitionDuration);
         return;
       } else if (dragOffset > 0 && prevQuestion) {
         // Swipe right - trigger transition
@@ -683,7 +691,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         
         setTimeout(() => {
           onSwipeRight();
-        }, 300);
+        }, transitionDuration);
         return;
       }
     }
