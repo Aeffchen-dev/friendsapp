@@ -1004,7 +1004,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               console.log('LEFT ZONE: touchStart', { prevQuestion: !!prevQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              if (!isTransitioning && prevQuestion) {
+              if (prevQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
@@ -1022,7 +1022,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               console.log('LEFT ZONE: click', { prevQuestion: !!prevQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              if (!isTransitioning && prevQuestion) {
+              if (prevQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
@@ -1054,7 +1054,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               console.log('RIGHT ZONE: touchStart', { nextQuestion: !!nextQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              if (!isTransitioning && nextQuestion) {
+              if (nextQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
@@ -1072,7 +1072,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               console.log('RIGHT ZONE: click', { nextQuestion: !!nextQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              if (!isTransitioning && nextQuestion) {
+              if (nextQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
