@@ -457,9 +457,9 @@ export function QuizApp() {
               // At rest: use 'left' as default (doesn't matter since scale is 1)
               // For prev slide (swipe right, direction > 0): fix LEFT edge, stretch RIGHT
               // For next slide (swipe left, direction < 0): fix RIGHT edge, stretch LEFT
-              transformOrigin: isDraggingLogo
-                ? (logoSqueezeDirection > 0 ? 'left' : 'right')
-                : (lockedTransformOrigin || 'center'),
+              transformOrigin: (isDraggingLogo || isLogoAnimating)
+                ? (logoSqueezeDirection > 0 ? 'left' : logoSqueezeDirection < 0 ? 'right' : 'center')
+                : 'center',
               transform: (isDraggingLogo || isLogoAnimating) && dragProgress > 0
                 ? `scaleX(${1 + dragProgress * 0.10})`
                 : 'scaleX(1)',
