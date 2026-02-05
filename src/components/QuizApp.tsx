@@ -458,8 +458,8 @@ export function QuizApp() {
                 : 'center',
               transform: `scaleX(${(isDraggingLogo || isLogoAnimating) && dragProgress > 0 ? 1 + dragProgress * 0.07 : 1})`,
               transition: isDraggingLogo 
-                ? 'transform 0.05s linear' 
-                : `transform ${window.innerWidth < 768 ? '0.3s' : '0.4s'} ease-out`,
+                ? 'none' 
+                : `transform ${window.innerWidth < 768 ? '300ms' : '400ms'} cubic-bezier(0.16, 1, 0.3, 1)`,
             }}
           />
           {!loading && (
