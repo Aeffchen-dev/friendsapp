@@ -459,7 +459,7 @@ export function QuizApp() {
                 ? (logoSqueezeDirection > 0 ? 'right' : 'left')
                 : (lockedTransformOrigin || 'center'),
               transform: (isDraggingLogo || isLogoAnimating) && dragProgress > 0
-                ? `scaleX(${1 + dragProgress * 0.15})`
+                ? `scaleX(${1 + dragProgress * 0.10})`
                 : 'scaleX(1)',
               transition: isDraggingLogo 
                 ? 'none' 
