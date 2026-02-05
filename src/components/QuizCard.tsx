@@ -999,7 +999,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning) {
-                const slideDistance = getCardWidth() + 16;
+                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
+                const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
                 setTransitionDirection('right');
                 setDragOffset(slideDistance);
@@ -1008,14 +1009,15 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
                 }
                 setTimeout(() => {
                   onSwipeRight();
-                }, 300);
+                }, transitionDuration);
               }
             }}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning) {
-                const slideDistance = getCardWidth() + 16;
+                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
+                const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
                 setTransitionDirection('right');
                 setDragOffset(slideDistance);
@@ -1024,7 +1026,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
                 }
                 setTimeout(() => {
                   onSwipeRight();
-                }, 300);
+                }, transitionDuration);
               }
             }}
           />
@@ -1047,7 +1049,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning) {
-                const slideDistance = getCardWidth() + 16;
+                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
+                const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
                 setTransitionDirection('left');
                 setDragOffset(-slideDistance);
@@ -1056,14 +1059,15 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
                 }
                 setTimeout(() => {
                   onSwipeLeft();
-                }, 300);
+                }, transitionDuration);
               }
             }}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning) {
-                const slideDistance = getCardWidth() + 16;
+                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
+                const transitionDuration = isMobile ? 300 : 400;
                 setIsTransitioning(true);
                 setTransitionDirection('left');
                 setDragOffset(-slideDistance);
@@ -1072,7 +1076,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
                 }
                 setTimeout(() => {
                   onSwipeLeft();
-                }, 300);
+                }, transitionDuration);
               }
             }}
           />
