@@ -4,6 +4,7 @@ import { ShareDialog } from './ShareDialog';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { translateToEnglish, getCachedTranslation } from '@/lib/translationService';
 import { translateCategory } from '@/lib/questionTranslations';
+import { useIsMobile } from '@/hooks/use-mobile';
 interface Question {
   question: string;
   questionEn: string;
@@ -38,6 +39,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   const [showSwipeHint, setShowSwipeHint] = useState(false);
   
   const { language } = useLanguage();
+  const isMobile = useIsMobile();
   const hintTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLHeadingElement>(null);
@@ -773,10 +775,17 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     // Use pixel offset directly for drag, not percentage
     const slideOffsetPx = totalOffset;
     
+    // Desktop: use 100vw offset to hide prev/next cards outside viewport
+    // Mobile: use percentage-based offset for visible peek
+    const prevOffset = isMobile ? 'calc(-100% - 16px' : 'calc(-100vw';
+    const nextOffset = isMobile ? 'calc(100% + 16px' : 'calc(100vw';
+    const prev2Offset = isMobile ? 'calc(-200% - 32px' : 'calc(-200vw';
+    const next2Offset = isMobile ? 'calc(200% + 32px' : 'calc(200vw';
+    
     switch (slidePosition) {
       case 'prev2':
         return {
-          transform: `translate(-50%, -50%) translateX(calc(-200% - 32px + ${slideOffsetPx}px)) scale(0.8)`,
+          transform: `translate(-50%, -50%) translateX(${prev2Offset} + ${slideOffsetPx}px)) scale(0.8)`,
           transition: baseTransition,
           zIndex: 0,
         };
@@ -784,7 +793,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         const prevScale = totalOffset > 0 ? incomingScale : 0.8;
         const prevRotation = totalOffset > 0 ? (-5 * (1 - progress)) : 0;
         return {
-          transform: `translate(-50%, -50%) translateX(calc(-100% - 16px + ${slideOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
+          transform: `translate(-50%, -50%) translateX(${prevOffset} + ${slideOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
           transition: baseTransition,
           zIndex: 1,
         };
@@ -806,19 +815,19 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         const nextRotation = totalOffset < 0 ? (5 * (1 - progress)) : 0;
         if (showSwipeHint) {
           return {
-            transform: 'translate(-50%, -50%) translateX(calc(100% + 16px - 60px)) scale(0.86)',
+            transform: `translate(-50%, -50%) translateX(${isMobile ? 'calc(100% + 16px - 60px)' : 'calc(100vw - 60px)'}) scale(0.86)`,
             transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
             zIndex: 1,
           };
         }
         return {
-          transform: `translate(-50%, -50%) translateX(calc(100% + 16px + ${slideOffsetPx}px)) scale(${nextScale}) rotate(${nextRotation}deg)`,
+          transform: `translate(-50%, -50%) translateX(${nextOffset} + ${slideOffsetPx}px)) scale(${nextScale}) rotate(${nextRotation}deg)`,
           transition: baseTransition,
           zIndex: 1,
         };
       case 'next2':
         return {
-          transform: `translate(-50%, -50%) translateX(calc(200% + 32px + ${slideOffsetPx}px)) scale(0.8)`,
+          transform: `translate(-50%, -50%) translateX(${next2Offset} + ${slideOffsetPx}px)) scale(0.8)`,
           transition: baseTransition,
           zIndex: 0,
         };
@@ -850,7 +859,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           WebkitBackdropFilter: 'blur(16px)',
           boxShadow: '-2px 0 24px 4px rgba(0, 0, 0, 0.24)',
           width: 'calc(100% - 32px)',
-          maxWidth: 'calc(min(700px, 100%) - 32px)',
+          maxWidth: isMobile ? 'calc(min(700px, 100%) - 32px)' : '500px',
         }}
       >
         {/* Category Strip */}
