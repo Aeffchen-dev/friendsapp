@@ -452,9 +452,9 @@ export function QuizApp() {
             onClick={handleLogoClick}
             style={{ 
               filter: 'brightness(0)',
-              // Smooth stretch: only change origin when actively dragging, keep center when idle
-              transformOrigin: (isDraggingLogo || isLogoAnimating) && logoSqueezeDirection !== 0
-                ? (logoSqueezeDirection > 0 ? 'left center' : 'right center')
+              // Lock transform origin during entire stretch cycle to prevent jumping
+              transformOrigin: lockedTransformOrigin 
+                ? `${lockedTransformOrigin} center` 
                 : 'center',
               transform: `scaleX(${(isDraggingLogo || isLogoAnimating) && dragProgress > 0 ? 1 + dragProgress * 0.07 : 1})`,
               transition: isDraggingLogo 
