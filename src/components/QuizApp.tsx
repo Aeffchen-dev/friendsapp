@@ -452,21 +452,6 @@ export function QuizApp() {
             onClick={handleLogoClick}
             style={{ 
               filter: 'brightness(0)',
-              // For prev slide (swipe right, direction > 0): fix LEFT edge, stretch RIGHT
-              // For next slide (swipe left, direction < 0): fix RIGHT edge, stretch LEFT
-              // Use separate transformOrigin property to avoid transition on origin change
-              transformOrigin: logoSqueezeDirection > 0 ? 'left center' : logoSqueezeDirection < 0 ? 'right center' : 'center',
-              transform: (() => {
-                if ((isDraggingLogo || isLogoAnimating) && dragProgress > 0) {
-                  // Scale stretch effect - one side fixed
-                  return `scaleX(${1 + dragProgress * 0.12})`;
-                }
-                return 'scaleX(1)';
-              })(),
-              // Only transition transform, NOT transformOrigin
-              transition: isDraggingLogo
-                ? 'transform 0s'
-                : 'transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1)',
             }}
           />
           {!loading && (
