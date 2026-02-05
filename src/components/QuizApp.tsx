@@ -452,10 +452,10 @@ export function QuizApp() {
                     // Animated transition for clicks/keyboard
                     transform: `scaleX(${1 + dragProgress * 0.15})`,
                     transformOrigin: logoSqueezeDirection < 0 ? 'right' : 'left',
-                    transition: 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    transition: 'transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1)',
                   }
                 : {
-                    transition: 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)',
+                    transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                   }),
             }}
           />
