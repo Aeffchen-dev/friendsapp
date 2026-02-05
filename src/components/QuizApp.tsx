@@ -352,10 +352,9 @@ export function QuizApp() {
       setLogoSqueezeDirection(direction);
       // Lock transform origin at the start of a stretch
       if (lockedTransformOrigin === null) {
-        // For prev slide (direction > 0): fix LEFT edge
-        // For next slide (direction < 0): fix RIGHT edge
-        // Only 30% of the edge stretches, 70% stays fixed
-        setLockedTransformOrigin(direction > 0 ? '30%' : '70%');
+        // For prev slide (direction > 0, swipe right): RIGHT 30% stretches, left 70% fixed → anchor at 70%
+        // For next slide (direction < 0, swipe left): LEFT 30% stretches, right 70% fixed → anchor at 30%
+        setLockedTransformOrigin(direction > 0 ? '70%' : '30%');
       }
       
       // Trigger logo animation for non-drag transitions (clicks, keyboard)
