@@ -452,15 +452,14 @@ export function QuizApp() {
             onClick={handleLogoClick}
             style={{ 
               filter: 'brightness(0)',
-              // For prev slide (swipe right, direction > 0): fix LEFT edge, stretch RIGHT half
-              // For next slide (swipe left, direction < 0): fix RIGHT edge, stretch LEFT half
-              transformOrigin: logoSqueezeDirection > 0 ? 'left center' : logoSqueezeDirection < 0 ? 'right center' : 'center',
-              transform: (isDraggingLogo || isLogoAnimating) && dragProgress > 0
-                ? `scaleX(${1 + dragProgress * 0.15})`
-                : 'scaleX(1)',
-              transition: isDraggingLogo
-                ? 'none'
-                : 'transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1)',
+              // Smooth stretch: only change origin when actively dragging, keep center when idle
+              transformOrigin: (isDraggingLogo || isLogoAnimating) && logoSqueezeDirection !== 0
+                ? (logoSqueezeDirection > 0 ? 'left center' : 'right center')
+                : 'center',
+              transform: `scaleX(${(isDraggingLogo || isLogoAnimating) && dragProgress > 0 ? 1 + dragProgress * 0.12 : 1})`,
+              transition: isDraggingLogo 
+                ? 'transform 0.05s linear' 
+                : 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
             }}
           />
           {!loading && (
