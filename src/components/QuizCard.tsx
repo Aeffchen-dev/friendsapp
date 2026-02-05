@@ -992,19 +992,19 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           <div
             className="absolute z-50"
             style={{ 
-              width: isMobile ? '16px' : '40px',
+              width: isMobile ? '44px' : '60px',
               height: '100%',
               top: 0,
               left: 0,
               cursor: prevQuestion ? 'pointer' : 'default',
               pointerEvents: prevQuestion ? 'auto' : 'none',
               touchAction: 'none',
+              background: 'rgba(255,0,0,0.1)', // DEBUG: red tint to see zone
             }}
-            onPointerDown={(e) => {
-              console.log('LEFT ZONE: pointerDown', { prevQuestion: !!prevQuestion, isTransitioning });
+            onTouchStart={(e) => {
+              console.log('LEFT ZONE: touchStart', { prevQuestion: !!prevQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              (e.nativeEvent as Event).stopImmediatePropagation();
               if (!isTransitioning && prevQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
@@ -1019,8 +1019,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
                 }, transitionDuration);
               }
             }}
-            onTouchStart={(e) => {
-              console.log('LEFT ZONE: touchStart', { prevQuestion: !!prevQuestion, isTransitioning });
+            onClick={(e) => {
+              console.log('LEFT ZONE: click', { prevQuestion: !!prevQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning && prevQuestion) {
@@ -1043,19 +1043,19 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           <div
             className="absolute z-50"
             style={{ 
-              width: isMobile ? '16px' : '40px',
+              width: isMobile ? '44px' : '60px',
               height: '100%',
               top: 0,
               right: 0,
               cursor: nextQuestion ? 'pointer' : 'default',
               pointerEvents: nextQuestion ? 'auto' : 'none',
               touchAction: 'none',
+              background: 'rgba(0,0,255,0.1)', // DEBUG: blue tint to see zone
             }}
-            onPointerDown={(e) => {
-              console.log('RIGHT ZONE: pointerDown', { nextQuestion: !!nextQuestion, isTransitioning });
+            onTouchStart={(e) => {
+              console.log('RIGHT ZONE: touchStart', { nextQuestion: !!nextQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              (e.nativeEvent as Event).stopImmediatePropagation();
               if (!isTransitioning && nextQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
@@ -1070,8 +1070,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
                 }, transitionDuration);
               }
             }}
-            onTouchStart={(e) => {
-              console.log('RIGHT ZONE: touchStart', { nextQuestion: !!nextQuestion, isTransitioning });
+            onClick={(e) => {
+              console.log('RIGHT ZONE: click', { nextQuestion: !!nextQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
               if (!isTransitioning && nextQuestion) {
