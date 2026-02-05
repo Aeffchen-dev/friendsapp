@@ -222,19 +222,6 @@ export function QuizApp() {
     }
   };
 
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowLeft') {
-      prevQuestion();
-    } else if (e.key === 'ArrowRight') {
-      nextQuestion();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [currentIndex]);
-
   // Filter questions based on selected categories
   useEffect(() => {
     if (selectedCategories.length === 0) {
