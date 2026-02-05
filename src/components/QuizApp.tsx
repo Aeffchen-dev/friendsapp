@@ -444,19 +444,19 @@ export function QuizApp() {
               ...(isDraggingLogo && dragProgress > 0
                 ? {
                     transform: `scaleX(${1 + dragProgress * 0.15})`,
-                    transformOrigin: logoSqueezeDirection < 0 ? 'right' : 'left',
+                    transformOrigin: logoSqueezeDirection < 0 ? 'left' : 'right',
                     transition: 'none',
                   }
                 : isLogoAnimating && dragProgress > 0
                 ? {
                     // Animated transition for clicks/keyboard
                     transform: `scaleX(${1 + dragProgress * 0.15})`,
-                    transformOrigin: logoSqueezeDirection < 0 ? 'right' : 'left',
+                    transformOrigin: logoSqueezeDirection < 0 ? 'left' : 'right',
                     transition: 'transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1)',
                   }
                 : {
                     // Keep transformOrigin consistent to prevent jumping
-                    transformOrigin: logoSqueezeDirection < 0 ? 'right' : logoSqueezeDirection > 0 ? 'left' : 'left',
+                    transformOrigin: logoSqueezeDirection < 0 ? 'left' : logoSqueezeDirection > 0 ? 'right' : 'center',
                     transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                   }),
             }}
