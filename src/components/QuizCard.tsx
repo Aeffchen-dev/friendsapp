@@ -777,15 +777,16 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     
     // Desktop: use 100vw offset to hide prev/next cards outside viewport
     // Mobile: use percentage-based offset for visible peek
-    const prevOffset = isMobile ? 'calc(-100% - 16px' : 'calc(-50vw - 50% - 16px';
-    const nextOffset = isMobile ? 'calc(100% + 16px' : 'calc(50vw + 50% + 16px';
-    const prev2Offset = isMobile ? 'calc(-200% - 32px' : 'calc(-100vw - 100% - 32px';
-    const next2Offset = isMobile ? 'calc(200% + 32px' : 'calc(100vw + 100% + 32px';
+    // Desktop: 50vw + 50% positions card just outside viewport edge
+    const prevBase = isMobile ? '-100% - 16px' : '-50vw - 50%';
+    const nextBase = isMobile ? '100% + 16px' : '50vw + 50%';
+    const prev2Base = isMobile ? '-200% - 32px' : '-100vw - 100%';
+    const next2Base = isMobile ? '200% + 32px' : '100vw + 100%';
     
     switch (slidePosition) {
       case 'prev2':
         return {
-          transform: `translate(-50%, -50%) translateX(${prev2Offset} + ${slideOffsetPx}px)) scale(0.8)`,
+          transform: `translate(-50%, -50%) translateX(calc(${prev2Base} + ${slideOffsetPx}px)) scale(0.8)`,
           transition: baseTransition,
           zIndex: 0,
         };
@@ -793,7 +794,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         const prevScale = totalOffset > 0 ? incomingScale : 0.8;
         const prevRotation = totalOffset > 0 ? (-5 * (1 - progress)) : 0;
         return {
-          transform: `translate(-50%, -50%) translateX(${prevOffset} + ${slideOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
+          transform: `translate(-50%, -50%) translateX(calc(${prevBase} + ${slideOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
           transition: baseTransition,
           zIndex: 1,
         };
@@ -815,19 +816,19 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         const nextRotation = totalOffset < 0 ? (5 * (1 - progress)) : 0;
         if (showSwipeHint) {
           return {
-            transform: `translate(-50%, -50%) translateX(${isMobile ? 'calc(100% + 16px - 60px)' : 'calc(50vw + 50% - 44px)'}) scale(0.86)`,
+            transform: `translate(-50%, -50%) translateX(calc(${nextBase} - 60px)) scale(0.86)`,
             transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
             zIndex: 1,
           };
         }
         return {
-          transform: `translate(-50%, -50%) translateX(${nextOffset} + ${slideOffsetPx}px)) scale(${nextScale}) rotate(${nextRotation}deg)`,
+          transform: `translate(-50%, -50%) translateX(calc(${nextBase} + ${slideOffsetPx}px)) scale(${nextScale}) rotate(${nextRotation}deg)`,
           transition: baseTransition,
           zIndex: 1,
         };
       case 'next2':
         return {
-          transform: `translate(-50%, -50%) translateX(${next2Offset} + ${slideOffsetPx}px)) scale(0.8)`,
+          transform: `translate(-50%, -50%) translateX(calc(${next2Base} + ${slideOffsetPx}px)) scale(0.8)`,
           transition: baseTransition,
           zIndex: 0,
         };
