@@ -32,6 +32,16 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionDirection, setTransitionDirection] = useState<'left' | 'right' | null>(null);
   
+  // Frozen questions during click/keyboard transition - prevents content from changing mid-animation
+  const [frozenQuestions, setFrozenQuestions] = useState<{
+    current: Question;
+    next: Question | null;
+    prev: Question | null;
+    next2: Question | null;
+    prev2: Question | null;
+    questionIndex: number;
+  } | null>(null);
+  
   // Additional state
   const [startX, setStartX] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -174,11 +184,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   // Reset drag when question changes - use useLayoutEffect for synchronous update before paint
   useLayoutEffect(() => {
     if (prevQuestionIndexRef.current !== questionIndex) {
-      // Disable transitions synchronously before paint
+      // Reset all transition state
       setSkipTransition(true);
       setDragOffset(0);
       setIsTransitioning(false);
       setTransitionDirection(null);
+      // Clear frozen questions - new questions are now in place
+      setFrozenQuestions(null);
       prevQuestionIndexRef.current = questionIndex;
     }
   }, [questionIndex]);
@@ -188,6 +200,16 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   const triggerNavigation = useCallback((direction: 'left' | 'right') => {
     const targetQuestion = direction === 'left' ? nextQuestion : prevQuestion;
     if (!targetQuestion) return;
+    
+    // Freeze current questions so they don't change during animation
+    setFrozenQuestions({
+      current: currentQuestion,
+      next: nextQuestion,
+      prev: prevQuestion,
+      next2: nextQuestion2,
+      prev2: prevQuestion2,
+      questionIndex: questionIndex,
+    });
     
     // Calculate slide distance exactly as in handleEnd
     const getSlideDistance = () => {
@@ -219,7 +241,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         onSwipeRight();
       }
     }, transitionDuration);
-  }, [nextQuestion, prevQuestion, isMobile, onDragStateChange, onSwipeLeft, onSwipeRight]);
+  }, [currentQuestion, nextQuestion, prevQuestion, nextQuestion2, prevQuestion2, questionIndex, isMobile, onDragStateChange, onSwipeLeft, onSwipeRight]);
   
   // Keyboard arrow navigation - must be after triggerNavigation definition
   useEffect(() => {
@@ -988,20 +1010,34 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
       >
         {/* 5-Slide Window: prev-2, prev, active, next, next-2 */}
         <div className="relative h-full w-full flex items-center justify-center">
-          {/* prev-2 slide */}
-          {prevQuestion2 && renderCard(prevQuestion2, getSlideStyle('prev2'), questionIndex - 2)}
-          
-          {/* prev slide */}
-          {prevQuestion && renderCard(prevQuestion, getSlideStyle('prev'), questionIndex - 1)}
-          
-          {/* active slide */}
-          {renderCard(currentQuestion, getSlideStyle('active'), questionIndex)}
-          
-          {/* next slide */}
-          {nextQuestion && renderCard(nextQuestion, getSlideStyle('next'), questionIndex + 1)}
-          
-          {/* next-2 slide */}
-          {nextQuestion2 && renderCard(nextQuestion2, getSlideStyle('next2'), questionIndex + 2)}
+          {/* Use frozen questions during click/keyboard transitions to prevent content jumping */}
+          {(() => {
+            const displayCurrent = frozenQuestions?.current ?? currentQuestion;
+            const displayNext = frozenQuestions?.next ?? nextQuestion;
+            const displayPrev = frozenQuestions?.prev ?? prevQuestion;
+            const displayNext2 = frozenQuestions?.next2 ?? nextQuestion2;
+            const displayPrev2 = frozenQuestions?.prev2 ?? prevQuestion2;
+            const displayIndex = frozenQuestions?.questionIndex ?? questionIndex;
+            
+            return (
+              <>
+                {/* prev-2 slide */}
+                {displayPrev2 && renderCard(displayPrev2, getSlideStyle('prev2'), displayIndex - 2)}
+                
+                {/* prev slide */}
+                {displayPrev && renderCard(displayPrev, getSlideStyle('prev'), displayIndex - 1)}
+                
+                {/* active slide */}
+                {renderCard(displayCurrent, getSlideStyle('active'), displayIndex)}
+                
+                {/* next slide */}
+                {displayNext && renderCard(displayNext, getSlideStyle('next'), displayIndex + 1)}
+                
+                {/* next-2 slide */}
+                {displayNext2 && renderCard(displayNext2, getSlideStyle('next2'), displayIndex + 2)}
+              </>
+            );
+          })()}
         </div>
         
         {/* Edge Click Zones */}
