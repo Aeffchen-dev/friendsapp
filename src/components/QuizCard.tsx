@@ -55,6 +55,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   const questionRef = useRef<HTMLHeadingElement>(null);
   const activeCardRef = useRef<HTMLDivElement>(null);
   const dragThreshold = 100; // Threshold for triggering transition
+  const touchTriggeredRef = useRef(false); // Prevent onClick after onTouchStart
   
   // Get the actual card width for accurate slide positioning
   const getCardWidth = () => {
@@ -198,6 +199,9 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   // Unified navigation trigger - used by click zones and keyboard
   // This replicates the exact swipe animation behavior
   const triggerNavigation = useCallback((direction: 'left' | 'right') => {
+    // Prevent double-triggering during transition
+    if (isTransitioning || frozenQuestions) return;
+    
     const targetQuestion = direction === 'left' ? nextQuestion : prevQuestion;
     if (!targetQuestion) return;
     
@@ -241,7 +245,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         onSwipeRight();
       }
     }, transitionDuration);
-  }, [currentQuestion, nextQuestion, prevQuestion, nextQuestion2, prevQuestion2, questionIndex, isMobile, onDragStateChange, onSwipeLeft, onSwipeRight]);
+  }, [isTransitioning, frozenQuestions, currentQuestion, nextQuestion, prevQuestion, nextQuestion2, prevQuestion2, questionIndex, isMobile, onDragStateChange, onSwipeLeft, onSwipeRight]);
   
   // Keyboard arrow navigation - must be after triggerNavigation definition
   useEffect(() => {
@@ -1054,16 +1058,22 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               touchAction: 'none',
             }}
             onTouchStart={(e) => {
-              console.log('LEFT ZONE: touchStart', { prevQuestion: !!prevQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
+              touchTriggeredRef.current = true;
               triggerNavigation('right');
             }}
+            onTouchEnd={() => {
+              // Reset after a short delay to allow click to be suppressed
+              setTimeout(() => { touchTriggeredRef.current = false; }, 100);
+            }}
             onClick={(e) => {
-              console.log('LEFT ZONE: click', { prevQuestion: !!prevQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              triggerNavigation('right');
+              // Only trigger on desktop (when touch didn't fire)
+              if (!touchTriggeredRef.current) {
+                triggerNavigation('right');
+              }
             }}
           />
         
@@ -1080,16 +1090,20 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               touchAction: 'none',
             }}
             onTouchStart={(e) => {
-              console.log('RIGHT ZONE: touchStart', { nextQuestion: !!nextQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
+              touchTriggeredRef.current = true;
               triggerNavigation('left');
             }}
+            onTouchEnd={() => {
+              setTimeout(() => { touchTriggeredRef.current = false; }, 100);
+            }}
             onClick={(e) => {
-              console.log('RIGHT ZONE: click', { nextQuestion: !!nextQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              triggerNavigation('left');
+              if (!touchTriggeredRef.current) {
+                triggerNavigation('left');
+              }
             }}
           />
       </div>
