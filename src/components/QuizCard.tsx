@@ -213,15 +213,26 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   // Track if we need to skip transition on next render (after question change)
   const [skipTransition, setSkipTransition] = useState(false);
   const prevQuestionIndexRef = useRef(questionIndex);
+  const isClickTransitionRef = useRef(false);
   
   // Reset drag when question changes - use useLayoutEffect for synchronous update before paint
   useLayoutEffect(() => {
     if (prevQuestionIndexRef.current !== questionIndex) {
-      // Disable transitions synchronously before paint
-      setSkipTransition(true);
-      setDragOffset(0);
-      setIsTransitioning(false);
-      setTransitionDirection(null);
+      // Only reset immediately if NOT a click transition (which handles its own timing)
+      if (!isClickTransitionRef.current) {
+        // Disable transitions synchronously before paint (for swipe gestures)
+        setSkipTransition(true);
+        setDragOffset(0);
+        setIsTransitioning(false);
+        setTransitionDirection(null);
+      } else {
+        // For click transitions, just reset the flag and position after the fact
+        isClickTransitionRef.current = false;
+        setSkipTransition(true);
+        setDragOffset(0);
+        setIsTransitioning(false);
+        setTransitionDirection(null);
+      }
       prevQuestionIndexRef.current = questionIndex;
     }
   }, [questionIndex]);
@@ -1013,6 +1024,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               if (prevQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
+                isClickTransitionRef.current = true;
                 setIsTransitioning(true);
                 setTransitionDirection('right');
                 setDragOffset(slideDistance);
@@ -1031,6 +1043,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               if (prevQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
+                isClickTransitionRef.current = true;
                 setIsTransitioning(true);
                 setTransitionDirection('right');
                 setDragOffset(slideDistance);
@@ -1063,6 +1076,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               if (nextQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
+                isClickTransitionRef.current = true;
                 setIsTransitioning(true);
                 setTransitionDirection('left');
                 setDragOffset(-slideDistance);
@@ -1081,6 +1095,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               if (nextQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
+                isClickTransitionRef.current = true;
                 setIsTransitioning(true);
                 setTransitionDirection('left');
                 setDragOffset(-slideDistance);
