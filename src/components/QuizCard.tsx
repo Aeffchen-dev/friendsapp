@@ -998,30 +998,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               left: 0,
               cursor: prevQuestion ? 'pointer' : 'default',
               pointerEvents: prevQuestion ? 'auto' : 'none',
+              touchAction: 'none',
             }}
-            onTouchStart={(e) => {
-              e.stopPropagation();
-            }}
-            onTouchEnd={(e) => {
+            onPointerDown={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              if (!isTransitioning && prevQuestion) {
-                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
-                const transitionDuration = isMobile ? 300 : 400;
-                setIsTransitioning(true);
-                setTransitionDirection('right');
-                setDragOffset(slideDistance);
-                if (onDragStateChange) {
-                  onDragStateChange(false, 1, prevQuestion.category, 1);
-                }
-                setTimeout(() => {
-                  onSwipeRight();
-                }, transitionDuration);
-              }
-            }}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
+              (e.nativeEvent as Event).stopImmediatePropagation();
               if (!isTransitioning && prevQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
@@ -1048,30 +1030,12 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               right: 0,
               cursor: nextQuestion ? 'pointer' : 'default',
               pointerEvents: nextQuestion ? 'auto' : 'none',
+              touchAction: 'none',
             }}
-            onTouchStart={(e) => {
-              e.stopPropagation();
-            }}
-            onTouchEnd={(e) => {
+            onPointerDown={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              if (!isTransitioning && nextQuestion) {
-                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
-                const transitionDuration = isMobile ? 300 : 400;
-                setIsTransitioning(true);
-                setTransitionDirection('left');
-                setDragOffset(-slideDistance);
-                if (onDragStateChange) {
-                  onDragStateChange(false, 1, nextQuestion.category, -1);
-                }
-                setTimeout(() => {
-                  onSwipeLeft();
-                }, transitionDuration);
-              }
-            }}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
+              (e.nativeEvent as Event).stopImmediatePropagation();
               if (!isTransitioning && nextQuestion) {
                 const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
                 const transitionDuration = isMobile ? 300 : 400;
