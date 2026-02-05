@@ -783,8 +783,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     // Desktop: 400ms for smoother feel, mobile: 300ms
     const transitionDuration = isMobile ? '0.3s' : '0.4s';
     const baseTransition = (isDragging || skipTransition) ? 'none' : `all ${transitionDuration} ease-out`;
-    // Incoming cards get slightly delayed transition for staggered effect
-    const incomingTransition = (isDragging || skipTransition) ? 'none' : `all ${transitionDuration} cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
     // Use pixel offset directly for drag, not percentage
     const slideOffsetPx = totalOffset;
     
@@ -800,17 +798,18 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     switch (slidePosition) {
       case 'prev2':
         return {
-          transform: `translate(-50%, -50%) translateX(calc(${prev2Base} + ${slideOffsetPx}px)) scale(0.8)`,
+          transform: `translate(-50%, -50%) translateX(calc(${prev2Base} + ${slideOffsetPx}px)) scale(0.8) rotate(-5deg)`,
           transition: baseTransition,
           zIndex: 0,
         };
       case 'prev':
         // Refined scale: starts smaller (0.85) for more dramatic entrance
         const prevScale = totalOffset > 0 ? (0.85 + (progress * 0.15)) : 0.85;
-        const prevRotation = totalOffset > 0 ? (-5 * (1 - progress)) : 0;
+        // Base rotation -5° at rest, animates to 0° when becoming active
+        const prevRotation = totalOffset > 0 ? (-5 * (1 - progress)) : -5;
         return {
           transform: `translate(-50%, -50%) translateX(calc(${prevBase} + ${slideOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
-          transition: totalOffset > 0 ? incomingTransition : baseTransition,
+          transition: baseTransition,
           zIndex: 1,
         };
       case 'active':
@@ -829,22 +828,23 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
       case 'next':
         // Refined scale: starts smaller (0.85) for more dramatic entrance
         const nextScale = totalOffset < 0 ? (0.85 + (progress * 0.15)) : 0.85;
-        const nextRotation = totalOffset < 0 ? (5 * (1 - progress)) : 0;
+        // Base rotation 5° at rest, animates to 0° when becoming active
+        const nextRotation = totalOffset < 0 ? (5 * (1 - progress)) : 5;
         if (showSwipeHint) {
           return {
-            transform: `translate(-50%, -50%) translateX(calc(${nextBase} - 60px)) scale(0.86)`,
+            transform: `translate(-50%, -50%) translateX(calc(${nextBase} - 60px)) scale(0.86) rotate(5deg)`,
             transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
             zIndex: 1,
           };
         }
         return {
           transform: `translate(-50%, -50%) translateX(calc(${nextBase} + ${slideOffsetPx}px)) scale(${nextScale}) rotate(${nextRotation}deg)`,
-          transition: totalOffset < 0 ? incomingTransition : baseTransition,
+          transition: baseTransition,
           zIndex: 1,
         };
       case 'next2':
         return {
-          transform: `translate(-50%, -50%) translateX(calc(${next2Base} + ${slideOffsetPx}px)) scale(0.8)`,
+          transform: `translate(-50%, -50%) translateX(calc(${next2Base} + ${slideOffsetPx}px)) scale(0.8) rotate(5deg)`,
           transition: baseTransition,
           zIndex: 0,
         };
