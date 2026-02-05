@@ -777,10 +777,10 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     
     // Desktop: use 100vw offset to hide prev/next cards outside viewport
     // Mobile: use percentage-based offset for visible peek
-    const prevOffset = isMobile ? 'calc(-100% - 16px' : 'calc(-100vw';
-    const nextOffset = isMobile ? 'calc(100% + 16px' : 'calc(100vw';
-    const prev2Offset = isMobile ? 'calc(-200% - 32px' : 'calc(-200vw';
-    const next2Offset = isMobile ? 'calc(200% + 32px' : 'calc(200vw';
+    const prevOffset = isMobile ? 'calc(-100% - 16px' : 'calc(-50vw - 50% - 16px';
+    const nextOffset = isMobile ? 'calc(100% + 16px' : 'calc(50vw + 50% + 16px';
+    const prev2Offset = isMobile ? 'calc(-200% - 32px' : 'calc(-100vw - 100% - 32px';
+    const next2Offset = isMobile ? 'calc(200% + 32px' : 'calc(100vw + 100% + 32px';
     
     switch (slidePosition) {
       case 'prev2':
@@ -815,7 +815,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         const nextRotation = totalOffset < 0 ? (5 * (1 - progress)) : 0;
         if (showSwipeHint) {
           return {
-            transform: `translate(-50%, -50%) translateX(${isMobile ? 'calc(100% + 16px - 60px)' : 'calc(100vw - 60px)'}) scale(0.86)`,
+            transform: `translate(-50%, -50%) translateX(${isMobile ? 'calc(100% + 16px - 60px)' : 'calc(50vw + 50% - 44px)'}) scale(0.86)`,
             transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
             zIndex: 1,
           };
