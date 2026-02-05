@@ -98,49 +98,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     }
   }, [isDragging, isTransitioning]);
 
-  // Keyboard arrow navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isTransitioning) return;
-      
-      // Calculate slide distance: on desktop use viewport-based offset, on mobile use card width
-      const getSlideDistance = () => {
-        if (isMobile) {
-          return getCardWidth() + 16;
-        }
-        // Desktop: 50vw + 50% of card width
-        return (window.innerWidth / 2) + (getCardWidth() / 2);
-      };
-      
-      if (e.key === 'ArrowLeft' && prevQuestion) {
-        const slideDistance = getSlideDistance();
-        setIsTransitioning(true);
-        setTransitionDirection('right');
-        setDragOffset(slideDistance);
-        if (onDragStateChange) {
-          onDragStateChange(false, 1, prevQuestion.category, 1);
-        }
-        setTimeout(() => {
-          onSwipeRight();
-        }, isMobile ? 300 : 400);
-      } else if (e.key === 'ArrowRight' && nextQuestion) {
-        const slideDistance = getSlideDistance();
-        setIsTransitioning(true);
-        setTransitionDirection('left');
-        setDragOffset(-slideDistance);
-        if (onDragStateChange) {
-          onDragStateChange(false, 1, nextQuestion.category, -1);
-        }
-        setTimeout(() => {
-          onSwipeLeft();
-        }, isMobile ? 300 : 400);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isTransitioning, prevQuestion, nextQuestion, onSwipeLeft, onSwipeRight, onDragStateChange, isMobile]);
-
   // Synchronously populate from cache on every render to prevent flicker
   const getTranslation = useCallback((question: string): string | undefined => {
     // Check local state first, then global cache
@@ -213,29 +170,64 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   // Track if we need to skip transition on next render (after question change)
   const [skipTransition, setSkipTransition] = useState(false);
   const prevQuestionIndexRef = useRef(questionIndex);
-  const isClickTransitionRef = useRef(false);
   
   // Reset drag when question changes - use useLayoutEffect for synchronous update before paint
   useLayoutEffect(() => {
     if (prevQuestionIndexRef.current !== questionIndex) {
-      // Only reset immediately if NOT a click transition (which handles its own timing)
-      if (!isClickTransitionRef.current) {
-        // Disable transitions synchronously before paint (for swipe gestures)
-        setSkipTransition(true);
-        setDragOffset(0);
-        setIsTransitioning(false);
-        setTransitionDirection(null);
-      } else {
-        // For click transitions, just reset the flag and position after the fact
-        isClickTransitionRef.current = false;
-        setSkipTransition(true);
-        setDragOffset(0);
-        setIsTransitioning(false);
-        setTransitionDirection(null);
-      }
+      // Disable transitions synchronously before paint
+      setSkipTransition(true);
+      setDragOffset(0);
+      setIsTransitioning(false);
+      setTransitionDirection(null);
       prevQuestionIndexRef.current = questionIndex;
     }
   }, [questionIndex]);
+  
+  // Unified navigation trigger - used by click zones and keyboard
+  // This replicates the exact swipe animation behavior
+  const triggerNavigation = useCallback((direction: 'left' | 'right') => {
+    const targetQuestion = direction === 'left' ? nextQuestion : prevQuestion;
+    if (!targetQuestion) return;
+    
+    const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
+    const transitionDuration = isMobile ? 300 : 400;
+    const offset = direction === 'left' ? -slideDistance : slideDistance;
+    
+    // Match swipe behavior exactly
+    setIsTransitioning(true);
+    setTransitionDirection(direction === 'left' ? 'left' : 'right');
+    setIsDragging(false);
+    setDragOffset(offset);
+    
+    if (onDragStateChange) {
+      onDragStateChange(false, 1, targetQuestion.category, direction === 'left' ? -1 : 1);
+    }
+    
+    // After animation completes, trigger the actual navigation
+    setTimeout(() => {
+      if (direction === 'left') {
+        onSwipeLeft();
+      } else {
+        onSwipeRight();
+      }
+    }, transitionDuration);
+  }, [nextQuestion, prevQuestion, isMobile, onDragStateChange, onSwipeLeft, onSwipeRight]);
+  
+  // Keyboard arrow navigation - must be after triggerNavigation definition
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isTransitioning) return;
+      
+      if (e.key === 'ArrowLeft') {
+        triggerNavigation('right');
+      } else if (e.key === 'ArrowRight') {
+        triggerNavigation('left');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isTransitioning, triggerNavigation]);
   
   // Re-enable transitions after the position has settled
   useEffect(() => {
@@ -1021,39 +1013,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               console.log('LEFT ZONE: touchStart', { prevQuestion: !!prevQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              if (prevQuestion) {
-                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
-                const transitionDuration = isMobile ? 300 : 400;
-                isClickTransitionRef.current = true;
-                setIsTransitioning(true);
-                setTransitionDirection('right');
-                setDragOffset(slideDistance);
-                if (onDragStateChange) {
-                  onDragStateChange(false, 1, prevQuestion.category, 1);
-                }
-                setTimeout(() => {
-                  onSwipeRight();
-                }, transitionDuration);
-              }
+              triggerNavigation('right');
             }}
             onClick={(e) => {
               console.log('LEFT ZONE: click', { prevQuestion: !!prevQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              if (prevQuestion) {
-                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
-                const transitionDuration = isMobile ? 300 : 400;
-                isClickTransitionRef.current = true;
-                setIsTransitioning(true);
-                setTransitionDirection('right');
-                setDragOffset(slideDistance);
-                if (onDragStateChange) {
-                  onDragStateChange(false, 1, prevQuestion.category, 1);
-                }
-                setTimeout(() => {
-                  onSwipeRight();
-                }, transitionDuration);
-              }
+              triggerNavigation('right');
             }}
           />
         
@@ -1073,39 +1039,13 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               console.log('RIGHT ZONE: touchStart', { nextQuestion: !!nextQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              if (nextQuestion) {
-                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
-                const transitionDuration = isMobile ? 300 : 400;
-                isClickTransitionRef.current = true;
-                setIsTransitioning(true);
-                setTransitionDirection('left');
-                setDragOffset(-slideDistance);
-                if (onDragStateChange) {
-                  onDragStateChange(false, 1, nextQuestion.category, -1);
-                }
-                setTimeout(() => {
-                  onSwipeLeft();
-                }, transitionDuration);
-              }
+              triggerNavigation('left');
             }}
             onClick={(e) => {
               console.log('RIGHT ZONE: click', { nextQuestion: !!nextQuestion, isTransitioning });
               e.preventDefault();
               e.stopPropagation();
-              if (nextQuestion) {
-                const slideDistance = isMobile ? getCardWidth() + 16 : (window.innerWidth / 2) + (getCardWidth() / 2);
-                const transitionDuration = isMobile ? 300 : 400;
-                isClickTransitionRef.current = true;
-                setIsTransitioning(true);
-                setTransitionDirection('left');
-                setDragOffset(-slideDistance);
-                if (onDragStateChange) {
-                  onDragStateChange(false, 1, nextQuestion.category, -1);
-                }
-                setTimeout(() => {
-                  onSwipeLeft();
-                }, transitionDuration);
-              }
+              triggerNavigation('left');
             }}
           />
       </div>
