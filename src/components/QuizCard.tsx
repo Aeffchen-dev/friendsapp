@@ -816,7 +816,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         // Base rotation -5° at rest, animates to 0° when becoming active
         const prevRotation = totalOffset > 0 ? (-5 * (1 - progress)) : -5;
         // When dragging right (positive offset), prev card moves toward center
-        const prevOffsetPx = totalOffset > 0 ? totalOffset : 0;
+        // Mirror the active card's movement for fluid feel
+        const prevOffsetPx = slideOffsetPx;
         return {
           transform: `translate(-50%, -50%) translateX(calc(${prevBase} + ${prevOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
           transition: baseTransition,
@@ -848,7 +849,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           };
         }
         // When dragging left (negative offset), next card moves toward center
-        const nextOffsetPx = totalOffset < 0 ? totalOffset : 0;
+        // Mirror the active card's movement for fluid feel
+        const nextOffsetPx = slideOffsetPx;
         return {
           transform: `translate(-50%, -50%) translateX(calc(${nextBase} + ${nextOffsetPx}px)) scale(${nextScale}) rotate(${nextRotation}deg)`,
           transition: baseTransition,
