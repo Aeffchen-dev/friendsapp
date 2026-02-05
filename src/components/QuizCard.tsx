@@ -822,10 +822,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         // Base rotation -5° at rest, animates to 0° when becoming active
         const prevRotation = totalOffset > 0 ? (-5 * (1 - progress)) : -5;
         // When dragging right (positive offset), prev card moves toward center
-        // Move more aggressively than active card to come into view faster
-        // Active card moves by X, prev card moves by X * multiplier to close the gap
-        const prevMultiplier = isMobile ? 1 : 2;
-        const prevOffsetPx = totalOffset > 0 ? slideOffsetPx * prevMultiplier : 0;
+        // Only move when dragging toward this card (positive = right = toward prev)
+        const prevOffsetPx = totalOffset > 0 ? slideOffsetPx : 0;
         return {
           transform: `translate(-50%, -50%) translateX(calc(${prevBase} + ${prevOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
           transition: baseTransition,
@@ -857,9 +855,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           };
         }
         // When dragging left (negative offset), next card moves toward center
-        // Move more aggressively than active card to come into view faster
-        const nextMultiplier = isMobile ? 1 : 2;
-        const nextOffsetPx = totalOffset < 0 ? slideOffsetPx * nextMultiplier : 0;
+        // Only move when dragging toward this card (negative = left = toward next)
+        const nextOffsetPx = totalOffset < 0 ? slideOffsetPx : 0;
         return {
           transform: `translate(-50%, -50%) translateX(calc(${nextBase} + ${nextOffsetPx}px)) scale(${nextScale}) rotate(${nextRotation}deg)`,
           transition: baseTransition,
