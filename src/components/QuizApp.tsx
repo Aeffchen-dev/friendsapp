@@ -448,10 +448,13 @@ export function QuizApp() {
             onClick={handleLogoClick}
             style={{ 
               filter: 'brightness(0)',
-              // Use locked transform origin during stretch to prevent jumping
-              // Only change origin when logo is at rest (scaleX = 1)
-              transformOrigin: lockedTransformOrigin || 'left',
-              transform: (isDraggingLogo || isLogoAnimating) && dragProgress > 0 && lockedTransformOrigin
+              // During drag: use direction directly to avoid state delay
+              // During return animation: use locked origin
+              // At rest: use 'left' as default (doesn't matter since scale is 1)
+              transformOrigin: isDraggingLogo 
+                ? (logoSqueezeDirection < 0 ? 'left' : 'right')
+                : (lockedTransformOrigin || 'left'),
+              transform: (isDraggingLogo || isLogoAnimating) && dragProgress > 0
                 ? `scaleX(${1 + dragProgress * 0.15})`
                 : 'scaleX(1)',
               transition: isDraggingLogo 
