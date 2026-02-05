@@ -67,6 +67,7 @@ export function QuizApp() {
   const [logoSqueezeDirection, setLogoSqueezeDirection] = useState(0);
   const [isDraggingLogo, setIsDraggingLogo] = useState(false);
   const [isLogoAnimating, setIsLogoAnimating] = useState(false);
+  const [lockedTransformOrigin, setLockedTransformOrigin] = useState<'left' | 'right' | null>(null);
   const [initialIndexApplied, setInitialIndexApplied] = useState(false);
   const logoResetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { t, language } = useLanguage();
@@ -349,6 +350,10 @@ export function QuizApp() {
     
     if (progress > 0) {
       setLogoSqueezeDirection(direction);
+      // Lock transform origin at the start of a stretch
+      if (lockedTransformOrigin === null) {
+        setLockedTransformOrigin(direction < 0 ? 'left' : 'right');
+      }
       
       // Trigger logo animation for non-drag transitions (clicks, keyboard)
       if (!isDragging && progress === 1) {
@@ -362,10 +367,13 @@ export function QuizApp() {
           setIsLogoAnimating(false);
           setDragProgress(0);
           setLogoSqueezeDirection(0);
+          setLockedTransformOrigin(null);
         }, 400);
       }
     } else if (!isDragging) {
       setLogoSqueezeDirection(0);
+      // Only unlock transform origin when fully at rest
+      setLockedTransformOrigin(null);
     }
   };
 
@@ -440,10 +448,10 @@ export function QuizApp() {
             onClick={handleLogoClick}
             style={{ 
               filter: 'brightness(0)',
-              // Always use center transform-origin to prevent position jumping
-              // The stretch effect works by scaling from center - both sides expand equally
-              transformOrigin: 'center',
-              transform: (isDraggingLogo || isLogoAnimating) && dragProgress > 0
+              // Use locked transform origin during stretch to prevent jumping
+              // Only change origin when logo is at rest (scaleX = 1)
+              transformOrigin: lockedTransformOrigin || 'left',
+              transform: (isDraggingLogo || isLogoAnimating) && dragProgress > 0 && lockedTransformOrigin
                 ? `scaleX(${1 + dragProgress * 0.15})`
                 : 'scaleX(1)',
               transition: isDraggingLogo 
