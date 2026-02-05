@@ -798,10 +798,16 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
     // Mobile: use percentage-based offset for visible peek
     // Desktop: 50vw + 50% positions card edge exactly at viewport edge
     // Mobile: percentage-based for visible peek
-    const prevBase = isMobile ? '-100% - 16px' : '-50vw - 50%';
-    const nextBase = isMobile ? '100% + 16px' : '50vw + 50%';
-    const prev2Base = isMobile ? '-200% - 32px' : '-100vw - 100%';
-    const next2Base = isMobile ? '200% + 32px' : '100vw + 100%';
+    // Calculate desktop base positions in pixels for consistent drag behavior
+    const cardWidth = getCardWidth();
+    const viewportHalf = window.innerWidth / 2;
+    const cardHalf = cardWidth / 2;
+    const desktopOffset = viewportHalf + cardHalf;
+    
+    const prevBase = isMobile ? '-100% - 16px' : `${-desktopOffset}px`;
+    const nextBase = isMobile ? '100% + 16px' : `${desktopOffset}px`;
+    const prev2Base = isMobile ? '-200% - 32px' : `${-desktopOffset * 2}px`;
+    const next2Base = isMobile ? '200% + 32px' : `${desktopOffset * 2}px`;
     
     switch (slidePosition) {
       case 'prev2':
@@ -816,8 +822,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
         // Base rotation -5° at rest, animates to 0° when becoming active
         const prevRotation = totalOffset > 0 ? (-5 * (1 - progress)) : -5;
         // When dragging right (positive offset), prev card moves toward center
-        // Mirror the active card's movement for fluid feel
-        const prevOffsetPx = slideOffsetPx;
+        // Only move when dragging toward this card (positive = right = toward prev)
+        const prevOffsetPx = totalOffset > 0 ? slideOffsetPx : 0;
         return {
           transform: `translate(-50%, -50%) translateX(calc(${prevBase} + ${prevOffsetPx}px)) scale(${prevScale}) rotate(${prevRotation}deg)`,
           transition: baseTransition,
@@ -849,8 +855,8 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
           };
         }
         // When dragging left (negative offset), next card moves toward center
-        // Mirror the active card's movement for fluid feel
-        const nextOffsetPx = slideOffsetPx;
+        // Only move when dragging toward this card (negative = left = toward next)
+        const nextOffsetPx = totalOffset < 0 ? slideOffsetPx : 0;
         return {
           transform: `translate(-50%, -50%) translateX(calc(${nextBase} + ${nextOffsetPx}px)) scale(${nextScale}) rotate(${nextRotation}deg)`,
           transition: baseTransition,
