@@ -999,7 +999,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               cursor: prevQuestion ? 'pointer' : 'default',
               pointerEvents: prevQuestion ? 'auto' : 'none',
               touchAction: 'none',
-              background: 'rgba(255,0,0,0.1)', // DEBUG: red tint to see zone
             }}
             onTouchStart={(e) => {
               console.log('LEFT ZONE: touchStart', { prevQuestion: !!prevQuestion, isTransitioning });
@@ -1050,7 +1049,6 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
               cursor: nextQuestion ? 'pointer' : 'default',
               pointerEvents: nextQuestion ? 'auto' : 'none',
               touchAction: 'none',
-              background: 'rgba(0,0,255,0.1)', // DEBUG: blue tint to see zone
             }}
             onTouchStart={(e) => {
               console.log('RIGHT ZONE: touchStart', { nextQuestion: !!nextQuestion, isTransitioning });
