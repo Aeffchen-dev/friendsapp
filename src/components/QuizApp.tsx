@@ -459,7 +459,7 @@ export function QuizApp() {
               transform: `scaleX(${(isDraggingLogo || isLogoAnimating) && dragProgress > 0 ? 1 + dragProgress * 0.07 : 1})`,
               transition: isDraggingLogo 
                 ? 'transform 0.05s linear' 
-                : 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+                : `transform ${window.innerWidth < 768 ? '0.3s' : '0.4s'} ease-out`,
             }}
           />
           {!loading && (
