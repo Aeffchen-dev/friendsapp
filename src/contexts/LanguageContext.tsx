@@ -45,8 +45,13 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+function detectLanguage(): Language {
+  const browserLang = navigator.language || (navigator as any).userLanguage || 'de';
+  return browserLang.startsWith('de') ? 'de' : 'en';
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('de');
+  const [language, setLanguage] = useState<Language>(detectLanguage);
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === 'de' ? 'en' : 'de');
