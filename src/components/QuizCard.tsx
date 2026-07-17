@@ -50,7 +50,7 @@ export function QuizCard({ currentQuestion, nextQuestion, prevQuestion, nextQues
   
   const { language } = useLanguage();
   const isMobile = useIsMobile();
-  const hintTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const hintTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLHeadingElement>(null);
   const activeCardRef = useRef<HTMLDivElement>(null);
