@@ -231,12 +231,19 @@ export function CategorySelector({
               className="flex items-center justify-between pl-4 bg-[#161616] cursor-pointer relative overflow-visible"
               style={{
                 borderRadius: '0 999px 999px 0',
-                width: 'calc(88vw - 32px)',
+                width: dateMode
+                  ? (dateModeBounce ? '90.2vw' : '88vw')
+                  : (dateModeBounce ? 'calc(90.2vw - 32px)' : 'calc(88vw - 32px)'),
                 paddingTop: '8px',
                 paddingRight: '8px',
                 paddingBottom: '8px',
+                transition: 'width 170ms cubic-bezier(0.34, 1.56, 0.64, 1)',
               }}
-              onClick={() => onDateModeChange(!dateMode)}
+              onClick={() => {
+                onDateModeChange(!dateMode);
+                setDateModeBounce(true);
+                setTimeout(() => setDateModeBounce(false), 150);
+              }}
             >
               <span
                 className="font-bold text-sm tracking-wide relative z-10 uppercase"
@@ -250,14 +257,18 @@ export function CategorySelector({
               <div onClick={(e) => e.stopPropagation()}>
                 <div
                   className="relative cursor-pointer"
-                  onClick={() => onDateModeChange(!dateMode)}
+                  onClick={() => {
+                    onDateModeChange(!dateMode);
+                    setDateModeBounce(true);
+                    setTimeout(() => setDateModeBounce(false), 150);
+                  }}
                 >
-                  {/* Toggle switch */}
+                  {/* Toggle switch - same height as checkbox (32px) */}
                   <div
                     className="flex items-center"
                     style={{
-                      width: '44px',
-                      height: '24px',
+                      width: '52px',
+                      height: '32px',
                       borderRadius: '999px',
                       backgroundColor: dateMode ? 'white' : 'transparent',
                       border: '1px solid white',
@@ -267,8 +278,8 @@ export function CategorySelector({
                   >
                     <div
                       style={{
-                        width: '18px',
-                        height: '18px',
+                        width: '26px',
+                        height: '26px',
                         borderRadius: '999px',
                         backgroundColor: dateMode ? 'black' : 'white',
                         transform: dateMode ? 'translateX(20px)' : 'translateX(0px)',
