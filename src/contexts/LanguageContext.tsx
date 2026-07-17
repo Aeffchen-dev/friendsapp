@@ -24,7 +24,7 @@ const translations: Record<Language, Translations> = {
     linkCopied: 'Link kopiert!',
     linkCopiedDescription: 'Der Share-Link wurde in die Zwischenablage kopiert',
     selectCategoriesDescription: 'Wählen Sie die Kategorien aus, die Sie sehen möchten',
-    dateMode: 'Date',
+    dateMode: 'Date Mode',
   },
   en: {
     chooseCategories: 'Choose categories',
@@ -35,7 +35,7 @@ const translations: Record<Language, Translations> = {
     linkCopied: 'Link copied!',
     linkCopiedDescription: 'Share link has been copied to clipboard',
     selectCategoriesDescription: 'Select the categories you want to see',
-    dateMode: 'Date',
+    dateMode: 'Date Mode',
   },
 };
 
