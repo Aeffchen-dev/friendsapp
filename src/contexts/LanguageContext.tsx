@@ -11,6 +11,7 @@ interface Translations {
   linkCopied: string;
   linkCopiedDescription: string;
   selectCategoriesDescription: string;
+  dateMode: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -23,6 +24,7 @@ const translations: Record<Language, Translations> = {
     linkCopied: 'Link kopiert!',
     linkCopiedDescription: 'Der Share-Link wurde in die Zwischenablage kopiert',
     selectCategoriesDescription: 'Wählen Sie die Kategorien aus, die Sie sehen möchten',
+    dateMode: 'Date',
   },
   en: {
     chooseCategories: 'Choose categories',
@@ -33,6 +35,7 @@ const translations: Record<Language, Translations> = {
     linkCopied: 'Link copied!',
     linkCopiedDescription: 'Share link has been copied to clipboard',
     selectCategoriesDescription: 'Select the categories you want to see',
+    dateMode: 'Date',
   },
 };
 

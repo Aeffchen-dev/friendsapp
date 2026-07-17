@@ -69,21 +69,24 @@ export function QuizApp() {
   const [isLogoAnimating, setIsLogoAnimating] = useState(false);
   const [lockedTransformOrigin, setLockedTransformOrigin] = useState<string | null>(null);
   const [initialIndexApplied, setInitialIndexApplied] = useState(false);
+  const [dateMode, setDateMode] = useState(false);
   const logoResetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { t, language } = useLanguage();
   useEffect(() => {
     // Logo stretch already initialized to true, just fetch questions
-    fetchQuestions();
-  }, []);
+    fetchQuestions(dateMode);
+  }, [dateMode]);
 
-  const fetchQuestions = async () => {
+  const fetchQuestions = async (useDates: boolean = false) => {
     try {
       let csvText = '';
       
       // Try Google Sheets first
       try {
         const sheetId = '1-5NpzNwUiAsl_BPruHygyUbpO3LHkWr8E08fqkypOcU';
-        const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
+        const csvUrl = useDates
+          ? `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=Dates`
+          : `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
         
         const response = await fetch(csvUrl);
         if (!response.ok) {
@@ -92,6 +95,11 @@ export function QuizApp() {
         csvText = await response.text();
       } catch (googleError) {
         console.error('Error fetching from Google Sheets, trying local CSV:', googleError);
+        if (useDates) {
+          setAllQuestions([]);
+          setQuestions([]);
+          return;
+        }
         // Fallback to local CSV file
         const localResponse = await fetch('/quiz_questions.csv');
         if (!localResponse.ok) {
@@ -512,6 +520,8 @@ export function QuizApp() {
         categories={availableCategories}
         selectedCategories={selectedCategories}
         onCategoriesChange={handleCategoriesChange}
+        dateMode={dateMode}
+        onDateModeChange={setDateMode}
       />
     </div>
   );

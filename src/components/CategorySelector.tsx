@@ -10,6 +10,8 @@ interface CategorySelectorProps {
   categories: string[];
   selectedCategories: string[];
   onCategoriesChange: (categories: string[]) => void;
+  dateMode: boolean;
+  onDateModeChange: (value: boolean) => void;
 }
 
 export function CategorySelector({ 
@@ -17,7 +19,9 @@ export function CategorySelector({
   onOpenChange, 
   categories, 
   selectedCategories, 
-  onCategoriesChange 
+  onCategoriesChange,
+  dateMode,
+  onDateModeChange,
 }: CategorySelectorProps) {
   const [tempSelection, setTempSelection] = useState<string[]>(selectedCategories);
   const [strokeAnimations, setStrokeAnimations] = useState<{[key: string]: boolean}>({});
@@ -129,6 +133,66 @@ export function CategorySelector({
 
           {/* Categories List */}
           <div className="flex-1 pt-20 pb-20 space-y-3 overflow-y-auto">
+            {/* Date filter row */}
+            <div
+              className="flex items-center justify-between pl-4 bg-[#161616] relative overflow-visible"
+              style={{
+                borderRadius: '0 999px 999px 0',
+                width: 'calc(88vw - 32px)',
+                paddingTop: '8px',
+                paddingRight: '8px',
+                paddingBottom: '8px',
+              }}
+            >
+              <div
+                className="absolute inset-y-0 left-0"
+                style={{
+                  backgroundColor: 'hsl(0 0% 100%)',
+                  opacity: 0.8,
+                  borderRadius: '0 999px 999px 0',
+                  width: '8px',
+                }}
+              />
+              <span
+                className="font-bold text-sm tracking-wide relative z-10 uppercase"
+                style={{
+                  color: 'white',
+                  fontFamily: "'Factor A', sans-serif",
+                }}
+              >
+                {t.dateMode}
+              </span>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={dateMode}
+                onClick={() => onDateModeChange(!dateMode)}
+                className="relative"
+                style={{
+                  width: '52px',
+                  height: '32px',
+                  borderRadius: '999px',
+                  backgroundColor: dateMode ? 'white' : 'transparent',
+                  outline: '1px solid white',
+                  outlineOffset: '0px',
+                  transition: 'background-color 150ms ease-out',
+                }}
+              >
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '4px',
+                    left: dateMode ? '24px' : '4px',
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '999px',
+                    backgroundColor: dateMode ? 'black' : 'white',
+                    transition: 'left 180ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 150ms ease-out',
+                  }}
+                />
+              </button>
+            </div>
+
             {categories.map((category) => {
               const isSelected = tempSelection.includes(category);
               const colorClasses = getCategoryColors(category);
