@@ -70,7 +70,7 @@ export function QuizApp() {
   const [lockedTransformOrigin, setLockedTransformOrigin] = useState<string | null>(null);
   const [initialIndexApplied, setInitialIndexApplied] = useState(false);
   const [dateMode, setDateMode] = useState(false);
-  const logoResetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const logoResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { t, language } = useLanguage();
   useEffect(() => {
     // Logo stretch already initialized to true, just fetch questions
