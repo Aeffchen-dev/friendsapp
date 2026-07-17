@@ -225,35 +225,23 @@ export function CategorySelector({
               );
             })}
 
-            {/* Date filter row - last item, styled like categories */}
+            {/* Date filter row - last item, no color fill, toggle on the right */}
             <div
               className="flex items-center justify-between pl-4 bg-[#161616] cursor-pointer relative overflow-visible"
               style={{
                 borderRadius: '0 999px 999px 0',
-                width: dateMode ? '88vw' : 'calc(88vw - 32px)',
+                width: 'calc(88vw - 32px)',
                 paddingTop: '8px',
                 paddingRight: '8px',
                 paddingBottom: '8px',
-                transition: 'width 170ms cubic-bezier(0.34, 1.56, 0.64, 1)',
               }}
               onClick={() => onDateModeChange(!dateMode)}
             >
-              <div
-                className="absolute inset-y-0 left-0"
-                style={{
-                  backgroundColor: 'hsl(0 0% 100%)',
-                  opacity: 0.8,
-                  borderRadius: '0 999px 999px 0',
-                  width: dateMode ? '100%' : '0px',
-                  transition: 'width 220ms cubic-bezier(0.34, 1.56, 0.64, 1)',
-                }}
-              />
               <span
                 className="font-bold text-sm tracking-wide relative z-10 uppercase"
                 style={{
-                  color: dateMode ? 'black' : 'white',
+                  color: 'white',
                   fontFamily: "'Factor A', sans-serif",
-                  transition: 'color 120ms ease-out',
                 }}
               >
                 {t.dateMode}
@@ -263,38 +251,29 @@ export function CategorySelector({
                   className="relative cursor-pointer"
                   onClick={() => onDateModeChange(!dateMode)}
                 >
+                  {/* Toggle switch */}
                   <div
-                    className="flex items-center justify-center"
+                    className="flex items-center"
                     style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '32px',
-                      outline: '1px solid white',
-                      outlineOffset: '0px',
+                      width: '44px',
+                      height: '24px',
+                      borderRadius: '999px',
                       backgroundColor: dateMode ? 'white' : 'transparent',
+                      border: '1px solid white',
+                      padding: '2px',
                       transition: 'background-color 120ms ease-out',
                     }}
                   >
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 16 16"
-                      fill="none"
+                    <div
                       style={{
-                        opacity: dateMode ? 1 : 0,
-                        transform: dateMode ? 'scale(1.1)' : 'scale(0.3)',
-                        transition: 'opacity 120ms ease-out, transform 120ms cubic-bezier(0.34, 1.8, 0.64, 1)',
+                        width: '18px',
+                        height: '18px',
+                        borderRadius: '999px',
+                        backgroundColor: dateMode ? 'black' : 'white',
+                        transform: dateMode ? 'translateX(20px)' : 'translateX(0px)',
+                        transition: 'transform 170ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 120ms ease-out',
                       }}
-                    >
-                      <path
-                        d="M3 8l3 3 7-7"
-                        stroke="black"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        fill="none"
-                      />
-                    </svg>
+                    />
                   </div>
                 </div>
               </div>
