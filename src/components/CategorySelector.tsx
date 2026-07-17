@@ -26,6 +26,7 @@ export function CategorySelector({
   const [tempSelection, setTempSelection] = useState<string[]>(selectedCategories);
   const [strokeAnimations, setStrokeAnimations] = useState<{[key: string]: boolean}>({});
   const [bounceAnimations, setBounceAnimations] = useState<{[key: string]: boolean}>({});
+  const [dateModeBounce, setDateModeBounce] = useState(false);
   const { language, toggleLanguage, t } = useLanguage();
 
   // Update temp selection when selectedCategories prop changes
