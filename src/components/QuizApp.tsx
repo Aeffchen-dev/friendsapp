@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { QuizCard } from './QuizCard';
 import { CategorySelector } from './CategorySelector';
 import { useLanguage } from '@/contexts/LanguageContext';

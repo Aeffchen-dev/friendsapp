@@ -134,10 +134,9 @@ export function CategorySelector({
 
           {/* Categories List */}
           <div className="flex-1 pt-20 pb-20 space-y-3 overflow-y-auto">
-            {categories
-              .filter(category => !dateMode || category.toLowerCase() !== 'wer aus der runde')
-              .map((category) => {
-              const isSelected = tempSelection.includes(category);
+            {categories.map((category) => {
+              const isDateLocked = dateMode && category.toLowerCase() === 'wer aus der runde';
+              const isSelected = !isDateLocked && tempSelection.includes(category);
               const colorClasses = getCategoryColors(category);
               const textColor = getCategoryTextColors(category);
               
@@ -146,7 +145,7 @@ export function CategorySelector({
               return (
                 <div 
                   key={category}
-                  className="flex items-center justify-between pl-4 bg-[#161616] cursor-pointer relative overflow-visible"
+                  className="flex items-center justify-between pl-4 bg-[#161616] relative overflow-visible"
                   style={{ 
                     borderRadius: '0 999px 999px 0', 
                     width: isSelected 
@@ -156,8 +155,13 @@ export function CategorySelector({
                     paddingRight: '8px',
                     paddingBottom: '8px',
                     transition: 'width 170ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    cursor: isDateLocked ? 'default' : 'pointer',
+                    opacity: isDateLocked ? 0.4 : 1,
                   }}
-                  onClick={() => handleCategoryToggle(category)}
+                  onClick={() => {
+                    if (isDateLocked) return;
+                    handleCategoryToggle(category);
+                  }}
                 >
                   {/* Color strip - 8px when unselected, full width when selected */}
                   <div 
@@ -181,13 +185,15 @@ export function CategorySelector({
                   </span>
                   <div onClick={(e) => e.stopPropagation()}>
                     <div
-                      className="relative cursor-pointer"
+                      className="relative"
+                      style={{ cursor: isDateLocked ? 'default' : 'pointer' }}
                       onClick={() => {
-                         const newCategories = isSelected 
-                           ? tempSelection.filter(c => c !== category)
-                           : [...tempSelection, category];
-                         setTempSelection(newCategories);
-                       }}
+                        if (isDateLocked) return;
+                        const newCategories = isSelected 
+                          ? tempSelection.filter(c => c !== category)
+                          : [...tempSelection, category];
+                        setTempSelection(newCategories);
+                      }}
                     >
                       <div
                         className="flex items-center justify-center"
