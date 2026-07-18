@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { QuizCard } from './QuizCard';
 import { CategorySelector } from './CategorySelector';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -71,18 +71,13 @@ export function QuizApp() {
   const [initialIndexApplied, setInitialIndexApplied] = useState(false);
   const [dateMode, setDateMode] = useState(false);
   const logoResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hasInitializedRef = useRef(false);
   const { t, language } = useLanguage();
   useEffect(() => {
     // Logo stretch already initialized to true, just fetch questions
     fetchQuestions(dateMode);
   }, [dateMode]);
 
-  // When Date Mode is active, automatically deactivate the "Wer aus der Runde" filter
-  useEffect(() => {
-    if (dateMode) {
-      setSelectedCategories(prev => prev.filter(c => c.toLowerCase() !== 'wer aus der runde'));
-    }
-  }, [dateMode]);
 
   const fetchQuestions = async (useDates: boolean = false) => {
     try {
@@ -140,13 +135,16 @@ export function QuizApp() {
         // Smart shuffle: avoid consecutive same categories
         const shuffledQuestions = smartShuffleByCategory([...parsedQuestions]);
         setAllQuestions(shuffledQuestions);
-        setQuestions(shuffledQuestions);
         
         // Extract unique categories
         const categories = Array.from(new Set(parsedQuestions.map(q => q.category)));
         setAvailableCategories(categories);
-        setSelectedCategories(categories); // Start with all categories selected
         
+        // Only set initial selection once to preserve user choices across mode switches
+        if (!hasInitializedRef.current) {
+          setSelectedCategories(categories);
+          hasInitializedRef.current = true;
+        }
       }
     } catch (error) {
       console.error('Error fetching questions:', error);
@@ -241,16 +239,19 @@ export function QuizApp() {
 
   // Filter questions based on selected categories
   useEffect(() => {
-    if (selectedCategories.length === 0) {
+    const effectiveCategories = dateMode
+      ? selectedCategories.filter(c => c.toLowerCase() !== 'wer aus der runde')
+      : selectedCategories;
+    if (effectiveCategories.length === 0) {
       setQuestions([]);
       return;
     }
-    const filteredQuestions = allQuestions.filter(q => selectedCategories.includes(q.category));
+    const filteredQuestions = allQuestions.filter(q => effectiveCategories.includes(q.category));
     setQuestions(filteredQuestions);
     if (initialIndexApplied) {
       setCurrentIndex(0);
     }
-  }, [selectedCategories, allQuestions]);
+  }, [selectedCategories, allQuestions, dateMode]);
 
   // Apply deep-link from URL once questions are ready
   useEffect(() => {
@@ -357,6 +358,14 @@ export function QuizApp() {
   };
 
   const currentBodyColor = getCurrentBackgroundColor();
+
+  const selectorCategories = useMemo(() => {
+    const cats = [...availableCategories];
+    if (dateMode && !cats.some(c => c.toLowerCase() === 'wer aus der runde')) {
+      cats.push('Wer aus der Runde');
+    }
+    return cats;
+  }, [availableCategories, dateMode]);
 
   const handleDragStateChange = (isDragging: boolean, progress: number, category: string, direction: number) => {
     setDragProgress(progress);
@@ -524,7 +533,7 @@ export function QuizApp() {
       <CategorySelector
         open={categorySelectorOpen}
         onOpenChange={handleModalClose}
-        categories={availableCategories}
+        categories={selectorCategories}
         selectedCategories={selectedCategories}
         onCategoriesChange={handleCategoriesChange}
         dateMode={dateMode}
