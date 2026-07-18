@@ -77,6 +77,13 @@ export function QuizApp() {
     fetchQuestions(dateMode);
   }, [dateMode]);
 
+  // When Date Mode is active, automatically deactivate the "Wer aus der Runde" filter
+  useEffect(() => {
+    if (dateMode) {
+      setSelectedCategories(prev => prev.filter(c => c.toLowerCase() !== 'wer aus der runde'));
+    }
+  }, [dateMode]);
+
   const fetchQuestions = async (useDates: boolean = false) => {
     try {
       let csvText = '';
