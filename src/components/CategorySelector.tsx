@@ -134,7 +134,9 @@ export function CategorySelector({
 
           {/* Categories List */}
           <div className="flex-1 pt-20 pb-20 space-y-3 overflow-y-auto">
-            {categories.map((category) => {
+            {categories
+              .filter(category => !dateMode || category.toLowerCase() !== 'wer aus der runde')
+              .map((category) => {
               const isSelected = tempSelection.includes(category);
               const colorClasses = getCategoryColors(category);
               const textColor = getCategoryTextColors(category);
