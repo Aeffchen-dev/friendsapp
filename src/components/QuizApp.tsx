@@ -239,16 +239,19 @@ export function QuizApp() {
 
   // Filter questions based on selected categories
   useEffect(() => {
-    if (selectedCategories.length === 0) {
+    const effectiveCategories = dateMode
+      ? selectedCategories.filter(c => c.toLowerCase() !== 'wer aus der runde')
+      : selectedCategories;
+    if (effectiveCategories.length === 0) {
       setQuestions([]);
       return;
     }
-    const filteredQuestions = allQuestions.filter(q => selectedCategories.includes(q.category));
+    const filteredQuestions = allQuestions.filter(q => effectiveCategories.includes(q.category));
     setQuestions(filteredQuestions);
     if (initialIndexApplied) {
       setCurrentIndex(0);
     }
-  }, [selectedCategories, allQuestions]);
+  }, [selectedCategories, allQuestions, dateMode]);
 
   // Apply deep-link from URL once questions are ready
   useEffect(() => {
