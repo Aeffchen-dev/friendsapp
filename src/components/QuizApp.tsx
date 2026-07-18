@@ -135,13 +135,16 @@ export function QuizApp() {
         // Smart shuffle: avoid consecutive same categories
         const shuffledQuestions = smartShuffleByCategory([...parsedQuestions]);
         setAllQuestions(shuffledQuestions);
-        setQuestions(shuffledQuestions);
         
         // Extract unique categories
         const categories = Array.from(new Set(parsedQuestions.map(q => q.category)));
         setAvailableCategories(categories);
-        setSelectedCategories(categories); // Start with all categories selected
         
+        // Only set initial selection once to preserve user choices across mode switches
+        if (!hasInitializedRef.current) {
+          setSelectedCategories(categories);
+          hasInitializedRef.current = true;
+        }
       }
     } catch (error) {
       console.error('Error fetching questions:', error);
