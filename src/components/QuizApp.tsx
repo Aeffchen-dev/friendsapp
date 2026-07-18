@@ -533,7 +533,7 @@ export function QuizApp() {
       <CategorySelector
         open={categorySelectorOpen}
         onOpenChange={handleModalClose}
-        categories={availableCategories}
+        categories={selectorCategories}
         selectedCategories={selectedCategories}
         onCategoriesChange={handleCategoriesChange}
         dateMode={dateMode}
