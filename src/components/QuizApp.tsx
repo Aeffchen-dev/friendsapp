@@ -359,6 +359,14 @@ export function QuizApp() {
 
   const currentBodyColor = getCurrentBackgroundColor();
 
+  const selectorCategories = useMemo(() => {
+    const cats = [...availableCategories];
+    if (dateMode && !cats.some(c => c.toLowerCase() === 'wer aus der runde')) {
+      cats.push('Wer aus der Runde');
+    }
+    return cats;
+  }, [availableCategories, dateMode]);
+
   const handleDragStateChange = (isDragging: boolean, progress: number, category: string, direction: number) => {
     setDragProgress(progress);
     setTargetCategory(category);
