@@ -87,7 +87,7 @@ export function QuizApp() {
       try {
         const sheetId = '1-5NpzNwUiAsl_BPruHygyUbpO3LHkWr8E08fqkypOcU';
         const csvUrl = useDates
-          ? `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=666371639`
+          ? `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=1641952336`
           : `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=0`;
         
         const response = await fetch(csvUrl);
