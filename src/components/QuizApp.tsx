@@ -85,14 +85,18 @@ export function QuizApp() {
 
       // Load through the edge function so rows hidden in the sheet are ignored
       try {
-        const { data, error } = await supabase.functions.invoke('fetch-questions', {
-          method: 'GET',
-          body: undefined,
-          headers: {},
-          // query params are appended manually below via functionName
-        } as never);
-        if (error) throw error;
-        rows = (data as { rows?: string[][] })?.rows ?? [];
+        const fnUrl = `${SUPABASE_URL}/functions/v1/fetch-questions?dates=${useDates ? 'true' : 'false'}`;
+        const fnResponse = await fetch(fnUrl, {
+          headers: {
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+        });
+        if (!fnResponse.ok) {
+          throw new Error(`fetch-questions failed [${fnResponse.status}]: ${await fnResponse.text()}`);
+        }
+        const payload = (await fnResponse.json()) as { rows?: string[][] };
+        rows = payload?.rows ?? [];
         if (rows.length === 0) throw new Error('No rows returned');
       } catch (fnError) {
         console.error('Edge function failed, falling back to CSV export:', fnError);
