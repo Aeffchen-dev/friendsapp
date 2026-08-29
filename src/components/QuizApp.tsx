@@ -81,47 +81,39 @@ export function QuizApp() {
 
   const fetchQuestions = async (useDates: boolean = false) => {
     try {
-      let csvText = '';
-      
-      // Try Google Sheets first
+      let rows: string[][] = [];
+
+      // Load through the edge function so rows hidden in the sheet are ignored
       try {
+        const { data, error } = await supabase.functions.invoke('fetch-questions', {
+          method: 'GET',
+          body: undefined,
+          headers: {},
+          // query params are appended manually below via functionName
+        } as never);
+        if (error) throw error;
+        rows = (data as { rows?: string[][] })?.rows ?? [];
+        if (rows.length === 0) throw new Error('No rows returned');
+      } catch (fnError) {
+        console.error('Edge function failed, falling back to CSV export:', fnError);
         const sheetId = '1-5NpzNwUiAsl_BPruHygyUbpO3LHkWr8E08fqkypOcU';
         const csvUrl = useDates
           ? `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=1641952336`
           : `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=0`;
-        
         const response = await fetch(csvUrl);
-        if (!response.ok) {
-          throw new Error('Failed to fetch data from Google Sheets');
-        }
-        csvText = await response.text();
-      } catch (googleError) {
-        console.error('Error fetching from Google Sheets, trying local CSV:', googleError);
-        if (useDates) {
-          setAllQuestions([]);
-          setQuestions([]);
-          return;
-        }
-        // Fallback to local CSV file
-        const localResponse = await fetch('/quiz_questions.csv');
-        if (!localResponse.ok) {
-          throw new Error('Failed to fetch local CSV file');
-        }
-        csvText = await localResponse.text();
+        if (!response.ok) throw new Error('Failed to fetch data from Google Sheets');
+        const csvText = await response.text();
+        rows = csvText
+          .split('\n')
+          .map((line) => line.trim())
+          .filter(Boolean)
+          .map((line) => parseCSVLine(line));
       }
-      
-      // Parse CSV data
-      const lines = csvText.split('\n');
+
       const parsedQuestions: Question[] = [];
-      
-      // Skip header row (i = 1)
-      for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue; // Skip empty lines
-        
-        // Simple CSV parsing - handles quotes and commas
-        const columns = parseCSVLine(line);
-        
+
+      for (let i = 0; i < rows.length; i++) {
+        const columns = rows[i] ?? [];
         if (columns.length >= 2 && columns[0] && columns[1]) {
           parsedQuestions.push({
             question: columns[0].trim(),
@@ -130,6 +122,7 @@ export function QuizApp() {
           });
         }
       }
+      
       
       if (parsedQuestions.length > 0) {
         // Smart shuffle: avoid consecutive same categories
